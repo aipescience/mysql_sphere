@@ -17,22 +17,18 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *****************************************************************
- * global variable definition
+ * THD parameter definitions
  * 
  *****************************************************************
  */
 
-#ifndef __MYSQL_SPHERE_GLOBAL__
-#define __MYSQL_SPHERE_GLOBAL__
+#include <mysql/plugin.h>
 
-/* *** GLOBAL DEFINITIONS *** */
-#define OUTPUT_RAD  1    //!< output in radians
-#define OUTPUT_DEG  2    //!< output in degrees
-#define OUTPUT_DMS  3    //!< output in degrees, minutes, seconds
-#define OUTPUT_HMS  4    //!< output in hour, minutes, seconds
+#ifndef __MYSQL_SPHERE_H__
+#define __MYSQL_SPHERE_H__
 
-/* *** GLOBAL VARIABLES *** */
+unsigned long mysql_sphere_outmode( MYSQL_THD thd );
 
-extern char base64enc;
+unsigned int mysql_sphere_outprec( MYSQL_THD thd );
 
 #endif

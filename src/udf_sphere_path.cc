@@ -63,7 +63,7 @@ struct aggregateBuff {
 //supporting spath(path_string)
 my_bool spath_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer *buf;
-	SPath *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking validity
@@ -75,13 +75,14 @@ my_bool spath_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
     	buf = new buffer(1);
 
 		//spath(path_string)
-    	memBuf = spherepath_in( (char*)args->args[0] );
+    	outBuf->memBufs[0] = spherepath_in( (char*)args->args[0] );
+    	outBuf->argTypes[0] = MYSQL_SPHERE_PATH;
 	} else {
 		strcpy(message, "wrong number of arguments: spath() requires one parameter");
 		return 1;
 	}
 
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the path");
 		return 1;
 	}
@@ -90,26 +91,24 @@ my_bool spath_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void spath_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *spath( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SPath * path = (SPath*) initid->ptr;
+	SPath * path = (SPath*)memBuf->memBufs[0];
 
-	strResult = serialise(path);
+	memBuf->resBuf = serialise(path);
 	*length = getSerialisedLen(path);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //spath_equal(SPath, SPath)...
@@ -252,16 +251,15 @@ void strans_path_deinit( UDF_INIT* initid ) {
 char *strans_path( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPath * resultPath = NULL;
 
 	resultPath = spheretrans_path((SPath*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultPath);
+	memBuf->resBuf = serialise(resultPath);
 	*length = getSerialisedLen(resultPath);
 	free(resultPath);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_path_inverse(SPath, SEuler)...
@@ -276,16 +274,15 @@ void strans_path_inverse_deinit( UDF_INIT* initid ) {
 char *strans_path_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPath * resultPath = NULL;
 
 	resultPath = spheretrans_path_inverse((SPath*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultPath);
+	memBuf->resBuf = serialise(resultPath);
 	*length = getSerialisedLen(resultPath);
 	free(resultPath);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //scircle_contains_path(SCircle, SPath)...
@@ -872,7 +869,6 @@ void spath_add_point_aggr_clear(UDF_INIT *initid, UDF_ARGS *args, char *is_null,
 char *spath_add_point_aggr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	aggregateBuff * memBuf = (aggregateBuff*)initid->ptr;
 
-	char *strResult;
 	SPath * resultPath = NULL;
 
 	resultPath = spherepath_add_points_finalize( memBuf->out );
@@ -882,8 +878,8 @@ char *spath_add_point_aggr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsi
 		return NULL;
 	}
 
-	strResult = serialise(resultPath);
+	memBuf->buf->resBuf = serialise(resultPath);
 	*length = getSerialisedLen(resultPath);
 
-	return strResult;
+	return memBuf->buf->resBuf;
 }

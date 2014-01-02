@@ -33,7 +33,7 @@ extern "C" {
 //supporting scircle(spoint, rad), scircle(spoint),scircle(sellipse) or scircle(circle_string)
 my_bool scircle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer *buf;
-	SCircle *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking validity
@@ -49,7 +49,8 @@ my_bool scircle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "scircle(spoint, rad) error decoding first parameter. Corrupted or not the correct type." );
 
-    	memBuf = spherecircle_by_center((SPoint *)buf->memBufs[0], *(double*)args->args[1]);
+    	outBuf->memBufs[0] = spherecircle_by_center((SPoint *)buf->memBufs[0], *(double*)args->args[1]);
+    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
 
     	delete buf;
 	} else if (args->arg_count == 1) {
@@ -64,22 +65,25 @@ my_bool scircle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 
     	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
     		//scircle(spoint)
-    		memBuf = spherepoint_to_circle((SPoint *)buf->memBufs[0]);
+    		outBuf->memBufs[0] = spherepoint_to_circle((SPoint *)buf->memBufs[0]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
     		delete buf;
     	} else if(buf->argTypes[0] == MYSQL_SPHERE_ELLIPSE) {
     		//scircle(spoint)
-    		memBuf = sphereellipse_circle((SEllipse *)buf->memBufs[0]);
-    		delete buf;
+    		outBuf->memBufs[0] = sphereellipse_circle((SEllipse *)buf->memBufs[0]);
+        	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+			delete buf;
     	} else {
     		//scircle(circle_string)
-	    	memBuf = spherecircle_in( (char*)args->args[0] );
+	    	outBuf->memBufs[0] = spherecircle_in( (char*)args->args[0] );
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
 		}
 	} else {
 		strcpy(message, "wrong number of arguments: scircle() requires one or two parameters");
 		return 1;
 	}
 
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the circle");
 		return 1;
 	}
@@ -88,26 +92,24 @@ my_bool scircle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void scircle_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *scircle( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SCircle * circle = (SCircle*) initid->ptr;
+	SCircle * circle = (SCircle*) memBuf->memBufs[0];
 
-	strResult = serialise(circle);
+	memBuf->resBuf = serialise(circle);
 	*length = getSerialisedLen(circle);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //scircle_radius(SCircle)...
@@ -325,16 +327,15 @@ void strans_circle_deinit( UDF_INIT* initid ) {
 char *strans_circle( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SCircle * resultCircle = NULL;
 
 	resultCircle = spheretrans_circle((SCircle*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultCircle);
+	memBuf->resBuf = serialise(resultCircle);
 	*length = getSerialisedLen(resultCircle);
 	free(resultCircle);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_circle_inverse(SCircle, SEuler)...
@@ -349,15 +350,14 @@ void strans_circle_inverse_deinit( UDF_INIT* initid ) {
 char *strans_circle_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SCircle * resultCircle = NULL;
 
 	resultCircle = spheretrans_circle_inverse((SCircle*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultCircle);
+	memBuf->resBuf = serialise(resultCircle);
 	*length = getSerialisedLen(resultCircle);
 	free(resultCircle);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 

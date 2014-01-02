@@ -28,7 +28,7 @@ extern "C" {
 
 //supporting strans(phi, theta, psi) or strans(phi, theta, psi, trans_axis_string), strans(line), strans(ellipse) or strans(trans_string)
 my_bool strans_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	SEuler *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 
 	//checking validity
 	switch (args->arg_count) {
@@ -52,14 +52,16 @@ my_bool strans_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 
 	//creating transformation object
 	if(args->arg_count == 4) {
-		memBuf = spheretrans_from_float8_and_type(*(double*)args->args[0], 
+		outBuf->memBufs[0] = spheretrans_from_float8_and_type(*(double*)args->args[0], 
 												  *(double*)args->args[1],
 												  *(double*)args->args[2],
 												  (char*)args->args[3]);
+    	outBuf->argTypes[0] = MYSQL_SPHERE_EULER;
 	} else if (args->arg_count == 3) {
-		memBuf = spheretrans_from_float8(*(double*)args->args[0], 
+		outBuf->memBufs[0] = spheretrans_from_float8(*(double*)args->args[0], 
 										 *(double*)args->args[1],
 										 *(double*)args->args[2]);
+    	outBuf->argTypes[0] = MYSQL_SPHERE_EULER;
 	} else if (args->arg_count == 1) {
 
 
@@ -72,19 +74,22 @@ my_bool strans_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 
     	if(buf->argTypes[0] == MYSQL_SPHERE_LINE) {
     		//strans(sline)
-    		memBuf = spheretrans_from_line((SLine *)buf->memBufs[0]);
+    		outBuf->memBufs[0] = spheretrans_from_line((SLine *)buf->memBufs[0]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_EULER;
     		delete buf;
     	} else if(buf->argTypes[0] == MYSQL_SPHERE_ELLIPSE) {
     		//strans(sline)
-    		memBuf = sphereellipse_trans((SEllipse *)buf->memBufs[0]);
+    		outBuf->memBufs[0] = sphereellipse_trans((SEllipse *)buf->memBufs[0]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_EULER;
     		delete buf;
     	} else {
     		//strans(transformation_string)
-			memBuf = spheretrans_in( (char*)args->args[0] );
+			outBuf->memBufs[0] = spheretrans_in( (char*)args->args[0] );
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_EULER;
 		}
 	}
    
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the eulerian transformation");
 		return 1;
 	}
@@ -93,26 +98,24 @@ my_bool strans_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void strans_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *strans( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SEuler * trans = (SEuler*) initid->ptr;
+	SEuler * trans = (SEuler*)memBuf->memBufs[0];
 
-	strResult = serialise(trans);
+	memBuf->resBuf = serialise(trans);
 	*length = getSerialisedLen(trans);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 
@@ -128,16 +131,15 @@ void strans_point_deinit( UDF_INIT* initid ) {
 char *strans_point( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint;
 
 	resultPoint = spheretrans_point((SPoint *)memBuf->memBufs[0], (SEuler *)memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free (resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_point_inverse(SPoint, SEuler)...
@@ -152,16 +154,15 @@ void strans_point_inverse_deinit( UDF_INIT* initid ) {
 char *strans_point_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint;
 
 	resultPoint = spheretrans_point_inverse((SPoint *)memBuf->memBufs[0], (SEuler *)memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free(resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_equal(SEuler, SEuler)...
@@ -267,17 +268,16 @@ void strans_invert_deinit( UDF_INIT* initid ) {
 
 char *strans_invert( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
-	char *strResult;
 
 	SEuler * resultTrans;
 
 	resultTrans = spheretrans_invert((SEuler*) memBuf->memBufs[0]);
 
-	strResult = serialise(resultTrans);
+	memBuf->resBuf = serialise(resultTrans);
 	*length = getSerialisedLen(resultTrans);
 	free(resultTrans);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_zxz(SEuler)
@@ -291,16 +291,15 @@ void strans_zxz_deinit( UDF_INIT* initid ) {
 
 char *strans_zxz( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
-	char *strResult;
 	SEuler * resultTrans;
 
 	resultTrans = spheretrans_zxz((SEuler*) memBuf->memBufs[0]);
 
-	strResult = serialise(resultTrans);
+	memBuf->resBuf = serialise(resultTrans);
 	*length = getSerialisedLen(resultTrans);
 	free(resultTrans);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_trans(SEuler, SEuler)
@@ -315,16 +314,15 @@ void strans_trans_deinit( UDF_INIT* initid ) {
 char *strans_trans( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SEuler * resultTrans;
 
 	resultTrans = spheretrans_trans((SEuler*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultTrans);
+	memBuf->resBuf = serialise(resultTrans);
 	*length = getSerialisedLen(resultTrans);
 	free(resultTrans);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_trans_inv(SEuler, SEuler)
@@ -339,14 +337,13 @@ void strans_trans_inv_deinit( UDF_INIT* initid ) {
 char *strans_trans_inv( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SEuler * resultTrans;
 
 	resultTrans = spheretrans_trans_inv((SEuler*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultTrans);
+	memBuf->resBuf = serialise(resultTrans);
 	*length = getSerialisedLen(resultTrans);
 	free(resultTrans);
 
-	return strResult;
+	return memBuf->resBuf;
 }

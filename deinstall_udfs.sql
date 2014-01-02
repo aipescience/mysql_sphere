@@ -3,6 +3,8 @@ DROP FUNCTION sarea;
 DROP FUNCTION scenter;
 DROP FUNCTION slength;
 DROP FUNCTION sswap;
+DROP FUNCTION sstr;
+DROP FUNCTION mysql_sphere_version;
 
 DROP FUNCTION spoint;
 DROP FUNCTION spoint_long;

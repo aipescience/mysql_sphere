@@ -71,8 +71,7 @@ struct aggregateBuff {
 //supporting spoly(polygon_string)
 my_bool spoly_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer *buf;
-	SPoly *memBuf = NULL;
-	MYSQL_SPHERE_TYPES argType;
+	buffer *outBuf = new buffer(1);
 
 	//checking validity
 	if (args->arg_count == 1) {
@@ -83,13 +82,14 @@ my_bool spoly_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
     	buf = new buffer(1);
 
 		//spoly(polygon_string)
-    	memBuf = spherepoly_in( (char*)args->args[0] );
+    	outBuf->memBufs[0] = spherepoly_in( (char*)args->args[0] );
+    	outBuf->argTypes[0] = MYSQL_SPHERE_POLYGON;
 	} else {
 		strcpy(message, "wrong number of arguments: spoly() requires one parameter");
 		return 1;
 	}
 
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the polygon");
 		return 1;
 	}
@@ -98,26 +98,24 @@ my_bool spoly_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void spoly_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *spoly( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SPoly * poly = (SPoly*) initid->ptr;
+	SPoly * poly = (SPoly*)memBuf->memBufs[0];
 
-	strResult = serialise(poly);
+	memBuf->resBuf = serialise(poly);
 	*length = getSerialisedLen(poly);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //spoly_equal(SPoly, SPoly)...
@@ -320,16 +318,15 @@ void strans_poly_deinit( UDF_INIT* initid ) {
 char *strans_poly( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoly * resultPoly = NULL;
 
 	resultPoly = spheretrans_poly((SPoly*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultPoly);
+	memBuf->resBuf = serialise(resultPoly);
 	*length = getSerialisedLen(resultPoly);
 	free(resultPoly);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_poly_inverse(SPoly, SEuler)...
@@ -344,16 +341,15 @@ void strans_poly_inverse_deinit( UDF_INIT* initid ) {
 char *strans_poly_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoly * resultPoly = NULL;
 
 	resultPoly = spheretrans_poly_inverse((SPoly*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultPoly);
+	memBuf->resBuf = serialise(resultPoly);
 	*length = getSerialisedLen(resultPoly);
 	free(resultPoly);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //spoly_contains_circle(SPoly, SCircle)...
@@ -1009,7 +1005,6 @@ void spoly_add_point_aggr_clear(UDF_INIT *initid, UDF_ARGS *args, char *is_null,
 char *spoly_add_point_aggr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	aggregateBuff * memBuf = (aggregateBuff*)initid->ptr;
 
-	char *strResult;
 	SPoly * resultPoly = NULL;
 
 	resultPoly = spherepoly_add_points_finalize( memBuf->out );
@@ -1019,8 +1014,8 @@ char *spoly_add_point_aggr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsi
 		return NULL;
 	}
 
-	strResult = serialise(resultPoly);
+	memBuf->buf->resBuf = serialise(resultPoly);
 	*length = getSerialisedLen(resultPoly);
 
-	return strResult;
+	return memBuf->buf->resBuf;
 }

@@ -39,7 +39,7 @@ extern "C" {
 //supporting sline(spoint, spoint), sline(strans, double), sline(spoint) or sline(line_string)
 my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer *buf;
-	SLine *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking validity
@@ -62,7 +62,8 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	        MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "sline(spoint, spoint) error decoding second parameter. Corrupted or not the correct type." );
 
-	        memBuf = sphereline_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
+	        outBuf->memBufs[0] = sphereline_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
         } else {
         	if(buf->argTypes[0] != MYSQL_SPHERE_EULER) {
         		strcpy(message, "sline(strans, double) needs first parameter to be of object type strans.");
@@ -73,7 +74,8 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         	buf->argTypes[1] = MYSQL_SPHERE_UNKNOWN;
         	buf->memBufs[1] = NULL;
 
-        	memBuf = sphereline_from_trans((SEuler *)buf->memBufs[0], *(double*)args->args[1]);
+        	outBuf->memBufs[0] = sphereline_from_trans((SEuler *)buf->memBufs[0], *(double*)args->args[1]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
         }
 
     	delete buf;
@@ -89,18 +91,20 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 
     	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
     		//sline(spoint)
-    		memBuf = sphereline_from_point((SPoint *)buf->memBufs[0]);
+    		outBuf->memBufs[0] = sphereline_from_point((SPoint *)buf->memBufs[0]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
     		delete buf;
     	} else {
     		//sline(line_string)
-	    	memBuf = sphereline_in( (char*)args->args[0] );
+	    	outBuf->memBufs[0] = sphereline_in( (char*)args->args[0] );
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
 		}
 	} else {
 		strcpy(message, "wrong number of arguments: sline() requires one or two parameters");
 		return 1;
 	}
 
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the circle");
 		return 1;
 	}
@@ -109,30 +113,30 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void sline_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *sline( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SLine * line = (SLine*) initid->ptr;
+	SLine * line = (SLine*)memBuf->memBufs[0];
 
-	strResult = serialise(line);
+	memBuf->resBuf = serialise(line);
 	*length = getSerialisedLen(line);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //smeridian(double)
 my_bool smeridian_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	buffer * outBuf = new buffer(1); 
+
 	if(args->arg_count == 1) {
         MYSQL_UDF_CHKCONV_PARAM_TOREAL(0, "meridian(double) requires double to be a number.");
 	} else {
@@ -143,23 +147,24 @@ my_bool smeridian_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = NULL;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void smeridian_deinit( UDF_INIT* initid ) {
-
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *smeridian( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
+
 	SLine * line = sphereline_meridian(*(double*) args->args[0]);
 
-	strResult = serialise(line);
+	memBuf->resBuf = serialise(line);
 	*length = getSerialisedLen(line);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 
@@ -175,16 +180,15 @@ void sline_beg_deinit( UDF_INIT* initid ) {
 char *sline_beg( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultLine;
 
 	resultLine = sphereline_begin((SLine *)memBuf->memBufs[0]);
 
-	strResult = serialise(resultLine);
+	memBuf->resBuf = serialise(resultLine);
 	*length = getSerialisedLen(resultLine);
 	free(resultLine);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 
@@ -200,16 +204,15 @@ void sline_end_deinit( UDF_INIT* initid ) {
 char *sline_end( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint;
 
 	resultPoint = sphereline_end((SLine *)memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free(resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 
@@ -257,16 +260,15 @@ void sline_turn_deinit( UDF_INIT* initid ) {
 char *sline_turn( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SLine * resultLine;
 
 	resultLine = sphereline_turn((SLine *)memBuf->memBufs[0]);
 
-	strResult = serialise(resultLine);
+	memBuf->resBuf = serialise(resultLine);
 	*length = getSerialisedLen(resultLine);
 	free(resultLine);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 
@@ -415,16 +417,15 @@ void strans_line_deinit( UDF_INIT* initid ) {
 char *strans_line( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SLine * resultLine;
 
 	resultLine = spheretrans_line((SLine *)memBuf->memBufs[0], (SEuler *)memBuf->memBufs[1]);
 
-	strResult = serialise(resultLine);
+	memBuf->resBuf = serialise(resultLine);
 	*length = getSerialisedLen(resultLine);
 	free(resultLine);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 
@@ -440,16 +441,15 @@ void strans_line_inverse_deinit( UDF_INIT* initid ) {
 char *strans_line_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SLine * resultLine;
 
 	resultLine = spheretrans_line_inverse((SLine *)memBuf->memBufs[0], (SEuler *)memBuf->memBufs[1]);
 
-	strResult = serialise(resultLine);
+	memBuf->resBuf = serialise(resultLine);
 	*length = getSerialisedLen(resultLine);
 	free(resultLine);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 

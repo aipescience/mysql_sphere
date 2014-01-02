@@ -4,6 +4,8 @@ CREATE FUNCTION scenter RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION slength RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sswap RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION snpoints RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sstr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION mysql_sphere_version RETURNS STRING SONAME 'mysql_sphere_UDF.so'
 
 CREATE FUNCTION spoint RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION spoint_long RETURNS REAL SONAME 'mysql_sphere_UDF.so';
@@ -269,10 +271,6 @@ CREATE FUNCTION sbox_overlap_path RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_overlap_path_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_overlap_path_com RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_overlap_path_com_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
-
-
-
-
 
 INSTALL PLUGIN sphere SONAME 'mysql_sphere_UDF.so';
 

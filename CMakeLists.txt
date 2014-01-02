@@ -14,8 +14,10 @@ set(MYSQL_SOURCES_PATH "/usr/src/mysql/mysql-5.5")
 
 if(MYSQL_PATH)
     set(MYSQL_CONFIG "${MYSQL_PATH}/bin/mysql_config")
+    set(MYSQL_BUG "${MYSQL_PATH}/bin/mysqlbug")
 else()
     find_file(MYSQL_CONFIG mysql_config)
+    find_file(MYSQL_BUG mysqlbug)
 endif()
 
 execute_process(COMMAND ${MYSQL_CONFIG} --include OUTPUT_VARIABLE MYSQL_INCLUDE_DIR)
@@ -30,6 +32,16 @@ set(CMAKE_BUILD_TYPE Debug)
 SET(BUILD_SHARED_LIBS ON)
 
 add_definitions(-DMYSQL_DYNAMIC_PLUGIN)
+
+#read define parameters with which mysql has been compiled. for this we parse mysqlbug
+file(READ ${MYSQL_BUG} mysqlbugContent)
+STRING(REGEX REPLACE ".*COMP_RUN_INFO=.*CXXFLAGS='([^']*).*" "\\1" mysqlConfig ${mysqlbugContent})
+STRING(REGEX MATCHALL "-D([^ ]*)" defineList "${mysqlConfig}")
+message("Found the following defines in your mysqld configuration: ${defineList}")
+
+add_definitions(${defineList})
+add_definitions(-DDISABLE_DTRACE)
+
 #add_definitions(-DDBUG_OFF)
 #add_definitions(-DDISABLE_DTRACE)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")

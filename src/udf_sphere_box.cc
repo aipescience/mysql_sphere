@@ -84,7 +84,7 @@ extern "C" {
 //supporting sbox(spoint, spoint), sbox(box_string)
 my_bool sbox_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer *buf;
-	SBox *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking validity
@@ -103,7 +103,8 @@ my_bool sbox_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "sbox(spoint, spoint) error decoding second parameter. Corrupted or not the correct type." );
 
-    	memBuf = spherebox_in_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
+    	outBuf->memBufs[0] = spherebox_in_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
+    	outBuf->argTypes[0] = MYSQL_SPHERE_BOX;
 
     	delete buf;
 	} else if (args->arg_count == 1) {
@@ -111,13 +112,14 @@ my_bool sbox_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		MYSQL_UDF_CHK_PARAM_CHAR(0, "sbox(box_string) requires a string.");
 
 		//sbox(box_string)
-    	memBuf = spherebox_in( (char*)args->args[0] );
+    	outBuf->memBufs[0] = spherebox_in( (char*)args->args[0] );
+    	outBuf->argTypes[0] = MYSQL_SPHERE_BOX;
 	} else {
 		strcpy(message, "wrong number of arguments: sbox() requires one or two parameters");
 		return 1;
 	}
 
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the box");
 		return 1;
 	}
@@ -126,26 +128,24 @@ my_bool sbox_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
-void sellipsesbox_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+void sbox_deinit( UDF_INIT* initid ) {
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *sbox( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SBox * box = (SBox*) initid->ptr;
+	SBox * box = (SBox *)memBuf->memBufs[0];
 
-	strResult = serialise(box);
+	memBuf->resBuf = serialise(box);
 	*length = getSerialisedLen(box);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sbox_sw(SBox)...
@@ -160,16 +160,15 @@ void sbox_sw_deinit( UDF_INIT* initid ) {
 char *sbox_sw( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint = NULL;
 
 	resultPoint = spherebox_sw((SBox*) memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free(resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sbox_se(SBox)...
@@ -184,16 +183,15 @@ void sbox_se_deinit( UDF_INIT* initid ) {
 char *sbox_se( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint = NULL;
 
 	resultPoint = spherebox_se((SBox*) memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free(resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sbox_nw(SBox)...
@@ -208,16 +206,15 @@ void sbox_nw_deinit( UDF_INIT* initid ) {
 char *sbox_nw( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint = NULL;
 
 	resultPoint = spherebox_nw((SBox*) memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free(resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sbox_ne(SBox)...
@@ -232,16 +229,15 @@ void sbox_ne_deinit( UDF_INIT* initid ) {
 char *sbox_ne( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SPoint * resultPoint = NULL;
 
 	resultPoint = spherebox_ne((SBox*) memBuf->memBufs[0]);
 
-	strResult = serialise(resultPoint);
+	memBuf->resBuf = serialise(resultPoint);
 	*length = getSerialisedLen(resultPoint);
 	free(resultPoint);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sbox_equal(SBox, SBox)...

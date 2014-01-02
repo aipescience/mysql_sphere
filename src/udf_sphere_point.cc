@@ -21,7 +21,7 @@ extern "C" {
 
 //supporting spoint(long, lat) or spoint(geom_string) or spoint(SPath, i)
 my_bool spoint_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	SPoint *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 
 	//checking stuff to be correct
     if(args->arg_count == 2) {
@@ -33,11 +33,12 @@ my_bool spoint_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
                                                 " spoint(SPath, i) error decoding first parameter. Corrupted or not the correct type." );
 
             if(args->arg_type[1] == INT_RESULT) {
-                memBuf = spherepath_get_point((SPath *) buf->memBufs[0], *(long long*)args->args[1]);
+                outBuf->memBufs[0] = spherepath_get_point((SPath *) buf->memBufs[0], *(long long*)args->args[1]);
             } else {
                 MYSQL_UDF_CHKCONV_PARAM_TOREAL(1, "spoint(SPath, i) requires a numerical or integer parameter as i.");
 
-                memBuf = spherepath_point((SPath *) buf->memBufs[0], *(double*) args->args[1]);
+                outBuf->memBufs[0] = spherepath_point((SPath *) buf->memBufs[0], *(double*) args->args[1]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_POINT;
             }
 
         } else {
@@ -45,19 +46,21 @@ my_bool spoint_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
             MYSQL_UDF_CHKCONV_PARAM_TOREAL(0, "spoint(long, lat) requires a numerical parameter as long.");
             MYSQL_UDF_CHKCONV_PARAM_TOREAL(1, "spoint(long, lat) requires a numerical parameter as lat.");
 
-            memBuf = spherepoint_from_long_lat(*(double*)args->args[0], *(double*)args->args[1]);
+            outBuf->memBufs[0] = spherepoint_from_long_lat(*(double*)args->args[0], *(double*)args->args[1]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_POINT;
         }
     } else if (args->arg_count == 1) {
     	//string
         MYSQL_UDF_CHK_PARAM_CHAR(0, "spoint(coordinate_string) requires a string.");
 
-    	memBuf = spherepoint_in( (char*)args->args[0] );
+    	outBuf->memBufs[0] = spherepoint_in( (char*)args->args[0] );
+    	outBuf->argTypes[0] = MYSQL_SPHERE_POINT;
     } else {
 		strcpy(message, "wrong number of arguments: spoint() requires one or two parameter");
 		return 1;
     }
    
-    if(memBuf == NULL) {
+    if(outBuf->memBufs[0] == NULL) {
     	strcpy(message, "an error occurred while generating the spherical point");
     	return 1;
     }
@@ -66,26 +69,24 @@ my_bool spoint_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
     initid->decimals = 31;
     initid->maybe_null = 1;
     initid->max_length = 1024;
-    initid->ptr = (char*)memBuf;
+    initid->ptr = (char*)outBuf;
 
     return 0;
 }
 
 void spoint_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *spoint( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SPoint * point = (SPoint*) initid->ptr;
+	SPoint * point = (SPoint*)memBuf->memBufs[0];
 
-	strResult = serialise(point);
+	memBuf->resBuf = serialise(point);
 	*length = getSerialisedLen(point);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //spoint_long(SPoint)...

@@ -25,6 +25,8 @@
 #ifndef __MYSQL_SPHERE_UDFHELPERS__
 #define __MYSQL_SPHERE_UDFHELPERS__
 
+#include "types.h"
+#include "serialiser.h"
 
 #define MYSQL_UDF_CHAR_FUNC( NAME ) \
  	my_bool NAME##_init( UDF_INIT* initid, UDF_ARGS* args, char* message ); \
@@ -216,11 +218,13 @@ public:
 	int len;
 	MYSQL_SPHERE_TYPES * argTypes;
 	void ** memBufs;
+	char * resBuf;
 
 	buffer(int nlen) {
 		len = nlen;
 		argTypes = (MYSQL_SPHERE_TYPES*)malloc(len * sizeof(MYSQL_SPHERE_TYPES));
 		memBufs = (void**)malloc(len * sizeof(void*));
+		resBuf = NULL;
 	}
 
 	~buffer() {
@@ -229,6 +233,10 @@ public:
 			if(memBufs[i] != NULL) {
 				free(memBufs[i]);
 			}
+		}
+
+		if(resBuf != NULL) {
+			free(resBuf);
 		}
 
 		free(argTypes);

@@ -53,7 +53,7 @@ extern "C" {
 //supporting sellipse(spoint, lrad, srad, inc), sellipse(spoint), sellipse(scircle), sellipse(ellipse_string)
 my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer *buf;
-	SEllipse *memBuf = NULL;
+	buffer *outBuf = new buffer(1);
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking validity
@@ -73,7 +73,8 @@ my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "sellipse(spoint, lrad, srad, inc) error decoding first parameter. Corrupted or not the correct type." );
 
-    	memBuf = sphereellipse_infunc((SPoint *)buf->memBufs[0], *(double*)args->args[1],*(double*)args->args[2], *(double*)args->args[3]);
+    	outBuf->memBufs[0] = sphereellipse_infunc((SPoint *)buf->memBufs[0], *(double*)args->args[1],*(double*)args->args[2], *(double*)args->args[3]);
+    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
 
     	delete buf;
 	} else if (args->arg_count == 1) {
@@ -88,22 +89,25 @@ my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 
     	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
     		//sellipse(spoint)
-    		memBuf = spherepoint_ellipse((SPoint *)buf->memBufs[0]);
+    		outBuf->memBufs[0] = spherepoint_ellipse((SPoint *)buf->memBufs[0]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
     		delete buf;
     	} else if(buf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
     		//sellipse(scircle)
-    		memBuf = spherecircle_ellipse((SCircle *)buf->memBufs[0]);
+    		outBuf->memBufs[0] = spherecircle_ellipse((SCircle *)buf->memBufs[0]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
     		delete buf;
     	} else {
     		//sellipse(ellipse_string)
-	    	memBuf = sphereellipse_in( (char*)args->args[0] );
+	    	outBuf->memBufs[0] = sphereellipse_in( (char*)args->args[0] );
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
 		}
 	} else {
 		strcpy(message, "wrong number of arguments: sellipse() requires one or two parameters");
 		return 1;
 	}
 
-	if(memBuf == NULL) {
+	if(outBuf->memBufs[0] == NULL) {
 		strcpy(message, "an error occurred while generating the circle");
 		return 1;
 	}
@@ -112,26 +116,24 @@ my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	initid->decimals = 31;
 	initid->maybe_null = 1;
 	initid->max_length = 1024;
-	initid->ptr = (char*)memBuf;
+	initid->ptr = (char*)outBuf;
 
 	return 0;
 }
 
 void sellipse_deinit( UDF_INIT* initid ) {
-	if(initid->ptr != NULL) {
-		free(initid->ptr);
-	}
+	MYSQL_UDF_DEINIT_BUFFER();
 }
 
 char *sellipse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	char *strResult;
+	buffer * memBuf = (buffer*)initid->ptr;
 
-	SEllipse * ellipse = (SEllipse*) initid->ptr;
+	SEllipse * ellipse = (SEllipse*)memBuf->memBufs[0];
 
-	strResult = serialise(ellipse);
+	memBuf->resBuf = serialise(ellipse);
 	*length = getSerialisedLen(ellipse);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sellipse_inc(SEllipse)...
@@ -379,16 +381,15 @@ void strans_ellipse_deinit( UDF_INIT* initid ) {
 char *strans_ellipse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SEllipse * resultEllipse = NULL;
 
 	resultEllipse = spheretrans_ellipse((SEllipse*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultEllipse);
+	memBuf->resBuf = serialise(resultEllipse);
 	*length = getSerialisedLen(resultEllipse);
 	free(resultEllipse);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //strans_ellipse_inverse(SEllipse, SEuler)...
@@ -403,16 +404,15 @@ void strans_ellipse_inverse_deinit( UDF_INIT* initid ) {
 char *strans_ellipse_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	char *strResult;
 	SEllipse * resultEllipse = NULL;
 
 	resultEllipse = spheretrans_ellipse_inv((SEllipse*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
 
-	strResult = serialise(resultEllipse);
+	memBuf->resBuf = serialise(resultEllipse);
 	*length = getSerialisedLen(resultEllipse);
 	free(resultEllipse);
 
-	return strResult;
+	return memBuf->resBuf;
 }
 
 //sellipse_contains_circle(SEllipse, SCircle)...
