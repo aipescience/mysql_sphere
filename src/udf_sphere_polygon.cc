@@ -242,7 +242,7 @@ long long spoly_overlap_polygon_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_
 
 //spoly_contains_point(SPoly, SPoly)...
 my_bool spoly_contains_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_point", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_point", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void spoly_contains_point_deinit( UDF_INIT* initid ) {
@@ -252,12 +252,16 @@ void spoly_contains_point_deinit( UDF_INIT* initid ) {
 long long spoly_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_point((SPoly*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)spherepoly_cont_point((SPoly*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_point_com((SPoint*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_point_neg(SPoly, SPoly)...
 my_bool spoly_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_point_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_point_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void spoly_contains_point_neg_deinit( UDF_INIT* initid ) {
@@ -267,7 +271,11 @@ void spoly_contains_point_neg_deinit( UDF_INIT* initid ) {
 long long spoly_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_point_neg((SPoly*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)spherepoly_cont_point_neg((SPoly*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_point_com_neg((SPoint*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_point_com(SPoly, SPoly)...
@@ -350,7 +358,7 @@ char *strans_poly_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsig
 
 //spoly_contains_circle(SPoly, SCircle)...
 my_bool spoly_contains_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_circle", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_circle", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void spoly_contains_circle_deinit( UDF_INIT* initid ) {
@@ -360,12 +368,16 @@ void spoly_contains_circle_deinit( UDF_INIT* initid ) {
 long long spoly_contains_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_circle((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherepoly_cont_circle((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_circle_com((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_circle_neg(SPoly, SCircle)...
 my_bool spoly_contains_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_circle_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_circle_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void spoly_contains_circle_neg_deinit( UDF_INIT* initid ) {
@@ -375,7 +387,11 @@ void spoly_contains_circle_neg_deinit( UDF_INIT* initid ) {
 long long spoly_contains_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_circle_neg((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherepoly_cont_circle_neg((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_circle_com_neg((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_circle_com(SCircle, SPoly)...
@@ -410,7 +426,7 @@ long long spoly_contains_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char*
 
 //scircle_contains_polygon(SCircle, SPoly)...
 my_bool scircle_contains_polygon_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_polygon", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_polygon", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void scircle_contains_polygon_deinit( UDF_INIT* initid ) {
@@ -420,12 +436,16 @@ void scircle_contains_polygon_deinit( UDF_INIT* initid ) {
 long long scircle_contains_polygon( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_poly((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherecircle_cont_poly((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_poly_com((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
 //scircle_contains_polygon_neg(SCircle, SPoly)...
 my_bool scircle_contains_polygon_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_polygon_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_polygon_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void scircle_contains_polygon_neg_deinit( UDF_INIT* initid ) {
@@ -435,7 +455,11 @@ void scircle_contains_polygon_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_polygon_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_poly_neg((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherecircle_cont_poly_neg((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_poly_com_neg((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
 //scircle_contains_polygon_com(SPoly, SCircle)...
@@ -470,7 +494,7 @@ long long scircle_contains_polygon_com_neg( UDF_INIT* initid, UDF_ARGS* args, ch
 
 //spoly_overlap_circle(SPoly, SCircle)...
 my_bool spoly_overlap_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_overlap_circle", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_overlap_circle", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void spoly_overlap_circle_deinit( UDF_INIT* initid ) {
@@ -480,12 +504,16 @@ void spoly_overlap_circle_deinit( UDF_INIT* initid ) {
 long long spoly_overlap_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_overlap_circle((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherepoly_overlap_circle((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_overlap_circle_neg(SPoly, SCircle)...
 my_bool spoly_overlap_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_overlap_circle_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_overlap_circle_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void spoly_overlap_circle_neg_deinit( UDF_INIT* initid ) {
@@ -495,7 +523,11 @@ void spoly_overlap_circle_neg_deinit( UDF_INIT* initid ) {
 long long spoly_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_overlap_circle_neg((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherepoly_overlap_circle_neg((SPoly*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_overlap_circle_com_neg((SCircle*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_overlap_circle_com(SCircle, SPoly)...
@@ -530,7 +562,7 @@ long long spoly_overlap_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* 
 
 //spoly_contains_line(SPoly, SLine)...
 my_bool spoly_contains_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_line", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_line", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void spoly_contains_line_deinit( UDF_INIT* initid ) {
@@ -540,12 +572,16 @@ void spoly_contains_line_deinit( UDF_INIT* initid ) {
 long long spoly_contains_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_line((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherepoly_cont_line((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_line_com((SLine*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_line_neg(SPoly, SLine)...
 my_bool spoly_contains_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_line_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_line_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void spoly_contains_line_neg_deinit( UDF_INIT* initid ) {
@@ -555,7 +591,11 @@ void spoly_contains_line_neg_deinit( UDF_INIT* initid ) {
 long long spoly_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_line_neg((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherepoly_cont_line_neg((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_line_com_neg((SLine*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_line_com(SLine, SPoly)...
@@ -590,7 +630,7 @@ long long spoly_contains_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* i
 
 //spoly_overlap_line(SPoly, SLine)...
 my_bool spoly_overlap_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_overlap_line", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_overlap_line", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void spoly_overlap_line_deinit( UDF_INIT* initid ) {
@@ -600,12 +640,16 @@ void spoly_overlap_line_deinit( UDF_INIT* initid ) {
 long long spoly_overlap_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_overlap_line((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherepoly_overlap_line((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_overlap_line_com((SLine*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_overlap_line_neg(SPoly, SLine)...
 my_bool spoly_overlap_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_overlap_line_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_overlap_line_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void spoly_overlap_line_neg_deinit( UDF_INIT* initid ) {
@@ -615,7 +659,11 @@ void spoly_overlap_line_neg_deinit( UDF_INIT* initid ) {
 long long spoly_overlap_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_overlap_line_neg((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherepoly_overlap_line_neg((SPoly*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_overlap_line_com_neg((SLine*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_overlap_line_com(SLine, SPoly)...
@@ -650,7 +698,7 @@ long long spoly_overlap_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is
 
 //spoly_contains_ellipse(SPoly, SEllipse)...
 my_bool spoly_contains_ellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_ellipse", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_ellipse", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void spoly_contains_ellipse_deinit( UDF_INIT* initid ) {
@@ -660,12 +708,16 @@ void spoly_contains_ellipse_deinit( UDF_INIT* initid ) {
 long long spoly_contains_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_ellipse((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherepoly_cont_ellipse((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_ellipse_com((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_ellipse_neg(SPoly, SEllipse)...
 my_bool spoly_contains_ellipse_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_ellipse_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_ellipse_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void spoly_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
@@ -675,7 +727,11 @@ void spoly_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long spoly_contains_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_ellipse_neg((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherepoly_cont_ellipse_neg((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_ellipse_com(SEllipse, SPoly)...
@@ -710,7 +766,7 @@ long long spoly_contains_ellipse_com_neg( UDF_INIT* initid, UDF_ARGS* args, char
 
 //sellipse_contains_polygon(SEllipse, SPoly)...
 my_bool sellipse_contains_polygon_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_polygon", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_polygon", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void sellipse_contains_polygon_deinit( UDF_INIT* initid ) {
@@ -720,12 +776,16 @@ void sellipse_contains_polygon_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_polygon( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_poly((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)sphereellipse_cont_poly((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_poly_com((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_polygon_neg(SEllipse, SPoly)...
 my_bool sellipse_contains_polygon_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_polygon_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_polygon_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void sellipse_contains_polygon_neg_deinit( UDF_INIT* initid ) {
@@ -735,7 +795,11 @@ void sellipse_contains_polygon_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_polygon_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_poly_neg((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)sphereellipse_cont_poly_neg((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_poly_com_neg((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_polygon_com(SPoly, SEllipse)...
@@ -770,7 +834,7 @@ long long sellipse_contains_polygon_com_neg( UDF_INIT* initid, UDF_ARGS* args, c
 
 //spoly_overlap_ellipse(SPoly, SEllipse)...
 my_bool spoly_overlap_ellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_overlap_ellipse", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_overlap_ellipse", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void spoly_overlap_ellipse_deinit( UDF_INIT* initid ) {
@@ -780,12 +844,16 @@ void spoly_overlap_ellipse_deinit( UDF_INIT* initid ) {
 long long spoly_overlap_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_overlap_ellipse((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherepoly_overlap_ellipse((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_overlap_ellipse_com((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_overlap_ellipse_neg(SPoly, SEllipse)...
 my_bool spoly_overlap_ellipse_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_overlap_ellipse_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_overlap_ellipse_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void spoly_overlap_ellipse_neg_deinit( UDF_INIT* initid ) {
@@ -795,7 +863,11 @@ void spoly_overlap_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long spoly_overlap_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_overlap_ellipse_neg((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherepoly_overlap_ellipse_neg((SPoly*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_overlap_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_overlap_ellipse_com(SEllipse, SPoly)...

@@ -301,7 +301,7 @@ long long sellipse_overlap_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* 
 
 //sellipse_contains_point(SEllipse, SPoint)...
 my_bool sellipse_contains_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_point", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_point", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void sellipse_contains_point_deinit( UDF_INIT* initid ) {
@@ -311,12 +311,16 @@ void sellipse_contains_point_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_point((SEllipse*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)sphereellipse_cont_point((SEllipse*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_point_com((SPoint*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_point_neg(SEllipse, SEllipse)...
 my_bool sellipse_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_point_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_point_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void sellipse_contains_point_neg_deinit( UDF_INIT* initid ) {
@@ -326,7 +330,11 @@ void sellipse_contains_point_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_point_neg((SEllipse*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)sphereellipse_cont_point_neg((SEllipse*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_point_com_neg((SPoint*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_point_com(SPoint, SEllipse)...
@@ -409,7 +417,7 @@ char *strans_ellipse_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, un
 
 //sellipse_contains_circle(SEllipse, SCircle)...
 my_bool sellipse_contains_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_circle", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_circle", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sellipse_contains_circle_deinit( UDF_INIT* initid ) {
@@ -419,12 +427,16 @@ void sellipse_contains_circle_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_circle((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)sphereellipse_cont_circle((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_circle_com((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_circle_neg(SEllipse, SCircle)...
 my_bool sellipse_contains_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_circle_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_circle_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sellipse_contains_circle_neg_deinit( UDF_INIT* initid ) {
@@ -434,7 +446,11 @@ void sellipse_contains_circle_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_circle_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)sphereellipse_cont_circle_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_circle_com_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_circle_com(SCircle, SEllipse)...
@@ -469,7 +485,7 @@ long long sellipse_contains_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, ch
 
 //scircle_contains_ellipse(SCircle, SEllipse)...
 my_bool scircle_contains_ellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_ellipse", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_ellipse", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void scircle_contains_ellipse_deinit( UDF_INIT* initid ) {
@@ -479,12 +495,16 @@ void scircle_contains_ellipse_deinit( UDF_INIT* initid ) {
 long long scircle_contains_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_ellipse((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherecircle_cont_ellipse((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_ellipse_com((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
 //scircle_contains_ellipse_neg(SCircle, SEllipse)...
 my_bool scircle_contains_ellipse_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_ellipse_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_ellipse_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void scircle_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
@@ -494,7 +514,11 @@ void scircle_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_ellipse_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherecircle_cont_ellipse_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
 //scircle_contains_ellipse_com(SEllipse, SCircle)...
@@ -529,7 +553,7 @@ long long scircle_contains_ellipse_com_neg( UDF_INIT* initid, UDF_ARGS* args, ch
 
 //sellipse_overlap_circle(SEllipse, SCircle)...
 my_bool sellipse_overlap_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_overlap_circle", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_overlap_circle", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sellipse_overlap_circle_deinit( UDF_INIT* initid ) {
@@ -539,12 +563,16 @@ void sellipse_overlap_circle_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_overlap_circle((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)sphereellipse_overlap_circle((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_overlap_circle_neg(SEllipse, SCircle)...
 my_bool sellipse_overlap_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_overlap_circle_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_overlap_circle_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sellipse_overlap_circle_neg_deinit( UDF_INIT* initid ) {
@@ -554,7 +582,11 @@ void sellipse_overlap_circle_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_overlap_circle_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)sphereellipse_overlap_circle_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_overlap_circle_com_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_overlap_circle_com(SCircle, SEllipse)...
@@ -589,7 +621,7 @@ long long sellipse_overlap_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, cha
 
 //sellipse_overlap_line(SEllipse, SLine)...
 my_bool sellipse_overlap_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_overlap_line", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_overlap_line", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sellipse_overlap_line_deinit( UDF_INIT* initid ) {
@@ -599,12 +631,16 @@ void sellipse_overlap_line_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_overlap_line((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereellipse_overlap_line((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_overlap_line_com((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_overlap_line_neg(SEllipse, SLine)...
 my_bool sellipse_overlap_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_overlap_line_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_overlap_line_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sellipse_overlap_line_neg_deinit( UDF_INIT* initid ) {
@@ -614,7 +650,11 @@ void sellipse_overlap_line_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_overlap_line_neg((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereellipse_overlap_line_neg((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_overlap_line_com_neg((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_overlap_line_com(SLine, SEllipse)...
@@ -649,7 +689,7 @@ long long sellipse_overlap_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char*
 
 //sellipse_contains_line(SEllipse, SLine)...
 my_bool sellipse_contains_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_line", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_line", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sellipse_contains_line_deinit( UDF_INIT* initid ) {
@@ -659,12 +699,16 @@ void sellipse_contains_line_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_line((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereellipse_cont_line((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_line_com((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_line_neg(SEllipse, SLine)...
 my_bool sellipse_contains_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_line_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_line_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sellipse_contains_line_neg_deinit( UDF_INIT* initid ) {
@@ -674,7 +718,11 @@ void sellipse_contains_line_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_line_neg((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereellipse_cont_line_neg((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_line_com_neg((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_line_com(SLine, SEllipse)...

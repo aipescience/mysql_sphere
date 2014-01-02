@@ -336,7 +336,7 @@ long long sline_overlap_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, ch
 
 //sline_contains_point(SLine, SLine)...
 my_bool sline_contains_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sline_contains_point", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sline_contains_point", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void sline_contains_point_deinit( UDF_INIT* initid ) {
@@ -346,9 +346,31 @@ void sline_contains_point_deinit( UDF_INIT* initid ) {
 long long sline_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereline_cont_point((SLine*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)sphereline_cont_point((SLine*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereline_cont_point_com((SPoint*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	}
 }
 
+//sline_contains_point_neg(SLine, SLine)...
+my_bool sline_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sline_contains_point_neg", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
+}
+
+void sline_contains_point_neg_deinit( UDF_INIT* initid ) {
+	MYSQL_UDF_DEINIT_BUFFER();
+}
+
+long long sline_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+	buffer * memBuf = (buffer*)initid->ptr;
+
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)sphereline_cont_point_neg((SLine*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereline_cont_point_com_neg((SPoint*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	}
+}
 
 //sline_contains_point_com(SLine, SLine)...
 my_bool sline_contains_point_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
@@ -364,23 +386,6 @@ long long sline_contains_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_n
 
 	return (long long)sphereline_cont_point_com((SPoint*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
-
-
-//sline_contains_point_neg(SLine, SLine)...
-my_bool sline_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sline_contains_point_neg", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
-}
-
-void sline_contains_point_neg_deinit( UDF_INIT* initid ) {
-	MYSQL_UDF_DEINIT_BUFFER();
-}
-
-long long sline_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
-	buffer * memBuf = (buffer*)initid->ptr;
-
-	return (long long)sphereline_cont_point_neg((SLine*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
-}
-
 
 //sline_contains_point_com_neg(SLine, SLine)...
 my_bool sline_contains_point_com_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
@@ -450,7 +455,7 @@ char *strans_line_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsig
 
 //sline_overlap_circle(SLine, SCircle)...
 my_bool sline_overlap_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sline_overlap_circle", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sline_overlap_circle", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sline_overlap_circle_deinit( UDF_INIT* initid ) {
@@ -460,9 +465,31 @@ void sline_overlap_circle_deinit( UDF_INIT* initid ) {
 long long sline_overlap_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereline_overlap_circle((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)sphereline_overlap_circle((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereline_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	}
 }
 
+//sline_overlap_circle_neg(SLine, SCircle)...
+my_bool sline_overlap_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sline_overlap_circle_neg", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+}
+
+void sline_overlap_circle_neg_deinit( UDF_INIT* initid ) {
+	MYSQL_UDF_DEINIT_BUFFER();
+}
+
+long long sline_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+	buffer * memBuf = (buffer*)initid->ptr;
+
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)sphereline_overlap_circle_neg((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)sphereline_overlap_circle_com_neg((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	}
+}
 
 //sline_overlap_circle_com(SCircle, SLine)...
 my_bool sline_overlap_circle_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
@@ -478,23 +505,6 @@ long long sline_overlap_circle_com( UDF_INIT* initid, UDF_ARGS* args, char* is_n
 
 	return (long long)sphereline_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
-
-
-//sline_overlap_circle_neg(SLine, SCircle)...
-my_bool sline_overlap_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sline_overlap_circle_neg", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
-}
-
-void sline_overlap_circle_neg_deinit( UDF_INIT* initid ) {
-	MYSQL_UDF_DEINIT_BUFFER();
-}
-
-long long sline_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
-	buffer * memBuf = (buffer*)initid->ptr;
-
-	return (long long)sphereline_overlap_circle_neg((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
-}
-
 
 //sline_overlap_circle_com_neg(SCircle, SLine)...
 my_bool sline_overlap_circle_com_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
@@ -514,7 +524,7 @@ long long sline_overlap_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* 
 
 //scircle_contains_line(SCircle, SLine)...
 my_bool scircle_contains_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_line", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_line", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void scircle_contains_line_deinit( UDF_INIT* initid ) {
@@ -524,9 +534,31 @@ void scircle_contains_line_deinit( UDF_INIT* initid ) {
 long long scircle_contains_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_line((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherecircle_cont_line((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_line_com((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
+//scircle_contains_line_neg(SCircle, SLine)...
+my_bool scircle_contains_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_line_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
+}
+
+void scircle_contains_line_neg_deinit( UDF_INIT* initid ) {
+	MYSQL_UDF_DEINIT_BUFFER();
+}
+
+long long scircle_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+	buffer * memBuf = (buffer*)initid->ptr;
+
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherecircle_cont_line_neg((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_line_com_neg((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
+}
 
 //scircle_contains_line_com(SLine, SCircle)...
 my_bool scircle_contains_line_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
@@ -541,22 +573,6 @@ long long scircle_contains_line_com( UDF_INIT* initid, UDF_ARGS* args, char* is_
 	buffer * memBuf = (buffer*)initid->ptr;
 
 	return (long long)spherecircle_cont_line_com((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
-}
-
-
-//scircle_contains_line_neg(SCircle, SLine)...
-my_bool scircle_contains_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_line_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
-}
-
-void scircle_contains_line_neg_deinit( UDF_INIT* initid ) {
-	MYSQL_UDF_DEINIT_BUFFER();
-}
-
-long long scircle_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
-	buffer * memBuf = (buffer*)initid->ptr;
-
-	return (long long)spherecircle_cont_line_neg((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
 //scircle_contains_line_com_neg(SLine, SCircle)...

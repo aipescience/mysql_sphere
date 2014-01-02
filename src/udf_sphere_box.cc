@@ -366,7 +366,7 @@ long long sbox_overlap_box_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null,
 
 //sbox_cont_point(SBox, SPoint)...
 my_bool sbox_cont_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_cont_point", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_cont_point", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void sbox_cont_point_deinit( UDF_INIT* initid ) {
@@ -376,12 +376,16 @@ void sbox_cont_point_deinit( UDF_INIT* initid ) {
 long long sbox_cont_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_point((SBox*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)spherebox_cont_point((SBox*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_point_com((SPoint*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_cont_point_neg(SBox, SPoint)...
 my_bool sbox_cont_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_cont_point_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_cont_point_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
 void sbox_cont_point_neg_deinit( UDF_INIT* initid ) {
@@ -391,7 +395,11 @@ void sbox_cont_point_neg_deinit( UDF_INIT* initid ) {
 long long sbox_cont_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_point_neg((SBox*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)spherebox_cont_point_neg((SBox*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_point_com_neg((SPoint*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_cont_point_com(SPoint, SBox)...
@@ -426,7 +434,7 @@ long long sbox_cont_point_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_nu
 
 //sbox_contains_circle(SBox, SCircle)...
 my_bool sbox_contains_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_circle", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_circle", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sbox_contains_circle_deinit( UDF_INIT* initid ) {
@@ -436,12 +444,16 @@ void sbox_contains_circle_deinit( UDF_INIT* initid ) {
 long long sbox_contains_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_circle((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherebox_cont_circle((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_circle_com((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_circle_neg(SBox, SCircle)...
 my_bool sbox_contains_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_circle_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_circle_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sbox_contains_circle_neg_deinit( UDF_INIT* initid ) {
@@ -451,7 +463,11 @@ void sbox_contains_circle_neg_deinit( UDF_INIT* initid ) {
 long long sbox_contains_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_circle_neg((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherebox_cont_circle_neg((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_circle_com_neg((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_circle_com(SCircle, SBox)...
@@ -486,7 +502,7 @@ long long sbox_contains_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* 
 
 //scircle_contains_box(SCircle, SBox)...
 my_bool scircle_contains_box_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_box", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_BOX}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_box", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
 void scircle_contains_box_deinit( UDF_INIT* initid ) {
@@ -496,12 +512,16 @@ void scircle_contains_box_deinit( UDF_INIT* initid ) {
 long long scircle_contains_box( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_box((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherecircle_cont_box((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_box_com((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
 //scircle_contains_box_neg(SCircle, SBox)...
 my_bool scircle_contains_box_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "scircle_contains_box_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_BOX}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "scircle_contains_box_neg", PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
 void scircle_contains_box_neg_deinit( UDF_INIT* initid ) {
@@ -511,7 +531,11 @@ void scircle_contains_box_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_box_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherecircle_cont_box_neg((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherecircle_cont_box_neg((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherecircle_cont_box_com_neg((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	}
 }
 
 //scircle_contains_box_com(SBox, SCircle)...
@@ -546,7 +570,7 @@ long long scircle_contains_box_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* 
 
 //sbox_overlap_circle(SBox, SCircle)...
 my_bool sbox_overlap_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_circle", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_circle", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sbox_overlap_circle_deinit( UDF_INIT* initid ) {
@@ -556,12 +580,16 @@ void sbox_overlap_circle_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_circle((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherebox_overlap_circle((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_circle_neg(SBox, SCircle)...
 my_bool sbox_overlap_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_circle_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_circle_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void sbox_overlap_circle_neg_deinit( UDF_INIT* initid ) {
@@ -571,7 +599,11 @@ void sbox_overlap_circle_neg_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_circle_neg((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherebox_overlap_circle_neg((SBox*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_circle_com_neg((SCircle*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_circle_com(SCircle, SBox)...
@@ -606,7 +638,7 @@ long long sbox_overlap_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* i
 
 //sbox_contains_line(SBox, SLine)...
 my_bool sbox_contains_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_line", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_line", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sbox_contains_line_deinit( UDF_INIT* initid ) {
@@ -616,12 +648,16 @@ void sbox_contains_line_deinit( UDF_INIT* initid ) {
 long long sbox_contains_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_line((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherebox_cont_line((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_line_com((SLine*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_line_neg(SBox, SLine)...
 my_bool sbox_contains_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_line_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_line_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sbox_contains_line_neg_deinit( UDF_INIT* initid ) {
@@ -631,7 +667,11 @@ void sbox_contains_line_neg_deinit( UDF_INIT* initid ) {
 long long sbox_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_line_neg((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherebox_cont_line_neg((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_line_com_neg((SLine*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_line_com(SLine, SBox)...
@@ -666,7 +706,7 @@ long long sbox_contains_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is
 
 //sbox_overlap_line(SBox, SLine)...
 my_bool sbox_overlap_line_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_line", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_line", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sbox_overlap_line_deinit( UDF_INIT* initid ) {
@@ -676,12 +716,16 @@ void sbox_overlap_line_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_line((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherebox_overlap_line((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_line_com((SLine*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_line_neg(SBox, SLine)...
 my_bool sbox_overlap_line_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_line_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_line_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
 
 void sbox_overlap_line_neg_deinit( UDF_INIT* initid ) {
@@ -691,7 +735,11 @@ void sbox_overlap_line_neg_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_line_neg((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
+		return (long long)spherebox_overlap_line_neg((SBox*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_line_com_neg((SLine*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_line_com(SLine, SBox)...
@@ -726,7 +774,7 @@ long long sbox_overlap_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_
 
 //sbox_contains_ellipse(SBox, SEllipse)...
 my_bool sbox_contains_ellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_ellipse", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_ellipse", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void sbox_contains_ellipse_deinit( UDF_INIT* initid ) {
@@ -736,12 +784,16 @@ void sbox_contains_ellipse_deinit( UDF_INIT* initid ) {
 long long sbox_contains_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_ellipse((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherebox_cont_ellipse((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_ellipse_com((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_ellipse_neg(SBox, SEllipse)...
 my_bool sbox_contains_ellipse_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_ellipse_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_ellipse_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void sbox_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
@@ -751,7 +803,11 @@ void sbox_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long sbox_contains_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_ellipse_neg((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherebox_cont_ellipse_neg((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_ellipse_com(SEllipse, SBox)...
@@ -786,7 +842,7 @@ long long sbox_contains_ellipse_com_neg( UDF_INIT* initid, UDF_ARGS* args, char*
 
 //sellipse_contains_box(SEllipse, SBox)...
 my_bool sellipse_contains_box_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_box", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_BOX}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_box", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
 void sellipse_contains_box_deinit( UDF_INIT* initid ) {
@@ -796,12 +852,16 @@ void sellipse_contains_box_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_box( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_box((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)sphereellipse_cont_box((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_box_com((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_box_neg(SEllipse, SBox)...
 my_bool sellipse_contains_box_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sellipse_contains_box_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_BOX}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sellipse_contains_box_neg", PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
 void sellipse_contains_box_neg_deinit( UDF_INIT* initid ) {
@@ -811,7 +871,11 @@ void sellipse_contains_box_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_box_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)sphereellipse_cont_box_neg((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)sphereellipse_cont_box_neg((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)sphereellipse_cont_box_com_neg((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	}
 }
 
 //sellipse_contains_box_com(SBox, SEllipse)...
@@ -846,7 +910,7 @@ long long sellipse_contains_box_com_neg( UDF_INIT* initid, UDF_ARGS* args, char*
 
 //sbox_overlap_ellipse(SBox, SEllipse)...
 my_bool sbox_overlap_ellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_ellipse", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_ellipse", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void sbox_overlap_ellipse_deinit( UDF_INIT* initid ) {
@@ -856,12 +920,16 @@ void sbox_overlap_ellipse_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_ellipse((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherebox_overlap_ellipse((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_ellipse_com((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_ellipse_neg(SBox, SEllipse)...
 my_bool sbox_overlap_ellipse_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_ellipse_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_ellipse_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 }
 
 void sbox_overlap_ellipse_neg_deinit( UDF_INIT* initid ) {
@@ -871,7 +939,11 @@ void sbox_overlap_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_ellipse_neg((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
+		return (long long)spherebox_overlap_ellipse_neg((SBox*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_ellipse_com(SEllipse, SBox)...
@@ -906,7 +978,7 @@ long long sbox_overlap_ellipse_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* 
 
 //sbox_contains_poly(SBox, SPoly)...
 my_bool sbox_contains_poly_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_poly", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_poly", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void sbox_contains_poly_deinit( UDF_INIT* initid ) {
@@ -916,12 +988,16 @@ void sbox_contains_poly_deinit( UDF_INIT* initid ) {
 long long sbox_contains_poly( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_poly((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherebox_cont_poly((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_poly_com((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_poly_neg(SBox, SPoly)...
 my_bool sbox_contains_poly_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_poly_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_poly_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void sbox_contains_poly_neg_deinit( UDF_INIT* initid ) {
@@ -931,7 +1007,11 @@ void sbox_contains_poly_neg_deinit( UDF_INIT* initid ) {
 long long sbox_contains_poly_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_poly_neg((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherebox_cont_poly_neg((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_poly_com_neg((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_poly_com(SPoly, SBox)...
@@ -966,7 +1046,7 @@ long long sbox_contains_poly_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is
 
 //spoly_contains_box(SPoly, SBox)...
 my_bool spoly_contains_box_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_box", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_BOX}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_box", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
 void spoly_contains_box_deinit( UDF_INIT* initid ) {
@@ -976,12 +1056,16 @@ void spoly_contains_box_deinit( UDF_INIT* initid ) {
 long long spoly_contains_box( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_box((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherepoly_cont_box((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_box_com((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_box_neg(SPoly, SBox)...
 my_bool spoly_contains_box_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_box_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_BOX}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_box_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
 void spoly_contains_box_neg_deinit( UDF_INIT* initid ) {
@@ -991,7 +1075,11 @@ void spoly_contains_box_neg_deinit( UDF_INIT* initid ) {
 long long spoly_contains_box_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoly_cont_box_neg((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherepoly_cont_box_neg((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherepoly_cont_box_com_neg((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	}
 }
 
 //spoly_contains_box_com(SBox, SPoly)...
@@ -1026,7 +1114,7 @@ long long spoly_contains_box_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is
 
 //sbox_overlap_poly(SBox, SPoly)...
 my_bool sbox_overlap_poly_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_poly", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_poly", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void sbox_overlap_poly_deinit( UDF_INIT* initid ) {
@@ -1036,12 +1124,16 @@ void sbox_overlap_poly_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_poly( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_poly((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherebox_overlap_poly((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_poly_com((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_poly_neg(SBox, SPoly)...
 my_bool sbox_overlap_poly_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_poly_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_poly_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
 
 void sbox_overlap_poly_neg_deinit( UDF_INIT* initid ) {
@@ -1051,7 +1143,11 @@ void sbox_overlap_poly_neg_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_poly_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_poly_neg((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_POLYGON) {
+		return (long long)spherebox_overlap_poly_neg((SBox*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_poly_com_neg((SPoly*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_poly_com(SPoly, SBox)...
@@ -1086,7 +1182,7 @@ long long sbox_overlap_poly_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_
 
 //sbox_contains_path(SBox, SPath)...
 my_bool sbox_contains_path_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_path", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_path", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
 }
 
 void sbox_contains_path_deinit( UDF_INIT* initid ) {
@@ -1096,12 +1192,16 @@ void sbox_contains_path_deinit( UDF_INIT* initid ) {
 long long sbox_contains_path( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_path((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_PATH) {
+		return (long long)spherebox_cont_path((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_PATH && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_path_com((SPath*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_path_neg(SBox, SPath)...
 my_bool sbox_contains_path_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_path_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_path_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
 }
 
 void sbox_contains_path_neg_deinit( UDF_INIT* initid ) {
@@ -1111,7 +1211,11 @@ void sbox_contains_path_neg_deinit( UDF_INIT* initid ) {
 long long sbox_contains_path_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_cont_path_neg((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_PATH) {
+		return (long long)spherebox_cont_path_neg((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_PATH && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_cont_path_com_neg((SPath*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_contains_path_com(SPath, SBox)...
@@ -1146,7 +1250,7 @@ long long sbox_contains_path_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is
 
 //sbox_overlap_path(SBox, SPath)...
 my_bool sbox_overlap_path_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_path", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_path", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
 }
 
 void sbox_overlap_path_deinit( UDF_INIT* initid ) {
@@ -1156,12 +1260,16 @@ void sbox_overlap_path_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_path( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_path((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_PATH) {
+		return (long long)spherebox_overlap_path((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_PATH && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_path_com((SPath*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_path_neg(SBox, SPath)...
 my_bool sbox_overlap_path_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_overlap_path_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_overlap_path_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_PATH}) );
 }
 
 void sbox_overlap_path_neg_deinit( UDF_INIT* initid ) {
@@ -1171,7 +1279,11 @@ void sbox_overlap_path_neg_deinit( UDF_INIT* initid ) {
 long long sbox_overlap_path_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherebox_overlap_path_neg((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_PATH) {
+		return (long long)spherebox_overlap_path_neg((SBox*) memBuf->memBufs[0], (SPath*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_PATH && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
+		return (long long)spherebox_overlap_path_com_neg((SPath*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
+	}
 }
 
 //sbox_overlap_path_com(SPath, SBox)...

@@ -97,6 +97,36 @@
 			return 1; \
 		} \
 
+#define MYSQL_UDF_CHK_SPHERETYPE_COM( PARANUM, BUFFEROBJ, VALIDTYPES1, VALIDTYPES2, ERROR ) \
+		BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
+ \
+		MYSQL_SPHERE_TYPES types1##PARANUM[] = VALIDTYPES1; \
+		int sphereTypes1ArrayLen##PARANUM = sizeof(types1##PARANUM) / sizeof(MYSQL_SPHERE_TYPES); \
+		int sphereTypes1Counter##PARANUM = 0; \
+		int sphereTypes1Found##PARANUM = 0; \
+		MYSQL_SPHERE_TYPES types2##PARANUM[] = VALIDTYPES2; \
+		int sphereTypes2ArrayLen##PARANUM = sizeof(types2##PARANUM) / sizeof(MYSQL_SPHERE_TYPES); \
+		int sphereTypes2Counter##PARANUM = 0; \
+		int sphereTypes2Found##PARANUM = 0; \
+		for(sphereTypes1Counter##PARANUM = 0; sphereTypes1Counter##PARANUM < sphereTypes1ArrayLen##PARANUM; sphereTypes1Counter##PARANUM++) { \
+	    	if(BUFFEROBJ->argTypes[ PARANUM ] == types1##PARANUM[sphereTypes1Counter##PARANUM]) { \
+	    		sphereTypes1Found##PARANUM = 1; \
+	    		break; \
+	    	} \
+		} \
+		for(sphereTypes2Counter##PARANUM = 0; sphereTypes2Counter##PARANUM < sphereTypes2ArrayLen##PARANUM; sphereTypes2Counter##PARANUM++) { \
+	    	if(BUFFEROBJ->argTypes[ PARANUM ] == types2##PARANUM[sphereTypes2Counter##PARANUM]) { \
+	    		sphereTypes2Found##PARANUM = 1; \
+	    		break; \
+	    	} \
+		} \
+ \
+		if(sphereTypes1Found##PARANUM == 0 && sphereTypes2Found##PARANUM == 0) { \
+			strcpy(message, ERROR); \
+			delete BUFFEROBJ; \
+			return 1; \
+		} \
+
 #define MYSQL_UDF_DEINIT_BUFFER() \
 	buffer * memBuf = (buffer*)initid->ptr; \
 	if(memBuf != NULL) { \
@@ -117,6 +147,33 @@
 											FUNCNAME "() error decoding first parameter. Corrupted or not the correct type." ); \
  \
 		MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT(VALIDTYPES2),  \
+											FUNCNAME "() error decoding second parameter. Corrupted or not the correct type." ); \
+	} else { \
+		strcpy(message, "wrong number of arguments: " FUNCNAME "() requires two parameters"); \
+		return 1; \
+	} \
+    \
+	initid->decimals = 31; \
+	initid->maybe_null = 1; \
+	initid->max_length = 1024; \
+	initid->ptr = (char*)buf; \
+ \
+	return 0; \
+
+#define MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( FUNCNAME, VALIDTYPES1, VALIDTYPES2 ) \
+	buffer * buf; \
+ \
+	if(args->arg_count == 2) { \
+		MYSQL_UDF_CHK_PARAM_CHAR(0, FUNCNAME "() requires the first parameter to be a MySQL sphere object."); \
+ \
+		MYSQL_UDF_CHK_PARAM_CHAR(1, FUNCNAME "() requires the second parameter to be a MySQL sphere object."); \
+ \
+		buf = new buffer(2); \
+ \
+		MYSQL_UDF_CHK_SPHERETYPE_COM( 0, buf, PROTECT(VALIDTYPES1), PROTECT(VALIDTYPES2), \
+											FUNCNAME "() error decoding first parameter. Corrupted or not the correct type." ); \
+ \
+		MYSQL_UDF_CHK_SPHERETYPE_COM( 1, buf, PROTECT(VALIDTYPES2), PROTECT(VALIDTYPES1), \
 											FUNCNAME "() error decoding second parameter. Corrupted or not the correct type." ); \
 	} else { \
 		strcpy(message, "wrong number of arguments: " FUNCNAME "() requires two parameters"); \

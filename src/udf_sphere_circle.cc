@@ -247,7 +247,7 @@ long long scircle_contains_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* i
 
 //spoint_contained_by_circle(SPoint, SCircle)...
 my_bool spoint_contained_by_circle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoint_contained_by_circle", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoint_contained_by_circle", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void spoint_contained_by_circle_deinit( UDF_INIT* initid ) {
@@ -257,12 +257,16 @@ void spoint_contained_by_circle_deinit( UDF_INIT* initid ) {
 long long spoint_contained_by_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoint_in_circle((SPoint*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherepoint_in_circle((SPoint*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)spherepoint_in_circle_com((SCircle*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	}
 }
 
 //spoint_contained_by_circle_neg(SPoint, SCircle)...
 my_bool spoint_contained_by_circle_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoint_contained_by_circle_neg", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoint_contained_by_circle_neg", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 }
 
 void spoint_contained_by_circle_neg_deinit( UDF_INIT* initid ) {
@@ -272,7 +276,11 @@ void spoint_contained_by_circle_neg_deinit( UDF_INIT* initid ) {
 long long spoint_contained_by_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-	return (long long)spherepoint_in_circle_neg((SPoint*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
+		return (long long)spherepoint_in_circle_neg((SPoint*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
+	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
+		return (long long)spherepoint_in_circle_com_neg((SCircle*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
+	}
 }
 
 //spoint_contained_by_circle_com(SCircle, SPoint)...
