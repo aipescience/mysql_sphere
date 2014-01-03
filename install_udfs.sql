@@ -5,7 +5,17 @@ CREATE FUNCTION slength RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sswap RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION snpoints RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sstr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION mysql_sphere_version RETURNS STRING SONAME 'mysql_sphere_UDF.so'
+CREATE FUNCTION mysql_sphere_version RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+
+CREATE FUNCTION srcontainsl RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION slcontainsr RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION srnotcontainsl RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION slnotcontainsr RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION soverlaps RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION snotoverlaps RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sequal RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION snotequal RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+
 
 CREATE FUNCTION spoint RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION spoint_long RETURNS REAL SONAME 'mysql_sphere_UDF.so';

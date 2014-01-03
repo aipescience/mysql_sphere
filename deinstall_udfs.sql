@@ -6,6 +6,15 @@ DROP FUNCTION sswap;
 DROP FUNCTION sstr;
 DROP FUNCTION mysql_sphere_version;
 
+DROP FUNCTION srcontainsl;
+DROP FUNCTION slcontainsr;
+DROP FUNCTION srnotcontainsl;
+DROP FUNCTION slnotcontainsr;
+DROP FUNCTION soverlaps;
+DROP FUNCTION snotoverlaps;
+DROP FUNCTION sequal;
+DROP FUNCTION snotequal;
+
 DROP FUNCTION spoint;
 DROP FUNCTION spoint_long;
 DROP FUNCTION spoint_lat;

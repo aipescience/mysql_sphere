@@ -1,0 +1,198 @@
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1.0d >'))
+<(0.2727077 , 0.018180513) , 0.017453293>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1d 30m >'))
+<(0.2727077 , 0.018180513) , 0.026179939>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'))
+<(0.2727077 , 0.018180513) , 0.1>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'))
+<(0.2727077 , 0.018180513) , 1.5707963>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1.0d >'))
+<(15.625d , 1.0416667d) , 1d>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1d 30m >'))
+<(15.625d , 1.0416667d) , 1.5d>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'))
+<(15.625d , 1.0416667d) , 5.729578d>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'))
+<(15.625d , 1.0416667d) , 90d>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1.0d >'))
+<( 15d 37m 30s , + 1d  2m 30s) ,  1d  0m 0s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1d 30m >'))
+<( 15d 37m 30s , + 1d  2m 30s) ,  1d 30m 0s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'))
+<( 15d 37m 30s , + 1d  2m 30s) ,  5d 43m 46.480625s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'))
+<( 15d 37m 30s , + 1d  2m 30s) , 90d  0m 0s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1.0d >'))
+<(  1h  2m 30s , + 1d  2m 30s) ,  1d  0m 0s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 1d 30m >'))
+<(  1h  2m 30s , + 1d  2m 30s) ,  1d 30m 0s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'))
+<(  1h  2m 30s , + 1d  2m 30s) ,  5d 43m 46.480625s>
+sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'))
+<(  1h  2m 30s , + 1d  2m 30s) , 90d  0m 0s>
+sequal( scircle( '<(0, 90d),1>' )  ,  scircle( '<(0, 90d),1>' ))
+1
+snotequal( scircle( '<(0,-90d),1>') , scircle( '<(0, 90d),1>' ))
+1
+180.0*sdist(scircle( '<( 0h 2m 30s , 10d 0m 0s), 0.1d>'),scircle( '<( 0h 2m 30s , -10d 0m 0s),0.1d>'))/pi()
+19.799999999999994
+180.0*sdist(scircle( '<( 0h 0m 00s , 0d 0m 0s), 1.0d>'),scircle( '<( 1h 0m 00s , 0d 0m 0s),1.0d>'))/pi()
+12.999999999999996
+180.0*sdist(scircle( '<( 23h 30m 00s , 0d 0m 0s), 1.0d>'),scircle( '<( 1h 0m 00s , 0d 0m 0s),1.5d>'))/pi()
+19.999999999999986
+180.0*sdist(scircle( '<( 0h 40m 00s , 0d 0m 0s), 1.0d>'),scircle( '<( 0h 50m 00s , 0d 0m 0s),1.0d>'))/pi()
+0.499999999999953
+180.0*sdist(scircle( '<( 0h 40m 00s , 0d 0m 0s), 1.5d>'),scircle( '<( 0h 50m 00s , 0d 0m 0s),1.5d>'))/pi()
+0
+180.0*sdist(scircle( '<( 0h 40m 00s , 90d 0m 0s), 1.5d>'),scircle( '<( 0h 50m 00s , 0d 0m 0s),1.5d>'))/pi()
+87
+180.0*sdist(scircle( '<( 0h 40m 00s , 90d 0m 0s), 1.0d>'),scircle( '<( 0h 50m 00s , -90d 0m 0s),1.0d>'))/pi()
+178
+sstr(scenter(scircle( '< (1h 2m 30s , +1d 2m 30s), 1.0d >')))
+( 15d 37m 30s , + 1d  2m 30s)
+sstr(scenter(scircle( '< (1h 2m 30s , +90d 0m 0s), 1.0d >')))
+( 15d 37m 30s , +90d  0m 0s)
+sstr(scircle(spoint( '(0d,0d)' )))
+<(  0d  0m 0s , + 0d  0m 0s) ,  0d  0m 0s>
+sstr(scircle(spoint( '(0d,90d)' )))
+<(  0d  0m 0s , +90d  0m 0s) ,  0d  0m 0s>
+sstr(scircle(spoint( '(0d,-90d)' )))
+<(  0d  0m 0s , -90d  0m 0s) ,  0d  0m 0s>
+sequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,+1d), 1.5d >') )
+1
+sequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (25h 0m 0s,+1d), 1d 30m >') )
+1
+sequal( scircle( '< (1h 0m 0s,+95d), 1.5d >'), scircle( '< (13h 0m 0s,+85d), 1.5d >') )
+1
+sequal( scircle( '< (1h 0m 0s,-95d), 1.5d >'), scircle( '< (13h 0m 0s,-85d), 1.5d >') )
+1
+sequal( scircle( '< (1h 0m 0s,+90d), 1.5d >'), scircle( '< (2h 0m 0s,+90d), 1.5d >') )
+1
+sequal( scircle( '< (1h 0m 0s,-90d), 1.5d >'), scircle( '< (2h 0m 0s,-90d), 1.5d >') )
+1
+sequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,-1d), 1.5d >') )
+0
+sequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,+1d), 2.5d >') )
+0
+snotequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,+1d), 1.5d >') )
+0
+snotequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (25h 0m 0s,+1d), 1d 30m >') )
+0
+snotequal( scircle( '< (1h 0m 0s,+95d), 1.5d >'), scircle( '< (13h 0m 0s,+85d), 1.5d >') )
+0
+snotequal( scircle( '< (1h 0m 0s,-95d), 1.5d >'), scircle( '< (13h 0m 0s,-85d), 1.5d >') )
+0
+snotequal( scircle( '< (1h 0m 0s,+90d), 1.5d >'), scircle( '< (2h 0m 0s,+90d), 1.5d >') )
+0
+snotequal( scircle( '< (1h 0m 0s,-90d), 1.5d >'), scircle( '< (2h 0m 0s,-90d), 1.5d >') )
+0
+snotequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,-1d), 1.5d >') )
+1
+snotequal( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,+1d), 2.5d >') )
+1
+soverlaps( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,+1d), 1.5d >') )
+1
+soverlaps( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,+1d), 0.5d >') )
+1
+soverlaps( scircle( '< (1h 0m 0s,+1d), 1.5d >'), scircle( '< (1h 0m 0s,-1d), 1.5d >') )
+1
+soverlaps( scircle( '< (1h 0m 0s,0d), 15d >'), scircle( '< (0h 0m 0s,0d), 15d >') )
+1
+soverlaps( scircle( '< (2h 0m 0s,0d), 15d >'), scircle( '< (0h 0m 0.1s,0d), 15d >') )
+1
+soverlaps( scircle( '< (1h 0m 0s,0d), 15d >'), scircle( '< (23h 0m 0.1s,0d), 15d >') )
+1
+soverlaps( scircle( '< (1h 0m 0s,+1d), 0.5d >'), scircle( '< (1h 0m 0s,-1d), 0.5d >') )
+0
+soverlaps( scircle( '< (1d 0m 0s,+1d), 1.0d >'), scircle( '< (0d 0m 0s,0d), 0.1d >') )
+0
+sstr(scenter( scircle( '< (1h 2m 3s , +1d 2m 3s), 1.0d >') ))
+( 15d 30m 45s , + 1d  2m 3s)
+sstr(scenter( scircle( '< (1h 2m 3s , +90d 0m 0s), 1.0d >') ))
+( 15d 30m 45s , +90d  0m 0s)
+180.0*sdist(scircle( '<( 0h 2m 30s , 10d 0m 0s), 0.1d>'), scircle( '<( 0h 2m 30s , -10d 0m 0s),0.1d>'))/pi()
+19.799999999999994
+180.0*sdist(scircle( '<( 0h 0m 00s , 0d 0m 0s), 1.0d>'), scircle( '<( 1h 0m 00s , 0d 0m 0s),1.0d>'))/pi()
+12.999999999999996
+180.0*sdist(scircle( '<( 23h 30m 00s , 0d 0m 0s), 1.0d>'), scircle( '<( 1h 0m 00s , 0d 0m 0s),1.5d>'))/pi()
+19.999999999999986
+180.0*sdist(scircle( '<( 0h 40m 00s , 0d 0m 0s), 1.0d>'), scircle( '<( 0h 50m 00s , 0d 0m 0s),1.0d>'))/pi()
+0.499999999999953
+180.0*sdist(scircle( '<( 0h 40m 00s , 0d 0m 0s), 1.5d>'), scircle( '<( 0h 50m 00s , 0d 0m 0s),1.5d>'))/pi()
+0
+180.0*sdist(scircle( '<( 0h 40m 00s , 90d 0m 0s), 1.5d>'), scircle( '<( 0h 50m 00s , 0d 0m 0s),1.5d>'))/pi()
+87
+180.0*sdist(scircle( '<( 0h 40m 00s , 90d 0m 0s), 1.0d>'), scircle( '<( 0h 50m 00s , -90d 0m 0s),1.0d>'))/pi()
+178
+srcontainsl(  scircle( '< (1h 0m 0s,+1d),  0.5d >'), scircle( '< (1h 0m 0s,+1d),  1.5d >') )
+1
+srcontainsl(  scircle( '< (2d 0m 0s,+1d),  0.5d >'), scircle( '< (1d 0m 0s,0d),   3.5d >') )
+1
+srcontainsl(  scircle( '< (1h 0m 0s,+89d), 0.5d >'), scircle( '< (1h 0m 0s,+90d), 1.5d >') )
+1
+srcontainsl(  scircle( '< (1h 0m 0s,-89d), 0.5d >'), scircle( '< (1h 0m 0s,-90d), 1.5d >') )
+1
+srcontainsl(  scircle( '< (1h 0m 0s,+1d),  0.5d >'), scircle( '< (2h 0m 0s,+1d),  1.5d >') )
+0
+srcontainsl(  scircle( '< (2d 0m 0s,+1d),  1.5d >'), scircle( '< (0d 0m 0s, 0d),  3.5d >') )
+0
+srcontainsl(  scircle( '< (1h 0m 0s,+89d), 0.5d >'), scircle( '< (1h 0m 0s,+90d), 1.0d >') )
+0
+srcontainsl(  scircle( '< (1h 0m 0s,-89d), 0.5d >'), scircle( '< (1h 0m 0s,-90d), 1.0d >') )
+0
+slcontainsr( scircle( '< (1h 0m 0s,+1d),  1.5d >') , scircle( '< (1h 0m 0s,+1d),  0.5d >') )
+1
+slcontainsr( scircle( '< (1d 0m 0s,0d),   3.5d >') , scircle( '< (2d 0m 0s,+1d),  0.5d >') )
+1
+slcontainsr( scircle( '< (1h 0m 0s,+90d), 1.5d >') , scircle( '< (1h 0m 0s,+89d), 0.5d >') )
+1
+slcontainsr( scircle( '< (1h 0m 0s,-90d), 1.5d >') , scircle( '< (1h 0m 0s,-89d), 0.5d >') )
+1
+slcontainsr( scircle( '< (2h 0m 0s,+1d),  1.5d >') , scircle( '< (1h 0m 0s,+1d),  0.5d >') )
+0
+slcontainsr( scircle( '< (0d 0m 0s, 0d),  3.5d >') , scircle( '< (2d 0m 0s,+1d),  1.5d >') )
+0
+slcontainsr( scircle( '< (1h 0m 0s,+90d), 1.0d >') , scircle( '< (1h 0m 0s,+89d), 0.5d >') )
+0
+slcontainsr( scircle( '< (1h 0m 0s,-90d), 1.0d >') , scircle( '< (1h 0m 0s,-89d), 0.5d >') )
+0
+srcontainsl(  spoint( '(1h 0m 0s,+1d) ' ), scircle( '< (1h 0m 0s,+1d),  1.5d >') )
+1
+srcontainsl(  spoint( '(2d 0m 0s,+1d) ' ), scircle( '< (1d 0m 0s, 0d),  3.5d >') )
+1
+srcontainsl(  spoint( '(1h 0m 0s,+89d)' ), scircle( '< (1h 0m 0s,+90d), 1.5d >') )
+1
+srcontainsl(  spoint( '(1h 0m 0s,-89d)' ), scircle( '< (1h 0m 0s,-90d), 1.5d >') )
+1
+srcontainsl(  spoint( '(1h 0m 0s,+89d)' ), scircle( '< (1h 0m 0s,+90d), 1.0d >') )
+1
+srcontainsl(  spoint( '(1h 0m 0s,-89d)' ), scircle( '< (1h 0m 0s,-90d), 1.0d >') )
+1
+srcontainsl(  spoint( '(1h 0m  0s,+1d    )' ), scircle( '< (2h 0m 0s,-1d),  1.5d >') )
+0
+srcontainsl(  spoint( '(3d 30m 0s,+1d    )' ), scircle( '< (0d 0m 0s, 0d),  3.5d >') )
+0
+srcontainsl(  spoint( '(1h 0m  0s,+88.99d)' ), scircle( '< (1h 0m 0s,+90d), 1.0d >') )
+0
+srcontainsl(  spoint( '(1h 0m  0s,-88.99d)' ), scircle( '< (1h 0m 0s,-90d), 1.0d >') )
+0
+slcontainsr( scircle( '< (1h 0m 0s,+1d),  1.5d >'), spoint( '(1h 0m 0s,+1d) ' ) )
+1
+slcontainsr( scircle( '< (1d 0m 0s, 0d),  3.5d >'), spoint( '(2d 0m 0s,+1d) ' ) )
+1
+slcontainsr( scircle( '< (1h 0m 0s,+90d), 1.5d >'), spoint( '(1h 0m 0s,+89d)' ) )
+1
+slcontainsr( scircle( '< (1h 0m 0s,-90d), 1.5d >'), spoint( '(1h 0m 0s,-89d)' ) )
+1
+slcontainsr( scircle( '< (1h 0m 0s,+90d), 1.0d >'), spoint( '(1h 0m 0s,+89d)' ) )
+1
+slcontainsr( scircle( '< (1h 0m 0s,-90d), 1.0d >'), spoint( '(1h 0m 0s,-89d)' ) )
+1
+slcontainsr( scircle( '< (2h 0m 0s,-1d),  1.5d >'), spoint( '(1h 0m  0s,+1d    )' ) )
+0
+slcontainsr( scircle( '< (0d 0m 0s, 0d),  3.5d >'), spoint( '(3d 30m 0s,+1d    )' ) )
+0
+slcontainsr( scircle( '< (1h 0m 0s,+90d), 1.0d >'), spoint( '(1h 0m  0s,+88.99d)' ) )
+0
+slcontainsr( scircle( '< (1h 0m 0s,-90d), 1.0d >'), spoint( '(1h 0m  0s,-88.99d)' ) )
+0

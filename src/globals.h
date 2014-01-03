@@ -26,10 +26,10 @@
 #define __MYSQL_SPHERE_GLOBAL__
 
 /* *** GLOBAL DEFINITIONS *** */
-#define OUTPUT_RAD  1    //!< output in radians
-#define OUTPUT_DEG  2    //!< output in degrees
-#define OUTPUT_DMS  3    //!< output in degrees, minutes, seconds
-#define OUTPUT_HMS  4    //!< output in hour, minutes, seconds
+#define OUTPUT_RAD  0    //!< output in radians
+#define OUTPUT_DEG  1    //!< output in degrees
+#define OUTPUT_DMS  2    //!< output in degrees, minutes, seconds
+#define OUTPUT_HMS  3    //!< output in hour, minutes, seconds
 
 /* *** GLOBAL VARIABLES *** */
 
