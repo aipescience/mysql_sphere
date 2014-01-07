@@ -49,8 +49,13 @@ my_bool scircle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "scircle(spoint, rad) error decoding first parameter. Corrupted or not the correct type." );
 
-    	outBuf->memBufs[0] = spherecircle_by_center((SPoint *)buf->memBufs[0], *(double*)args->args[1]);
-    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+        if(buf->isDynParams[0] == true || args->args[1] == NULL) {
+        	outBuf->isDynParams[0] = true;
+        } else {
+	    	outBuf->memBufs[0] = spherecircle_by_center((SPoint *)buf->memBufs[0], *(double*)args->args[1]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+        	outBuf->isDynParams[0] = false;
+        }
 
     	delete buf;
 	} else if (args->arg_count == 1) {
@@ -63,27 +68,32 @@ my_bool scircle_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_ELLIPSE, MYSQL_SPHERE_UNKNOWN}), 
 											"scircle(spoint), scircle(sellipse) error decoding first parameter. Corrupted or not the correct type." );
 
-    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
-    		//scircle(spoint)
-    		outBuf->memBufs[0] = spherepoint_to_circle((SPoint *)buf->memBufs[0]);
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
-    		delete buf;
-    	} else if(buf->argTypes[0] == MYSQL_SPHERE_ELLIPSE) {
-    		//scircle(spoint)
-    		outBuf->memBufs[0] = sphereellipse_circle((SEllipse *)buf->memBufs[0]);
-        	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
-			delete buf;
-    	} else {
-    		//scircle(circle_string)
-	    	outBuf->memBufs[0] = spherecircle_in( (char*)args->args[0] );
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+		if(buf->isDynParams[0] == true) {
+        	outBuf->isDynParams[0] = true;
+		} else {
+        	outBuf->isDynParams[0] = false;
+	    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
+	    		//scircle(spoint)
+	    		outBuf->memBufs[0] = spherepoint_to_circle((SPoint *)buf->memBufs[0]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+	    		delete buf;
+	    	} else if(buf->argTypes[0] == MYSQL_SPHERE_ELLIPSE) {
+	    		//scircle(spoint)
+	    		outBuf->memBufs[0] = sphereellipse_circle((SEllipse *)buf->memBufs[0]);
+	        	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+				delete buf;
+	    	} else {
+	    		//scircle(circle_string)
+		    	outBuf->memBufs[0] = spherecircle_in( (char*)args->args[0] );
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+			}
 		}
 	} else {
 		strcpy(message, "wrong number of arguments: scircle() requires one or two parameters");
 		return 1;
 	}
 
-	if(outBuf->memBufs[0] == NULL) {
+	if(outBuf->memBufs[0] == NULL && outBuf->isDynParams[0] == false) {
 		strcpy(message, "an error occurred while generating the circle");
 		return 1;
 	}
@@ -103,6 +113,62 @@ void scircle_deinit( UDF_INIT* initid ) {
 
 char *scircle( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+	if(memBuf->isDynParams[0] == true) {
+		buffer *buf;
+		if(memBuf->memBufs[0] != NULL) {
+			free(memBuf->memBufs[0]);
+			memBuf->memBufs[0] = NULL;
+			if(memBuf->resBuf != NULL) {
+				free(memBuf->resBuf);
+			}
+		}
+
+		if (args->arg_count == 2) {
+	        MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL(1);
+
+			//decode object - if corrupted and not the thing we are thinking this should be, throw error
+	    	buf = new buffer(1);
+
+            //fool the macro
+            buf->isDynParams[0] = true;
+
+	        MYSQL_UDF_DYNCHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT}) );
+
+	    	memBuf->memBufs[0] = spherecircle_by_center((SPoint *)buf->memBufs[0], *(double*)args->args[1]);
+	    	memBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+
+	    	delete buf;
+		} else if (args->arg_count == 1) {
+			MYSQL_UDF_DYNCHK_PARAM_CHAR(0);
+
+			//decode object - if this is not a point, throw error, if corrupted, the parser will throw error
+	    	buf = new buffer(1);
+
+			MYSQL_UDF_DYNCHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_ELLIPSE, MYSQL_SPHERE_UNKNOWN}) );
+
+	    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
+	    		//scircle(spoint)
+	    		memBuf->memBufs[0] = spherepoint_to_circle((SPoint *)buf->memBufs[0]);
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+	    		delete buf;
+	    	} else if(buf->argTypes[0] == MYSQL_SPHERE_ELLIPSE) {
+	    		//scircle(spoint)
+	    		memBuf->memBufs[0] = sphereellipse_circle((SEllipse *)buf->memBufs[0]);
+	        	memBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+				delete buf;
+	    	} else {
+	    		//scircle(circle_string)
+		    	memBuf->memBufs[0] = spherecircle_in( (char*)args->args[0] );
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_CIRCLE;
+			}
+		}
+
+		if(memBuf->memBufs[0] == NULL) {
+			*is_null = 1;
+			return NULL;
+		}
+	}
 
 	SCircle * circle = (SCircle*) memBuf->memBufs[0];
 
@@ -124,6 +190,8 @@ void scircle_radius_deinit( UDF_INIT* initid ) {
 double scircle_radius( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return spherecircle_radius((SCircle*) memBuf->memBufs[0]);
 }
 
@@ -138,6 +206,9 @@ void scircle_equal_deinit( UDF_INIT* initid ) {
 
 long long scircle_equal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	return (long long)spherecircle_equal((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
@@ -154,6 +225,9 @@ void scircle_equal_neg_deinit( UDF_INIT* initid ) {
 long long scircle_equal_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_equal_neg((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -168,6 +242,9 @@ void scircle_overlap_deinit( UDF_INIT* initid ) {
 
 long long scircle_overlap( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	return (long long)spherecircle_overlap((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
@@ -184,6 +261,9 @@ void scircle_overlap_neg_deinit( UDF_INIT* initid ) {
 long long scircle_overlap_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_overlap_neg((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -198,6 +278,9 @@ void scircle_contained_by_circle_deinit( UDF_INIT* initid ) {
 
 long long scircle_contained_by_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	return (long long)spherecircle_in_circle((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
@@ -214,6 +297,9 @@ void scircle_contained_by_circle_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contained_by_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_in_circle_neg((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -228,6 +314,9 @@ void scircle_contains_circle_deinit( UDF_INIT* initid ) {
 
 long long scircle_contains_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	return (long long)spherecircle_in_circle_com((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
@@ -244,6 +333,9 @@ void scircle_contains_circle_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_in_circle_com_neg((SCircle*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -258,6 +350,9 @@ void spoint_contained_by_circle_deinit( UDF_INIT* initid ) {
 
 long long spoint_contained_by_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)spherepoint_in_circle((SPoint*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
@@ -278,6 +373,9 @@ void spoint_contained_by_circle_neg_deinit( UDF_INIT* initid ) {
 long long spoint_contained_by_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)spherepoint_in_circle_neg((SPoint*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
@@ -297,6 +395,9 @@ void spoint_contained_by_circle_com_deinit( UDF_INIT* initid ) {
 long long spoint_contained_by_circle_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
+
 	return (long long)spherepoint_in_circle_com((SCircle*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
 }
 
@@ -312,6 +413,9 @@ void spoint_contained_by_circle_com_neg_deinit( UDF_INIT* initid ) {
 long long spoint_contained_by_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
+
 	return (long long)spherepoint_in_circle_com_neg((SCircle*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
 }
 
@@ -326,6 +430,9 @@ void strans_circle_deinit( UDF_INIT* initid ) {
 
 char *strans_circle( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_EULER}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_EULER}) );
 
 	SCircle * resultCircle = NULL;
 
@@ -349,6 +456,9 @@ void strans_circle_inverse_deinit( UDF_INIT* initid ) {
 
 char *strans_circle_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_EULER}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_EULER}) );
 
 	SCircle * resultCircle = NULL;
 

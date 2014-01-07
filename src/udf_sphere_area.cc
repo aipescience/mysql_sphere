@@ -52,6 +52,8 @@ void sarea_deinit( UDF_INIT* initid ) {
 double sarea( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_BOX}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
 		return spherecircle_area((SCircle*) memBuf->memBufs[0]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON) {

@@ -1,6 +1,7 @@
 DROP FUNCTION sdist;
 DROP FUNCTION sarea;
 DROP FUNCTION scenter;
+DROP FUNCTION scircum;
 DROP FUNCTION slength;
 DROP FUNCTION sswap;
 DROP FUNCTION sstr;
@@ -168,6 +169,7 @@ DROP FUNCTION spoly_overlap_ellipse_com_neg;
 DROP FUNCTION strans_poly;
 DROP FUNCTION strans_poly_inverse;
 DROP AGGREGATE FUNCTION spoly_add_point_aggr;
+DROP AGGREGATE FUNCTION spoly_aggr;
 
 DROP FUNCTION spath;
 DROP FUNCTION spath_equal;
@@ -209,6 +211,7 @@ DROP FUNCTION spoly_overlap_path_com_neg;
 DROP FUNCTION strans_path;
 DROP FUNCTION strans_path_inverse;
 DROP AGGREGATE FUNCTION spath_add_point_aggr;
+DROP AGGREGATE FUNCTION spath_aggr;
 
 DROP FUNCTION sbox;
 DROP FUNCTION sbox_sw;

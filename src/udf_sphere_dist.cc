@@ -70,6 +70,10 @@ double sdist( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 	double result;
 
+	MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_CIRCLE}) );
+
+	MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_CIRCLE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
 		result = spherepoint_distance((SPoint*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {

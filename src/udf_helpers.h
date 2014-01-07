@@ -44,90 +44,213 @@
  	long long NAME( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error );
 
 #define MYSQL_UDF_CHKCONV_PARAM_TOREAL( PARAMNUM, ERRTEXT ) \
-    	switch (args->arg_type[ PARAMNUM ]) { \
-    		case INT_RESULT: \
-    			args->arg_type[ PARAMNUM ] = REAL_RESULT; \
-    			*(double*)args->args[ PARAMNUM ] = (double)*(long long*)args->args[ PARAMNUM ]; \
-    			break; \
-    		case DECIMAL_RESULT: \
-    			args->arg_type[ PARAMNUM ] = REAL_RESULT; \
-    			*(double*)args->args[ PARAMNUM ] = atof(args->args[ PARAMNUM ]); \
-    			break; \
-    		case REAL_RESULT: \
-    			break; \
-    		default: \
-				strcpy(message, ERRTEXT ); \
-				return 1; \
-    	} 
+		if(args->args[ PARAMNUM ] != NULL) { \
+	    	switch (args->arg_type[ PARAMNUM ]) { \
+	    		case INT_RESULT: \
+	    			args->arg_type[ PARAMNUM ] = REAL_RESULT; \
+	    			*(double*)args->args[ PARAMNUM ] = (double)*(long long*)args->args[ PARAMNUM ]; \
+	    			break; \
+	    		case DECIMAL_RESULT: \
+	    			args->arg_type[ PARAMNUM ] = REAL_RESULT; \
+	    			*(double*)args->args[ PARAMNUM ] = atof(args->args[ PARAMNUM ]); \
+	    			break; \
+	    		case REAL_RESULT: \
+	    			break; \
+	    		default: \
+					strcpy(message, ERRTEXT ); \
+					return 1; \
+	    	} \
+	    }
 
 #define MYSQL_UDF_CHK_PARAM_CHAR( PARAMNUM, ERRTEXT ) \
-		switch (args->arg_type[ PARAMNUM ]) { \
-			case STRING_RESULT: \
-				break; \
-			default: \
-				strcpy(message, ERRTEXT ); \
-				return 1;\
+		if(args->args[ PARAMNUM ] != NULL) { \
+			switch (args->arg_type[ PARAMNUM ]) { \
+				case STRING_RESULT: \
+					break; \
+				default: \
+					strcpy(message, ERRTEXT ); \
+					return 1;\
+			} \
 		}
 
 #define MYSQL_UDF_CHK_PARAM_INT( PARAMNUM, ERRTEXT ) \
-		switch (args->arg_type[ PARAMNUM ]) { \
-			case INT_RESULT: \
-				break; \
-			default: \
-				strcpy(message, ERRTEXT ); \
-				return 1;\
+		if(args->args[ PARAMNUM ] != NULL) { \
+			switch (args->arg_type[ PARAMNUM ]) { \
+				case INT_RESULT: \
+					break; \
+				default: \
+					strcpy(message, ERRTEXT ); \
+					return 1;\
+			} \
 		}
 
+#define MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL( PARAMNUM ) \
+		if(args->args[ PARAMNUM ] != NULL) { \
+	    	switch (args->arg_type[ PARAMNUM ]) { \
+	    		case INT_RESULT: \
+	    			args->arg_type[ PARAMNUM ] = REAL_RESULT; \
+	    			*(double*)args->args[ PARAMNUM ] = (double)*(long long*)args->args[ PARAMNUM ]; \
+	    			break; \
+	    		case DECIMAL_RESULT: \
+	    			args->arg_type[ PARAMNUM ] = REAL_RESULT; \
+	    			*(double*)args->args[ PARAMNUM ] = atof(args->args[ PARAMNUM ]); \
+	    			break; \
+	    		case REAL_RESULT: \
+	    			break; \
+				default: \
+					*is_null = 1; \
+					return NULL;\
+	    	} \
+	    }
+
+#define MYSQL_UDF_DYNCHK_PARAM_CHAR( PARAMNUM ) \
+		if(args->args[ PARAMNUM ] != NULL) { \
+			switch (args->arg_type[ PARAMNUM ]) { \
+				case STRING_RESULT: \
+					break; \
+				default: \
+					*is_null = 1; \
+					return NULL;\
+			} \
+		}
+
+#define MYSQL_UDF_DYNCHK_PARAM_INT( PARAMNUM ) \
+		if(args->args[ PARAMNUM ] != NULL) { \
+			switch (args->arg_type[ PARAMNUM ]) { \
+				case INT_RESULT: \
+					break; \
+				default: \
+					*is_null = 1; \
+					return NULL;\
+			} \
+		}
 #define PROTECT(...) __VA_ARGS__
 #define MYSQL_UDF_CHK_SPHERETYPE( PARANUM, BUFFEROBJ, VALIDTYPES, ERROR ) \
-		BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
+		if(args->args[ PARANUM ] != NULL) { \
+			BUFFEROBJ->isDynParams[ PARANUM ] = 0; \
+			BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
  \
-		MYSQL_SPHERE_TYPES types##PARANUM[] = VALIDTYPES; \
-		int sphereTypesArrayLen##PARANUM = sizeof(types##PARANUM) / sizeof(MYSQL_SPHERE_TYPES); \
-		int sphereTypesCounter##PARANUM = 0; \
-		int sphereTypesFound##PARANUM = 0; \
-		for(sphereTypesCounter##PARANUM = 0; sphereTypesCounter##PARANUM < sphereTypesArrayLen##PARANUM; sphereTypesCounter##PARANUM++) { \
-	    	if(BUFFEROBJ->argTypes[ PARANUM ] == types##PARANUM[sphereTypesCounter##PARANUM]) { \
-	    		sphereTypesFound##PARANUM = 1; \
-	    		break; \
-	    	} \
-		} \
+			MYSQL_SPHERE_TYPES types[] = VALIDTYPES; \
+			int sphereTypesArrayLen = sizeof(types) / sizeof(MYSQL_SPHERE_TYPES); \
+			int sphereTypesCounter = 0; \
+			int sphereTypesFound = 0; \
+			for(sphereTypesCounter = 0; sphereTypesCounter < sphereTypesArrayLen; sphereTypesCounter++) { \
+		    	if(BUFFEROBJ->argTypes[ PARANUM ] == types[sphereTypesCounter]) { \
+		    		sphereTypesFound = 1; \
+		    		break; \
+		    	} \
+			} \
  \
-		if(sphereTypesFound##PARANUM == 0) { \
-			strcpy(message, ERROR); \
-			delete BUFFEROBJ; \
-			return 1; \
-		} \
+			if(sphereTypesFound == 0) { \
+				strcpy(message, ERROR); \
+				delete BUFFEROBJ; \
+				return 1; \
+			} \
+		} else { \
+			BUFFEROBJ->isDynParams[ PARANUM ] = 1; \
+		}\
+
+#define MYSQL_UDF_DYNCHK_SPHERETYPE( PARANUM, BUFFEROBJ, VALIDTYPES ) \
+    	if(BUFFEROBJ->isDynParams[PARANUM] == true) { \
+    		if(BUFFEROBJ->memBufs[PARANUM] != NULL) { \
+    			free(BUFFEROBJ->memBufs[PARANUM]); \
+    			if(BUFFEROBJ->resBuf != NULL) { \
+    				free(BUFFEROBJ->resBuf); \
+    			} \
+    		} \
+ \
+			BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
+ \
+			MYSQL_SPHERE_TYPES types[] = VALIDTYPES; \
+			int sphereTypesArrayLen = sizeof(types) / sizeof(MYSQL_SPHERE_TYPES); \
+			int sphereTypesCounter = 0; \
+			int sphereTypesFound = 0; \
+			for(sphereTypesCounter = 0; sphereTypesCounter < sphereTypesArrayLen; sphereTypesCounter++) { \
+		    	if(BUFFEROBJ->argTypes[ PARANUM ] == types[sphereTypesCounter]) { \
+		    		sphereTypesFound = 1; \
+		    		break; \
+		    	} \
+			} \
+ \
+			if(sphereTypesFound == 0) { \
+				*is_null = 1; \
+				return 0; \
+			} \
+    	} \
 
 #define MYSQL_UDF_CHK_SPHERETYPE_COM( PARANUM, BUFFEROBJ, VALIDTYPES1, VALIDTYPES2, ERROR ) \
-		BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
+		if(args->args[ PARANUM ] != NULL) { \
+			BUFFEROBJ->isDynParams[ PARANUM ] = 0; \
+			BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
  \
-		MYSQL_SPHERE_TYPES types1##PARANUM[] = VALIDTYPES1; \
-		int sphereTypes1ArrayLen##PARANUM = sizeof(types1##PARANUM) / sizeof(MYSQL_SPHERE_TYPES); \
-		int sphereTypes1Counter##PARANUM = 0; \
-		int sphereTypes1Found##PARANUM = 0; \
-		MYSQL_SPHERE_TYPES types2##PARANUM[] = VALIDTYPES2; \
-		int sphereTypes2ArrayLen##PARANUM = sizeof(types2##PARANUM) / sizeof(MYSQL_SPHERE_TYPES); \
-		int sphereTypes2Counter##PARANUM = 0; \
-		int sphereTypes2Found##PARANUM = 0; \
-		for(sphereTypes1Counter##PARANUM = 0; sphereTypes1Counter##PARANUM < sphereTypes1ArrayLen##PARANUM; sphereTypes1Counter##PARANUM++) { \
-	    	if(BUFFEROBJ->argTypes[ PARANUM ] == types1##PARANUM[sphereTypes1Counter##PARANUM]) { \
-	    		sphereTypes1Found##PARANUM = 1; \
-	    		break; \
-	    	} \
-		} \
-		for(sphereTypes2Counter##PARANUM = 0; sphereTypes2Counter##PARANUM < sphereTypes2ArrayLen##PARANUM; sphereTypes2Counter##PARANUM++) { \
-	    	if(BUFFEROBJ->argTypes[ PARANUM ] == types2##PARANUM[sphereTypes2Counter##PARANUM]) { \
-	    		sphereTypes2Found##PARANUM = 1; \
-	    		break; \
-	    	} \
-		} \
+			MYSQL_SPHERE_TYPES types1[] = VALIDTYPES1; \
+			int sphereTypes1ArrayLen = sizeof(types1) / sizeof(MYSQL_SPHERE_TYPES); \
+			int sphereTypes1Counter = 0; \
+			int sphereTypes1Found = 0; \
+			MYSQL_SPHERE_TYPES types2[] = VALIDTYPES2; \
+			int sphereTypes2ArrayLen = sizeof(types2) / sizeof(MYSQL_SPHERE_TYPES); \
+			int sphereTypes2Counter = 0; \
+			int sphereTypes2Found = 0; \
+			for(sphereTypes1Counter = 0; sphereTypes1Counter < sphereTypes1ArrayLen; sphereTypes1Counter++) { \
+		    	if(BUFFEROBJ->argTypes[ PARANUM ] == types1[sphereTypes1Counter]) { \
+		    		sphereTypes1Found = 1; \
+		    		break; \
+		    	} \
+			} \
+			for(sphereTypes2Counter = 0; sphereTypes2Counter < sphereTypes2ArrayLen; sphereTypes2Counter++) { \
+		    	if(BUFFEROBJ->argTypes[ PARANUM ] == types2[sphereTypes2Counter]) { \
+		    		sphereTypes2Found = 1; \
+		    		break; \
+		    	} \
+			} \
  \
-		if(sphereTypes1Found##PARANUM == 0 && sphereTypes2Found##PARANUM == 0) { \
-			strcpy(message, ERROR); \
-			delete BUFFEROBJ; \
-			return 1; \
-		} \
+			if(sphereTypes1Found == 0 && sphereTypes2Found == 0) { \
+				strcpy(message, ERROR); \
+				delete BUFFEROBJ; \
+				return 1; \
+			} \
+		} else { \
+			BUFFEROBJ->isDynParams[ PARANUM ] = 1; \
+		}\
+
+#define MYSQL_UDF_DYNCHK_SPHERETYPE_COM( PARANUM, BUFFEROBJ, VALIDTYPES1, VALIDTYPES2 ) \
+    	if(BUFFEROBJ->isDynParams[PARANUM] == true) { \
+    		if(BUFFEROBJ->memBufs[PARANUM] != NULL) { \
+    			free(BUFFEROBJ->memBufs[PARANUM]); \
+    			BUFFEROBJ->memBufs[PARANUM] = NULL;\
+    			if(BUFFEROBJ->resBuf != NULL) { \
+    				free(BUFFEROBJ->resBuf); \
+    			} \
+    		} \
+ \
+			BUFFEROBJ->argTypes[ PARANUM ] = decode(args->args[ PARANUM ], args->lengths[ PARANUM ], (void**)&BUFFEROBJ->memBufs[ PARANUM ]); \
+ \
+			MYSQL_SPHERE_TYPES types1[] = VALIDTYPES1; \
+			int sphereTypes1ArrayLen = sizeof(types1) / sizeof(MYSQL_SPHERE_TYPES); \
+			int sphereTypes1Counter = 0; \
+			int sphereTypes1Found = 0; \
+			MYSQL_SPHERE_TYPES types2[] = VALIDTYPES2; \
+			int sphereTypes2ArrayLen = sizeof(types2) / sizeof(MYSQL_SPHERE_TYPES); \
+			int sphereTypes2Counter = 0; \
+			int sphereTypes2Found = 0; \
+			for(sphereTypes1Counter = 0; sphereTypes1Counter < sphereTypes1ArrayLen; sphereTypes1Counter++) { \
+		    	if(BUFFEROBJ->argTypes[ PARANUM ] == types1[sphereTypes1Counter]) { \
+		    		sphereTypes1Found = 1; \
+		    		break; \
+		    	} \
+			} \
+			for(sphereTypes2Counter = 0; sphereTypes2Counter < sphereTypes2ArrayLen; sphereTypes2Counter++) { \
+		    	if(BUFFEROBJ->argTypes[ PARANUM ] == types2[sphereTypes2Counter]) { \
+		    		sphereTypes2Found = 1; \
+		    		break; \
+		    	} \
+			} \
+ \
+			if(sphereTypes1Found == 0 && sphereTypes2Found == 0) { \
+				*is_null = 1; \
+				return 0; \
+			} \
+    	} \
 
 #define MYSQL_UDF_DEINIT_BUFFER() \
 	buffer * memBuf = (buffer*)initid->ptr; \
@@ -218,12 +341,14 @@ public:
 	int len;
 	MYSQL_SPHERE_TYPES * argTypes;
 	void ** memBufs;
+	bool * isDynParams;
 	char * resBuf;
 
 	buffer(int nlen) {
 		len = nlen;
 		argTypes = (MYSQL_SPHERE_TYPES*)malloc(len * sizeof(MYSQL_SPHERE_TYPES));
 		memBufs = (void**)malloc(len * sizeof(void*));
+		isDynParams = (bool*)malloc(len * sizeof(bool));
 		resBuf = NULL;
 	}
 
@@ -241,6 +366,7 @@ public:
 
 		free(argTypes);
 		free(memBufs);
+		free(isDynParams);
 	}
 };
 

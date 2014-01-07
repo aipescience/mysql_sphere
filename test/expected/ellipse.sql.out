@@ -1,0 +1,410 @@
+sequal(sellipse('<{0d,0d},(170d,-12d),0d>'), sellipse('<{0d,0d},(170d,-12d),0d>'))
+1
+sequal(sellipse('<{0d,0d},(170d,-12d),0d>'), sellipse('<{0d,0d},(170d,-12d),-2d>'))
+1
+sequal(sellipse('<{5d,5d},(170d,-12d),0d>'), sellipse('<{5d,5d},(170d,-12d),-2d>'))
+1
+sequal(sellipse('<{5d,2d},(170d,-12d),0d>'), sellipse('<{5d,2d},(170d,-12d),-2d>'))
+0
+snotequal( sellipse('<{5d,2d},(170d,-12d),0d>'), sellipse('<{5d,2d},(170d,-12d),-2d>') )
+1
+snotequal( sellipse('<{5d,2d},(170d,-12d),0d>'), sellipse('<{5d,2d},(170d,-12d), 0d>') )
+0
+sequal(sellipse('<{10d, 5d},(300d,0d),  0d>'), sellipse('<{10d,5d},(300d,0d), 180d>'))
+1
+sequal(sellipse('<{10d, 5d},(300d,0d), 90d>'), sellipse('<{10d,5d},(300d,0d), 270d>'))
+1
+srcontainsl( spoint('(280d,-20d)')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srcontainsl( spoint('(280d,-10d)')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srcontainsl( spoint('(280d,-9.9d)') ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>'), spoint('(280d,-10d)') )
+1
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>'), spoint('(280d, -9d)') )
+0
+srnotcontainsl( spoint('(280d,-10d)')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srnotcontainsl( spoint('(280d,-9.9d)') ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>'), spoint('(280d,-10d)') )
+0
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>'), spoint('(280d, -9d)') )
+1
+srcontainsl( spoint('(0d, 90d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+0
+srcontainsl( spoint('(0d, -90d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+0
+srcontainsl( spoint('(0d, 0d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+1
+srcontainsl( spoint('(90d, 0d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+0
+srcontainsl( spoint('(180d, 0d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+0
+srcontainsl( spoint('(270d, 0d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+0
+srcontainsl( spoint('(9d, 0d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+1
+srcontainsl( spoint('(0d, 9d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+0
+srcontainsl( spoint('(0d, 4d)'), sellipse('<{10d,5d},(0d,0d),0d>')  )
+1
+srcontainsl( scircle( '<(280d,-10d),0d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d, -9d),0d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srnotcontainsl( scircle( '<(280d,-10d),0d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srnotcontainsl( scircle( '<(280d, -9d),0d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>') , scircle( '<(280d,-10d),0d>') )
+1
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>') , scircle( '<(280d, -9d),0d>') )
+0
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>'), scircle( '<(280d,-10d),0d>') )
+0
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>'), scircle( '<(280d, -9d),0d>') )
+1
+soverlaps( scircle( '<(280d,-10d),2d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+soverlaps( scircle( '<(280d,  0d),2d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+snotoverlaps( scircle( '<(280d,-10d),2d>') ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+snotoverlaps( scircle( '<(280d,  0d),2d>') ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+soverlaps( sellipse('<{10d,5d},(280d,-20d),90d>') , scircle( '<(280d,-10d),2d>') )
+1
+soverlaps( sellipse('<{10d,5d},(280d,-20d),90d>') , scircle( '<(280d,  0d),2d>') )
+0
+snotoverlaps( sellipse('<{10d,5d},(280d,-20d),90d>'), scircle( '<(280d,-10d),2d>') )
+0
+snotoverlaps( sellipse('<{10d,5d},(280d,-20d),90d>'), scircle( '<(280d,  0d),2d>') )
+1
+soverlaps( scircle( '<(280d,-10d),0d>')  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d,-10d),2d>')  ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( scircle( '<(280d,-18d),2d>')  ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d,-16d),2d>')  ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( scircle( '<(280d,-18d),15d>') ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sellipse('<{5d,5d},(280d,-20d),90d>'),  scircle( '<(280d,-10d),2d>')   )
+0
+srcontainsl( sellipse('<{5d,5d},(280d,-20d),90d>'),  scircle( '<(280d,-18d),2d>')   )
+0
+srcontainsl( sellipse('<{5d,5d},(280d,-20d),90d>'),  scircle( '<(280d,-16d),2d>')   )
+0
+srcontainsl( sellipse('<{5d,5d},(280d,-20d),90d>'),  scircle( '<(280d,-18d),15d>')  )
+1
+soverlaps( scircle( '<(280d,-10d),2d>') ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+soverlaps( scircle( '<(280d,-18d),2d>') ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+1
+soverlaps( scircle( '<(280d,-16d),2d>') ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d,-10d),0d>')  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+srcontainsl( scircle( '<(280d,-18d),0d>')  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d,-16d),0d>')  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d,-18d),15d>') ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+soverlaps( scircle( '<(280d,-10d),0d>') ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+soverlaps( scircle( '<(280d,-18d),0d>') ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+1
+srcontainsl( scircle( '<(280d,-10d),2d>')  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+srcontainsl( scircle( '<(280d,-18d),2d>')  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+srcontainsl( scircle( '<(280d,-16d),2d>')  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+soverlaps( scircle( '<(280d,-10d),2d>') ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+soverlaps( scircle( '<(280d,-18d),2d>') ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+1
+srcontainsl( sellipse('<{5d,0d},(280d,-20d),90d>'), scircle( '<(280d,-18d),15d>')   )
+1
+srcontainsl( sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') )  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') )  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') )  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+soverlaps( sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srnotcontainsl( sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srnotcontainsl( sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+srnotcontainsl( sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+snotoverlaps( sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ),  sellipse('<{10d,5d},(280d,-20d),90d>') )
+1
+snotoverlaps( sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ),  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+snotoverlaps( sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ),  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>')  ,  sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ) )
+0
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>')  ,  sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ) )
+0
+slcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>')  ,  sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ) )
+1
+soverlaps( sellipse('<{10d,5d},(280d,-20d),90d>')  ,  sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ) )
+0
+soverlaps( sellipse('<{10d,5d},(280d,-20d),90d>')  ,  sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ) )
+1
+soverlaps( sellipse('<{10d,5d},(280d,-20d),90d>')  ,  sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ) )
+1
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>') ,  sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ) )
+1
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>') ,  sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ) )
+1
+slnotcontainsr( sellipse('<{10d,5d},(280d,-20d),90d>') ,  sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ) )
+0
+snotoverlaps( sellipse('<{10d,5d},(280d,-20d),90d>') ,  sline ( spoint('(280d, -9d)'), spoint('(280d, -8d)') ) )
+1
+snotoverlaps( sellipse('<{10d,5d},(280d,-20d),90d>') ,  sline ( spoint('(280d, -9d)'), spoint('(280d,-12d)') ) )
+0
+snotoverlaps( sellipse('<{10d,5d},(280d,-20d),90d>') ,  sline ( spoint('(280d,-11d)'), spoint('(280d,-12d)') ) )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') )  ,  sellipse('<{0d,0d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') )  ,  sellipse('<{0d,0d},(280d, -8d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') ) ,  sellipse('<{0d,0d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') ) ,  sellipse('<{0d,0d},(280d, -8d),90d>') )
+1
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') )  ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') )  ,  sellipse('<{5d,5d},(280d, -8d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') ) ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') ) ,  sellipse('<{5d,5d},(280d, -8d),90d>') )
+1
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') )  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') )  ,  sellipse('<{10d,5d},(280d, -8d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -8d)') ) ,  sellipse('<{10d,5d},(280d, -8d),90d>') )
+1
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{0d,0d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{0d,0d},(280d, -8d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{0d,0d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{0d,0d},(280d, -8d),90d>') )
+1
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{5d,5d},(280d, -8d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{5d,5d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{5d,5d},(280d, -8d),90d>') )
+1
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{5d,0d},(280d, -8d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{5d,0d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{5d,0d},(280d, -8d),90d>') )
+1
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+srcontainsl( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') )  ,  sellipse('<{10d,5d},(280d, -8d),90d>') )
+1
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{10d,5d},(280d,-20d),90d>') )
+0
+soverlaps( sline ( spoint('(280d, -8d)'), spoint('(280d, -9d)') ) ,  sellipse('<{10d,5d},(280d, -8d),90d>') )
+1
+srcontainsl( sellipse('<{10d, 5d},(300d,0d),  0d>'), sellipse('<{10d,5d},(300d,0d),0d>') )
+1
+srcontainsl( sellipse('<{10d, 5d},(300d,0d), 90d>'), sellipse('<{10d,5d},(300d,0d),0d>') )
+0
+srcontainsl( sellipse('<{10d, 5d},(300d,0d),180d>'), sellipse('<{10d,5d},(300d,0d),0d>') )
+1
+srcontainsl( sellipse('<{10d, 5d},(300d,0d),270d>'), sellipse('<{10d,5d},(300d,0d),0d>') )
+0
+srcontainsl( sellipse('<{ 2d, 1d},( 52d,6d),  0d>'), sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+srcontainsl( sellipse('<{ 2d, 1d},( 52d,6d),  0d>')  , sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+srcontainsl( sellipse('<{10d, 5d},( 52d,6d),  0d>')  , sellipse('<{10d,5d},(50d,5d),45d>') )
+0
+srcontainsl( sellipse('<{10d, 5d},( 90d,9d),  0d>')  , sellipse('<{10d,5d},(50d,5d),45d>') )
+0
+soverlaps( sellipse('<{ 2d, 1d},( 52d,6d),  0d>') , sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+soverlaps( sellipse('<{10d, 5d},( 52d,6d),  0d>') , sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+soverlaps( sellipse('<{10d, 5d},( 90d,9d),  0d>') , sellipse('<{10d,5d},(50d,5d),45d>') )
+0
+srnotcontainsl( sellipse('<{ 2d, 1d},( 52d,6d),  0d>') , sellipse('<{10d,5d},(50d,5d),45d>') )
+0
+srnotcontainsl( sellipse('<{10d, 5d},( 52d,6d),  0d>') , sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+srnotcontainsl( sellipse('<{10d, 5d},( 90d,9d),  0d>') , sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+snotoverlaps( sellipse('<{ 2d, 1d},( 52d,6d),  0d>'), sellipse('<{10d,5d},(50d,5d),45d>') )
+0
+snotoverlaps( sellipse('<{10d, 5d},( 52d,6d),  0d>'), sellipse('<{10d,5d},(50d,5d),45d>') )
+0
+snotoverlaps( sellipse('<{10d, 5d},( 90d,9d),  0d>'), sellipse('<{10d,5d},(50d,5d),45d>') )
+1
+slcontainsr( sellipse('<{10d,5d},(50d,5d),45d>') , sellipse('<{ 2d, 1d},( 52d,6d),  0d>') )
+1
+slcontainsr( sellipse('<{10d,5d},(50d,5d),45d>') , sellipse('<{10d, 5d},( 52d,6d),  0d>') )
+0
+slcontainsr( sellipse('<{10d,5d},(50d,5d),45d>') , sellipse('<{10d, 5d},( 90d,9d),  0d>') )
+0
+soverlaps( sellipse('<{10d,5d},(50d,5d),45d>') , sellipse('<{ 2d, 1d},( 52d,6d),  0d>') )
+1
+soverlaps( sellipse('<{10d,5d},(50d,5d),45d>') , sellipse('<{10d, 5d},( 52d,6d),  0d>') )
+1
+soverlaps( sellipse('<{10d,5d},(50d,5d),45d>') , sellipse('<{10d, 5d},( 90d,9d),  0d>') )
+0
+slnotcontainsr( sellipse('<{10d,5d},(50d,5d),45d>'), sellipse('<{ 2d, 1d},( 52d,6d),  0d>') )
+0
+slnotcontainsr( sellipse('<{10d,5d},(50d,5d),45d>'), sellipse('<{10d, 5d},( 52d,6d),  0d>') )
+1
+slnotcontainsr( sellipse('<{10d,5d},(50d,5d),45d>'), sellipse('<{10d, 5d},( 90d,9d),  0d>') )
+1
+snotoverlaps( sellipse('<{10d,5d},(50d,5d),45d>'), sellipse('<{ 2d, 1d},( 52d,6d),  0d>') )
+0
+snotoverlaps( sellipse('<{10d,5d},(50d,5d),45d>'), sellipse('<{10d, 5d},( 52d,6d),  0d>') )
+0
+snotoverlaps( sellipse('<{10d,5d},(50d,5d),45d>'), sellipse('<{10d, 5d},( 90d,9d),  0d>') )
+1
+srcontainsl( sellipse('<{ 0d, 0d},( 50d,-5d),  0d>')  , sellipse('<{0d,0d},(50d,-5d),45d>') )
+1
+srcontainsl( sellipse('<{ 0d, 0d},( 50d,-6d),  0d>')  , sellipse('<{0d,0d},(50d,-5d),45d>') )
+0
+soverlaps( sellipse('<{ 0d, 0d},( 50d,-5d),  0d>') , sellipse('<{0d,0d},(50d,-5d),45d>') )
+1
+soverlaps( sellipse('<{ 0d, 0d},( 50d,-6d),  0d>') , sellipse('<{0d,0d},(50d,-5d),45d>') )
+0
+srcontainsl( sellipse('<{ 5d, 0d},( 50d, -2d), 90d>')  , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+srcontainsl( sellipse('<{ 5d, 0d},( 50d,-12d), 90d>')  , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+soverlaps( sellipse('<{ 5d, 0d},( 50d, -2d), 90d>') , sellipse('<{0d,0d},(50d,-5d),0d>') )
+1
+soverlaps( sellipse('<{ 5d, 0d},( 50d,-12d), 90d>') , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+srcontainsl( sellipse('<{ 5d, 5d},( 50d, -2d), 90d>')  , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+srcontainsl( sellipse('<{ 5d, 5d},( 50d,-12d), 90d>')  , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+soverlaps( sellipse('<{ 5d, 5d},( 50d, -2d), 90d>') , sellipse('<{0d,0d},(50d,-5d),0d>') )
+1
+soverlaps( sellipse('<{ 5d, 5d},( 50d,-12d), 90d>') , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+srcontainsl( sellipse('<{ 5d, 3d},( 50d, -2d), 90d>')  , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+srcontainsl( sellipse('<{ 5d, 3d},( 50d,-12d), 90d>')  , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+soverlaps( sellipse('<{ 5d, 3d},( 50d, -2d), 90d>') , sellipse('<{0d,0d},(50d,-5d),0d>') )
+1
+soverlaps( sellipse('<{ 5d, 3d},( 50d,-12d), 90d>') , sellipse('<{0d,0d},(50d,-5d),0d>') )
+0
+srcontainsl( sellipse('<{ 0d, 0d},( 50d,-5d),  0d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 0d, 0d},( 50d,-6d),  0d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 0d, 0d},( 50d, 6d),  0d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+soverlaps( sellipse('<{ 0d, 0d},( 50d,-5d),  0d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 0d, 0d},( 50d,-6d),  0d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 0d, 0d},( 50d, 6d),  0d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 0d},( 50d,-5d), 90d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 3d, 0d},( 50d,-8d), 90d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 0d},( 50d,-6d),  0d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 0d},( 50d, 6d), 90d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+soverlaps( sellipse('<{ 3d, 0d},( 50d,-5d), 90d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 3d, 0d},( 50d,-8d), 90d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 3d, 0d},( 50d,-6d),  0d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 3d, 0d},( 50d, 6d), 90d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 3d},( 50d,-5d), 90d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 3d},( 50d,-8d), 90d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 3d},( 50d,-6d),  0d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 3d},( 50d, 6d), 90d>')  , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+soverlaps( sellipse('<{ 3d, 3d},( 50d,-5d), 90d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 3d, 3d},( 50d,-8d), 90d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 3d, 3d},( 50d,-6d),  0d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 3d, 3d},( 50d, 6d), 90d>') , sellipse('<{5d,0d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 0d, 0d},( 50d,-5d),  0d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 0d, 0d},( 50d,-6d),  0d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 0d, 0d},( 50d, 6d),  0d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+soverlaps( sellipse('<{ 0d, 0d},( 50d,-5d),  0d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 0d, 0d},( 50d,-6d),  0d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 0d, 0d},( 50d, 6d),  0d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 5d, 0d},( 50d,-5d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 5d, 0d},( 50d,-6d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 5d, 0d},( 50d, 6d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+soverlaps( sellipse('<{ 5d, 0d},( 50d,-5d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 5d, 0d},( 50d,-6d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 5d, 0d},( 50d, 6d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 3d, 3d},( 50d,-4d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 5d, 5d},( 50d,-5d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+srcontainsl( sellipse('<{ 5d, 5d},( 50d,-6d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+srcontainsl( sellipse('<{ 5d, 5d},( 50d, 6d), 90d>')  , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0
+soverlaps( sellipse('<{ 3d, 3d},( 50d,-4d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 5d, 5d},( 50d,-5d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 5d, 5d},( 50d,-6d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+1
+soverlaps( sellipse('<{ 5d, 5d},( 50d, 6d), 90d>') , sellipse('<{5d,5d},(50d,-5d),90d>') )
+0

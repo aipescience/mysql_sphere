@@ -53,6 +53,8 @@ char *scenter( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *le
 	buffer * memBuf = (buffer*)initid->ptr;
 	char *strResult;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
 		SPoint * center = spherecircle_center((SCircle*) memBuf->memBufs[0]);
 		strResult = serialise(center);

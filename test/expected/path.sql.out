@@ -1,0 +1,145 @@
+srcontainsl( spath( '{(280d, -9d),(280d, -8d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spath( '{(280d, -9d),(280d,-12d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spath( '{(280d,-11d),(280d,-12d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+soverlaps( spath( '{(280d, -9d),(280d, -8d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -9d),(280d,-12d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+soverlaps( spath( '{(280d,-11d),(280d,-12d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+srnotcontainsl( spath( '{(280d, -9d),(280d, -8d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+srnotcontainsl( spath( '{(280d, -9d),(280d,-12d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+srnotcontainsl( spath( '{(280d,-11d),(280d,-12d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+snotoverlaps( spath( '{(280d, -9d),(280d, -8d)}' ),  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+snotoverlaps( spath( '{(280d, -9d),(280d,-12d)}' ),  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+snotoverlaps( spath( '{(280d,-11d),(280d,-12d)}' ),  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+slcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spath( '{(280d, -9d),(280d, -8d)}' ) )
+0
+slcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spath( '{(280d, -9d),(280d,-12d)}' ) )
+0
+slcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spath( '{(280d,-11d),(280d,-12d)}' ) )
+1
+soverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spath( '{(280d, -9d),(280d, -8d)}' ) )
+0
+soverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spath( '{(280d, -9d),(280d,-12d)}' ) )
+1
+soverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spath( '{(280d,-11d),(280d,-12d)}' ) )
+1
+slnotcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' ) ,  spath( '{(280d, -9d),(280d, -8d)}' ) )
+1
+slnotcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' ) ,  spath( '{(280d, -9d),(280d,-12d)}' ) )
+1
+slnotcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' ) ,  spath( '{(280d,-11d),(280d,-12d)}' ) )
+0
+snotoverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' ) ,  spath( '{(280d, -9d),(280d, -8d)}' ) )
+1
+snotoverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' ) ,  spath( '{(280d, -9d),(280d,-12d)}' ) )
+0
+snotoverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' ) ,  spath( '{(280d,-11d),(280d,-12d)}' ) )
+0
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{0d,0d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{0d,0d},(280d, -8d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{0d,0d},(280d,-20d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{0d,0d},(280d, -8d),90d>' ) )
+1
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{5d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{5d,5d},(280d, -8d),90d>' ) )
+1
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{5d,5d},(280d,-20d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{5d,5d},(280d, -8d),90d>' ) )
+1
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{5d,0d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{5d,0d},(280d, -8d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{5d,0d},(280d,-20d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{5d,0d},(280d, -8d),90d>' ) )
+1
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spath( '{(280d, -8d),(280d, -9d)}' )  ,  sellipse( '<{10d,5d},(280d, -8d),90d>' ) )
+1
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+soverlaps( spath( '{(280d, -8d),(280d, -9d)}' ) ,  sellipse( '<{10d,5d},(280d, -8d),90d>' ) )
+1
+scircum( spath( '{(0,0),(1,0),(2,0),(3,0)}' ) )
+2.9999999999999996
+sequal( @path1 ,  @path2)
+0
+sequal( @path1 ,  @path1)
+1
+snotequal( @path1 ,  @path2 )
+1
+snotequal( @path1 ,  @path1 )
+0
+soverlaps( @poly , @path1 )
+1
+soverlaps( @path1, @poly  )
+1
+srcontainsl( @path1,  @poly  )
+1
+srcontainsl( @path2,  @poly  )
+0
+soverlaps( @path1, @path1 )
+1
+soverlaps( @path1, @path1 )
+1
+soverlaps( @poly , @path2 )
+1
+soverlaps( @path2, @poly  )
+1
+soverlaps( @path2, @path1 )
+1
+soverlaps( @poly , @path3 )
+0
+soverlaps( @path3, @poly  )
+0
+soverlaps( @path3, @path1 )
+0
+soverlaps( @path3, @path2 )
+1
+srcontainsl( @path1,  scircle( '<(0,1),1>' ) )
+0
+srcontainsl( @path3,  scircle( '<(0,1),1>' ) )
+1
+srcontainsl( @path3,  scircle( '<(0,1),0.7>' ) )
+0
+soverlaps( @path1, scircle( '<(0,1),1>' ) )
+1
+soverlaps( @path3, scircle( '<(0,1),1>' ) )
+1
+soverlaps( @path3, scircle( '<(0,1),0.7>' ) )
+1
+soverlaps( @path3, scircle( '<(0,-1),0.7>' ) )
+0
+srcontainsl( @path3,  scircle( '<(0,-1),0.7>' ) )
+0
+soverlaps( @path3, sline ( spoint( '(0,-1)' ), spoint( '(0,1)' ) ) )
+1
+soverlaps( @path3, sline ( spoint( '(-1,0)' ), spoint( '(1,0)' ) ) )
+1
+soverlaps( @path3, sline ( spoint( '(-1,0)' ), spoint( '(-0.3,0)' ) ) )
+0
+srcontainsl( spath( '{(0.11,0.15),(0.12,0.15),(0.13,0.15)}' ), @poly )
+1
+sstr( spath_aggr(data.p) )
+{(0 , 1),(1 , 1),(1 , 0)}
+sstr( spoint(path, 2) )
+(45d , 30d)
+(1d , -5d)

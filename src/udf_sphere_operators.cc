@@ -101,6 +101,14 @@ void srcontainsl_deinit( UDF_INIT* initid ) {
 long long srcontainsl( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+    											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+    											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+    											MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+    											MYSQL_SPHERE_POLYGON}) );
+
 	//some convenience
 	SBox * abox = (SBox *) memBuf->memBufs[0];
 	SCircle * acir = (SCircle *) memBuf->memBufs[0];
@@ -334,6 +342,14 @@ void slnotcontainsr_deinit( UDF_INIT* initid ) {
 long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
 	//some convenience
 	SBox * abox = (SBox *) memBuf->memBufs[0];
 	SCircle * acir = (SCircle *) memBuf->memBufs[0];
@@ -556,6 +572,14 @@ void srnotcontainsl_deinit( UDF_INIT* initid ) {
 
 long long srnotcontainsl( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
 
 	//some convenience
 	SBox * abox = (SBox *) memBuf->memBufs[0];
@@ -790,6 +814,14 @@ void slcontainsr_deinit( UDF_INIT* initid ) {
 long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
 	//some convenience
 	SBox * abox = (SBox *) memBuf->memBufs[0];
 	SCircle * acir = (SCircle *) memBuf->memBufs[0];
@@ -994,6 +1026,14 @@ void soverlaps_deinit( UDF_INIT* initid ) {
 
 long long soverlaps( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
 
 	//some convenience
 	SBox * abox = (SBox *) memBuf->memBufs[0];
@@ -1218,6 +1258,14 @@ void snotoverlaps_deinit( UDF_INIT* initid ) {
 
 long long snotoverlaps( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
 
 	//some convenience
 	SBox * abox = (SBox *) memBuf->memBufs[0];
@@ -1444,6 +1492,14 @@ void sequal_deinit( UDF_INIT* initid ) {
 long long sequal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
 		return spherebox_equal((SBox*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
 	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
@@ -1510,6 +1566,14 @@ void snotequal_deinit( UDF_INIT* initid ) {
 
 long long snotequal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
 		return spherebox_equal_neg((SBox*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);

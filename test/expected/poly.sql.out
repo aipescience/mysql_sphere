@@ -1,0 +1,555 @@
+srcontainsl( spoint( '(0.15,0.10)' ), @poly )
+1
+srcontainsl( spoint( '(0.20,0.00)' ), @poly )
+1
+srcontainsl( spoint( '(0.10,0.10)' ), @poly )
+1
+srcontainsl( spoint( '(0.25,0.50)' ), @poly )
+0
+srcontainsl( spoint( '(0.25,0.00)' ), @poly )
+0
+srcontainsl( scircle( '<(0.15,0.10),0.03>' ),  @poly )
+1
+srcontainsl( scircle( '<(0.20,0.00),0.00>' ),  @poly )
+1
+srcontainsl( scircle( '<(0.20,0.30),0.05>' ),  @poly )
+0
+srcontainsl( scircle( '<(0.25,0.00),0.05>' ),  @poly )
+0
+srcontainsl( scircle( '<(0.25,0.00),0.10>' ),  @poly )
+0
+soverlaps( scircle( '<(0.15,0.10),0.03>' ), @poly )
+1
+soverlaps( scircle( '<(0.20,0.00),0.00>' ), @poly )
+1
+soverlaps( scircle( '<(0.20,0.30),0.05>' ), @poly )
+0
+soverlaps( scircle( '<(0.25,0.00),0.05>' ), @poly )
+1
+soverlaps( scircle( '<(0.25,0.00),0.10>' ), @poly )
+1
+srcontainsl( sline ( spoint( '(0.00, 0.00)' ), spoint( '(0.10,0.20)' ) ),  @poly )
+0
+srcontainsl( sline ( spoint( '(0.00, 0.10)' ), spoint( '(0.10,0.10)' ) ),  @poly )
+0
+srcontainsl( sline ( spoint( '(0.50, 0.00)' ), spoint( '(0.50,0.20)' ) ),  @poly )
+0
+srcontainsl( sline ( spoint( '(0.10, 0.20)' ), spoint( '(0.20,0.00)' ) ),  @poly )
+1
+srcontainsl( sline ( spoint( '(0.45,-0.20)' ), spoint( '(0.45,0.20)' ) ),  @poly )
+0
+srcontainsl( sline ( spoint( '(0.45, 0.10)' ), spoint( '(0.45,0.20)' ) ),  @poly )
+0
+srcontainsl( sline ( spoint( '(0.24, 0.17)' ), spoint( '(0.25,0.14)' ) ),  @poly )
+1
+soverlaps( sline ( spoint( '(0.00, 0.00)' ), spoint( '(0.10,0.20)' ) ), @poly )
+1
+soverlaps( sline ( spoint( '(0.00, 0.10)' ), spoint( '(0.10,0.10)' ) ), @poly )
+1
+soverlaps( sline ( spoint( '(0.50, 0.00)' ), spoint( '(0.50,0.20)' ) ), @poly )
+1
+soverlaps( sline ( spoint( '(0.10, 0.20)' ), spoint( '(0.20,0.00)' ) ), @poly )
+1
+soverlaps( sline ( spoint( '(0.45,-0.20)' ), spoint( '(0.45,0.20)' ) ), @poly )
+1
+soverlaps( sline ( spoint( '(0.45, 0.10)' ), spoint( '(0.45,0.20)' ) ), @poly )
+1
+soverlaps( sline ( spoint( '(0.24, 0.17)' ), spoint( '(0.25,0.14)' ) ), @poly )
+1
+sequal( @poly1 , @poly2 )
+1
+sequal( @poly2 , @poly3 )
+1
+sequal( @poly3 , @poly1 )
+1
+soverlaps( @poly1, @poly2 )
+1
+soverlaps( @poly2, @poly3 )
+1
+soverlaps( @poly3, @poly1 )
+1
+srcontainsl( @poly1 , @poly2 )
+1
+srcontainsl( @poly2 , @poly3 )
+1
+srcontainsl( @poly3 , @poly1 )
+1
+srcontainsl( @poly1 , @poly4 )
+0
+srcontainsl( @poly4 , @poly1 )
+1
+soverlaps( @poly1, @poly4 )
+1
+soverlaps( @poly4, @poly1 )
+1
+srcontainsl( @poly1 , @poly5 )
+0
+srcontainsl( @poly5 , @poly1 )
+0
+soverlaps( @poly1, @poly5 )
+1
+soverlaps( @poly5, @poly1 )
+1
+sstr( spoly( '{(10d,0d),(10d,1d),(15d,0d)}' ) )
+{(10d , 0d),(10d , 1d),(15d , 0d)}
+sstr( spoly( '{(359d,0d),(359d,1d),(4d,0d)}' ) )
+{(359d , 0d),(359d , 1d),(4d , 0d)}
+sstr( spoly( '{(10d,0d),(10d,1d),(15d,0d)}' ) )
+{(10d , 0d),(10d , 1d),(15d , 0d)}
+snpoints( spoly( '{(10d,0d),(10d,1d),(15d,0d)}') )
+3
+snpoints( spoly( '{(10d,0d),(10d,1d),(15d,0d),(5d,-5d)}') )
+4
+sarea(spoly( '{(0d,0d),(0d,90d),(1,0d)}') )
+1
+sarea(spoly( '{(0d,0d),(0d,90d),(90d,0d)}'))/(4.0*pi())
+0.125
+sequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(1d,1d),(2d,1d),(1d,0d)}' ) )
+1
+sequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(2d,1d),(1d,1d),(1d,0d)}' ) )
+1
+sequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(1d,0d),(0d,0d),(0d,1d),(1d,1d)}' ) )
+1
+sequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(0d,0d),(1d,0d),(1d,1d),(0d,1d)}' ) )
+1
+sequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(1d,1d),(3d,1d),(1d,0d)}' ) )
+0
+sequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(1d,0d),(0d,0d),(0d,1d),(2d,2d)}' ) )
+0
+snotequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(1d,1d),(2d,1d),(1d,0d)}' ) )
+0
+snotequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(2d,1d),(1d,1d),(1d,0d)}' ) )
+0
+snotequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(1d,0d),(0d,0d),(0d,1d),(1d,1d)}' ) )
+0
+snotequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(0d,0d),(1d,0d),(1d,1d),(0d,1d)}' ) )
+0
+snotequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(1d,1d),(3d,1d),(1d,0d)}' ) )
+1
+snotequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(1d,0d),(0d,0d),(0d,1d),(2d,2d)}' ) )
+1
+snotequal( spoly( '{(1d,0d),(1d,1d),(2d,1d)}' ), spoly( '{(1d,1d),(3d,1d),(1d,0d)}' ) )
+1
+snotequal( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(1d,0d),(0d,0d),(0d,1d),(2d,2d)}' ) )
+1
+srcontainsl( spoint( '(0.5d,0.5d)' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+srcontainsl( spoint( '(0d,0.5d)' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+srcontainsl( spoint( '(0d,0d)' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+srcontainsl( spoint( '(0.5d,0.5d)' ), spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+srcontainsl( spoint( '(0d,89.9d)' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+srcontainsl( spoint( '(0d,90d)' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+srcontainsl( spoint( '(0d,-89.9d)' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+srcontainsl( spoint( '(0d,-90d)' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+srcontainsl( spoint( '(0.1d,0.5d)' ), spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+srcontainsl( spoint( '(45d,-89d)' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+0
+srcontainsl( spoint( '(0d,1d)' ), spoly( '{(0d,0d),(1d,1d),(1d,0d)}' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoint( '(0.5d,0.5d)' ) )
+1
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoint( '(0d,0.5d)' ) )
+1
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoint( '(0d,0d)' ) )
+1
+slcontainsr(  spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ), spoint( '(0.5d,0.5d)' ) )
+1
+slcontainsr(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoint( '(0d,89.9d)' ) )
+1
+slcontainsr(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoint( '(0d,90d)' ) )
+1
+slcontainsr(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), spoint( '(0d,-89.9d)' ) )
+1
+slcontainsr(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), spoint( '(0d,-90d)' ) )
+1
+slcontainsr(  spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ), spoint( '(0.1d,0.5d)' ) )
+0
+slcontainsr(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), spoint( '(45d,-89d)' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(1d,1d),(1d,0d)}' ), spoint( '(0d,1d)' ) )
+0
+srcontainsl( scircle( '<(0.5d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+srcontainsl( scircle( '<(0d,89.9d),0.1d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+srcontainsl( scircle( '<(0d,90d),0.1d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+srcontainsl( scircle( '<(0d,-89.9d),0.1d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+srcontainsl( scircle( '<(0d,-90d),0.1d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+srcontainsl( scircle( '<(0.1d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+srcontainsl( scircle( '<(45d,-89d),0.1d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+0
+srcontainsl( scircle( '<(0d,1d),0.1d>' ), spoly( '{(0d,0d),(1d,1d),(1d,0d)}' ) )
+0
+srcontainsl( scircle( '<(0d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+srcontainsl( scircle( '<(0d,0d),0.1d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+srcontainsl( scircle( '<(0.5d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.5d,0.5d),0.1d>' ) )
+1
+slcontainsr(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,89.9d),0.1d>' ) )
+1
+slcontainsr(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,90d),0.1d>' ) )
+1
+slcontainsr(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(0d,-89.9d),0.1d>' ) )
+1
+slcontainsr(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(0d,-90d),0.1d>' ) )
+1
+slcontainsr(  spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.1d,0.5d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(45d,-89d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(1d,1d),(1d,0d)}' ), scircle( '<(0d,1d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0d,0.5d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0d,0d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.1d,0.5d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.1d,0.1d),0.1d>' ) )
+0
+slcontainsr(  spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.6d,0.5d),0.1d>' ) )
+0
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0d,0d),2.0d>' ) )
+1
+srcontainsl( spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ), scircle( '<(0d,0d),1.0d>' ) )
+1
+srcontainsl( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,90d),1.0d>' ) )
+1
+srcontainsl( spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(180d,-90d),1.0d>' ) )
+1
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ), scircle( '<(0d,0d),1.0d>' ) )
+1
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0d,0d),1.0d>' ) )
+0
+srcontainsl( spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ), scircle( '<(0d,0d),0.99d>' ) )
+0
+srcontainsl( spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ), scircle( '<(60d,0d),0.99d>' ) )
+0
+srcontainsl( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,88d)}' ), scircle( '<(0d,90d),1.0d>' ) )
+0
+srcontainsl( spoly( '{(0d,-87d),(90d,-87d),(180d,-87d),(270d,-87d)}' ), scircle( '<(180d,-90d),1.0d>' ) )
+0
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(2d,0d)}' ), scircle( '<(0d,0d),1.0d>' ) )
+0
+slcontainsr( scircle( '<(0d,0d),2.0d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+slcontainsr( scircle( '<(0d,0d),1.0d>' ), spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ) )
+1
+slcontainsr( scircle( '<(0d,90d),1.0d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+slcontainsr( scircle( '<(180d,-90d),1.0d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+slcontainsr( scircle( '<(0d,0d),1.0d>' ), spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ) )
+1
+slcontainsr( scircle( '<(0d,0d),1.0d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+slcontainsr( scircle( '<(0d,0d),0.99d>' ), spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ) )
+0
+slcontainsr( scircle( '<(60d,0d),0.99d>' ), spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ) )
+0
+slcontainsr( scircle( '<(0d,90d),1.0d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,88d)}' ) )
+0
+slcontainsr( scircle( '<(180d,-90d),1.0d>' ), spoly( '{(0d,-87d),(90d,-87d),(180d,-87d),(270d,-87d)}' ) )
+0
+slcontainsr( scircle( '<(0d,0d),1.0d>' ), spoly( '{(0d,0d),(0d,1d),(2d,0d)}' ) )
+0
+soverlaps(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.5d,0.5d),0.1d>' ) )
+1
+soverlaps(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,89.9d),0.1d>' ) )
+1
+soverlaps(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,90d),0.1d>' ) )
+1
+soverlaps(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(0d,-89.9d),0.1d>' ) )
+1
+soverlaps(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(0d,-90d),0.1d>' ) )
+1
+soverlaps(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0d,0d),2.0d>' ) )
+1
+soverlaps(  spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ), scircle( '<(0d,0d),1.0d>' ) )
+1
+soverlaps(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,90d),1.0d>' ) )
+1
+soverlaps(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(180d,-90d),1.0d>' ) )
+1
+soverlaps(  spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ), scircle( '<(0d,0d),1.0d>' ) )
+1
+soverlaps(  spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), scircle( '<(0d,2d),1.0d>' ) )
+1
+soverlaps(  spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), scircle( '<(2d,0d),1.0d>' ) )
+1
+soverlaps(  spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.5d,0.5d),0.1d>' ) )
+1
+soverlaps(  spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(1.5d,0.5d),0.1d>' ) )
+0
+soverlaps(  spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), scircle( '<(0d,88.0d),0.1d>' ) )
+0
+soverlaps(  spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ), scircle( '<(0.3d,0.5d),0.1d>' ) )
+0
+soverlaps(  spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ), scircle( '<(0d,-87d),0.1d>' ) )
+0
+soverlaps( scircle( '<(0.5d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+soverlaps( scircle( '<(0d,89.9d),0.1d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( scircle( '<(0d,90d),0.1d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( scircle( '<(0d,-89.9d),0.1d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+soverlaps( scircle( '<(0d,-90d),0.1d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+soverlaps( scircle( '<(0d,0d),2.0d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+soverlaps( scircle( '<(0d,0d),1.0d>' ), spoly( '{(-1d,0d),(0d,1d),(1d,0d),(0d,-1d)}' ) )
+1
+soverlaps( scircle( '<(0d,90d),1.0d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( scircle( '<(180d,-90d),1.0d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+1
+soverlaps( scircle( '<(0d,0d),1.0d>' ), spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ) )
+1
+soverlaps( scircle( '<(0d,2d),1.0d>' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+soverlaps( scircle( '<(2d,0d),1.0d>' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+soverlaps( scircle( '<(0.5d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+soverlaps( scircle( '<(1.5d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+soverlaps( scircle( '<(0d,88.0d),0.1d>' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+0
+soverlaps( scircle( '<(0.3d,0.5d),0.1d>' ), spoly( '{(0d,0d),(0.5d,0.5d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+soverlaps( scircle( '<(0d,-87d),0.1d>' ), spoly( '{(0d,-89d),(90d,-89d),(180d,-89d),(270d,-89d)}' ) )
+0
+srcontainsl( spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+srcontainsl( spoly( '{(-0.5d,-0.5d),(-0.5d,0.5d),(0.5d,0.5d),(0.5d,-0.5d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+srcontainsl( spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+srcontainsl( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+srcontainsl( spoly( '{(45d,89.3d),(135d,89.3d),(225d,89.3d),(315d,89.3d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+srcontainsl( spoly( '{(45d,89.2d),(135d,89.2d),(225d,89.2d),(315d,89.2d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+0
+srcontainsl( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(0.5d,0.5d),(0.5d,1.5d),(1.5d,1.5d),(1.5d,0.5d)}' ) )
+0
+srcontainsl( spoly( '{(0d,88d),(90d,88d),(180d,88d),(270d,88d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+0
+srcontainsl( spoly( '{(0d,-88d),(90d,-88d),(180d,-88d),(270d,-88d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+0
+slcontainsr( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ) )
+1
+slcontainsr( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(-0.5d,-0.5d),(-0.5d,0.5d),(0.5d,0.5d),(0.5d,-0.5d)}' ) )
+1
+slcontainsr( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ) )
+1
+slcontainsr( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ) )
+1
+slcontainsr( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ) )
+1
+slcontainsr( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+slcontainsr( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(45d,89.3d),(135d,89.3d),(225d,89.3d),(315d,89.3d)}' ) )
+1
+slcontainsr( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(45d,89.2d),(135d,89.2d),(225d,89.2d),(315d,89.2d)}' ) )
+0
+slcontainsr( spoly( '{(0.5d,0.5d),(0.5d,1.5d),(1.5d,1.5d),(1.5d,0.5d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+0
+slcontainsr( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,88d),(90d,88d),(180d,88d),(270d,88d)}' ) )
+0
+slcontainsr( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,-88d),(90d,-88d),(180d,-88d),(270d,-88d)}' ) )
+0
+soverlaps( spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+soverlaps( spoly( '{(-0.5d,-0.5d),(-0.5d,0.5d),(0.5d,0.5d),(0.5d,-0.5d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+soverlaps( spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+soverlaps( spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ), spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ) )
+1
+soverlaps( spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ) )
+1
+soverlaps( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( spoly( '{(45d,89.3d),(135d,89.3d),(225d,89.3d),(315d,89.3d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ) )
+1
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(-0.5d,-0.5d),(-0.5d,0.5d),(0.5d,0.5d),(0.5d,-0.5d)}' ) )
+1
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(0d,0d),(0d,0.5d),(0.5d,0.5d),(0.5d,0d)}' ) )
+1
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ) )
+1
+soverlaps( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(0d,0d),(0d,1d),(1d,0d)}' ) )
+1
+soverlaps( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(45d,89.3d),(135d,89.3d),(225d,89.3d),(315d,89.3d)}' ) )
+1
+soverlaps( spoly( '{(45d,89.2d),(135d,89.2d),(225d,89.2d),(315d,89.2d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( spoly( '{(0d,0d),(0d,1d),(1d,1d),(1d,0d)}' ), spoly( '{(0.5d,0.5d),(0.5d,1.5d),(1.5d,1.5d),(1.5d,0.5d)}' ) )
+1
+soverlaps( spoly( '{(0d,88d),(90d,88d),(180d,88d),(270d,88d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+1
+soverlaps( spoly( '{(0d,-88d),(90d,-88d),(180d,-88d),(270d,-88d)}' ), spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ) )
+0
+soverlaps( spoly( '{(0d,89d),(90d,89d),(180d,89d),(270d,89d)}' ), spoly( '{(0d,-88d),(90d,-88d),(180d,-88d),(270d,-88d)}' ) )
+0
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(3d,-1d),(3d,1d),(5d,1d),(5d,-1d)}' ) )
+0
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(-1d,3d),(-1d,5d),(1d,5d),(1d,3d)}' ) )
+0
+soverlaps( spoly( '{(-1d,-1d),(-1d,1d),(1d,1d),(1d,-1d)}' ), spoly( '{(179d,-1d),(179d,1d),(181d,1d),(181d,-1d)}' ) )
+0
+srcontainsl( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )   ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' )   ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+soverlaps( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' )  ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+soverlaps( spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ) ,  sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+srnotcontainsl( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )  , sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+srnotcontainsl( spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' )  , sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+srnotcontainsl( spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ) , sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+snotoverlaps( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) , sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+1
+snotoverlaps( spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' ) , sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+snotoverlaps( spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ), sellipse( '<{10d,5d},(280d,-20d),90d>' ) )
+0
+slcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+slcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' ) )
+0
+slcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ) )
+1
+soverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+soverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' ) )
+1
+soverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ) )
+1
+slnotcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' ) , spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+1
+slnotcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' ) , spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' ) )
+1
+slnotcontainsr( sellipse( '<{10d,5d},(280d,-20d),90d>' ) , spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ) )
+0
+snotoverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' ) , spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+1
+snotoverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' ) , spoly( '{(280d, -9d),(280d,-12d),(279d, -8d)}' ) )
+0
+snotoverlaps( sellipse( '<{10d,5d},(280d,-20d),90d>' ) , spoly( '{(280d,-11d),(280d,-12d),(279d, -12d)}' ) )
+0
+srcontainsl( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )   ,  sellipse( '<{0d,0d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' )  ,  sellipse( '<{0d,0d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )  ,  sellipse( '<{0d,0d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' ) ,  sellipse( '<{0d,0d},(280d,-20d),90d>' ) )
+1
+srcontainsl( sellipse( '<{0d,0d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+srcontainsl( sellipse( '<{0d,0d},(280d,-20d),90d>' )  ,  spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' ) )
+1
+soverlaps( sellipse( '<{0d,0d},(280d,-20d),90d>' ) ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+soverlaps( sellipse( '<{0d,0d},(280d,-20d),90d>' ) ,  spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' ) )
+1
+srcontainsl( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )   ,  sellipse( '<{5d,5d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spoly( '{(280d,-10d),(290d,-30d),(270d, -30d)}' )  ,  sellipse( '<{2d,2d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )  ,  sellipse( '<{5d,5d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' ) ,  sellipse( '<{5d,5d},(280d,-20d),90d>' ) )
+1
+srcontainsl( sellipse( '<{5d,5d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+srcontainsl( sellipse( '<{2d,2d},(280d,-20d),90d>' )  ,  spoly( '{(280d,-10d),(290d,-30d),(270d, -30d)}' ) )
+1
+soverlaps( sellipse( '<{5d,5d},(280d,-20d),90d>' ) ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+soverlaps( sellipse( '<{5d,5d},(280d,-20d),90d>' ) ,  spoly( '{(280d,-11d),(280d,-18d),(279d, -12d)}' ) )
+1
+srcontainsl( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )   ,  sellipse( '<{5d,0d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spoly( '{(280d,-10d),(290d,-30d),(270d, -30d)}' )  ,  sellipse( '<{2d,0d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )  ,  sellipse( '<{5d,0d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' ) ,  sellipse( '<{5d,0d},(280d,-20d),90d>' ) )
+1
+srcontainsl( sellipse( '<{5d,0d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+srcontainsl( sellipse( '<{2d,0d},(280d,-20d),90d>' )  ,  spoly( '{(280d,-10d),(290d,-30d),(270d, -30d)}' ) )
+1
+soverlaps( sellipse( '<{5d,0d},(280d,-20d),90d>' ) ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+soverlaps( sellipse( '<{5d,0d},(280d,-20d),90d>' ) ,  spoly( '{(280d,-11d),(280d,-18d),(279d, -12d)}' ) )
+1
+srcontainsl( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )   ,  sellipse( '<{5d,2d},(280d,-20d),90d>' ) )
+0
+srcontainsl( spoly( '{(280d,-10d),(290d,-30d),(270d, -30d)}' )  ,  sellipse( '<{2d,1d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' )  ,  sellipse( '<{5d,2d},(280d,-20d),90d>' ) )
+0
+soverlaps( spoly( '{(280d,-11d),(280d,-20d),(279d, -12d)}' ) ,  sellipse( '<{5d,2d},(280d,-20d),90d>' ) )
+1
+srcontainsl( sellipse( '<{5d,2d},(280d,-20d),90d>' )  ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+srcontainsl( sellipse( '<{2d,1d},(280d,-20d),90d>' )  ,  spoly( '{(280d,-10d),(290d,-30d),(270d, -30d)}' ) )
+1
+soverlaps( sellipse( '<{5d,2d},(280d,-20d),90d>' ) ,  spoly( '{(280d, -9d),(280d, -8d),(279d, -8d)}' ) )
+0
+soverlaps( sellipse( '<{5d,2d},(280d,-20d),90d>' ) ,  spoly( '{(280d,-11d),(280d,-18d),(279d, -12d)}' ) )
+1
+sstr( spoly_aggr(data.p) )
+{(0d , 57.29578d),(57.29578d , 57.29578d),(57.29578d , 0d)}
+count(polygon)
+1
+sarea( spoly( '{
+  (3.09472232280407 , 1.47261266025223),
+  (3.0947320190777 , 1.47261266025223),
+  (3.0947320190777 , 1.47262235652586),
+  (3.09472232280407 , 1.47262235652586) }' ) ) >= 0
+1
+snpoints( spoly( '{
+  (1.51214841579108 , -2.90888208684947e-05),
+  (1.5121581120647 , -2.90888208684947e-05),
+  (1.5121581120647 , -1.93925472462553e-05),
+  (1.51214841579108 , -1.93925472462553e-05)
+}' ) )
+4

@@ -62,8 +62,13 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	        MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "sline(spoint, spoint) error decoding second parameter. Corrupted or not the correct type." );
 
-	        outBuf->memBufs[0] = sphereline_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+	        if(buf->isDynParams[0] == true || buf->isDynParams[1] == true) {
+    	    	outBuf->isDynParams[0] = true;
+        	} else {
+		        outBuf->memBufs[0] = sphereline_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+    	    	outBuf->isDynParams[0] = false;
+    	    }
         } else {
         	if(buf->argTypes[0] != MYSQL_SPHERE_EULER) {
         		strcpy(message, "sline(strans, double) needs first parameter to be of object type strans.");
@@ -74,8 +79,13 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         	buf->argTypes[1] = MYSQL_SPHERE_UNKNOWN;
         	buf->memBufs[1] = NULL;
 
-        	outBuf->memBufs[0] = sphereline_from_trans((SEuler *)buf->memBufs[0], *(double*)args->args[1]);
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+        	if(buf->isDynParams[0] == true || args->args[1] == NULL) {
+    	    	outBuf->isDynParams[0] = true;
+        	} else {
+		    	outBuf->memBufs[0] = sphereline_from_trans((SEuler *)buf->memBufs[0], *(double*)args->args[1]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+    	    	outBuf->isDynParams[0] = false;
+        	}
         }
 
     	delete buf;
@@ -89,22 +99,27 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_UNKNOWN}), 
 											"sline(spoint) error decoding first parameter. Corrupted or not the correct type." );
 
-    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
-    		//sline(spoint)
-    		outBuf->memBufs[0] = sphereline_from_point((SPoint *)buf->memBufs[0]);
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
-    		delete buf;
+    	if(buf->isDynParams[0] == true) {
+	    	outBuf->isDynParams[0] = true;
     	} else {
-    		//sline(line_string)
-	    	outBuf->memBufs[0] = sphereline_in( (char*)args->args[0] );
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
-		}
+	    	outBuf->isDynParams[0] = false;
+	    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
+	    		//sline(spoint)
+	    		outBuf->memBufs[0] = sphereline_from_point((SPoint *)buf->memBufs[0]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+	    		delete buf;
+	    	} else {
+	    		//sline(line_string)
+		    	outBuf->memBufs[0] = sphereline_in( (char*)args->args[0] );
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+			}
+    	}
 	} else {
 		strcpy(message, "wrong number of arguments: sline() requires one or two parameters");
 		return 1;
 	}
 
-	if(outBuf->memBufs[0] == NULL) {
+	if(outBuf->memBufs[0] == NULL && outBuf->isDynParams[0] == false) {
 		strcpy(message, "an error occurred while generating the circle");
 		return 1;
 	}
@@ -124,6 +139,80 @@ void sline_deinit( UDF_INIT* initid ) {
 
 char *sline( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+	if(memBuf->isDynParams[0] == true) {
+		buffer *buf;
+		if(memBuf->memBufs[0] != NULL) {
+			free(memBuf->memBufs[0]);
+			memBuf->memBufs[0] = NULL;
+			if(memBuf->resBuf != NULL) {
+				free(memBuf->resBuf);
+			}
+		}
+
+		if (args->arg_count == 2) {
+			if(args->arg_type[ 1 ] != STRING_RESULT) {
+		        MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL(1);
+			}
+
+			//decode object - if corrupted and not the thing we are thinking this should be, throw error
+			buf = new buffer(2);
+
+            //fool the macro
+            buf->isDynParams[0] = true;
+
+		    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_EULER}) );
+
+		    if(args->arg_type[ 1 ] == STRING_RESULT) {
+	            //fool the macro
+	            buf->isDynParams[1] = true;
+
+		        MYSQL_UDF_DYNCHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_POINT}) );
+
+		        memBuf->memBufs[0] = sphereline_from_points((SPoint *)buf->memBufs[0], (SPoint *)buf->memBufs[1]);
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+		    } else {
+		    	if(buf->argTypes[0] != MYSQL_SPHERE_EULER) {
+		    		delete buf;
+		    		return NULL;
+		    	}
+
+		    	buf->argTypes[1] = MYSQL_SPHERE_UNKNOWN;
+		    	buf->memBufs[1] = NULL;
+
+		    	memBuf->memBufs[0] = sphereline_from_trans((SEuler *)buf->memBufs[0], *(double*)args->args[1]);
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+		    }
+
+			delete buf;
+		} else if (args->arg_count == 1) {
+			MYSQL_UDF_DYNCHK_PARAM_CHAR(0);
+
+			//decode object - if this is not a point, throw error, if corrupted, the parser will throw error
+			buf = new buffer(1);
+
+            //fool the macro
+            buf->isDynParams[0] = true;
+
+			MYSQL_UDF_DYNCHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_UNKNOWN}) );
+
+			if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
+				//sline(spoint)
+				memBuf->memBufs[0] = sphereline_from_point((SPoint *)buf->memBufs[0]);
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+				delete buf;
+			} else {
+				//sline(line_string)
+		    	memBuf->memBufs[0] = sphereline_in( (char*)args->args[0] );
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_LINE;
+			}
+		}
+
+		if(memBuf->memBufs[0] == NULL) {
+			*is_null = 1;
+			return NULL;
+		}
+	}
 
 	SLine * line = (SLine*)memBuf->memBufs[0];
 
@@ -159,6 +248,12 @@ void smeridian_deinit( UDF_INIT* initid ) {
 char *smeridian( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+	if(memBuf->isDynParams[0] == true) {
+		if(memBuf->resBuf != NULL) {
+			free(memBuf->resBuf);
+		}
+	}
+
 	SLine * line = sphereline_meridian(*(double*) args->args[0]);
 
 	memBuf->resBuf = serialise(line);
@@ -179,6 +274,8 @@ void sline_beg_deinit( UDF_INIT* initid ) {
 
 char *sline_beg( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
 
 	SPoint * resultLine;
 
@@ -204,6 +301,8 @@ void sline_end_deinit( UDF_INIT* initid ) {
 char *sline_end( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	SPoint * resultPoint;
 
 	resultPoint = sphereline_end((SLine *)memBuf->memBufs[0]);
@@ -228,6 +327,9 @@ void sline_equal_deinit( UDF_INIT* initid ) {
 long long sline_equal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_equal((SLine*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -244,6 +346,9 @@ void sline_equal_neg_deinit( UDF_INIT* initid ) {
 long long sline_equal_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_equal_neg((SLine*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -259,6 +364,8 @@ void sline_turn_deinit( UDF_INIT* initid ) {
 
 char *sline_turn( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
 
 	SLine * resultLine;
 
@@ -284,6 +391,9 @@ void sline_crosses_deinit( UDF_INIT* initid ) {
 long long sline_crosses( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_crosses((SLine*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -299,6 +409,9 @@ void sline_crosses_neg_deinit( UDF_INIT* initid ) {
 
 long long sline_crosses_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
 
 	return (long long)sphereline_crosses_neg((SLine*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
@@ -316,6 +429,9 @@ void sline_overlap_deinit( UDF_INIT* initid ) {
 long long sline_overlap( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_overlap((SLine*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -332,6 +448,9 @@ void sline_overlap_neg_deinit( UDF_INIT* initid ) {
 long long sline_overlap_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_overlap_neg((SLine*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -347,6 +466,9 @@ void sline_contains_point_deinit( UDF_INIT* initid ) {
 
 long long sline_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
 		return (long long)sphereline_cont_point((SLine*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
@@ -367,6 +489,9 @@ void sline_contains_point_neg_deinit( UDF_INIT* initid ) {
 long long sline_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
 		return (long long)sphereline_cont_point_neg((SLine*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
@@ -386,6 +511,9 @@ void sline_contains_point_com_deinit( UDF_INIT* initid ) {
 long long sline_contains_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_cont_point_com((SPoint*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -400,6 +528,9 @@ void sline_contains_point_com_neg_deinit( UDF_INIT* initid ) {
 
 long long sline_contains_point_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
 
 	return (long long)sphereline_cont_point_com_neg((SPoint*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
@@ -416,6 +547,9 @@ void strans_line_deinit( UDF_INIT* initid ) {
 
 char *strans_line( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_EULER}) );
 
 	SLine * resultLine;
 
@@ -441,6 +575,9 @@ void strans_line_inverse_deinit( UDF_INIT* initid ) {
 char *strans_line_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
     buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_EULER}) );
+
 	SLine * resultLine;
 
 	resultLine = spheretrans_line_inverse((SLine *)memBuf->memBufs[0], (SEuler *)memBuf->memBufs[1]);
@@ -465,6 +602,9 @@ void sline_overlap_circle_deinit( UDF_INIT* initid ) {
 long long sline_overlap_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)sphereline_overlap_circle((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
@@ -483,6 +623,9 @@ void sline_overlap_circle_neg_deinit( UDF_INIT* initid ) {
 
 long long sline_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)sphereline_overlap_circle_neg((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
@@ -503,6 +646,9 @@ void sline_overlap_circle_com_deinit( UDF_INIT* initid ) {
 long long sline_overlap_circle_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+
 	return (long long)sphereline_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
@@ -517,6 +663,9 @@ void sline_overlap_circle_com_neg_deinit( UDF_INIT* initid ) {
 
 long long sline_overlap_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
 
 	return (long long)sphereline_overlap_circle_com_neg((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
@@ -533,6 +682,9 @@ void scircle_contains_line_deinit( UDF_INIT* initid ) {
 
 long long scircle_contains_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
 		return (long long)spherecircle_cont_line((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
@@ -553,6 +705,9 @@ void scircle_contains_line_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_LINE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
 		return (long long)spherecircle_cont_line_neg((SCircle*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
@@ -572,6 +727,9 @@ void scircle_contains_line_com_deinit( UDF_INIT* initid ) {
 long long scircle_contains_line_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_cont_line_com((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -586,6 +744,9 @@ void scircle_contains_line_com_neg_deinit( UDF_INIT* initid ) {
 
 long long scircle_contains_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	return (long long)spherecircle_cont_line_com_neg((SLine*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }

@@ -54,8 +54,14 @@ void sstr_deinit( UDF_INIT* initid ) {
 }
 
 char *sstr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
-	MYSQL_THD thd = current_thd;
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_CIRCLE, 
+	        											MYSQL_SPHERE_LINE, MYSQL_SPHERE_EULER, 
+	        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_PATH,
+	        											MYSQL_SPHERE_ELLIPSE, MYSQL_SPHERE_BOX}));
+
+	MYSQL_THD thd = current_thd;
 
 	switch(memBuf->argTypes[0]) {
 		case MYSQL_SPHERE_POINT:

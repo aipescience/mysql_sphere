@@ -393,13 +393,13 @@ bool sphereellipse_cont_ellipse_neg (SEllipse * e1, SEllipse * e2);
 	\brief Checks, whether an ellipse is contained by an other ellipse
 	\return boolean datum
 */
-bool sphereellipse_cont_ellipse_com (SEllipse * e1, SEllipse * e2);
+bool sphereellipse_cont_ellipse_com (SEllipse * e2, SEllipse * e1);
 
 /*!
 	\brief Checks, whether an ellipse isn't contained by an other ellipse
 	\return boolean datum
 */
-bool sphereellipse_cont_ellipse_com_neg (SEllipse * e1, SEllipse * e2);
+bool sphereellipse_cont_ellipse_com_neg (SEllipse * e2, SEllipse * e1);
 
 /*!
 	\brief Checks, whether two ellipses are overlapping

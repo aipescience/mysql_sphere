@@ -51,6 +51,8 @@ char *sswap( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *leng
 	buffer * memBuf = (buffer*)initid->ptr;
 	char *strResult;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE) {
 		SLine * line = sphereline_swap_beg_end((SLine*) memBuf->memBufs[0]);
 		strResult = serialise(line);

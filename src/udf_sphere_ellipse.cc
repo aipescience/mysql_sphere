@@ -73,8 +73,14 @@ my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT}), 
                                             "sellipse(spoint, lrad, srad, inc) error decoding first parameter. Corrupted or not the correct type." );
 
-    	outBuf->memBufs[0] = sphereellipse_infunc((SPoint *)buf->memBufs[0], *(double*)args->args[1],*(double*)args->args[2], *(double*)args->args[3]);
-    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+        if(buf->isDynParams[0] == true || args->args[1] == NULL
+        	|| args->args[2] == NULL || args->args[3] == NULL) {
+        	outBuf->isDynParams[0] = true;
+        } else {
+	    	outBuf->memBufs[0] = sphereellipse_infunc((SPoint *)buf->memBufs[0], *(double*)args->args[1],*(double*)args->args[2], *(double*)args->args[3]);
+	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+        	outBuf->isDynParams[0] = false;
+        }
 
     	delete buf;
 	} else if (args->arg_count == 1) {
@@ -87,27 +93,32 @@ my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_UNKNOWN}), 
 											"sellipse(spoint), sellipse(sellipse) error decoding first parameter. Corrupted or not the correct type." );
 
-    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
-    		//sellipse(spoint)
-    		outBuf->memBufs[0] = spherepoint_ellipse((SPoint *)buf->memBufs[0]);
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
-    		delete buf;
-    	} else if(buf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
-    		//sellipse(scircle)
-    		outBuf->memBufs[0] = spherecircle_ellipse((SCircle *)buf->memBufs[0]);
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
-    		delete buf;
-    	} else {
-    		//sellipse(ellipse_string)
-	    	outBuf->memBufs[0] = sphereellipse_in( (char*)args->args[0] );
-	    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+		if(buf->isDynParams[0] == true) {
+        	outBuf->isDynParams[0] = true;
+		} else {
+        	outBuf->isDynParams[0] = false;
+	    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
+	    		//sellipse(spoint)
+	    		outBuf->memBufs[0] = spherepoint_ellipse((SPoint *)buf->memBufs[0]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+	    		delete buf;
+	    	} else if(buf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
+	    		//sellipse(scircle)
+	    		outBuf->memBufs[0] = spherecircle_ellipse((SCircle *)buf->memBufs[0]);
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+	    		delete buf;
+	    	} else {
+	    		//sellipse(ellipse_string)
+		    	outBuf->memBufs[0] = sphereellipse_in( (char*)args->args[0] );
+		    	outBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+			}
 		}
 	} else {
 		strcpy(message, "wrong number of arguments: sellipse() requires one or two parameters");
 		return 1;
 	}
 
-	if(outBuf->memBufs[0] == NULL) {
+	if(outBuf->memBufs[0] == NULL && outBuf->isDynParams[0] == false) {
 		strcpy(message, "an error occurred while generating the circle");
 		return 1;
 	}
@@ -127,6 +138,69 @@ void sellipse_deinit( UDF_INIT* initid ) {
 
 char *sellipse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+	if(memBuf->isDynParams[0] == true) {
+		buffer *buf;
+		if(memBuf->memBufs[0] != NULL) {
+			free(memBuf->memBufs[0]);
+			memBuf->memBufs[0] = NULL;
+			if(memBuf->resBuf != NULL) {
+				free(memBuf->resBuf);
+			}
+		}
+
+		if (args->arg_count == 4) {
+	        MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL(1);
+
+	        MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL(2);
+
+	        MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL(3);
+
+			//decode object - if corrupted and not the thing we are thinking this should be, throw error
+	    	buf = new buffer(1);
+
+            //fool the macro
+            buf->isDynParams[0] = true;
+
+	        MYSQL_UDF_DYNCHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT}) );
+
+	    	memBuf->memBufs[0] = sphereellipse_infunc((SPoint *)buf->memBufs[0], *(double*)args->args[1],*(double*)args->args[2], *(double*)args->args[3]);
+	    	memBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+
+	    	delete buf;
+		} else if (args->arg_count == 1) {
+			MYSQL_UDF_DYNCHK_PARAM_CHAR(0);
+
+			//decode object - if this is not a point, throw error, if corrupted, the parser will throw error
+	    	buf = new buffer(1);
+
+            //fool the macro
+            buf->isDynParams[0] = true;
+
+			MYSQL_UDF_DYNCHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_POINT, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_UNKNOWN}) );
+
+	    	if(buf->argTypes[0] == MYSQL_SPHERE_POINT) {
+	    		//sellipse(spoint)
+	    		memBuf->memBufs[0] = spherepoint_ellipse((SPoint *)buf->memBufs[0]);
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+	    		delete buf;
+	    	} else if(buf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
+	    		//sellipse(scircle)
+	    		memBuf->memBufs[0] = spherecircle_ellipse((SCircle *)buf->memBufs[0]);
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+	    		delete buf;
+	    	} else {
+	    		//sellipse(ellipse_string)
+		    	memBuf->memBufs[0] = sphereellipse_in( (char*)args->args[0] );
+		    	memBuf->argTypes[0] = MYSQL_SPHERE_ELLIPSE;
+			}
+		}
+
+		if(memBuf->memBufs[0] == NULL) {
+			*is_null = 1;
+			return NULL;
+		}
+	}
 
 	SEllipse * ellipse = (SEllipse*)memBuf->memBufs[0];
 
@@ -148,6 +222,8 @@ void sellipse_inc_deinit( UDF_INIT* initid ) {
 double sellipse_inc( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return sphereellipse_incl((SEllipse*) memBuf->memBufs[0]);
 }
 
@@ -162,6 +238,8 @@ void sellipse_lrad_deinit( UDF_INIT* initid ) {
 
 double sellipse_lrad( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	return sphereellipse_rad1((SEllipse*) memBuf->memBufs[0]);
 }
@@ -178,6 +256,8 @@ void sellipse_srad_deinit( UDF_INIT* initid ) {
 double sellipse_srad( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return sphereellipse_rad2((SEllipse*) memBuf->memBufs[0]);
 }
 
@@ -192,6 +272,9 @@ void sellipse_equal_deinit( UDF_INIT* initid ) {
 
 long long sellipse_equal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	return (long long)sphereellipse_equal((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
@@ -208,6 +291,9 @@ void sellipse_equal_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_equal_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_equal_neg((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -222,6 +308,9 @@ void sellipse_contains_ellipse_deinit( UDF_INIT* initid ) {
 
 long long sellipse_contains_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	return (long long)sphereellipse_cont_ellipse((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
@@ -238,6 +327,9 @@ void sellipse_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_ellipse_neg((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -252,6 +344,9 @@ void sellipse_contains_ellipse_com_deinit( UDF_INIT* initid ) {
 
 long long sellipse_contains_ellipse_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	return (long long)sphereellipse_cont_ellipse_com((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
@@ -268,6 +363,9 @@ void sellipse_contains_ellipse_com_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_ellipse_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -282,6 +380,9 @@ void sellipse_overlap_ellipse_deinit( UDF_INIT* initid ) {
 
 long long sellipse_overlap_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	return (long long)sphereellipse_overlap_ellipse((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
@@ -298,6 +399,9 @@ void sellipse_overlap_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_overlap_ellipse_neg((SEllipse*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -312,6 +416,9 @@ void sellipse_contains_point_deinit( UDF_INIT* initid ) {
 
 long long sellipse_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
 		return (long long)sphereellipse_cont_point((SEllipse*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
@@ -332,6 +439,9 @@ void sellipse_contains_point_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_POINT}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_POINT) {
 		return (long long)sphereellipse_cont_point_neg((SEllipse*) memBuf->memBufs[0], (SPoint*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
@@ -351,6 +461,9 @@ void sellipse_contains_point_com_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_point_com((SPoint*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -366,6 +479,9 @@ void sellipse_contains_point_com_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_point_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_point_com_neg((SPoint*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -380,6 +496,9 @@ void strans_ellipse_deinit( UDF_INIT* initid ) {
 
 char *strans_ellipse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_EULER}) );
 
 	SEllipse * resultEllipse = NULL;
 
@@ -404,6 +523,9 @@ void strans_ellipse_inverse_deinit( UDF_INIT* initid ) {
 char *strans_ellipse_inverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_EULER}) );
+
 	SEllipse * resultEllipse = NULL;
 
 	resultEllipse = spheretrans_ellipse_inv((SEllipse*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
@@ -427,6 +549,9 @@ void sellipse_contains_circle_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)sphereellipse_cont_circle((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
@@ -445,6 +570,9 @@ void sellipse_contains_circle_neg_deinit( UDF_INIT* initid ) {
 
 long long sellipse_contains_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)sphereellipse_cont_circle_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
@@ -465,6 +593,9 @@ void sellipse_contains_circle_com_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_circle_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_circle_com((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -480,6 +611,9 @@ void sellipse_contains_circle_com_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_circle_com_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -494,6 +628,9 @@ void scircle_contains_ellipse_deinit( UDF_INIT* initid ) {
 
 long long scircle_contains_ellipse( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
 		return (long long)spherecircle_cont_ellipse((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
@@ -514,6 +651,9 @@ void scircle_contains_ellipse_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_ellipse_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}), PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
 		return (long long)spherecircle_cont_ellipse_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
@@ -533,6 +673,9 @@ void scircle_contains_ellipse_com_deinit( UDF_INIT* initid ) {
 long long scircle_contains_ellipse_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_cont_ellipse_com((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -548,6 +691,9 @@ void scircle_contains_ellipse_com_neg_deinit( UDF_INIT* initid ) {
 long long scircle_contains_ellipse_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	return (long long)spherecircle_cont_ellipse_com_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 }
 
@@ -562,6 +708,9 @@ void sellipse_overlap_circle_deinit( UDF_INIT* initid ) {
 
 long long sellipse_overlap_circle( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)sphereellipse_overlap_circle((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
@@ -582,6 +731,9 @@ void sellipse_overlap_circle_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_circle_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_CIRCLE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_CIRCLE) {
 		return (long long)sphereellipse_overlap_circle_neg((SEllipse*) memBuf->memBufs[0], (SCircle*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
@@ -601,6 +753,9 @@ void sellipse_overlap_circle_com_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_circle_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_overlap_circle_com((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -616,6 +771,9 @@ void sellipse_overlap_circle_com_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_circle_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_overlap_circle_com_neg((SCircle*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -630,6 +788,9 @@ void sellipse_overlap_line_deinit( UDF_INIT* initid ) {
 
 long long sellipse_overlap_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
 		return (long long)sphereellipse_overlap_line((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
@@ -650,6 +811,9 @@ void sellipse_overlap_line_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
 		return (long long)sphereellipse_overlap_line_neg((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
@@ -669,6 +833,9 @@ void sellipse_overlap_line_com_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_line_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_overlap_line_com((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -684,6 +851,9 @@ void sellipse_overlap_line_com_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_overlap_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_overlap_line_com_neg((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -698,6 +868,9 @@ void sellipse_contains_line_deinit( UDF_INIT* initid ) {
 
 long long sellipse_contains_line( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
 		return (long long)sphereellipse_cont_line((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
@@ -718,6 +891,9 @@ void sellipse_contains_line_neg_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_line_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}), PROTECT({MYSQL_SPHERE_LINE}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_LINE) {
 		return (long long)sphereellipse_cont_line_neg((SEllipse*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 	} else if (memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_ELLIPSE) {
@@ -737,6 +913,9 @@ void sellipse_contains_line_com_deinit( UDF_INIT* initid ) {
 long long sellipse_contains_line_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
+
 	return (long long)sphereellipse_cont_line_com((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }
 
@@ -751,6 +930,9 @@ void sellipse_contains_line_com_neg_deinit( UDF_INIT* initid ) {
 
 long long sellipse_contains_line_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_ELLIPSE}) );
 
 	return (long long)sphereellipse_cont_line_com_neg((SLine*) memBuf->memBufs[0], (SEllipse*) memBuf->memBufs[1]);
 }

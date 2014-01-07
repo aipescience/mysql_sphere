@@ -220,7 +220,6 @@ static long long sellipse_ellipse_pos ( const SEllipse * se1 , const SEllipse * 
 		static SCircle c;
 		sellipse_circle( &c, se2 );
 		r = sellipse_circle_pos ( se1 , &c );
-
 		switch ( r ) {
 			case MYSQL_ELLIPSE_CIRCLE_AVOID: 
 				return MYSQL_ELLIPSE_AVOID;
@@ -956,11 +955,11 @@ bool sphereellipse_cont_ellipse_neg (SEllipse * e1, SEllipse * e2) {
 	return ( sellipse_ellipse_pos ( e1, e2 ) !=  MYSQL_ELLIPSE_CONT );
 }
 
-bool sphereellipse_cont_ellipse_com (SEllipse * e1, SEllipse * e2) {
+bool sphereellipse_cont_ellipse_com (SEllipse * e2, SEllipse * e1) {
 	return ( sellipse_ellipse_pos ( e1, e2 ) ==  MYSQL_ELLIPSE_CONT );
 }
 
-bool sphereellipse_cont_ellipse_com_neg (SEllipse * e1, SEllipse * e2) {
+bool sphereellipse_cont_ellipse_com_neg (SEllipse * e2, SEllipse * e1) {
 	return ( sellipse_ellipse_pos ( e1, e2 ) !=  MYSQL_ELLIPSE_CONT );
 }
 

@@ -51,6 +51,8 @@ void snpoints_deinit( UDF_INIT* initid ) {
 long long snpoints( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_PATH}) );
+
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON) {
 		return spherepoly_npts((SPoly*) memBuf->memBufs[0]);
 	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_PATH) {

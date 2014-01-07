@@ -1,7 +1,8 @@
 CREATE FUNCTION sdist RETURNS REAL SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sarea RETURNS REAL SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION scenter RETURNS STRING SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION slength RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION scircum RETURNS REAL SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION slength RETURNS REAL SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sswap RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION snpoints RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sstr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
@@ -170,6 +171,7 @@ CREATE FUNCTION spoly_overlap_ellipse_com_neg RETURNS INTEGER SONAME 'mysql_sphe
 CREATE FUNCTION strans_poly RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_poly_inverse RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE AGGREGATE FUNCTION spoly_add_point_aggr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+CREATE AGGREGATE FUNCTION spoly_aggr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 
 CREATE FUNCTION spath RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION spath_equal RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
@@ -211,6 +213,7 @@ CREATE FUNCTION spoly_overlap_path_com_neg RETURNS INTEGER SONAME 'mysql_sphere_
 CREATE FUNCTION strans_path RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_path_inverse RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE AGGREGATE FUNCTION spath_add_point_aggr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+CREATE AGGREGATE FUNCTION spath_aggr RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 
 CREATE FUNCTION sbox RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_sw RETURNS STRING SONAME 'mysql_sphere_UDF.so';
