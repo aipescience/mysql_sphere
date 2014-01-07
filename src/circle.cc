@@ -78,6 +78,7 @@ SCircle * spherecircle_in(char * circleString) {
 		free( c );
 		c = NULL;
 		fprintf (stderr, "spherecircle_in: radius must be not greater than 90 degrees\n" );
+		return NULL;
 	  } else if ( FPeq(c->radius,PIH) ){
 		// set "exact" 90 degrees
 		c->radius = PIH;

@@ -397,6 +397,7 @@ static long long sellipse_ellipse_pos ( const SEllipse * se1 , const SEllipse * 
 			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );
 			if ( cntr >= maxcntr ){
 				fprintf ( stderr, "Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \n Please report it to pg_sphere team.");
+				return 0;
 			}
 
 			sellipse_center( &sp[1], &e );
