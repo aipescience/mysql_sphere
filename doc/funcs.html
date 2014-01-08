@@ -1,0 +1,1373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;            Functions
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            mysql-sphere 0.1 based on pgSphere 1.2
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+            Operators
+        "
+HREF="operators.html"><LINK
+REL="NEXT"
+TITLE="
+        Create an index
+      "
+HREF="indices.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="pg_sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9631308-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql-sphere 0.1 based on pgSphere 1.2</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="operators.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="indices.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="funcs"
+>6. Functions</A
+></H1
+><P
+>&#13;          The functions described below are implemented in pgSphere without having an
+          operator. In mysql-sphere they are equally used, but their names just differ by a
+          prepending 's' to avoid conflict with already existing functions. If you are missing some functions, see
+          <A
+HREF="operators.html"
+>Section 5</A
+> and use the according operator functions.
+        </P
+>
+<DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="func.area"
+>6.1. Area function</A
+></H2
+><P
+>&#13;              The <CODE
+CLASS="function"
+>area</CODE
+> function returns the area of a
+              spherical object in square radians. Supported data types are:
+              <SPAN
+CLASS="type"
+>scircle</SPAN
+>, <SPAN
+CLASS="type"
+>spolygon</SPAN
+>, and
+              <SPAN
+CLASS="type"
+>sbox</SPAN
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN866"
+></A
+><P
+><B
+>Example 36. Area of a spherical circle as a multiple of &#960;</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sarea( scircle( '&#60;(0d,90d),60d&#62;' ) ) / pi() AS area;
++--------------------+
+| area               |
++--------------------+
+| 0.9999999999999997 |
++--------------------+
+1 row in set (0.07 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="func.area"
+>6.1. Area function</A
+></H2
+><P
+>&#13;              The <CODE
+CLASS="function"
+>area</CODE
+> function returns the area of a
+              spherical object in square radians. Supported data types are:
+              <SPAN
+CLASS="type"
+>scircle</SPAN
+>, <SPAN
+CLASS="type"
+>spolygon</SPAN
+>, and
+              <SPAN
+CLASS="type"
+>sbox</SPAN
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN866"
+></A
+><P
+><B
+>Example 36. Area of a spherical circle as a multiple of &#960;</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sarea( scircle( '&#60;(0d,90d),60d&#62;' ) ) / pi() AS area;
++--------------------+
+| area               |
++--------------------+
+| 0.9999999999999997 |
++--------------------+
+1 row in set (0.07 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="func.spoint"
+>6.2. <SPAN
+CLASS="type"
+>spoint</SPAN
+> functions</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="func.spoint.ll"
+>6.2.1. Longitude and latitude</A
+></H3
+><P
+>&#13;              The functions
+            </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN875"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint_long</CODE
+>(spoint p);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint_lat</CODE
+>(spoint p);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;              returns the longitude or latitude value of a
+              spherical position <CODE
+CLASS="parameter"
+>p</CODE
+> in radians.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN888"
+></A
+><P
+><B
+>Example 37. Get the longitude and latitude of a spherical point in degrees</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT spoint_long( spoint( '(10d,20d)' ) ) * 180.0 / pi() AS longitude;
++-----------+
+| longitude |
++-----------+
+|        10 |
++-----------+
+1 row in set (0.04 sec)
+
+mysql&#62; SELECT spoint_lat( spoint( '(10d,20d)' ) ) * 180.0 / pi() AS latitude;
++----------+
+| latitude |
++----------+
+|       20 |
++----------+
+1 row in set (0.00 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="func.spoint.cart"
+>6.2.2. Cartesian coordinates</A
+></H3
+><P
+>&#13;              The functions
+            </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN894"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint_x</CODE
+>(spoint p);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint_y</CODE
+>(spoint p);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint_z</CODE
+>(spoint p);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;              return the cartesian
+              <TT
+CLASS="literal"
+>x</TT
+>, <TT
+CLASS="literal"
+>y</TT
+> or
+              <TT
+CLASS="literal"
+>z</TT
+> value of a spherical position
+              <CODE
+CLASS="parameter"
+>p</CODE
+>. The returned values are always
+              between <TT
+CLASS="literal"
+>-1.0</TT
+> and <TT
+CLASS="literal"
+>+1.0</TT
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN917"
+></A
+><P
+><B
+>Example 38. 
+                Get the cartesian <TT
+CLASS="literal"
+>z</TT
+>-value
+                of a spherical point
+              </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT spoint_z ( spoint( '(10d,-90d)' ) ) AS z;
++------+
+| z    |
++------+
+|   -1 |
++------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;              The pgSphere function
+<P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>xyz</CODE
+>(spoint p);</CODE
+></P
+> cannot be ported to MySQL since a UDF function can only return one value and not as in PostgreSQL
+a rowset. Therefore the equivalent mysql-sphere function does not exist.
+</DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="funcs.strans"
+>6.3. <SPAN
+CLASS="type"
+>strans</SPAN
+> functions</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.strans.zxz"
+>6.3.1. Converting to ZXZ</A
+></H3
+><P
+>&#13;                    Using the function
+                    <CODE
+CLASS="function"
+>strans_zxz(strans),</CODE
+> you can convert
+                    a Euler transformation to <TT
+CLASS="literal"
+>ZXZ</TT
+>-axes
+                    transformation.
+                </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN940"
+></A
+><P
+><B
+>Example 40. Change the transformation axes to <TT
+CLASS="literal"
+>ZXZ</TT
+></B
+></P
+><P
+>&#13;                    Convert the transformation <TT
+CLASS="literal"
+>strans '20d, -270d, 70.5d,
+                    XZY'</TT
+> to a <TT
+CLASS="literal"
+>ZXZ</TT
+>-transformation.
+                  </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sstr( strans_zxz( strans( '20d, -270d, 70.5d, XZY' ) ) );
++----------------------------------------------------------+
+| sstr( strans_zxz( strans( '20d, -270d, 70.5d, XZY' ) ) ) |
++----------------------------------------------------------+
+| 0d, 90.5d, 90d, ZXZ                                      |
++----------------------------------------------------------+
+1 row in set (0.03 sec)
+                  </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.strans.axes"
+>6.3.2. Angles and axes</A
+></H3
+><P
+>&#13;                    It is possible to get the components of an Euler
+                    transformation.
+                </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN950"
+></A
+><P
+><B
+>Table 4. Getting Euler transformation attributes</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col0"><COL
+WIDTH="2*"
+ALIGN="left"
+TITLE="col1"><THEAD
+><TR
+><TH
+>&#13;                              function
+                          </TH
+><TH
+>&#13;                              description
+                          </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                          <CODE
+CLASS="function"
+>strans_phi</CODE
+>
+                        </TD
+><TD
+>&#13;                          first angle of a transformation
+                        </TD
+></TR
+><TR
+><TD
+>&#13;                          <CODE
+CLASS="function"
+>strans_theta</CODE
+>
+                        </TD
+><TD
+>&#13;                          second angle of a transformation
+                        </TD
+></TR
+><TR
+><TD
+>&#13;                          <CODE
+CLASS="function"
+>strans_psi</CODE
+>
+                        </TD
+><TD
+>&#13;                          third angle of a transformation
+                        </TD
+></TR
+><TR
+><TD
+>&#13;                          <CODE
+CLASS="function"
+>strans_axes</CODE
+>
+                        </TD
+><TD
+>&#13;                          transformation axes as a three letter code
+                        </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;                    The angles will always returned as a <SPAN
+CLASS="type"
+>double</SPAN
+> value in radians.
+                    The axes are returned as a three letter code.
+                </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN978"
+></A
+><P
+><B
+>Example 41. Get the second axis and its rotation angle</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT strans_theta( strans( '20d,30d,40d,XZY' ) ) * 180 / pi() AS theta;
++--------------------+
+| theta              |
++--------------------+
+| 29.999999999999996 |
++--------------------+
+1 row in set (0.01 sec)
+mysql&#62; SELECT substring( strans_axes( strans( '20d,30d,40d,XZY' ) ) from 2 for 1 ) AS axis;
++------+
+| axis |
++------+
+| Z    |
++------+
+1 row in set (0.19 sec)
+                  </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="func.circle"
+>6.4. scircle functions</A
+></H2
+><P
+>&#13;              You can get the radius of a spherical circle in radians using
+              the <CODE
+CLASS="function"
+>scircle_radius</CODE
+> function.  The center of the
+              circle is available with
+              the operator fuction <TT
+CLASS="literal"
+>scenter</TT
+> (<A
+HREF="operators.html#op.center"
+>Section 5.7</A
+>).
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN987"
+></A
+><P
+><B
+>Example 42. Radius of a spherical circle in degrees</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT 180.0 * scircle_radius( scircle( '&#60;(0d,90d),60d&#62;' ) ) / pi() AS radius;
++-------------------+
+| radius            |
++-------------------+
+| 59.99999999999999 |
++-------------------+
+1 row in set (0.09 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="funcs.sellipse"
+>6.5. <SPAN
+CLASS="type"
+>sellipse</SPAN
+> functions</A
+></H2
+><P
+>&#13;              <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> provides 4 functions to get
+              the parameters of a spherical ellipse:
+            </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN995"
+></A
+><P
+><B
+>Table 5. Getting spherical ellipse attributes</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col0"><COL
+WIDTH="2*"
+ALIGN="left"
+TITLE="col1"><THEAD
+><TR
+><TH
+>&#13;                          function
+                      </TH
+><TH
+>&#13;                          description
+                      </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                      <CODE
+CLASS="function"
+>sellipse_lrad</CODE
+>
+                    </TD
+><TD
+>&#13;                      the major radius of the ellipse
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      <CODE
+CLASS="function"
+>sellipse_srad</CODE
+>
+                    </TD
+><TD
+>&#13;                      the minor radius of the ellipse
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      <CODE
+CLASS="function"
+>scenter</CODE
+>
+                    </TD
+><TD
+>&#13;                       the center of the ellipse
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      <CODE
+CLASS="function"
+>sellipse_inc</CODE
+>
+                    </TD
+><TD
+>&#13;                       the inclination of the ellipse
+                    </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;                
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN1025"
+></A
+><P
+><B
+>Example 43. Get the minor radius of an ellipse</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sellipse_srad ( sellipse( '&#60; { 10d, 5d }, ( 20d, 0d ), 90d &#62;' ) ) * 180.0/ pi() AS srad ;
++------+
+| srad |
++------+
+|    5 |
++------+
+1 row in set (0.03 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="funcs.sline"
+>6.6. <SPAN
+CLASS="type"
+>sline</SPAN
+> functions</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.sline.be"
+>6.6.1. Begin and end</A
+></H3
+><P
+>&#13;                To get the beginning and the end of a line,
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> provides two functions:
+              </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN1035"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sline_beg</CODE
+>(sline line);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sline_end</CODE
+>(sline line);</CODE
+></P
+><P
+></P
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN1046"
+></A
+><P
+><B
+>Example 44. Get the beginning of a line</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sstr( sline_beg( sline( '(10d, 90d, 270d, ZXZ ), 20d' ) ) );
++-------------------------------------------------------------+
+| sstr( sline_beg( sline( '(10d, 90d, 270d, ZXZ ), 20d' ) ) ) |
++-------------------------------------------------------------+
+| (270d , 10d)                                                |
++-------------------------------------------------------------+
+1 row in set (0.00 sec)
+               </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.sline.meridian"
+>6.6.2. Create a meridian</A
+></H3
+><P
+>&#13;                  You can create a meridian as a line using the function
+                </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN1052"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>smeridian</CODE
+>(double lng);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;                  The function returns a line starting at a latitude of
+                  -90° and ending at a latitude of 90°. The line goes
+                  along the given longitude <CODE
+CLASS="parameter"
+>lng</CODE
+> in
+                  radians.
+                </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN1060"
+></A
+><P
+><B
+>Example 45. A meridian for longitude 20°</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sstr( smeridian( 20.0 *pi() / 180.0 ) );
++-----------------------------------------+
+| sstr( smeridian( 20.0 *pi() / 180.0 ) ) |
++-----------------------------------------+
+| ( 270d, 90d, 20d, ZXZ ), 180d           |
++-----------------------------------------+
+1 row in set (0.01 sec)
+                  </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="funcs.spath"
+>6.7. <SPAN
+CLASS="type"
+>spath</SPAN
+> functions</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.spath.npts"
+>6.7.1. Count of points</A
+></H3
+><P
+>&#13;              You can get the count of points of a spherical path (and as well for polygons) using the
+              function:
+            </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN1069"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>snpoints</CODE
+>(spath path);</CODE
+></P
+><P
+></P
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN1075"
+></A
+><P
+><B
+>Example 46. Count of spath's points</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT snpoints( spath( '{(0,0),(1,0)}' ) );
++--------------------------------------+
+| snpoints( spath( '{(0,0),(1,0)}' ) ) |
++--------------------------------------+
+|                                    2 |
++--------------------------------------+
+1 row in set (0.03 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.spath.pos"
+>6.7.2. Positions at a path</A
+></H3
+><P
+>&#13;              <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> provides two functions to
+              get points at a path.
+            </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN1082"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint</CODE
+>(spath path, int i);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint</CODE
+>(spath  path, double f);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;               The first function returns the <CODE
+CLASS="parameter"
+>i</CODE
+>-th
+               point of a path.  If <CODE
+CLASS="parameter"
+>i</CODE
+> is less than 1
+               or larger than the count of <SPAN
+CLASS="type"
+>spath</SPAN
+> points, the
+               function returns <TT
+CLASS="literal"
+>NULL</TT
+>.  The second
+               function does nearly the same, but does linear interpolation
+               between edge positions.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN1102"
+></A
+><P
+><B
+>Example 47. 
+                Get the &#8220;center&#8221; of a one segment <SPAN
+CLASS="type"
+>spath</SPAN
+>
+              </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sstr( spoint( spath( '{(0d,0d),(30d,0d)}' ), 1.5 ) );
++------------------------------------------------------+
+| sstr( spoint( spath( '{(0d,0d),(30d,0d)}' ), 1.5 ) ) |
++------------------------------------------------------+
+| (15d , 0d)                                           |
++------------------------------------------------------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="funcs.spoly"
+>6.8. <SPAN
+CLASS="type"
+>spoly</SPAN
+> functions</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="funcs.spoly.npts"
+>6.8.1. Count of edges</A
+></H3
+><P
+>&#13;              Similar to an <SPAN
+CLASS="type"
+>spath</SPAN
+> (<A
+HREF="funcs.html#funcs.spath.npts"
+>Section 6.7.1</A
+>), 
+              you can get the count of edges of a spherical polygon using the
+              function:
+            </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN1114"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>snpoints</CODE
+>(spoly polygon);</CODE
+></P
+><P
+></P
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN1120"
+></A
+><P
+><B
+>Example 48. Count of edges of a spherical polygon</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT snpoints( spoly( '{(0,0),(1,0),(1,1)}' ) );
++--------------------------------------------+
+| snpoints( spoly( '{(0,0),(1,0),(1,1)}' ) ) |
++--------------------------------------------+
+|                                          3 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="funcs.sbox"
+>6.9. <SPAN
+CLASS="type"
+>sbox</SPAN
+> functions</A
+></H2
+><P
+>&#13;            The functions
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN1127"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sbox_sw</CODE
+>(sbox box);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sbox_ne</CODE
+>(sbox box);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sbox_se</CODE
+>(sbox box);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sbox_nw</CODE
+>(sbox box);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            return the corresponding southwest, northeast, southeast, or
+            northwest edge.
+            The returned value will be a spherical point.
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN1149"
+></A
+><P
+><B
+>Example 49. The southwest edge of a box</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sstr( sbox_sw( sbox( '( (0d,0d), (90d,0d) )' ) ) );
++----------------------------------------------------+
+| sstr( sbox_sw( sbox( '( (0d,0d), (90d,0d) )' ) ) ) |
++----------------------------------------------------+
+| (0d , 0d)                                          |
++----------------------------------------------------+
+1 row in set (0.00 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="operators.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="indices.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Operators</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Create an index</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

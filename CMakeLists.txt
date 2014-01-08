@@ -9,7 +9,6 @@ project (mysql_sphere_UDF)
 #### path to the mysql 5.5 sources - download them from
 #### www.mysql.com if you don't have them 
 ###########################################################
-#set(MYSQL_SOURCES_PATH "/home/adrpar/Downloads/mysql-5.5.14-spider-2.28-vp-0.17-hs-1.1-q4m-0.95")
 set(MYSQL_SOURCES_PATH "/usr/src/mysql/mysql-5.5")
 
 if(MYSQL_PATH)
@@ -28,7 +27,7 @@ STRING(REGEX REPLACE "\n" "" MYSQL_INCLUDE_DIR ${MYSQL_INCLUDE_DIR})
 STRING(REGEX REPLACE "\n" "" MYSQL_LIBRARIES ${MYSQL_LIBRARIES})
 STRING(REGEX REPLACE "\n" "" MYSQL_PLUGIN_DIR ${MYSQL_PLUGIN_DIR})
 
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
 SET(BUILD_SHARED_LIBS ON)
 
 add_definitions(-DMYSQL_DYNAMIC_PLUGIN)

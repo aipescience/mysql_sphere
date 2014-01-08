@@ -18,7 +18,7 @@ extern "C" {
 	MYSQL_UDF_REAL_FUNC( strans_phi );
 	MYSQL_UDF_REAL_FUNC( strans_theta );
 	MYSQL_UDF_REAL_FUNC( strans_psi );
-	MYSQL_UDF_CHAR_FUNC( axes );
+	MYSQL_UDF_CHAR_FUNC( strans_axes );
 	MYSQL_UDF_CHAR_FUNC( strans_invert );
 	MYSQL_UDF_CHAR_FUNC( strans_zxz );
 	MYSQL_UDF_CHAR_FUNC( strans_trans );
@@ -341,16 +341,16 @@ double strans_psi( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error 
     return spheretrans_phi((SEuler*) memBuf->memBufs[0]);
 }
 
-//axes(SEuler)
-my_bool axes_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_ONEPARAM_INIT( "axes", PROTECT({MYSQL_SPHERE_EULER}) );
+//strans_axes(SEuler)
+my_bool strans_axes_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_ONEPARAM_INIT( "strans_axes", PROTECT({MYSQL_SPHERE_EULER}) );
 }
 
-void axes_deinit( UDF_INIT* initid ) {
+void strans_axes_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-char *axes( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
+char *strans_axes( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_EULER}) );

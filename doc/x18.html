@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;            What is mysql-sphere?
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            pgSphere 1.1
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+            mysql-sphere 0.1 based on pgSphere 1.2
+        "
+HREF="index.html"><LINK
+REL="NEXT"
+TITLE="
+            Installation
+        "
+HREF="x44.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="pg_sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9631308-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql-sphere 0.1 based on pgSphere 1.2</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="index.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x44.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="AEN18"
+>1. What is mysql-sphere?</A
+></H1
+><P
+>&#13;            <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> is an extra module for
+            <SPAN
+CLASS="application"
+>MySQL/MariaDB</SPAN
+> which adds spherical data
+            types. It provides:
+        </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;                    input and output of data
+                </P
+></LI
+><LI
+><P
+>&#13;                    containing, overlapping, and other operators 
+                </P
+></LI
+><LI
+><P
+>&#13;                    various input and converting functions and operators
+                </P
+></LI
+><LI
+><P
+>&#13;                    circumference and area of an object
+                </P
+></LI
+><LI
+><P
+>&#13;                    spherical transformation 
+                </P
+></LI
+><LI
+><P
+>&#13;                    DOES NOT YET provide indexing of spherical data types 
+                </P
+></LI
+><LI
+><P
+>&#13;                    several input and output formats 
+                </P
+></LI
+></UL
+><P
+>&#13;            Hence, you can do (not yet very fast) search and analysis for objects with
+            spherical attributes as used in geographical, astronomical, or
+            other applications using <SPAN
+CLASS="application"
+>PostgreSQL</SPAN
+>. 
+            For instance, you can manage data of geographical objects around
+            the world and astronomical data like star and other catalogs
+            conveniently using an <TT
+CLASS="literal"
+>SQL</TT
+> interface.
+        </P
+><P
+>&#13;            This set of MySQL functions is based on the pgSphere module and provides
+	a port of pgSphere for MySQL/MariaDB. Due to differences/limitations of MySQL, there are differences
+	to the syntax compared to pgSphere. MySQL does not provide operator overloading, thus all operators are
+	transformed to functions.</P><P>  The aim of <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> is to provide 
+            uniform access to spherical data. Because
+            <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> itself supports a lot of
+            software interfaces, you can now use the same database
+            with different utilities and applications.
+        </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x44.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pgSphere 1.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Installation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

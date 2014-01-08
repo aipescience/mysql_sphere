@@ -198,7 +198,7 @@ char *sbox( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *lengt
 }
 
 //sbox_sw(SBox)...
-my_bool strans_ellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+my_bool sbox_sw_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_ONEPARAM_INIT( "sbox_sw", PROTECT({MYSQL_SPHERE_BOX}) );
 }
 

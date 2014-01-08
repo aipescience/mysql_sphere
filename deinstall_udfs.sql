@@ -15,6 +15,8 @@ DROP FUNCTION soverlaps;
 DROP FUNCTION snotoverlaps;
 DROP FUNCTION sequal;
 DROP FUNCTION snotequal;
+DROP FUNCTION stransform;
+DROP FUNCTION sinverse;
 
 DROP FUNCTION spoint;
 DROP FUNCTION spoint_long;
@@ -33,7 +35,7 @@ DROP FUNCTION strans_equal_neg;
 DROP FUNCTION strans_phi;
 DROP FUNCTION strans_theta;
 DROP FUNCTION strans_psi;
-DROP FUNCTION axes;
+DROP FUNCTION strans_axes;
 DROP FUNCTION strans_invert;
 DROP FUNCTION strans_zxz;
 DROP FUNCTION strans_trans;

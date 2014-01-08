@@ -16,7 +16,8 @@ CREATE FUNCTION soverlaps RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION snotoverlaps RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sequal RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION snotequal RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
-
+CREATE FUNCTION stransform RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sinverse RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 
 CREATE FUNCTION spoint RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION spoint_long RETURNS REAL SONAME 'mysql_sphere_UDF.so';
@@ -35,7 +36,7 @@ CREATE FUNCTION strans_equal_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_phi RETURNS REAL SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_theta RETURNS REAL SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_psi RETURNS REAL SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION axes RETURNS STRING SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION strans_axes RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_invert RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_zxz RETURNS STRING SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION strans_trans RETURNS STRING SONAME 'mysql_sphere_UDF.so';

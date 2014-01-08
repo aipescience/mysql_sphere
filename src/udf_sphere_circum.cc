@@ -28,7 +28,7 @@ my_bool scircum_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		//decode object - if corrupted and not the thing we are thinking this should be, throw error
     	buf = new buffer(1);
 
-        MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_PATH, MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_BOX}), 
+        MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_BOX}), 
                                             "scircum() error decoding first parameter. Corrupted or not the correct type." );
     } else {
 		strcpy(message, "wrong number of arguments: circum() requires two parameter");
@@ -51,12 +51,10 @@ void scircum_deinit( UDF_INIT* initid ) {
 double scircum( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
-    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_PATH, MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_BOX}) );
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_BOX}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE) {
 		return spherecircle_circ((SCircle*) memBuf->memBufs[0]);
-	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_PATH) {
-		return spherepath_length((SPath*) memBuf->memBufs[0]);
 	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON) {
 		return spherepoly_circ((SPoly*) memBuf->memBufs[0]);
 	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX) {

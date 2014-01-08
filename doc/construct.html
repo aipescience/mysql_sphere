@@ -1,0 +1,1152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;            Constructors
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            mysql-sphere 0.1 based on pgSphere 1.2
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+            Data types
+        "
+HREF="types.html"><LINK
+REL="NEXT"
+TITLE="
+            Operators
+        "
+HREF="operators.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="pg_sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9631308-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql-sphere 0.1 based on pgSphere 1.2</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="types.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="operators.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="construct"
+>4. Constructors</A
+></H1
+><P
+>&#13;          Constructors within <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> are in no way different to defining mysql-sphere objects, just with other
+  options. They are in a way overloaded construction functions from the previous
+  chapter. In pgSphere a distinction between type definition and construction was
+  made, mainly due to the capabilities of PostgreSQL. In mysql-sphere this is not
+  needed anymore and the following sections describe
+          functions needed to create spherical data types from other data
+          types. 
+            <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> constructor
+          functions are named by returned data type. Constructor functions
+          expecting one parameter only are implemented as <A
+HREF="operators.html#op.casting"
+>casting functions, a distinction necessary in PostgreSQL</A
+>. These casting functions will only be mentioned here and no example is given.
+        </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.spoint"
+>4.1. Point</A
+></H2
+><P
+>&#13;            There are two constructor function for spherical points.
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN438"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint</CODE
+>(double lng, double lat);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            where <CODE
+CLASS="parameter"
+>lng</CODE
+> is the longitude of the spherical
+            point in radians, <CODE
+CLASS="parameter"
+>lng</CODE
+> is the latitude of
+            the spherical point in radians.
+          </P
+>
+<P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoint</CODE
+>(spath path, int i);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            returning the i-th point in a path where <CODE
+CLASS="parameter"
+>path</CODE
+> is a mysql-sphere path binary BLOB, <CODE
+CLASS="parameter"
+>i</CODE
+> is the i-th point in the path
+          </P
+>
+<DIV
+CLASS="example"
+><A
+NAME="AEN449"
+></A
+><P
+><B
+>Example 14. A spherical point from longitude and latitude</B
+></P
+><P
+>&#13;              Get a spherical position with 270° of longitude and
+              -30° of latitude.
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT spoint( 270.0*pi()/180.0,-30.0*pi()/180.0 );
++---------------------------------------------+
+| spoint( 270.0*pi()/180.0,-30.0*pi()/180.0 ) |
++---------------------------------------------+
+| PHB0PtIhM3982RJAaHMtOFLB4L88dHA+AA==        |
++---------------------------------------------+
+1 row in set (0.05 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.strans"
+>4.2. Euler transformation</A
+></H2
+><P
+>&#13;            There are two constructor functions for a Euler transformation:
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN456"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>strans</CODE
+>(double phi, double theta, double psi);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>strans</CODE
+>(double phi, double theta, double psi, character axis);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            where <CODE
+CLASS="parameter"
+>phi</CODE
+>, <CODE
+CLASS="parameter"
+>theta</CODE
+> and
+            <CODE
+CLASS="parameter"
+>psi</CODE
+> are the three angles of <A
+HREF="types.html#dt.strans"
+>&#13;            Euler transformation</A
+>. The fourth parameter is the three letter code
+            of Euler the transformation axis. If that parameter is omitted,
+            <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> will assume <TT
+CLASS="literal"
+>ZXZ</TT
+>.
+            For more information about that parameter, see <A
+HREF="types.html#dt.strans"
+>Section 3.3</A
+>.
+          </P
+><P>
+Further casting constructors are:
+<DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN456"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>strans</CODE
+>(sline line);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>strans</CODE
+>(sellipse ellipse);</CODE
+></P
+><P
+></P
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN485"
+></A
+><P
+><B
+>Example 15. Create a Euler transformation object</B
+></P
+><P
+>&#13;              Create a transformation object to rotate a spherical object
+              counterclockwise, first 20° around
+              the <TT
+CLASS="literal"
+>x</TT
+>-axis, second -270° around
+              the <TT
+CLASS="literal"
+>z</TT
+>-axis, and last 70.5° around
+              the <TT
+CLASS="literal"
+>y</TT
+>-axis.
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT strans ( 20.0*pi()/180.0, -270.0*pi()/180.0, 70.5*pi()/180.0, 'XZY');
++----------------------------------------------------------------------+
+| strans ( 20.0*pi()/180.0, -270.0*pi()/180.0, 70.5*pi()/180.0, 'XZY') |
++----------------------------------------------------------------------+
+| PGV0Pi0AAAAAAAAAh0TnShhX1j8YLURU+yH5PzABz87zr/M/PHRlPgA=             |
++----------------------------------------------------------------------+
+1 row in set (0.01 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.scircle"
+>4.3. Circle</A
+></H2
+><P
+>&#13;            The function
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN495"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>scircle</CODE
+>(spoint center, double radius);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            returns a spherical circle with center at
+            <CODE
+CLASS="parameter"
+>center</CODE
+> and a radius
+            <CODE
+CLASS="parameter"
+>radius</CODE
+> in radians.  The circle radius has
+            to be larger than or equal to zero but less or equal to 90°. 
+            Otherwise, this function returns an error.
+Further casting constructors are:
+<DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN456"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>scircle</CODE
+>(spoint point);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>scircle</CODE
+>(sellipse ellipse);</CODE
+></P
+><P
+></P
+></DIV
+>
+
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN506"
+></A
+><P
+><B
+>Example 16. A circle around the Noth Pole</B
+></P
+><P
+>&#13;             Get a spherical circle around the North Pole with a radius
+             of 30° ( <TT
+CLASS="literal"
+>sstr</TT
+> casts a given mysql-sphere data type to a readable string).
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 );
++---------------------------------------------------+
+| scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 ) |
++---------------------------------------------------+
+| PGNsPgAAAAAAAAAAGC1EVPsh+T9lcy04UsHgPzxsYz4A      |
++---------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql&#62; SELECT sstr( scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 ) );
++-----------------------------------------------------------+
+| sstr( scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 ) ) |
++-----------------------------------------------------------+
+| <(0d , 90d) , 30d>                                        |
++-----------------------------------------------------------+
+1 row in set (0.02 sec)
+
+           </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.sline"
+>4.4. Line</A
+></H2
+><P
+>&#13;            The input of spherical lines using Euler transformation and
+            length is quite circumstantial (see <A
+HREF="types.html#dt.sline"
+>Section 3.5</A
+>). 
+            For short lines it is easier to input a line specifying the
+            begining and the end of the line.
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN514"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sline</CODE
+>(spoint begin, spoint end);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            If the distance between <CODE
+CLASS="parameter"
+>begin</CODE
+> and
+            <CODE
+CLASS="parameter"
+>end</CODE
+> is 180° (&#960;), this function
+            returns an error because the location of the line is undefined. 
+            However, if longitudes of <CODE
+CLASS="parameter"
+>begin</CODE
+> and
+            <CODE
+CLASS="parameter"
+>end</CODE
+> are equal,
+            <SPAN
+CLASS="application"
+>pgSphere</SPAN
+> assumes a meridian and
+            returns the corresponding spherical line.
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="const.line.1"
+></A
+><P
+><B
+>Example 17. A line created using begin and end of line</B
+></P
+><P
+>&#13;              A line starting at <TT
+CLASS="literal"
+>spoint '(270d,10d)'</TT
+> and
+              ending at <TT
+CLASS="literal"
+>spoint '(270d,30d)'</TT
+> ( <TT
+CLASS="literal"
+>sstr</TT
+> casts a given mysql-sphere data type to a readable string):
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') );
++-----------------------------------------------------------+
+| sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') )    |
++-----------------------------------------------------------+
+| PGxpPodE50oYV8Y/GC1EVPsh+T/SITN/fNkSQIVE50oYV9Y/PGlsPgA=  |
++-----------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql&#62; SELECT sstr( sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') ) );
++----------------------------------------------------------------+
+| sstr( sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') ) ) |
++----------------------------------------------------------------+
+| ( 10d, 90d, 270d, ZXZ ), 20d                                   |
++----------------------------------------------------------------+
+1 row in set (0.01 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;            Furthermore, there is a function for inputing a line
+            using Euler transformation <CODE
+CLASS="parameter"
+>trans</CODE
+>
+            and line length <CODE
+CLASS="parameter"
+>length</CODE
+>
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN537"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sline</CODE
+>(strans trans, double length);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            where the line length <CODE
+CLASS="parameter"
+>length</CODE
+> must be
+            given in radians.
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN547"
+></A
+><P
+><B
+>Example 18. A line created with its transformation and length</B
+></P
+><P
+>&#13;              The same line as in <A
+HREF="construct.html#const.line.1"
+>Example 17</A
+>, but using
+              transformation and line length.
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sstr( sline ( strans( '10d, 90d, 270d, ZXZ' ), 20.0*pi()/180.0 ) );
++--------------------------------------------------------------------+
+| sstr( sline ( strans( '10d, 90d, 270d, ZXZ' ), 20.0*pi()/180.0 ) ) |
++--------------------------------------------------------------------+
+| ( 10d, 90d, 270d, ZXZ ), 20d                                       |
++--------------------------------------------------------------------+
+1 row in set (0.01 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+>
+
+Further casting constructors are:
+<DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN456"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sline</CODE
+>(spoint point);</CODE
+></P
+><P
+></P
+></DIV
+>
+
+<DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.sellipse"
+>4.5. Ellipse</A
+></H2
+><P
+>&#13;            You can use the function
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN555"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sellipse</CODE
+>(spoint center, double major_rad, double minor_rad, double incl);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            to create a spherical ellipse. The first parameter
+            <CODE
+CLASS="parameter"
+>center</CODE
+> is the center of ellipse.  The
+            parameter <CODE
+CLASS="parameter"
+>major_rad</CODE
+> and
+            <CODE
+CLASS="parameter"
+>minor_rad</CODE
+> are the major and the minor
+            radii of the ellipse in radians. If the major radius is smaller
+            than minor radius, <SPAN
+CLASS="application"
+>pgSphere</SPAN
+> swaps the
+            values automatically.  The last parameter
+            <CODE
+CLASS="parameter"
+>incl</CODE
+> is the inclination angle in radians. 
+            For more informations about ellipses, see <A
+HREF="types.html#dt.sellipse"
+>Section 3.6</A
+>.
+          </P
+>
+
+Further casting constructors are:
+<DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN456"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sellipse</CODE
+>(spoint point);</CODE
+></P
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sellipse</CODE
+>(scirlce circle);</CODE
+></P
+><P
+></P
+></DIV
+>
+
+<DIV
+CLASS="example"
+><A
+NAME="AEN574"
+></A
+><P
+><B
+>Example 19. Create an ellipse</B
+></P
+><P
+>&#13;              An ellipse with a center at 20° of longitude and 0°
+              of latitude. The minor radius is part of the equator. The major
+              radius has a size of 10°. The minor radius has 5° ( <TT
+CLASS="literal"
+>sstr</TT
+> casts a given mysql-sphere data type to a readable string).
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 );
++---------------------------------------------------------------------------------+
+| sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 ) |
++---------------------------------------------------------------------------------+
+| PGVsPodE50oYV8Y/h0TnShhXtj8YLURU+yH5PwAAAAAAAAAAh0TnShhX1j88bGU+AA==            |
++---------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql&#62; SELECT sstr( sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 ) );
++-----------------------------------------------------------------------------------------+
+| sstr( sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 ) ) |
++-----------------------------------------------------------------------------------------+
+| <{ 10d , 5d }, (20d , -0d) , 90d>                                                       |
++-----------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.spoly"
+>4.6. Polygon</A
+></H2
+><P
+>&#13;            The aggregate function
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN581"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spoly_aggr</CODE
+>(spoint edge);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            can be used to create a polygon from a set of spherical points.
+            There are the same restrictions as for using the input function of
+            spherical polygon (see <A
+HREF="types.html#dt.spoly"
+>Section 3.8</A
+>). The function
+            returns
+            <TT
+CLASS="literal"
+>NULL</TT
+>, if the polygon couldn't be created.
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN590"
+></A
+><P
+><B
+>Example 20. 
+              Create a spherical polygon using a set of spherical points
+            </B
+></P
+><P
+>&#13;              Create a table and put in some spherical points with a
+              unique ID.  Then, create two polygons with different edge
+              sequences ( <TT
+CLASS="literal"
+>sstr</TT
+> casts a given mysql-sphere data type to a readable string).
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; CREATE TABLE points ( i int PRIMARY KEY, p BLOB );
+mysql&#62; INSERT INTO points VALUES (1, spoint( '( 0d, 0d)' ) );
+mysql&#62; INSERT INTO points VALUES (2, spoint( '(10d, 0d)') );
+mysql&#62; INSERT INTO points VALUES (3, spoint( '( 0d,10d)') );
+mysql&#62; SELECT spoly_aggr(data.p) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;
++--------------------------------------------------------------------------------------------------------+
+| spoly_aggr(data.p)                                                                                     |
++--------------------------------------------------------------------------------------------------------+
+| PHBnPkAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh0TnShhXxj8AAAAAAAAAAAAAAAAA
+AAAAh0TnShhXxj88Z3A+AA==  |
++--------------------------------------------------------------------------------------------------------+
+1 row in set (0.28 sec)
+
+mysql&#62; SELECT sstr( spoly_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;
++-----------------------------------+
+| sstr( spoly_aggr(data.p) )        |
++-----------------------------------+
+| {(0d , 0d),(10d , 0d),(0d , 10d)} |
++-----------------------------------+
+1 row in set (0.03 sec)
+
+sql&#62; SELECT sstr( spoly_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i DESC ) AS data ;
++-----------------------------------+
+| sstr( spoly_aggr(data.p) )        |
++-----------------------------------+
+| {(0d , 10d),(10d , 0d),(0d , 0d)} |
++-----------------------------------+
+1 row in set (0.02 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.spath"
+>4.7. Path</A
+></H2
+><P
+>&#13;            Similar to spherical polygons, you can use the aggregate function
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN597"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>spath_aggr</CODE
+>(spoint edge);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            to create a spherical path using a set of spherical points.
+            There are the same restrictions as with the input function of
+            spherical path (see <A
+HREF="types.html#dt.spath"
+>Section 3.7</A
+>). The function returns
+            <TT
+CLASS="literal"
+>NULL</TT
+> if the path couldn't be created.
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN606"
+></A
+><P
+><B
+>Example 21. 
+              Create a spherical path using a set of spherical points
+            </B
+></P
+><P
+>&#13;              Create a table and put in some spherical points with a
+              unique ID.  Then, create a spherical path from it ( <TT
+CLASS="literal"
+>sstr</TT
+> casts a given mysql-sphere data type to a readable string).
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; CREATE TABLE points ( i int PRIMARY KEY, p BLOB );
+mysql&#62; INSERT INTO points VALUES (1, spoint( '( 0d, 10d)') );
+mysql&#62; INSERT INTO points VALUES (2, spoint( '( 0d,  0d)') );
+mysql&#62; INSERT INTO points VALUES (3, spoint( '( 0d,-10d)') );
+mysql&#62; SELECT spath_aggr(data.p) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;
++--------------------------------------------------------------------------------------------------------+
+| spath_aggr(data.p)                                                                                     |
++--------------------------------------------------------------------------------------------------------+
+| PHBhPkAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAIdE50oYV8Y/AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgETnShhXxr88YXA+AA==  |
++--------------------------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+
+mysql&#62; SELECT sstr( spath_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;
++------------------------------------+
+| sstr( spath_aggr(data.p) )         |
++------------------------------------+
+| {(0d , 10d),(0d , 0d),(0d , -10d)} |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&#62; SELECT sstr( spath_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i DESC ) AS data ;
++------------------------------------+
+| sstr( spath_aggr(data.p) )         |
++------------------------------------+
+| {(0d , -10d),(0d , 0d),(0d , 10d)} |
++------------------------------------+
+1 row in set (0.01 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="contr.sbox"
+>4.8. Coordinates range</A
+></H2
+><P
+>&#13;            The function
+          </P
+><DIV
+CLASS="funcsynopsis"
+><P
+></P
+><A
+NAME="AEN613"
+></A
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>sbox</CODE
+>(spoint south_west, spoint north_east);</CODE
+></P
+><P
+></P
+></DIV
+><P
+>&#13;            creates an <SPAN
+CLASS="type"
+>sbox</SPAN
+> object with its first parameter
+            <CODE
+CLASS="parameter"
+>south_west</CODE
+> as the southwest edge and its
+            second parameter <CODE
+CLASS="parameter"
+>northeast</CODE
+> as the
+            north-east edge of the coordinates range.
+          </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN625"
+></A
+><P
+><B
+>Example 22. Create a spherical box using edges</B
+></P
+><P
+>&#13;              A coordinate range between 0° and +10° in latitude and
+              longitude.
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sbox( spoint( '(0d,0d)' ), spoint( '(10d,10d)' ) );
++-----------------------------------------------------------+
+| sbox( spoint( '(0d,0d)' ), spoint( '(10d,10d)' ) )        |
++-----------------------------------------------------------+
+| PGJ4PgAAAAAAAAAAAAAAAAAAAACHROdKGFfGP4dE50oYV8Y/PHhiPgA=  |
++-----------------------------------------------------------+
+1 row in set (0.01 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="types.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="operators.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Data types</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Operators</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

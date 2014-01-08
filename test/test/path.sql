@@ -63,7 +63,7 @@ set @path1 = ( SELECT spath ('{(0.1,0),(0.2,0),(0.2,0.1),(0.3,0.1),(0.3,-0.1),(0
 set @path2 = ( SELECT spath ('{(0,0),(1,0),(2,0),(3,0)}' ) );
 set @path3 = ( SELECT spath ('{(0,0),(0,1),(0,1.5)}' ) );
 
-SELECT scircum( spath( '{(0,0),(1,0),(2,0),(3,0)}' ) );
+SELECT slength( spath( '{(0,0),(1,0),(2,0),(3,0)}' ) );
 SELECT sequal( @path1 ,  @path2);
 SELECT sequal( @path1 ,  @path1);
 SELECT snotequal( @path1 ,  @path2 );

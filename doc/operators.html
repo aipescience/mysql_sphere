@@ -1,0 +1,1235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;            Operators
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            mysql-sphere 0.1 based on pgSphere 1.2
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+            Constructors
+        "
+HREF="construct.html"><LINK
+REL="NEXT"
+TITLE="
+            Functions
+        "
+HREF="funcs.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="pg_sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9631308-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql-sphere 0.1 based on pgSphere 1.2</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="construct.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="funcs.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="operators"
+>5. Operator functions</A
+></H1
+>
+<P>MySQL does not allow the definition of custom operators for specific types as PostgresSQL does.
+Therefore operators are impelemnted as function calls. Operator functions will return <TT
+CLASS="literal"
+>0</TT
+> if the are evaluated as false and <TT
+CLASS="literal"
+>1</TT
+> if true.
+<DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.casting"
+>5.1. Casting</A
+></H2
+><P
+>&#13;                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> provides different casting mechanisms than possible with pgSphere. These casting 
+	methods have been described in the section above, however will be summarised here
+	again. So, you can transform an object to another data
+                type. A cast in mysql-sphere can only be done using a <TT
+CLASS="literal"
+>typename(x)</TT
+>
+                construct.
+            </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN638"
+></A
+><P
+><B
+>Table 2. Castings</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col0"><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col1"><COL
+WIDTH="3*"
+ALIGN="left"
+TITLE="col2"><THEAD
+><TR
+><TH
+ALIGN="center"
+>casting argument</TH
+><TH
+ALIGN="center"
+>type target</TH
+><TH
+ALIGN="center"
+>returns</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                    	<SPAN
+CLASS="type"
+>spoint</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>scircle</SPAN
+>
+                    </TD
+><TD
+>&#13;                      circle with center position <SPAN
+CLASS="type"
+>spoint</SPAN
+> and
+                      radius 0.0
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>spoint</SPAN
+>
+                    </TD
+><TD
+>&#13;                      <SPAN
+CLASS="type"
+>sellipse</SPAN
+>
+                    </TD
+><TD
+>&#13;                      an ellipse at position <SPAN
+CLASS="type"
+>spoint</SPAN
+> and
+                      radius 0.0
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>spoint</SPAN
+>
+                    </TD
+><TD
+>&#13;                    	<SPAN
+CLASS="type"
+>sline</SPAN
+>
+                    </TD
+><TD
+>&#13;                      a line with length 0.0 at position <SPAN
+CLASS="type"
+>spoint</SPAN
+>
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>scircle</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>sellipse</SPAN
+>
+                    </TD
+><TD
+>&#13;                    	the <SPAN
+CLASS="type"
+>scircle</SPAN
+> as <SPAN
+CLASS="type"
+>sellipse</SPAN
+>
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      <SPAN
+CLASS="type"
+>sline</SPAN
+>
+                    </TD
+><TD
+>&#13;                      <SPAN
+CLASS="type"
+>strans</SPAN
+>
+                    </TD
+><TD
+>&#13;                      the Euler transformation of <SPAN
+CLASS="type"
+>sline</SPAN
+>
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>sellipse</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>scircle</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	the bounding circle of <SPAN
+CLASS="type"
+>sellipse</SPAN
+>
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>sellipse</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>strans</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	the Euler transformation of <SPAN
+CLASS="type"
+></SPAN
+>sellipse
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>all available types</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	<SPAN
+CLASS="type"
+>sstr</SPAN
+>
+                    </TD
+><TD
+>&#13;                     	a string representation of the according mysql-sphere type
+                    </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN700"
+></A
+><P
+><B
+>Example 23. Cast a spherical point as a circle</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sstr( scircle ( spoint( '(10d,20d)' ) ) );
++-------------------------------------------+
+| sstr( scircle ( spoint( '(10d,20d)' ) ) ) |
++-------------------------------------------+
+| <(10d , 20d) , 0d>                        |
++-------------------------------------------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.equal"
+>5.2. Equality</A
+></H2
+><P
+>&#13;                All data types of <SPAN
+CLASS="application"
+>pgSphere</SPAN
+> have
+                the <TT
+CLASS="literal"
+>sequal( x, y )</TT
+> equality function. Furthermore,
+                the negation function is: <TT
+CLASS="literal"
+>snotequal( x, y )</TT
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN711"
+></A
+><P
+><B
+>Example 24. Equality of two spherical points</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sequal( spoint( '(10d,20d)' ), spoint( '(370d,20d)' ) );
++---------------------------------------------------------+
+| sequal( spoint( '(10d,20d)' ), spoint( '(370d,20d)' ) ) |
++---------------------------------------------------------+
+|                                                       1 |
++---------------------------------------------------------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.over"
+>5.3. Contain and overlap</A
+></H2
+><P
+>&#13;                On spheres, an equality relationship is rarely used. There
+                are frequently questions like <EM
+>Is object
+                <TT
+CLASS="literal"
+>a</TT
+> contained by object
+                <TT
+CLASS="literal"
+>b</TT
+>?</EM
+> or <EM
+>Does object
+                <TT
+CLASS="literal"
+>a</TT
+> overlap object
+                <TT
+CLASS="literal"
+>b</TT
+>?</EM
+> 
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> supports such
+                queries using special functions returning
+                <EM
+>1 for true</EM
+> or <EM
+>0 for false</EM
+>:
+            </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN726"
+></A
+><P
+><B
+>Table 3. Contain and overlap operators</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col0"><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col1"><COL
+WIDTH="4*"
+ALIGN="left"
+TITLE="col2"><THEAD
+><TR
+><TH
+ALIGN="center"
+>mysql-sphere operator</TH
+><TH
+ALIGN="center"
+>pgSphere equivalent</TH
+><TH
+ALIGN="center"
+>operator returns true, if</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;                      scontainsl
+                    </TD
+><TD
+>&#13;                      @
+                    </TD
+><TD
+>&#13;                      the left object is contained by right object
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      slcontainsr
+                    </TD
+><TD
+>&#13;                      &#732;
+                    </TD
+><TD
+>&#13;                      the left object contains right object
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      srnotcontainsl
+                    </TD
+><TD
+>&#13;                      !@
+                    </TD
+><TD
+>&#13;                      the left object is not contained by right object
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      slnotcontainsr
+                    </TD
+><TD
+>&#13;                      !&#732;
+                    </TD
+><TD
+>&#13;                      the left object does not contain right object
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      soverlaps
+                    </TD
+><TD
+>&#13;                      &#38;&#38;
+                    </TD
+><TD
+>&#13;                      the objects overlap each other
+                    </TD
+></TR
+><TR
+><TD
+>&#13;                      snotoverlaps
+                    </TD
+><TD
+>&#13;                      !&#38;&#38;
+                    </TD
+><TD
+>&#13;                      the objects do not overlap each other
+                    </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;                An overlap or contain operator does not exist for all
+                combinations of data types.
+                For instance, srcontainsl( scircle, <SPAN
+CLASS="type"
+>spoint</SPAN
+> ) is
+                useless because a spherical point can never contain a
+                spherical circle.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN756"
+></A
+><P
+><B
+>Example 25. Is the left circle contained by the right circle?</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT srcontainsl( scircle( '&#60;(0d,20d),2d&#62;' ), scircle( '&#60;(355d,20d),10d&#62;' ) ) AS test ;
++------+
+| test |
++------+
+|    1 |
++------+
+1 row in set (0.02 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN759"
+></A
+><P
+><B
+>Example 26. Are the circles overlapping?</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT soverlaps( scircle( '&#60;(0d,20d),2d&#62;' ), scircle( '&#60;(199d,-10d),10d&#62;' ) ) AS test ;
++------+
+| test |
++------+
+|    0 |
++------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.cross"
+>5.4. Crossing of lines</A
+></H2
+><P
+>&#13;                Another binary relationship is <EM
+>crossing</EM
+>.
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> supports only crossing of
+                lines.
+                Therefor the correlative function is named <TT
+CLASS="literal"
+>sline_crosses</TT
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN768"
+></A
+><P
+><B
+>Example 27. Are the lines crossed?</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sline_crosses( sline( '(0d,0d,0d),10d' ), sline( '(90d,5d,5d,XYZ),10d' ) ) AS test ;
++------+
+| test |
++------+
+|    1 |
++------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.dist"
+>5.5. Distance</A
+></H2
+><P
+>&#13;                The distance function <TT
+CLASS="literal"
+>sdist</TT
+> is
+                a non-boolean function returning the distance between two
+                objects in radians. Currently,
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> supports only distances
+                between points, circles, and between point and circle. If the
+                objects are overlapping, the distance operator returns zero
+                (0.0).
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN776"
+></A
+><P
+><B
+>Example 28. Distance between two circles</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT 180 * ( sdist( scircle( '&#60;(0d,20d),2d&#62;' ), scircle( '&#60;(0d,40d),2d&#62;' ) ) ) / pi() AS dist ;
++--------------------+
+| dist               |
++--------------------+
+| 15.999999999999993 |
++--------------------+
+1 row in set (0.05 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.circum"
+>5.6. Length and circumference</A
+></H2
+><P
+>&#13;                The length/circumference function <TT
+CLASS="literal"
+>scircum</TT
+> or <TT
+CLASS="literal"
+>slength</TT
+> is
+                a non-boolean unary operator returning the cirumference or
+                length of an object.  In the current implementation,
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> supports only
+                circumferences of circles, polygons, and boxes.  It supports
+                lengths of lines and paths too.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN786"
+></A
+><P
+><B
+>Example 29. Circumference of a circle</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT 180 * ( scircum( scircle( '&#60;(0d,20d),30d&#62;' ) ) )/ pi() AS circ ;
++--------------------+
+| circ               |
++--------------------+
+| 179.99999999999997 |
++--------------------+
+1 row in set (0.03 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="example"
+><A
+NAME="AEN789"
+></A
+><P
+><B
+>Example 30. Length of a line</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT 180 * ( slength( sline( '(0d,0d,0d),30d' ) ) )/ pi() AS length ;
++--------------------+
+| length             |
++--------------------+
+| 29.999999999999996 |
++--------------------+
+1 row in set (0.01 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.center"
+>5.7. Center</A
+></H2
+><P
+>&#13;                The center function <TT
+CLASS="literal"
+>scenter</TT
+> is a non-boolean
+                unary function returning the center of an object.  In the
+                current implementation of <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+>,
+                only centers of circles and ellipses are supported. 
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN798"
+></A
+><P
+><B
+>Example 31. Center of a circle</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+&#13;mysql&#62; SELECT sstr( scenter( scircle( '&#60;(0d,20d),30d&#62;' ) ) );
+ +------------------------------------------------+
+| sstr( scenter( scircle( '<(0d,20d),30d>' ) ) ) |
++------------------------------------------------+
+| (0d , 20d)                                     |
++------------------------------------------------+
+1 row in set (0.00 sec)
+             </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.direction"
+>5.8. Change the direction</A
+></H2
+><P
+>&#13;                The unary function <TT
+CLASS="literal"
+>sswap</TT
+> changes the
+                direction of <SPAN
+CLASS="type"
+>sline</SPAN
+> or <SPAN
+CLASS="type"
+>spath</SPAN
+>
+                objects. You can use it with a Euler transformation object
+                in the figurative sense, too (<A
+HREF="operators.html#op.trans"
+>Section 5.10</A
+>).
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN808"
+></A
+><P
+><B
+>Example 32. Swap begin and end of a <SPAN
+CLASS="type"
+>sline</SPAN
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+&#13;mysql&#62; SELECT sstr( sswap( sline ( spoint( '(0d,0d)' ), spoint( '(10d,0d)' ) ) ) );
++----------------------------------------------------------------------+
+| sstr( sswap( sline ( spoint( '(0d,0d)' ), spoint( '(10d,0d)' ) ) ) ) |
++----------------------------------------------------------------------+
+| ( 350d, 180d, 0d, ZXZ ), 10d                                         |
++----------------------------------------------------------------------+
+1 row in set (0.02 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.turnline"
+>5.9. Turn the path of a line</A
+></H2
+><P
+>&#13;                The unary function <TT
+CLASS="literal"
+>sline_turn</TT
+> turns the
+                path of <SPAN
+CLASS="type"
+>sline</SPAN
+> objects, but preserves 
+                begin and end of the spherical line. The length of
+                returned line will be 360° minus the line length
+                of operator's argument.
+            </P
+><P
+>&#13;                The operator <TT
+CLASS="literal"
+>sline_turn</TT
+> returns
+                <TT
+CLASS="literal"
+>NULL</TT
+>, if the length of <SPAN
+CLASS="type"
+>sline</SPAN
+> argument
+                is 0, because the path of returned <SPAN
+CLASS="type"
+>sline</SPAN
+>
+                is undefined. 
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN822"
+></A
+><P
+><B
+>Example 33. Return length and Check if north pole on <SPAN
+CLASS="type"
+>sline</SPAN
+>s</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT slength( sline( spoint( '(0d,0d)' ), spoint( '(0d,10d)' ) ) ) * 180.0 / pi() AS length;
++--------------------+
+| length             |
++--------------------+
+| 10.000000000000012 |
++--------------------+
+1 row in set (0.02 sec)
+
+mysql&#62; SELECT srcontainsl( spoint( '(0d,90d)' ), sline( spoint( '(0d,0d)' ), spoint( '(0d,10d)' ) ) ) AS test;
++------+
+| test |
++------+
+|    0 |
++------+
+1 row in set (0.00 sec)
+
+mysql&#62; SELECT slength( sline_turn( sline( spoint( '(0d,0d)' ), spoint( '(0d,10d)' ) ) ) ) * 180.0 / pi() AS length;
++--------------------+
+| length             |
++--------------------+
+| 350.00000000000006 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql&#62; SELECT srcontainsl( spoint( '(0d,90d)' ), sline_turn( sline( spoint( '(0d,0d)' ), spoint( '(0d,10d)' ) ) ) ) AS test;
++------+
+| test |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="op.trans"
+>5.10. Transformation</A
+></H2
+><P
+>&#13;                As in a plane, translations and rotations are needed to do
+                object or coordinate transformations. With
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+>, it is done using Euler
+                transformations (<SPAN
+CLASS="type"
+>strans</SPAN
+>). On a sphere, there
+                aren't real translations.  All movements on a sphere are
+                rotations around axes.
+            </P
+><P
+>&#13;                The general syntax for a transformation is always:
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+>functions( object, euler )</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;                where functions are <TT
+CLASS="literal"
+>stransform</TT
+> for a usual
+                transformation, <TT
+CLASS="literal"
+>sinverse</TT
+> for an inverse
+                transformation.  You can transform any object having a
+                <SPAN
+CLASS="application"
+>mysql-sphere</SPAN
+> data type, except the
+                data type <SPAN
+CLASS="type"
+>sbox</SPAN
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN838"
+></A
+><P
+><B
+>Example 34. Transformation of a point</B
+></P
+><P
+>&#13;                Rotate a spherical point counterclockwise, first 90° around
+                the <TT
+CLASS="literal"
+>x</TT
+>-axis, second 90° around
+                the <TT
+CLASS="literal"
+>z</TT
+>-axis, and last 40.5° around
+                the <TT
+CLASS="literal"
+>x</TT
+>-axis.
+              </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+sql&#62; SELECT sstr( stransform( spoint( '(30d,0d)' ), strans( '90d, 90d, 40.5d, XZX' ) ) );
++------------------------------------------------------------------------------+
+| sstr( stransform( spoint( '(30d,0d)' ), strans( '90d, 90d, 40.5d, XZX' ) ) ) |
++------------------------------------------------------------------------------+
+| (90d , 70.5d)                                                                |
++------------------------------------------------------------------------------+
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;                To obtain the inverse of a transformation, use <TT
+CLASS="literal"
+>strans_invert</TT
+>.
+            </P
+><DIV
+CLASS="example"
+><A
+NAME="AEN852"
+></A
+><P
+><B
+>Example 35. An inverse transformation</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+sql&#62; SELECT sstr( strans_invert( strans( '20d, 50d, 80d, XYZ' ) ) ) AS inverted;
++-----------------------+
+| inverted              |
++-----------------------+
+| 280d, 310d, 340d, ZYX |
++-----------------------+
+1 row in set (0.02 sec)
+              </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="construct.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="funcs.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Constructors</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

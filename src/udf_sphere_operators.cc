@@ -37,6 +37,12 @@ extern "C" {
 
     //pgsphere '<>' operator both objects are equal
     MYSQL_UDF_INT_FUNC( snotequal );
+
+    //pgsphere '+' operator transform
+    MYSQL_UDF_CHAR_FUNC( stransform );
+
+    //pgsphere '-' operator inverse transform
+    MYSQL_UDF_CHAR_FUNC( sinverse );
 }
 
 //supporting srcontainsl(SBox, SBox), srcontainsl(SPoint, SBox), srcontainsl(SCircle, SBox), 
@@ -1446,7 +1452,7 @@ long long snotoverlaps( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* e
 }
 
 
-//supports sequal(SBox, SBox), sequal(SCircle, SCirlce), sequal(SEllipse, SEllipse), sequal(STrans, STrans), 
+//supports sequal(SBox, SBox), sequal(SCircle, SCirlce), sequal(SEllipse, SEllipse), sequal(STransform, STransform), 
 //			sequal(SLine, SLine), sequal(SPath, SPath), sequal(SPoint, SPoint), sequal(SPoly, SPoly), 
 my_bool sequal_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	//could be various things: array of SPoints...
@@ -1494,11 +1500,11 @@ long long sequal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error )
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
-        											MYSQL_SPHERE_POLYGON}) );
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}) );
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
-        											MYSQL_SPHERE_POLYGON}) );
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
 		return spherebox_equal((SBox*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
@@ -1521,7 +1527,7 @@ long long sequal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error )
 	}
 }
 
-//supports snotequal(SBox, SBox), snotequal(SCircle, SCirlce), snotequal(SEllipse, SEllipse), snotequal(STrans, STrans), 
+//supports snotequal(SBox, SBox), snotequal(SCircle, SCirlce), snotequal(SEllipse, SEllipse), snotequal(STransform, STransform), 
 //			snotequal(SLine, SLine), snotequal(SPath, SPath), snotequal(SPoint, SPoint), snotequal(SPoly, SPoly), 
 my_bool snotequal_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	//could be various things: array of SPoints...
@@ -1569,11 +1575,11 @@ long long snotequal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* erro
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
-        											MYSQL_SPHERE_POLYGON}) );
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}) );
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
-        											MYSQL_SPHERE_POLYGON}) );
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}) );
 
 	if(memBuf->argTypes[0] == MYSQL_SPHERE_BOX && memBuf->argTypes[1] == MYSQL_SPHERE_BOX) {
 		return spherebox_equal_neg((SBox*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
@@ -1594,4 +1600,194 @@ long long snotequal( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* erro
 	} else {
 		return 1;
 	}
+}
+
+//supports stransform(SCircle, STrans), stransform(SEllipse, STrans), stransform(STrans, STrans),
+//			 stransform(SPoint, STrans), stransform(SLine, STrans), stransform(SPath, STrans),
+//			 stransform(SPoly, STrans)
+my_bool stransform_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	//could be various things: array of SPoints...
+	buffer *buf;
+	MYSQL_SPHERE_TYPES argType;
+
+	//checking stuff to be correct
+    if(args->arg_count == 2) {
+        MYSQL_UDF_CHK_PARAM_CHAR(0, "stransform() requires the first parameter to be a MySQL sphere object.");
+
+        MYSQL_UDF_CHK_PARAM_CHAR(1, "stransform() requires the second parameter to be a MySQL sphere object.");
+
+		//decode object - if corrupted and not the thing we are thinking this should be, throw error
+    	buf = new buffer(2);
+
+        MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({ MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}), 
+                                            "stransform() error decoding first parameter. Corrupted or not the correct type." );
+
+        MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({ MYSQL_SPHERE_EULER}), 
+                                            "stransform() error decoding second parameter. Corrupted or not the correct type." );
+    } else {
+		strcpy(message, "wrong number of arguments: stransform() requires two parameters");
+		return 1;
+    }
+   
+    //no limits on number of decimals
+    initid->decimals = 31;
+    initid->maybe_null = 1;
+    initid->max_length = 1024;
+    initid->ptr = (char*)buf;
+
+    return 0;
+}
+
+void stransform_deinit( UDF_INIT* initid ) {
+	MYSQL_UDF_DEINIT_BUFFER();
+}
+
+char *stransform( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
+	buffer * memBuf = (buffer*)initid->ptr;
+	char *strResult;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({ MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({ MYSQL_SPHERE_EULER}) );
+
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SCircle * circle = spheretrans_circle((SCircle*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(circle);
+		*length = getSerialisedLen(circle);
+		free(circle);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SEllipse * ellipse = spheretrans_ellipse((SEllipse*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(ellipse);
+		*length = getSerialisedLen(ellipse);
+		free(ellipse);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_EULER && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SEuler * euler = spheretrans_trans((SEuler*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(euler);
+		*length = getSerialisedLen(euler);
+		free(euler);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SLine * line = spheretrans_line((SLine*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(line);
+		*length = getSerialisedLen(line);
+		free(line);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_PATH && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SPath * path = spheretrans_path((SPath*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(path);
+		*length = getSerialisedLen(path);
+		free(path);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SPoint * point = spheretrans_point((SPoint*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(point);
+		*length = getSerialisedLen(point);
+		free(point);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SPoly * poly = spheretrans_poly((SPoly*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(poly);
+		*length = getSerialisedLen(poly);
+		free(poly);
+	} else {
+		*is_null = 1;
+		return NULL;
+	}
+
+	return strResult;
+}
+
+//supports sinverse(SCircle, STrans), sinverse(SEllipse, STrans), sinverse(STrans, STrans),
+//			 sinverse(SPoint, STrans), sinverse(SLine, STrans), sinverse(SPath, STrans),
+//			 sinverse(SPoly, STrans)
+my_bool sinverse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	//could be various things: array of SPoints...
+	buffer *buf;
+	MYSQL_SPHERE_TYPES argType;
+
+	//checking stuff to be correct
+    if(args->arg_count == 2) {
+        MYSQL_UDF_CHK_PARAM_CHAR(0, "sinverse() requires the first parameter to be a MySQL sphere object.");
+
+        MYSQL_UDF_CHK_PARAM_CHAR(1, "sinverse() requires the second parameter to be a MySQL sphere object.");
+
+		//decode object - if corrupted and not the thing we are thinking this should be, throw error
+    	buf = new buffer(2);
+
+        MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({ MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}), 
+                                            "sinverse() error decoding first parameter. Corrupted or not the correct type." );
+
+        MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({ MYSQL_SPHERE_EULER}), 
+                                            "sinverse() error decoding second parameter. Corrupted or not the correct type." );
+    } else {
+		strcpy(message, "wrong number of arguments: sinverse() requires two parameters");
+		return 1;
+    }
+   
+    //no limits on number of decimals
+    initid->decimals = 31;
+    initid->maybe_null = 1;
+    initid->max_length = 1024;
+    initid->ptr = (char*)buf;
+
+    return 0;
+}
+
+void sinverse_deinit( UDF_INIT* initid ) {
+	MYSQL_UDF_DEINIT_BUFFER();
+}
+
+char *sinverse( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *length, char* is_null, char* error ) {
+	buffer * memBuf = (buffer*)initid->ptr;
+	char *strResult;
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({ MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
+        											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
+        											MYSQL_SPHERE_POLYGON, MYSQL_SPHERE_EULER}) );
+
+    MYSQL_UDF_DYNCHK_SPHERETYPE( 1, memBuf, PROTECT({ MYSQL_SPHERE_EULER}) );
+
+	if(memBuf->argTypes[0] == MYSQL_SPHERE_CIRCLE && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SCircle * circle = spheretrans_circle_inverse((SCircle*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(circle);
+		*length = getSerialisedLen(circle);
+		free(circle);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_ELLIPSE && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SEllipse * ellipse = spheretrans_ellipse_inv((SEllipse*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(ellipse);
+		*length = getSerialisedLen(ellipse);
+		free(ellipse);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_EULER && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SEuler * euler = spheretrans_trans_inv((SEuler*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(euler);
+		*length = getSerialisedLen(euler);
+		free(euler);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_LINE && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SLine * line = spheretrans_line_inverse((SLine*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(line);
+		*length = getSerialisedLen(line);
+		free(line);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_PATH && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SPath * path = spheretrans_path_inverse((SPath*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(path);
+		*length = getSerialisedLen(path);
+		free(path);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_POINT && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SPoint * point = spheretrans_point_inverse((SPoint*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(point);
+		*length = getSerialisedLen(point);
+		free(point);
+	} else if(memBuf->argTypes[0] == MYSQL_SPHERE_POLYGON && memBuf->argTypes[1] == MYSQL_SPHERE_EULER) {
+		SPoly * poly = spheretrans_poly_inverse((SPoly*) memBuf->memBufs[0], (SEuler*) memBuf->memBufs[1]);
+		strResult = serialise(poly);
+		*length = getSerialisedLen(poly);
+		free(poly);
+	} else {
+		*is_null = 1;
+		return NULL;
+	}
+
+	return strResult;
 }

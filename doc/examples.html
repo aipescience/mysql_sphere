@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;        Usage examples
+      </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            mysql-sphere 0.1 based on pgSphere 1.2
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+        Create an index
+      "
+HREF="indices.html"><LINK
+REL="NEXT"
+TITLE="
+            FAQ
+        "
+HREF="x1240.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="pg_sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9631308-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql-sphere 0.1 based on pgSphere 1.2</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="indices.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1240.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="examples"
+>8. Usage examples</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="examp.general"
+>8.1. General</A
+></H2
+><P
+>&#13;            tbw
+        </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="examp.geo"
+>8.2. Geographical</A
+></H2
+><P
+>&#13;            tbw
+        </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="examp.astro"
+>8.3. Astronomical</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN1204"
+>8.3.1. Coordinates transformation</A
+></H3
+><P
+>&#13;            A commonly used task is a coordinate transformation. With the
+            parameters of a new
+            coordinate system (plane) relative to an old one,
+          </P
+><DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN1207"
+></A
+><TABLE
+BORDER="0"
+FRAME="void"
+RULES="all"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+ALIGN="left"
+TITLE="col0"><COL
+WIDTH="4*"
+ALIGN="left"
+TITLE="col1"><COL
+WIDTH="6*"
+ALIGN="left"
+TITLE="col2"><TBODY
+><TR
+><TD
+>&#13;                    &#937;
+                  </TD
+><TD
+>&#13;                    longitude of the ascending node
+                  </TD
+><TD
+>&#13;                    angle between line of nodes and the zero point of
+                    longitude in the old plane.
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    &#969;
+                  </TD
+><TD
+>&#13;                    argument of pericenter
+                  </TD
+><TD
+>&#13;                    the angle from the ascending node to the position in the new plane.
+                  </TD
+></TR
+><TR
+><TD
+>&#13;                    i
+                  </TD
+><TD
+>&#13;                    inclination
+                  </TD
+><TD
+>&#13;                    angle between the new plane and the old plane.
+                  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;            you can do a transformation of an object
+            <CODE
+CLASS="parameter"
+>object</CODE
+> from an old into a new coordinate
+            system using:
+          </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+> sinverse( object, strans( '&#969;, i, &#937;' ) )</PRE
+></TD
+></TR
+></TABLE
+><P
+>or</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+> sinverse( object, strans(&#969;, i, &#937;) )</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;            Otherwise, for a transformation of an object
+            <CODE
+CLASS="parameter"
+>object</CODE
+> from the new into the old
+            coordinate system, use the operator <TT
+CLASS="literal"
+>+</TT
+>:
+          </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+> stransform( object, strans( '&#969;, i, &#937;' ) )</PRE
+></TD
+></TR
+></TABLE
+><P
+>or</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+> stransform( object, strans(&#969;, i, &#937;) )</PRE
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="example"
+><A
+NAME="AEN1236"
+></A
+><P
+><B
+>Example 51. Perihel and aphel coordinates of a comet orbit</B
+></P
+><P
+>&#13;             We are assuming the orbital elements of a comet are
+             &#937;=30°, i=60° and &#969;=90°. We get the
+             spherical position of perihel and aphel with:
+            </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SET sphere_outmode="DEG";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&#62; SELECT sstr( stransform( spoint( '(0,0)' ), strans( '90d,60d,30d' ) ) ) AS perihel;
++--------------+
+| perihel      |
++--------------+
+| (120d , 60d) |
++--------------+
+1 row in set (0.01 sec)
+
+mysql&#62; SELECT sstr( stransform( spoint( '(180d,0)' ), strans( '90d,60d,30d' ) ) ) AS aphel;
++---------------+
+| aphel         |
++---------------+
+| (300d , -60d) |
++---------------+
+1 row in set (0.01 sec)
+            </PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="indices.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1240.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Create an index</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FAQ</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
