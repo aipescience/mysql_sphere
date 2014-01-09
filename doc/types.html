@@ -9,7 +9,7 @@ NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
 REL="HOME"
 TITLE="
-            mysql-sphere 0.1 based on pgSphere 1.2
+            mysql_sphere 0.1 based on pgSphere 1.2
         "
 HREF="index.html"><LINK
 REL="PREVIOUS"
@@ -27,16 +27,6 @@ TYPE="text/css"
 HREF="pg_sphere.css"><META
 NAME="creation"
 CONTENT="2009-07-06T05:33:03">
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-9631308-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-
 </HEAD
 ><BODY
 CLASS="sect1"
@@ -57,7 +47,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->mysql-sphere 0.1 based on pgSphere 1.2</TH
+>mysql_sphere 0.1 based on pgSphere 1.2</TH
 ></TR
 ><TR
 ><TD
@@ -107,14 +97,14 @@ NAME="dt.over"
 ><P
 >&#13;                <SPAN
 CLASS="productname"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > provides spherical data
                 types for storing with
                 <SPAN
 CLASS="application"
 >MySQL / MariaDB</SPAN
 >. This is achieved by storing the according data types as base64 encoded binary BLOBs. This means, that
-to store mysql-sphere objects, you need to store them in <TT
+to store mysql_sphere objects, you need to store them in <TT
 CLASS="literal"
 >BLOB</TT
 > columns! Furthermore, there is a data type to do transformations.
@@ -246,7 +236,7 @@ CLASS="type"
 ></DIV
 ></DIV
 >
-If you feel that storing mysql-sphere data types as base64 encoded BLOBs is a unnecessary overhead, you can
+If you feel that storing mysql_sphere data types as base64 encoded BLOBs is a unnecessary overhead, you can
 choose to store them in plain binary by adjusting the <TT
 CLASS="literal"
 >sphere_types_base64enc</TT
@@ -950,7 +940,7 @@ WIDTH="142px"></P
 >
               Within <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 >, ellipses are
               defined as :
             </P
@@ -1089,7 +1079,7 @@ CLASS="parameter"
                       is defined within
                       <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > as a counterclockwise
                       rotation around the ellipse center and is zero, if the
                       ellipse is &#8220;parallel to the equator&#8221;
@@ -1168,7 +1158,7 @@ WIDTH="142px"></P
 ><P
 >&#13;                Paths within <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > are simplified
                 lists of positions. The input syntax is :
             </P
@@ -1270,7 +1260,7 @@ WIDTH="142px"></P
               One main usage case are areas on the earth and sky sphere.
               Polygons within <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > 
               have the same input syntax as paths:
             </P
@@ -1432,7 +1422,7 @@ CLASS="synopsis"
                   the latitude of the northeast edge,
                   <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > swaps the edges.
                 </P
 ></LI
@@ -1442,7 +1432,7 @@ CLASS="application"
                   the longitude of the northeast edge,
                   <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > assumes a full latitude
                   range, except that the latitudes are equal, too.
                 </P

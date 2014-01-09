@@ -4,66 +4,531 @@
 		"selected_items":
 		[
 			[
-				"strr",
+				"MYSQL_SPHERE",
+				"MYSQL_SPHERE_LINE"
+			],
+			[
+				"type",
+				"type_names"
+			],
+			[
+				"spherepol",
+				"spherepoly_add_point"
+			],
+			[
+				"agg",
+				"aggregateBuff"
+			],
+			[
+				"sphereT",
+				"sphereTypesFound"
+			],
+			[
+				"MYSQL_",
+				"MYSQL_SPHERE_TYPES"
+			],
+			[
+				"strans_c",
+				"strans_circle_inverse"
+			],
+			[
+				"spoint_contained",
+				"spoint_contained_by_circle_com"
+			],
+			[
+				"scircle_con",
+				"scircle_contained_by_circle"
+			],
+			[
+				"MYSQL",
+				"MYSQL_SPHERE_POINT"
+			],
+			[
+				"mem",
+				"memBuf1"
+			],
+			[
+				"argT",
+				"argType0"
+			],
+			[
+				"MYS",
+				"MYSQL_SPHERE_UNKNOWN"
+			],
+			[
+				"gourpe",
+				"groupedAndTree"
+			],
+			[
+				"grout",
+				"groupedAndTree"
+			],
+			[
+				"previ",
+				"previousNode"
+			],
+			[
+				"found",
+				"foundAnd"
+			],
+			[
+				"prev",
+				"previousNode"
+			],
+			[
+				"array_ke",
+				"array_key_exists"
+			],
+			[
+				"sampC",
+				"sampClientTracker"
+			],
+			[
+				"scr",
+				"scriptName"
+			],
+			[
+				"execu",
+				"executionDuration"
+			],
+			[
+				"Uws_Model",
+				"Uws_Model_Resource_JobSummaryType"
+			],
+			[
+				"Uws",
+				"Uws_Model_Resource_JobSummaryType"
+			],
+			[
+				"esca",
+				"escapedString"
+			],
+			[
+				"combin",
+				"combinedQuery"
+			],
+			[
+				"comb",
+				"combinedQuery"
+			],
+			[
+				"str_re",
 				"str_replace"
 			],
 			[
-				"depen",
-				"dependantList"
+				"_",
+				"_parseSqlAll_parseResourceName"
 			],
 			[
-				"newLange",
-				"newLanguage	(local, instance)"
+				"escapedMu",
+				"escapedMultiLineParseTrees"
 			],
 			[
-				"tran",
-				"transactionsHelper	(global, class)"
+				"setDest",
+				"setDestructTimeImpl"
+			],
+			[
+				"request",
+				"requestParams"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"param_inf",
+				"param_info_element"
+			],
+			[
+				"cond",
+				"cond_push_fields2"
+			],
+			[
+				"NULL",
+				"NULL"
+			],
+			[
+				"clo",
+				"closeParPos"
+			],
+			[
+				"publica",
+				"publication_role_id"
+			],
+			[
+				"_daiq",
+				"_daiquiri_cm_plan"
+			],
+			[
+				"actualQ",
+				"actualQuery"
+			],
+			[
+				"strp",
+				"strpos"
+			],
+			[
+				"multiLin",
+				"multiLineUsedDBs"
+			],
+			[
+				"_che",
+				"_checkTableDBACL"
+			],
+			[
+				"mult",
+				"multiLineUsedDBs"
+			],
+			[
+				"multi",
+				"multilineUsedDBs"
+			],
+			[
+				"parseSql",
+				"parseSqlAll_getColsMysqlii"
+			],
+			[
+				"_get",
+				"_getDownloadStatus"
+			],
+			[
+				"download",
+				"downloadPoll"
+			],
+			[
+				"down",
+				"downloadPoll"
+			],
+			[
+				"dump",
+				"dump	phpZendDump"
+			],
+			[
+				"expla",
+				"explainSQL"
+			],
+			[
+				"planT",
+				"planTypes"
+			],
+			[
+				"box",
+				"boxConv	double"
+			],
+			[
+				"HKE",
+				"HKEY_ERR_OK	macro"
+			],
+			[
+				"HKEY_",
+				"HKEY_ERR_OK	macro"
+			],
+			[
+				"dimI",
+				"dimIdx2	int32_t"
+			],
+			[
+				"getHi",
+				"getHilbertKey(const int32_t m, const double boxSize, const int32_t dim, const double *point)	uint64_t"
+			],
+			[
+				"getH",
+				"getHilbertKey(const int32_t m, const double boxSize, const int32_t dim, const double *point)	uint64_t"
+			],
+			[
+				"OPT_VO",
+				"OPT_VOTABLE_BINARY2	macro"
+			],
+			[
+				"OPT_VOT",
+				"OPT_VOTABLE_BINARY2	macro"
+			],
+			[
+				"OPT_VOTABL",
+				"OPT_VOTABLE_TABLEDATA	macro"
+			],
+			[
+				"INT_MAX",
+				"INT_MAX32	macro"
+			],
+			[
+				"lenB",
+				"lenBase64Overflow	int"
+			],
+			[
+				"swap",
+				"swapByteOrder16(unsigned short *us)	void"
+			],
+			[
+				"lenBu",
+				"lenBuffer	int"
+			],
+			[
+				"vo",
+				"voTableBinCastFieldToBinary(char *buffer, int lenBuff, char *value, int len, MYSQL_FIELD *field)	int"
+			],
+			[
+				"buff",
+				"buffer	char *"
+			],
+			[
+				"MYSQL_TYPE_DATE",
+				"MYSQL_TYPE_DATETIME	enum enum_field_types"
+			],
+			[
+				"DYN",
+				"DYNAMIC_STRING	typedef"
+			],
+			[
+				"MYSQL_TYPE_TIME",
+				"MYSQL_TYPE_TIMESTAMP	enum enum_field_types"
+			],
+			[
+				"getVo",
+				"getVOTableType(char *typeStr, int len)	const char *"
+			],
+			[
+				"http_send_con",
+				"http_send_content_type"
+			],
+			[
+				"http_post",
+				"http_post_fields"
+			],
+			[
+				"format",
+				"format"
+			],
+			[
+				"quota",
+				"quotaStr"
+			],
+			[
+				"resultTable",
+				"resultTableName"
+			],
+			[
+				"tab",
+				"tableName"
+			],
+			[
+				"QUE",
+				"QUEUE_PENDING	enum_queue_status"
+			],
+			[
+				"paqu",
+				"paqu_validateSQL"
+			],
+			[
+				"status",
+				"statusIndex"
+			],
+			[
+				"Ex",
+				"Exception"
+			],
+			[
+				"queue",
+				"queueGroup"
+			],
+			[
+				"drop",
+				"dropdown"
+			],
+			[
+				"max",
+				"maxVal"
+			],
+			[
+				"button",
+				"buttons-radio"
+			],
+			[
+				"Zend_Form_Elemen",
+				"Zend_Form_Element_Button  (class)"
 			],
 			[
 				"clean",
-				"cleanedData	(local, instance)"
+				"cleanMultiline"
 			],
 			[
 				"clea",
-				"cleanedData	(local, instance)"
+				"cleanMultiline"
 			],
 			[
-				"cle",
-				"cleanedData	(local, instance)"
+				"user",
+				"userDBAdapter"
 			],
 			[
-				"reg",
-				"registerNewUser	(global, class)"
+				"sql",
+				"sqloptions"
 			],
 			[
-				"range",
-				"rangeFile"
+				"or",
+				"order"
+			],
+			[
+				"fetch",
+				"fetchQueues"
+			],
+			[
+				"Query_Mod",
+				"Query_Model_DbTable_JobsPaquQQueue"
+			],
+			[
+				"array_key",
+				"array_key_exists"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "/Users/adrian/Library/Application Support/Sublime Text 2/Packages/User/SublimeClang.sublime-settings",
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/poly.sql",
 			"settings":
 			{
-				"buffer_size": 234,
+				"buffer_size": 31416,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeClang/SublimeClang.sublime-settings",
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/poly.sql.out",
 			"settings":
 			{
-				"buffer_size": 13516,
+				"buffer_size": 26198,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/euler.cc",
+			"contents": "Searching 118 files for \"SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/circle.sql:\n   11  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   12  \n   13: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   14  \n   15  SET sphere_outmode=\"DEG\";\n   ..\n   21  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   22  \n   23: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   24  \n   25  SET sphere_outmode=\"DMS\";\n   ..\n   31  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   32  \n   33: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   34  \n   35  SET sphere_outmode=\"HMS\";\n   ..\n   41  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   42  \n   43: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   44  \n   45  SET sphere_outmode=\"DMS\";\n\n4 matches in 1 file\n\n\nSearching 118 files for \"radius must be not greater than 90 degrees\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  	  } else if ( FPeq(c->radius,PIH) ){\n   82  		// set \"exact\" 90 degrees\n   ..\n  239  	SCircle * c  ;\n  240  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  241: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  242  		return NULL;\n  243  	}\n\n2 matches in 1 file\n\n\nSearching 118 files for \"fprintf (stderr\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n13 matches across 3 files\n\n\nSearching 118 files for \"fprintf (stderr, \"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n10 matches across 2 files\n\n\nSearching 118 files for \"fprintf (stderr, \"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n10 matches across 2 files\n\n\nSearching 118 files for \"fprintf(stderr, \"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n13 matches across 3 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  			}\n  401  \n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  			}\n  401  \n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  				return 0;\n  401  			}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  				return 0;\n  401  			}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n",
 			"settings":
 			{
-				"buffer_size": 9617,
+				"buffer_size": 48900,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc",
+			"settings":
+			{
+				"buffer_size": 10427,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/install_udfs.sql",
+			"settings":
+			{
+				"buffer_size": 22979,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/funcs.html",
+			"settings":
+			{
+				"buffer_size": 22270,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/examples.html",
+			"settings":
+			{
+				"buffer_size": 5817,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/construct.html",
+			"settings":
+			{
+				"buffer_size": 23778,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/appendixes.html",
+			"settings":
+			{
+				"buffer_size": 2166,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/README",
+			"settings":
+			{
+				"buffer_size": 1656,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html",
+			"settings":
+			{
+				"buffer_size": 4200,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html",
+			"settings":
+			{
+				"buffer_size": 6153,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x1240.html",
+			"settings":
+			{
+				"buffer_size": 1992,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html",
+			"settings":
+			{
+				"buffer_size": 29091,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html",
+			"settings":
+			{
+				"buffer_size": 22357,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html",
+			"settings":
+			{
+				"buffer_size": 2420,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<!-- saved from url=(0049)./index.html -->\n<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"><title>\n            pgSphere 1.1\n        </title><meta name=\"GENERATOR\" content=\"Modular DocBook HTML Stylesheet Version 1.79\"><link rel=\"NEXT\" title=\"\n            What is mysql-sphere?\n        \" href=\"./x18.html\"><link rel=\"STYLESHEET\" type=\"text/css\" href=\"./img/pg_sphere.css\"><meta name=\"creation\" content=\"2009-07-06T05:33:03\">\n\n</head><body class=\"article\" bgcolor=\"#FFFFFF\" text=\"#000000\" link=\"#0000FF\" vlink=\"#840084\" alink=\"#0000FF\"><div class=\"ARTICLE\"><div class=\"TITLEPAGE\"><h1 class=\"title\"><a name=\"AEN2\">mysql-sphere 0.1 based on pgSphere 1.2</a></h1><h3 class=\"author\"><a name=\"AEN4\">Port by: Adrian M. Partl<br>Original: The pgSphere team</a></h3><div><div class=\"abstract\"><p></p><a name=\"AEN6\"></a><p>\n              </p><div class=\"mediaobject\"><p><img src=\"./img/logo.jpg\" width=\"225px\"><font size=\"+3\">now available for dolphins!</font></p></div>\n            <p></p><p>\n                <span class=\"application\">mysql-sphere</span> provides spherical data\n                types, functions, and operators for\n                <span class=\"application\">MySQL and MariaDB</span>. It is based on pgSphere 1.2 (see <a href=\"http://pgsphere.projects.pgfoundry.org/\" target=\"_top\">http://pgsphere.projects.pgfoundry.org/</a>and constitutes a port of pgSphere\n                from PostgreSQL to MySQL/MariaDB. Indexing is not yet supported, due to the unextensibility of indexing in MySQL.\n            </p><p>\n              The project is hosted at <a href=\"https://github.com/adrpar/mysql-sphere/\" target=\"_top\"><i class=\"citetitle\">github.com</i></a>\n            </p><p>    \n                This document\n                describes installation and usage of this module.\n            </p><p></p></div></div><hr></div><div class=\"TOC\"><dl><dt><b>Table of Contents</b></dt><dt>1. <a href=\"./x18.html\">What is mysql-sphere?</a></dt><dt>2. <a href=\"./x44.html\">Installation</a></dt><dd><dl><dt>2.1. <a href=\"./x44.html#AEN46\">Download</a></dt><dt>2.2. <a href=\"./x44.html#AEN54\">Installation</a></dt><dt>2.3. <a href=\"./x44.html#AEN93\">Creating a database with <span class=\"application\">pgSphere</span></a></dt></dl></dd><dt>3. <a href=\"./types.html\">Data types</a></dt><dd><dl><dt>3.1. <a href=\"./types.html#dt.over\">Overview</a></dt><dt>3.2. <a href=\"./types.html#dt.spoint\">Point</a></dt><dt>3.3. <a href=\"./types.html#dt.strans\">Euler transformation</a></dt><dt>3.4. <a href=\"./types.html#dt.scircle\">Circle</a></dt><dt>3.5. <a href=\"./types.html#dt.sline\">Line</a></dt><dt>3.6. <a href=\"./types.html#dt.sellipse\">Ellipses</a></dt><dt>3.7. <a href=\"./types.html#dt.spath\">Path</a></dt><dt>3.8. <a href=\"./types.html#dt.spoly\">Polygon</a></dt><dt>3.9. <a href=\"./types.html#dt.sbox\">Coordinates range</a></dt></dl></dd><dt>4. <a href=\"./construct.html\">Constructors</a></dt><dd><dl><dt>4.1. <a href=\"./construct.html#contr.spoint\">Point</a></dt><dt>4.2. <a href=\"./construct.html#contr.strans\">Euler transformation</a></dt><dt>4.3. <a href=\"./construct.html#contr.scircle\">Circle</a></dt><dt>4.4. <a href=\"./construct.html#contr.sline\">Line</a></dt><dt>4.5. <a href=\"./construct.html#contr.sellipse\">Ellipse</a></dt><dt>4.6. <a href=\"./construct.html#contr.spoly\">Polygon</a></dt><dt>4.7. <a href=\"./construct.html#contr.spath\">Path</a></dt><dt>4.8. <a href=\"./construct.html#contr.sbox\">Coordinates range</a></dt></dl></dd><dt>5. <a href=\"./operators.html\">Operators</a></dt><dd><dl><dt>5.1. <a href=\"./operators.html#op.casting\">Casting</a></dt><dt>5.2. <a href=\"./operators.html#op.equal\">Equality</a></dt><dt>5.3. <a href=\"./operators.html#op.over\">Contain and overlap</a></dt><dt>5.4. <a href=\"./operators.html#op.cross\">Crossing of lines</a></dt><dt>5.5. <a href=\"./operators.html#op.dist\">Distance</a></dt><dt>5.6. <a href=\"./operators.html#op.circum\">Length and circumference</a></dt><dt>5.7. <a href=\"./operators.html#op.center\">Center</a></dt><dt>5.8. <a href=\"./operators.html#op.direction\">Change the direction</a></dt><dt>5.9. <a href=\"./operators.html#op.turnline\">Turn the path of a line</a></dt><dt>5.10. <a href=\"./operators.html#op.trans\">Transformation</a></dt></dl></dd><dt>6. <a href=\"./funcs.html\">Functions</a></dt><dd><dl><dt>6.1. <a href=\"./funcs.html#func.area\">Area function</a></dt><dt>6.2. <a href=\"./funcs.html#func.spoint\"><span class=\"type\">spoint</span> functions</a></dt><dt>6.3. <a href=\"./funcs.html#funcs.strans\"><span class=\"type\">strans</span> functions</a></dt><dt>6.4. <a href=\"./funcs.html#func.circle\">scircle functions</a></dt><dt>6.5. <a href=\"./funcs.html#funcs.sellipse\"><span class=\"type\">sellipse</span> functions</a></dt><dt>6.6. <a href=\"./funcs.html#funcs.sline\"><span class=\"type\">sline</span> functions</a></dt><dt>6.7. <a href=\"./funcs.html#funcs.spath\"><span class=\"type\">spath</span> functions</a></dt><dt>6.8. <a href=\"./funcs.html#funcs.spoly\"><span class=\"type\">spoly</span> functions</a></dt><dt>6.9. <a href=\"./funcs.html#funcs.sbox\"><span class=\"type\">sbox</span> functions</a></dt></dl></dd><dt>7. <a href=\"./indices.html\">Create an index</a></dt><dd><dl><dt>7.1. <a href=\"./indices.html#ind.sphere\">Spherical index</a></dt></dl></dd><dt>8. <a href=\"./examples.html\">Usage examples</a></dt><dd><dl><dt>8.1. <a href=\"./examples.html#examp.general\">General</a></dt><dt>8.2. <a href=\"./examples.html#examp.geo\">Geographical</a></dt><dt>8.3. <a href=\"./examples.html#examp.astro\">Astronomical</a></dt></dl></dd><dt>9. <a href=\"./x1240.html\">FAQ</a></dt><dt>10. <a href=\"./appendixes.html\">Appendixes</a></dt><dd><dl><dt>10.1. <a href=\"./appendixes.html#appendixes.changelog\">Changes from version 1.0 to 1.1</a></dt></dl></dd></dl></div></div><div class=\"NAVFOOTER\"><hr align=\"LEFT\" width=\"100%\"><table summary=\"Footer navigation table\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td width=\"33%\" align=\"left\" valign=\"top\">&nbsp;</td><td width=\"34%\" align=\"center\" valign=\"top\">&nbsp;</td><td width=\"33%\" align=\"right\" valign=\"top\"><a href=\"./x18.html\" accesskey=\"N\">Next</a></td></tr><tr><td width=\"33%\" align=\"left\" valign=\"top\">&nbsp;</td><td width=\"34%\" align=\"center\" valign=\"top\">&nbsp;</td><td width=\"33%\" align=\"right\" valign=\"top\">What is mysql-sphere?</td></tr></tbody></table></div></body></html>",
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 6431,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_box.cc",
+			"settings":
+			{
+				"buffer_size": 67857,
 				"line_ending": "Unix"
 			}
 		}
@@ -71,91 +536,151 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 227.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
-				"pyth",
-				"Set Syntax: Python"
+				"tab",
+				"Indentation: Convert to Tabs"
 			],
 			[
-				"python",
-				"Set Syntax: Python"
+				"tabs",
+				"Indentation: Convert to Tabs"
 			],
 			[
-				"Pack",
-				"Package Control: Install Package"
+				"format",
+				"Format Code"
+			],
+			[
+				"Tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"Tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"ta",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"comment",
+				"Toggle Comment"
+			],
+			[
+				"Package",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"package",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"packa",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"inden",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"inde",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"in",
+				"Indentation: Convert to Tabs"
 			],
 			[
 				"Packa",
 				"Package Control: Upgrade Package"
 			],
 			[
-				"Pakca",
-				"Package Control: Install Package"
+				"Pack",
+				"Package Control: Discover Packages"
 			],
 			[
-				"package",
-				"Package Control: Install Package"
-			],
-			[
-				"git diff",
-				"Git: Diff All"
-			],
-			[
-				"Pacakge",
-				"Package Control: Install Package"
-			],
-			[
-				"rein",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"linter",
-				"SublimeLinter: Show Error List"
-			],
-			[
-				"sublimeLinter",
-				"SublimeLinter: Show Error List"
-			],
-			[
-				"packag",
-				"Package Control: Install Package"
-			],
-			[
-				"reindent",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"packa",
-				"Package Control: Install Package"
+				"diff",
+				"Set Syntax: Diff"
 			],
 			[
 				"Pac",
 				"Package Control: Upgrade Package"
 			],
 			[
-				"Rope",
-				"Rope: Regenerate Project Cache"
+				"pack",
+				"Package Control: Upgrade Package"
 			],
 			[
-				"Package",
+				"for",
+				"Format: Php"
+			],
+			[
+				"Pcak",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Pacak",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Paca",
 				"Package Control: Install Package"
 			],
 			[
-				"",
-				"Bracket Highlighter: Show Left Bracket"
+				"Pacakge",
+				"Package Control: Install Package"
 			],
 			[
-				"Packag",
-				"Package Control: List Packages"
+				"pak",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"REINDE",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"packag",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"pakca",
+				"Package Control: Install Package"
+			],
+			[
+				"Package In",
+				"Package Control: Install Package"
+			],
+			[
+				"Packaage",
+				"Package Control: Install Package"
+			],
+			[
+				"Pacake",
+				"Package Control: Install Package"
 			]
 		],
 		"width": 593.0
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 146.0,
+		"history":
+		[
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')"
+		]
 	},
 	"distraction_free":
 	{
@@ -168,68 +693,134 @@
 	},
 	"file_history":
 	[
-		"/Users/adrian/Documents/eScience/Tools/mysql_sphere/src/euler.cc",
-		"/Users/adrian/Documents/eScience/Tools/mysql_sphere/src/circle.cc",
-		"/Users/adrian/Documents/eScience/Tools/uws-client/uws-client",
-		"/Users/adrian/Documents/eScience/Tools/pySQLJanitor/toolbox/printTree",
-		"/Users/adrian/Documents/eScience/Tools/paqu/src/parOptimImplicitJoin.php~",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/forgottPWD.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/auth_backends.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/resetPWD.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/resetPWDSuccess.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/registerSuccess.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/language/models.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/email/resetPWDUser.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/loginWidget.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/static/designNew.css",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeRope/SublimeRope.sublime-settings",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/models.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/VocWebDev/settings.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/exceptions.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/email/registerUser.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/eav/forms.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/eav/models.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/users/login.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/auth/email/registerUser.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/base/index.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/auth/views.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/auth/helpers.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/auth/forms.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/auth/registerUser.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/auth/models.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/forms.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/admin.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/views.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/users/helpers.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/auth/admin.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/auth/login.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/base/BaseForm.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/base/form_table.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/baseStuff/BaseForm.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/auth/loginWidget.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/index.html",
-		"/Users/adrian/Documents/My Data/Research/python_stuff/taesunTOSql/meanDnDz.py",
-		"/Users/adrian/Documents/My Data/Research/python_stuff/taesunTOSql/externalDnDz.py",
-		"/Users/adrian/Documents/My Data/Research/python_stuff/taesunTOSql/dNdzOutputLines.py",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/logout.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/auth/templates/loginWidget.html",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/content/views.py",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/User/SublimeRope.sublime-settings",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/static/design.css",
-		"/Users/adrian/Documents/Development/VocWebDev/workspace/VocWebDev/templates/auth.html",
-		"/Users/adrian/Downloads/bootstrap/css/bootstrap.css",
-		"/Users/adrian/Downloads/bootstrap/css/bootstrap-responsive.min.css",
-		"/Users/adrian/Downloads/bootstrap/css/bootstrap-responsive.css",
-		"/Users/adrian/Downloads/bootstrap/css/bootstrap.min.css",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Default (OSX).sublime-keymap",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Default (OSX).sublime-mousemap",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Base File.sublime-settings",
-		"/Users/adrian/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-mousemap",
-		"/Users/adrian/Documents/My Data/Research/python_stuff/taesunTOSql/taesunTOSql.py",
-		"/Users/adrian/Documents/My Data/Research/python_stuff/UVBSourcesAutomator/UVBSourcesAutomator.py"
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_euler.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/install_udfs.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/deinstall_udfs.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_operators.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_swap.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_circum.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/path.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_polygon.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/points.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/path.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_point.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_circle.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_ellipse.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_line.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/line.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/euler.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_box.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_path.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/circle_extended.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/ellipse.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/ellipse.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherecircle.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherepoint.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_npoints.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_helpers.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_length.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_dist.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_center.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_sstr.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_area.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherebox.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherepath.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherepolygon.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/circle.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/circle.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/box.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/types.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/globals.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/CMakeLists.txt",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/point.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/util.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/point.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sbuffer.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.ccpend",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_line_tmp.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/.gitignore",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/vector3d.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/vector3d.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sbuffer.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.l",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.y",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/views/scripts/tables/show.phtml",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/views/scripts/databases/show.phtml",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/views/scripts/columns/show.phtml",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/js/daiquiri_browser.js",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/Wordpress/plugin/daiquiri_shortcodes.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/controllers/DatabasesController.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/controllers/TablesController.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/PaquProcessor.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/css/daiquiri_table.css",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Viewer.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/js/daiquiri_query.js",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/js/daiquiri_table.js",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/files/models/Files.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/css/daiquiri_common.css",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Columns.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/parseSqlAll.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/controllers/ColumnsController.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Resource/Columns.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/controllers/IndexController.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/Wordpress/plugin/daiquiri.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Databases.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Tables.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/Daiquiri/Auth.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/views/scripts/index/index.phtml",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/SimpleQueue.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Examples.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/controllers/IndexController.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/Daiquiri/Acl.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Init.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/Processing.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/views/scripts/_partials/sql-query.phtml",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/AbstractQueue.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/parallelQuery.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/queryPlanWriter.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/paraQuery.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/paraQueryFunc.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/MySQLProcessor.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/DirectProcessor.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/PaquQQueue.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/php-sql-creator2.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/parOptimImplicitJoin.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Column.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Table.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/Daiquiri/Form/Abstract.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Resource/Description.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Form.php",
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/js/daiquiri_query_buttons.js"
 	],
 	"find":
 	{
@@ -237,9 +828,32 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"*",
+			"udf*",
+			"*",
+			"*.php",
+			"*.js",
+			"*.php",
+			"*.*",
+			"*.php",
+			"",
+			"*.php",
+			"*.js",
+			"*",
+			"*.js",
+			"*.php",
+			"",
+			"*",
+			"*.php",
+			"*",
+			"*.php",
+			"*",
+			"*.php",
+			"",
+			"*.php",
 			""
 		]
 	},
@@ -248,73 +862,184 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"_f",
-			"planetColor",
-			"earth",
-			"jobInfo",
-			"name",
-			"COUNT",
-			"strpos",
-			"headNodeTables",
-			"var_dump",
-			"var_dumpü",
-			"var_dump",
-			"process_select",
-			"push_where",
-			"Missing expected clause",
-			"SQL Parse Error",
-			"var_dump",
-			"foo.bar",
-			"HAVING",
-			"having",
-			"HAVING",
-			"having",
-			"HAVING",
-			"headNodeT",
-			"TODO",
-			"parallel",
-			"'parallel'",
-			"'parllel'",
-			"process_from",
-			"var_dump",
-			"PHPSQLdetStartTable",
-			"headNode",
-			"PHPSQLprepareQuery",
-			"PHPSQLbuildShardQuery",
-			"ShardQuery",
-			"PHPSQLbuildShardQuery",
-			"PHPSQLdetStartTable",
-			"PHPSQLaddOuterQueryWhere",
-			"die(0)",
-			"var_dump",
-			"'parallel",
-			"PHPSQLaddOuterQueryOrder",
-			"clause is not supported",
-			"HAVING clause is not supported",
-			"having",
-			"getPart",
-			"FAKE",
-			"FAKE\n",
-			"FAKE",
-			"fake",
-			"dummy",
-			"processQueryWil",
-			"example",
-			"HiddenInput",
-			"print",
-			"create_user",
-			"auth",
-			"loginForm",
-			"EMAIL",
-			"login",
-			"jQuery.js"
+			"pgSpher",
+			"sql",
+			"sbox_sw",
+			"axes",
+			"float8",
+			"sql&#62;",
+			"&#13;sql&#62;",
+			"SELECT",
+			">&#13;sql&#62; ",
+			"&#13;sql&#62;",
+			"strans_circle_inverse",
+			"ellipse",
+			"circle",
+			"stransform",
+			"STransform",
+			"strans",
+			"strams",
+			"snotequal",
+			"sql",
+			"&#13;sql",
+			"sql",
+			"DEG",
+			"pgSphere",
+			"&#13;sql&#62",
+			"sql",
+			"DEG",
+			"%\"\n",
+			"Maria",
+			"pgSphere",
+			"http://pgsphere.projects.pgfoundry.org",
+			"index_files",
+			"fprintf",
+			"fprintf(stderr, ",
+			"fprintf (stderr, ",
+			"fprintf (stderr",
+			"radius must be not greater than 90 degrees",
+			"SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));",
+			"1\n",
+			"0\n",
+			"SELECT spoly",
+			"  );",
+			"; )",
+			"SELECT",
+			"); ) \n",
+			"; ) ",
+			"---",
+			"--",
+			"-----",
+			"----",
+			"---",
+			"--",
+			"-----",
+			"----",
+			"---",
+			"--",
+			"15d",
+			"sqeual",
+			"1",
+			"spoly_add_point_aggr",
+			"spoly_aggr",
+			" !~ ",
+			" !&& ",
+			" !@ ",
+			" ~ ",
+			" <> ",
+			" = ",
+			" && ",
+			"::spoint",
+			"spoint",
+			")::spoint",
+			"::spoint",
+			" @ ",
+			"@poly;",
+			"@poly; ",
+			" @ ",
+			"::scircle",
+			" @ ",
+			">';",
+			"sellipse '<{",
+			">'  ",
+			"}'  ",
+			")}'   ",
+			")}' && spoly",
+			")}' ~ spoly",
+			"}' @ spoly",
+			"::scircle",
+			")}' && '<(",
+			")::scircle",
+			")}' @ '<(",
+			")}' ~ sp",
+			")}' ~ '<(",
+			"::scircle",
+			" ~ '(",
+			")}' <>",
+			")}' =",
+			")}' ",
+			")}'",
+			")}';",
+			"}';",
+			"spoly '{(",
+			")'",
+			"spoint()",
+			"spoint '(",
+			"scircle  '<",
+			"spoint   '(",
+			":poly",
+			"1\n",
+			"0\n",
+			"spoint(",
+			"<->spoint",
+			"<->",
+			"<>spoint",
+			"=spoint",
+			"lat",
+			"long",
+			"dist",
+			" ;",
+			" != ",
+			" = ",
+			",spo",
+			" ,",
+			"::spoint",
+			"'( ",
+			")'",
+			"spoint '(",
+			"0\n",
+			"1\n",
+			"fprintf"
 		],
 		"highlight": true,
 		"in_selection": false,
-		"preserve_case": false,
+		"preserve_case": true,
 		"regex": false,
 		"replace_history":
 		[
+			")')",
+			"spoint('(",
+			">')",
+			"sellipse('<",
+			"scircle",
+			"spoint",
+			"circle",
+			"point",
+			")' )",
+			"))' )",
+			">' )",
+			"sbox ( ",
+			"spoint ( ",
+			") VALUES (",
+			"(point)",
+			"> \" ));",
+			"INSERT INTO spherecircle (circle) VALUES (scircle(\" <(",
+			"",
+			"MYSQL_UDF_DEINIT_BUFFER()",
+			"MYSQL_UDF_CHK_SPHERETYPE",
+			"setSQL(array($shard_query))",
+			"paqu",
+			"&lt;",
+			"&gt;",
+			"&lt;",
+			"&gt;",
+			"&lt;",
+			"processQueryWildcard",
+			"thd",
+			"\\\"",
+			"Data_UCD",
+			"_resolveQueues",
+			"_resolveStatus",
+			"_resolveUserName",
+			"_createJobHistorySelect",
+			"_createJobSelect",
+			"_createJobTableUnion",
+			"_replaceJobDBWithHistory",
+			"_changeTableNames",
+			"_dropTable",
+			"_renameTable",
+			"paquDropTmp",
+			"paquExec"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -325,796 +1050,1637 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 16,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/adrian/Library/Application Support/Sublime Text 2/Packages/User/SublimeClang.sublime-settings",
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/poly.sql",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 234,
+						"buffer_size": 31416,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								234
+								4333,
+								4333
+							],
+							[
+								4391,
+								4391
+							],
+							[
+								4448,
+								4448
 							]
 						],
 						"settings":
 						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/SQL/SQL.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 644.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/Users/adrian/Library/Application Support/Sublime Text 2/Packages/SublimeClang/SublimeClang.sublime-settings",
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/poly.sql.out",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13516,
+						"buffer_size": 26198,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5845,
-								5983
+								25476,
+								25476
 							]
 						],
 						"settings":
 						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3627.0,
+						"translation.y": 8184.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/euler.cc",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9617,
+						"buffer_size": 48900,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										242,
+										301
+									],
+									[
+										431,
+										490
+									],
+									[
+										620,
+										679
+									],
+									[
+										809,
+										868
+									],
+									[
+										1152,
+										1194
+									],
+									[
+										1386,
+										1428
+									],
+									[
+										1662,
+										1677
+									],
+									[
+										1870,
+										1885
+									],
+									[
+										2068,
+										2083
+									],
+									[
+										2284,
+										2299
+									],
+									[
+										2478,
+										2493
+									],
+									[
+										2715,
+										2730
+									],
+									[
+										2844,
+										2859
+									],
+									[
+										2968,
+										2983
+									],
+									[
+										3053,
+										3068
+									],
+									[
+										3098,
+										3113
+									],
+									[
+										3226,
+										3241
+									],
+									[
+										3432,
+										3447
+									],
+									[
+										3627,
+										3642
+									],
+									[
+										3861,
+										3878
+									],
+									[
+										4069,
+										4086
+									],
+									[
+										4294,
+										4311
+									],
+									[
+										4423,
+										4440
+									],
+									[
+										4547,
+										4564
+									],
+									[
+										4632,
+										4649
+									],
+									[
+										4677,
+										4694
+									],
+									[
+										4805,
+										4822
+									],
+									[
+										5011,
+										5028
+									],
+									[
+										5206,
+										5223
+									],
+									[
+										5440,
+										5457
+									],
+									[
+										5648,
+										5665
+									],
+									[
+										5873,
+										5890
+									],
+									[
+										6002,
+										6019
+									],
+									[
+										6126,
+										6143
+									],
+									[
+										6211,
+										6228
+									],
+									[
+										6256,
+										6273
+									],
+									[
+										6384,
+										6401
+									],
+									[
+										6590,
+										6607
+									],
+									[
+										6785,
+										6802
+									],
+									[
+										7026,
+										7042
+									],
+									[
+										7100,
+										7116
+									],
+									[
+										7366,
+										7382
+									],
+									[
+										7514,
+										7530
+									],
+									[
+										7692,
+										7708
+									],
+									[
+										7895,
+										7911
+									],
+									[
+										8043,
+										8059
+									],
+									[
+										8221,
+										8237
+									],
+									[
+										8387,
+										8403
+									],
+									[
+										8570,
+										8586
+									],
+									[
+										8888,
+										8904
+									],
+									[
+										9046,
+										9062
+									],
+									[
+										9236,
+										9252
+									],
+									[
+										9530,
+										9537
+									],
+									[
+										9731,
+										9738
+									],
+									[
+										9939,
+										9946
+									],
+									[
+										10109,
+										10116
+									],
+									[
+										10341,
+										10348
+									],
+									[
+										10603,
+										10610
+									],
+									[
+										10857,
+										10864
+									],
+									[
+										11005,
+										11012
+									],
+									[
+										11197,
+										11204
+									],
+									[
+										11338,
+										11345
+									],
+									[
+										11518,
+										11525
+									],
+									[
+										11741,
+										11748
+									],
+									[
+										11908,
+										11915
+									],
+									[
+										12124,
+										12131
+									],
+									[
+										12318,
+										12325
+									],
+									[
+										12549,
+										12556
+									],
+									[
+										12717,
+										12724
+									],
+									[
+										12947,
+										12954
+									],
+									[
+										13115,
+										13122
+									],
+									[
+										13291,
+										13298
+									],
+									[
+										13497,
+										13504
+									],
+									[
+										13697,
+										13704
+									],
+									[
+										13771,
+										13778
+									],
+									[
+										13931,
+										13938
+									],
+									[
+										14164,
+										14171
+									],
+									[
+										14332,
+										14339
+									],
+									[
+										14575,
+										14582
+									],
+									[
+										14784,
+										14791
+									],
+									[
+										15070,
+										15077
+									],
+									[
+										15218,
+										15225
+									],
+									[
+										15396,
+										15403
+									],
+									[
+										15599,
+										15606
+									],
+									[
+										15747,
+										15754
+									],
+									[
+										15925,
+										15932
+									],
+									[
+										16091,
+										16098
+									],
+									[
+										16274,
+										16281
+									],
+									[
+										16592,
+										16599
+									],
+									[
+										16750,
+										16757
+									],
+									[
+										16940,
+										16947
+									],
+									[
+										17211,
+										17218
+									],
+									[
+										17401,
+										17408
+									],
+									[
+										17491,
+										17498
+									],
+									[
+										17499,
+										17506
+									],
+									[
+										17596,
+										17603
+									],
+									[
+										17728,
+										17735
+									],
+									[
+										17857,
+										17864
+									],
+									[
+										18002,
+										18009
+									],
+									[
+										18080,
+										18087
+									],
+									[
+										18211,
+										18218
+									],
+									[
+										18293,
+										18300
+									],
+									[
+										18378,
+										18385
+									],
+									[
+										18423,
+										18430
+									],
+									[
+										18551,
+										18558
+									],
+									[
+										18757,
+										18764
+									],
+									[
+										18952,
+										18959
+									],
+									[
+										19147,
+										19154
+									],
+									[
+										19405,
+										19412
+									],
+									[
+										19606,
+										19613
+									],
+									[
+										19814,
+										19821
+									],
+									[
+										19984,
+										19991
+									],
+									[
+										20216,
+										20223
+									],
+									[
+										20478,
+										20485
+									],
+									[
+										20732,
+										20739
+									],
+									[
+										20880,
+										20887
+									],
+									[
+										21072,
+										21079
+									],
+									[
+										21213,
+										21220
+									],
+									[
+										21393,
+										21400
+									],
+									[
+										21616,
+										21623
+									],
+									[
+										21783,
+										21790
+									],
+									[
+										21999,
+										22006
+									],
+									[
+										22193,
+										22200
+									],
+									[
+										22424,
+										22431
+									],
+									[
+										22592,
+										22599
+									],
+									[
+										22822,
+										22829
+									],
+									[
+										22990,
+										22997
+									],
+									[
+										23166,
+										23173
+									],
+									[
+										23372,
+										23379
+									],
+									[
+										23572,
+										23579
+									],
+									[
+										23646,
+										23653
+									],
+									[
+										23806,
+										23813
+									],
+									[
+										24039,
+										24046
+									],
+									[
+										24207,
+										24214
+									],
+									[
+										24450,
+										24457
+									],
+									[
+										24659,
+										24666
+									],
+									[
+										24945,
+										24952
+									],
+									[
+										25093,
+										25100
+									],
+									[
+										25271,
+										25278
+									],
+									[
+										25474,
+										25481
+									],
+									[
+										25622,
+										25629
+									],
+									[
+										25800,
+										25807
+									],
+									[
+										25966,
+										25973
+									],
+									[
+										26149,
+										26156
+									],
+									[
+										26467,
+										26474
+									],
+									[
+										26625,
+										26632
+									],
+									[
+										26815,
+										26822
+									],
+									[
+										27086,
+										27093
+									],
+									[
+										27276,
+										27283
+									],
+									[
+										27366,
+										27373
+									],
+									[
+										27374,
+										27381
+									],
+									[
+										27471,
+										27478
+									],
+									[
+										27603,
+										27610
+									],
+									[
+										27732,
+										27739
+									],
+									[
+										27877,
+										27884
+									],
+									[
+										27955,
+										27962
+									],
+									[
+										28086,
+										28093
+									],
+									[
+										28168,
+										28175
+									],
+									[
+										28253,
+										28260
+									],
+									[
+										28298,
+										28305
+									],
+									[
+										28426,
+										28433
+									],
+									[
+										28632,
+										28639
+									],
+									[
+										28827,
+										28834
+									],
+									[
+										29022,
+										29029
+									],
+									[
+										29280,
+										29287
+									],
+									[
+										29481,
+										29488
+									],
+									[
+										29689,
+										29696
+									],
+									[
+										29859,
+										29866
+									],
+									[
+										30091,
+										30098
+									],
+									[
+										30353,
+										30360
+									],
+									[
+										30620,
+										30627
+									],
+									[
+										30768,
+										30775
+									],
+									[
+										30960,
+										30967
+									],
+									[
+										31101,
+										31108
+									],
+									[
+										31281,
+										31288
+									],
+									[
+										31504,
+										31511
+									],
+									[
+										31671,
+										31678
+									],
+									[
+										31887,
+										31894
+									],
+									[
+										32081,
+										32088
+									],
+									[
+										32312,
+										32319
+									],
+									[
+										32480,
+										32487
+									],
+									[
+										32710,
+										32717
+									],
+									[
+										32878,
+										32885
+									],
+									[
+										33054,
+										33061
+									],
+									[
+										33260,
+										33267
+									],
+									[
+										33460,
+										33467
+									],
+									[
+										33534,
+										33541
+									],
+									[
+										33694,
+										33701
+									],
+									[
+										33927,
+										33934
+									],
+									[
+										34095,
+										34102
+									],
+									[
+										34338,
+										34345
+									],
+									[
+										34547,
+										34554
+									],
+									[
+										34833,
+										34840
+									],
+									[
+										34981,
+										34988
+									],
+									[
+										35159,
+										35166
+									],
+									[
+										35362,
+										35369
+									],
+									[
+										35510,
+										35517
+									],
+									[
+										35688,
+										35695
+									],
+									[
+										35854,
+										35861
+									],
+									[
+										36037,
+										36044
+									],
+									[
+										36355,
+										36362
+									],
+									[
+										36513,
+										36520
+									],
+									[
+										36703,
+										36710
+									],
+									[
+										36974,
+										36981
+									],
+									[
+										37164,
+										37171
+									],
+									[
+										37254,
+										37261
+									],
+									[
+										37262,
+										37269
+									],
+									[
+										37359,
+										37366
+									],
+									[
+										37491,
+										37498
+									],
+									[
+										37620,
+										37627
+									],
+									[
+										37765,
+										37772
+									],
+									[
+										37843,
+										37850
+									],
+									[
+										37974,
+										37981
+									],
+									[
+										38056,
+										38063
+									],
+									[
+										38141,
+										38148
+									],
+									[
+										38186,
+										38193
+									],
+									[
+										38314,
+										38321
+									],
+									[
+										38520,
+										38527
+									],
+									[
+										38715,
+										38722
+									],
+									[
+										38910,
+										38917
+									],
+									[
+										39168,
+										39175
+									],
+									[
+										39369,
+										39376
+									],
+									[
+										39577,
+										39584
+									],
+									[
+										39747,
+										39754
+									],
+									[
+										39979,
+										39986
+									],
+									[
+										40241,
+										40248
+									],
+									[
+										40508,
+										40515
+									],
+									[
+										40656,
+										40663
+									],
+									[
+										40848,
+										40855
+									],
+									[
+										40989,
+										40996
+									],
+									[
+										41169,
+										41176
+									],
+									[
+										41392,
+										41399
+									],
+									[
+										41559,
+										41566
+									],
+									[
+										41775,
+										41782
+									],
+									[
+										41969,
+										41976
+									],
+									[
+										42200,
+										42207
+									],
+									[
+										42368,
+										42375
+									],
+									[
+										42598,
+										42605
+									],
+									[
+										42766,
+										42773
+									],
+									[
+										42942,
+										42949
+									],
+									[
+										43148,
+										43155
+									],
+									[
+										43348,
+										43355
+									],
+									[
+										43422,
+										43429
+									],
+									[
+										43582,
+										43589
+									],
+									[
+										43815,
+										43822
+									],
+									[
+										43983,
+										43990
+									],
+									[
+										44226,
+										44233
+									],
+									[
+										44435,
+										44442
+									],
+									[
+										44721,
+										44728
+									],
+									[
+										44869,
+										44876
+									],
+									[
+										45047,
+										45054
+									],
+									[
+										45250,
+										45257
+									],
+									[
+										45398,
+										45405
+									],
+									[
+										45576,
+										45583
+									],
+									[
+										45742,
+										45749
+									],
+									[
+										45925,
+										45932
+									],
+									[
+										46243,
+										46250
+									],
+									[
+										46401,
+										46408
+									],
+									[
+										46591,
+										46598
+									],
+									[
+										46862,
+										46869
+									],
+									[
+										47052,
+										47059
+									],
+									[
+										47142,
+										47149
+									],
+									[
+										47150,
+										47157
+									],
+									[
+										47247,
+										47254
+									],
+									[
+										47379,
+										47386
+									],
+									[
+										47508,
+										47515
+									],
+									[
+										47653,
+										47660
+									],
+									[
+										47731,
+										47738
+									],
+									[
+										47862,
+										47869
+									],
+									[
+										47944,
+										47951
+									],
+									[
+										48029,
+										48036
+									],
+									[
+										48074,
+										48081
+									],
+									[
+										48202,
+										48209
+									],
+									[
+										48408,
+										48415
+									],
+									[
+										48603,
+										48610
+									],
+									[
+										48798,
+										48805
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								45930,
+								45930
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 10,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 24128.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10427,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1094,
-								1094
+								5889,
+								5889
 							]
 						],
 						"settings":
 						{
-							"BracketHighlighterBusy": false,
-							"annotations":
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2716.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/install_udfs.sql",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22979,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
+								4249,
+								4249
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SQL/SQL.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 621.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/funcs.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22270,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
+								623,
+								623
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/examples.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5817,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								612,
+								612
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/construct.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 23778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								625,
+								625
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/appendixes.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2166,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								505,
+								505
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/README",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1587,
+								1587
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 576.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4200,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								659,
+								659
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6153,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								631,
+								631
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x1240.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								587,
+								587
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 29091,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								626,
+								626
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								624,
+								624
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2420,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								619,
+								619
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1733,
+								1733
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_box.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 67857,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6896,
+								6896
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2997.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
 					"type": "text"
 				}
 			]
@@ -1122,11 +2688,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 24.0
 	},
 	"input":
 	{
-		"height": 33.0
+		"height": 34.0
 	},
 	"layout":
 	{
@@ -1153,11 +2719,20 @@
 	"menu_visible": true,
 	"output.clang":
 	{
-		"height": 112.0
+		"height": 119.0
 	},
-	"replace":
+	"output.exec":
+	{
+		"height": 203.0
+	},
+	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"project": "mysql_sphere.sublime-project",
+	"replace":
+	{
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1166,33 +2741,465 @@
 		"selected_items":
 		[
 			[
-				"_",
-				"modules/admin/views/scripts/index/_admin_menu.phtml"
+				"abstrac",
+				"library/Daiquiri/Model/DbTable/Abstract.php"
 			],
 			[
-				"navi",
-				"static/navigationHelper.js"
+				"abst",
+				"library/Daiquiri/Model/DbTable/Abstract.php"
 			],
 			[
-				"new",
-				"static/designNew.css"
+				"viewer",
+				"modules/data/models/Resource/Viewer.php"
 			],
 			[
-				"desi",
-				"static/designNew.css"
+				"column",
+				"daiquiri/modules/data/models/Resource/Columns.php"
 			],
 			[
-				"des",
-				"static/designNew.css"
+				"columns",
+				"multidark2/daiquiri/modules/data/controllers/ColumnsController.php"
+			],
+			[
+				"acl",
+				"daiquiri/library/Daiquiri/Acl.php"
+			],
+			[
+				"init",
+				"multidark2/daiquiri/modules/auth/models/Init.php"
+			],
+			[
+				"php-sql-creator2",
+				"daiquiri/library/paqu/src/php-sql-creator2.php"
+			],
+			[
+				"dbtaabstract",
+				"multidark2/daiquiri/library/Daiquiri/Model/DbTable/Abstract.php"
+			],
+			[
+				"table",
+				"multidark2/daiquiri/library/Daiquiri/Model/Resource/Table.php"
+			],
+			[
+				"proces",
+				"daiquiri/modules/query/models/Resource/Processing.php"
+			],
+			[
+				"jobs",
+				"multidark2/daiquiri/modules/query/models/Jobs.php"
+			],
+			[
+				"parsesq",
+				"daiquiri/library/paqu/src/parseSqlAll.php"
+			],
+			[
+				"user.",
+				"daiquiri/modules/auth/models/Resource/User.php"
+			],
+			[
+				"database",
+				"daiquiri/modules/query/models/Database.php"
+			],
+			[
+				"databases",
+				"daiquiri/modules/data/models/Databases.php"
+			],
+			[
+				"init.mus",
+				"multidark2/init.musca.php"
+			],
+			[
+				"init.php",
+				"daiquiri/library/Daiquiri/Init.php"
+			],
+			[
+				"votable",
+				"daiquiri/modules/query/scripts/download/adapter/votable-binary2_stream.sh"
+			],
+			[
+				"dai",
+				"daiquiri/client/js/daiquiri_table.js"
+			],
+			[
+				"abstract",
+				"daiquiri/library/Daiquiri/Controller/Abstract.php"
+			],
+			[
+				"logincon",
+				"multidark2/daiquiri/modules/auth/controllers/LoginController.php"
+			],
+			[
+				"loginc",
+				"daiquiri/modules/auth/controllers/LoginController.php"
+			],
+			[
+				"pagin",
+				"daiquiri/library/Daiquiri/Model/PaginatedTable.php"
+			],
+			[
+				"paginate",
+				"daiquiri/library/Daiquiri/Model/PaginatedTable.php"
+			],
+			[
+				"a",
+				"daiquiri/library/Daiquiri/Auth.php"
+			],
+			[
+				"rest",
+				"daiquiri/library/Daiquiri/Controller/Plugin/Rest.php"
+			],
+			[
+				"abstractr",
+				"daiquiri/library/Daiquiri/Controller/AbstractREST.php"
+			],
+			[
+				"auth",
+				"daiquiri/library/Daiquiri/Auth.php"
 			],
 			[
 				"login",
-				"auth/templates/loginWidget.html"
+				"daiquiri/modules/auth/models/Login.php"
+			],
+			[
+				"init.mu",
+				"multidark2/init.musca.php"
+			],
+			[
+				"init.m",
+				"multidark2/init.musca.php"
+			],
+			[
+				"ini.mu",
+				"multidark2/init.musca.php"
+			],
+			[
+				"init.musc",
+				"multidark2/init.musca.php"
+			],
+			[
+				"ini.mus",
+				"multidark2/init.musca.php"
+			],
+			[
+				"runmode.js",
+				"daiquiri/client/lib/codemirror/addon/runmode/runmode.js"
+			],
+			[
+				"entrie",
+				"daiquiri/modules/config/models/Entries.php"
+			],
+			[
+				"textare",
+				"daiquiri/library/Daiquiri/Form/Validator/Textarea.php"
+			],
+			[
+				"key",
+				"daiquiri/library/Daiquiri/Model/Resource/KeyValue.php"
+			],
+			[
+				"index.php",
+				"multidark2/public/index.php"
+			],
+			[
+				"abstrat",
+				"daiquiri/library/Daiquiri/Model/Resource/Abstract.php"
+			],
+			[
+				"boot",
+				"daiquiri/library/Daiquiri/Bootstrap.php"
+			],
+			[
+				"form",
+				"daiquiri/modules/query/models/Form.php"
+			],
+			[
+				"query.js",
+				"daiquiri/client/js/daiquiri_query.js"
+			],
+			[
+				"sys",
+				"daiquiri/incubator/mysql_query_queue/src/sys_tbl.cc"
+			],
+			[
+				"daem",
+				"daiquiri/incubator/mysql_query_queue/src/daemon_thd.cc"
+			],
+			[
+				"qque",
+				"daiquiri/incubator/mysql_query_queue/src/query_queue.cc"
+			],
+			[
+				"daiquiri_quer",
+				"daiquiri/client/js/daiquiri_query.js"
+			],
+			[
+				"position",
+				"daiquiri/library/PHP-SQL-Parser/classes/position-calculator.php"
+			],
+			[
+				"viewe",
+				"daiquiri/modules/data/models/Resource/Viewer.php"
+			],
+			[
+				"mysqldump",
+				"daiquiri/incubator/mysqldump-vo/src/mysqldump.c"
+			],
+			[
+				"data",
+				"daiquiri/modules/query/models/Database.php"
+			],
+			[
+				"abstractq",
+				"daiquiri/modules/query/models/Resource/AbstractQueue.php"
+			],
+			[
+				"qq",
+				"daiquiri/modules/query/models/Resource/PaquQQueue.php"
+			],
+			[
+				"daemon",
+				"daiquiri/incubator/mysql_query_queue/src/daemon_thd.cc"
+			],
+			[
+				"desc",
+				"daiquiri/modules/data/models/Resource/Description.php"
+			],
+			[
+				"pa",
+				"daiquiri/modules/query/models/Resource/PaquQQueue.php"
+			],
+			[
+				"paq",
+				"daiquiri/modules/query/models/Resource/PaquQQueue.php"
+			],
+			[
+				"descrip",
+				"daiquiri/modules/data/models/Resource/Description.php"
+			],
+			[
+				"style.css",
+				"multidark2/public/css/style.css"
+			],
+			[
+				"paquqq",
+				"daiquiri/modules/query/models/Resource/PaquQQueue.php"
+			],
+			[
+				"indexcont",
+				"daiquiri/modules/query/controllers/IndexController.php"
+			],
+			[
+				"csv.sh",
+				"daiquiri/modules/query/scripts/download/adapter/csv.sh"
+			],
+			[
+				"abstractform",
+				"daiquiri/modules/query/forms/AbstractFormQuery.php"
+			],
+			[
+				"zipstream",
+				"daiquiri/library/PHPZip/ZipStream.php"
+			],
+			[
+				"config",
+				"daiquiri/library/Daiquiri/Config.php"
+			],
+			[
+				"tables.php",
+				"daiquiri/modules/data/models/Tables.php"
+			],
+			[
+				"tables",
+				"daiquiri/modules/data/models/Resource/Tables.php"
+			],
+			[
+				"permission",
+				"daiquiri/modules/query/models/Resource/Permissions.php"
+			],
+			[
+				"ini.musc",
+				"multidark2/init.musca.php"
+			],
+			[
+				"dumptabl",
+				"daiquiri/modules/query/scripts/download/worker/dumpTableJob.php"
+			],
+			[
+				"qqueue_queue.",
+				"daiquiri/incubator/mysql_query_queue/src/query_queue.cc"
+			],
+			[
+				"init.coma",
+				"multidark2/init.coma.php"
+			],
+			[
+				"description",
+				"daiquiri/modules/data/models/Resource/Description.php"
+			],
+			[
+				"simple",
+				"daiquiri/library/Daiquiri/Model/DbTable/Simple.php"
+			],
+			[
+				"permiss",
+				"daiquiri/modules/query/models/Resource/Permissions.php"
+			],
+			[
+				"init.com",
+				"multidark2/init.coma.php"
+			],
+			[
+				"init.",
+				"multidark2/init.coma.php"
+			],
+			[
+				"acl.php",
+				"daiquiri/library/Daiquiri/Acl.php"
+			],
+			[
+				"permis",
+				"daiquiri/modules/query/models/Resource/Permissions.php"
+			],
+			[
+				"mysq",
+				"daiquiri/modules/query/models/Resource/MySQLProcessor.php"
+			],
+			[
+				"proc",
+				"daiquiri/modules/query/models/Resource/Processing.php"
+			],
+			[
+				"user",
+				"daiquiri/modules/auth/models/User.php"
+			],
+			[
+				"abstr",
+				"daiquiri/library/Daiquiri/Controller/Abstract.php"
+			],
+			[
+				"indexcon",
+				"daiquiri/modules/query/controllers/IndexController.php"
+			],
+			[
+				"indexc",
+				"daiquiri/modules/query/controllers/IndexController.php"
+			],
+			[
+				"quer",
+				"daiquiri/client/js/daiquiri_query.js"
+			],
+			[
+				"appli",
+				"application/configs/application.musca.ini"
+			],
+			[
+				"php-sql",
+				"daiquiri/library/PHP-SQL-Parser/php-sql-creator.php"
+			],
+			[
+				"applic",
+				"application/configs/application.ini"
+			],
+			[
+				"process",
+				"daiquiri/modules/query/models/Processing.php"
+			],
+			[
+				"js",
+				"daiquiri/client/js/daiquiri_query.js"
+			],
+			[
+				"confi",
+				"daiquiri/library/Daiquiri/Config.php"
+			],
+			[
+				"sim",
+				"daiquiri/modules/query/models/Resource/Simple.php"
+			],
+			[
+				"simpl",
+				"daiquiri/modules/query/models/Resource/Simple.php"
+			],
+			[
+				"current",
+				"daiquiri/modules/query/models/CurrentJobs.php"
+			],
+			[
+				"absta",
+				"daiquiri/library/Daiquiri/Form/Abstract.php"
+			],
+			[
+				".sql",
+				"daiquiri/incubator/mysql_query_queue/install_qqueue.sql"
+			],
+			[
+				"install_",
+				"daiquiri/incubator/spiderQueryPlanner/mysql_udf/install_udfs.sql"
+			],
+			[
+				"query_qu",
+				"daiquiri/incubator/mysql_query_queue/src/query_queue.cc"
+			],
+			[
+				"php-",
+				"daiquiri/library/PHP-SQL-Parser/php-sql-creator.php"
+			],
+			[
+				"abstra",
+				"daiquiri/library/Daiquiri/Form/Abstract.php"
+			],
+			[
+				"udf_val",
+				"daiquiri/incubator/spiderQueryPlanner/mysql_validateSQL/src/udf_validate_sql.cc"
+			],
+			[
+				"php-sql-cre",
+				"daiquiri/externals/php-sql-parser/php-sql-creator.php"
+			],
+			[
+				"php",
+				"daiquiri/externals/php-sql-parser/php-sql-parser.php"
+			],
+			[
+				"tables.",
+				"daiquiri/modules/query/models/Tables.php"
+			],
+			[
+				"plain",
+				"daiquiri/modules/query/models/Resource/Plain.php"
+			],
+			[
+				"tablesco",
+				"daiquiri/modules/query/controllers/TablesController.php"
+			],
+			[
+				"plain.php",
+				"daiquiri/modules/query/models/Resource/Plain.php"
+			],
+			[
+				"index",
+				"application/controllers/IndexController.php"
+			],
+			[
+				"paginated",
+				"daiquiri/library/Daiquiri/Model/PaginatedTable.php"
+			],
+			[
+				"",
+				"daiquiri/library/Daiquiri/Model/Resource/Table.php"
 			]
 		],
 		"width": 0.0
 	},
 	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
 	{
 		"height": 0.0,
 		"selected_items":
@@ -1200,10 +3207,16 @@
 		],
 		"width": 0.0
 	},
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 176.0,
-	"status_bar_visible": true
+	"side_bar_width": 261.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

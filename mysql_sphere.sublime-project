@@ -2,15 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "/Users/adrian/Documents/eScience/Tools/mysql_sphere"
+			"follow_symlinks": true,
+			"path": "."
 		}
-	],
-	"settings":
-    {
-        "sublimeclang_options":
-        [
-             "-I/Users/adrian/Downloads/mysql-5.5.14-spider-3.0-vp-0.18-hs-1.2-q4m-0.95/",
-             "-I/Users/adrian/Downloads/mysql-5.5.14-spider-3.0-vp-0.18-hs-1.2-q4m-0.95/sql"
-        ]
-    }	
+	]
 }
