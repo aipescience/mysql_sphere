@@ -189,12 +189,14 @@ MYSQL_SPHERE_TYPES decode(char * input, size_t inputLen, void ** output) {
 
 		if(decodedString == NULL) {
 			fprintf(stderr, "Error MySQL Sphere: Out of memory\n");
+			*output = NULL;
 			return objType;
 		}
 
 		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {
 			fprintf(stderr, "Error MySQL Sphere: Could not decode the MySQL object provided!\n");
 			free(decodedString);
+			*output = NULL;
 			return objType;
 		}
 
@@ -208,6 +210,7 @@ MYSQL_SPHERE_TYPES decode(char * input, size_t inputLen, void ** output) {
 		if(decodedString != NULL) {
 			free(decodedString);
 		}
+		*output = NULL;
 		return objType;
 	}
 

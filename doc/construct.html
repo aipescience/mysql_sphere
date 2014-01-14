@@ -9,7 +9,7 @@ NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
 REL="HOME"
 TITLE="
-            mysql-sphere 0.1 based on pgSphere 1.2
+            mysql_sphere 0.1 based on pgSphere 1.2
         "
 HREF="index.html"><LINK
 REL="PREVIOUS"
@@ -47,7 +47,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->mysql-sphere 0.1 based on pgSphere 1.2</TH
+>mysql_sphere 0.1 based on pgSphere 1.2</TH
 ></TR
 ><TR
 ><TD
@@ -89,17 +89,17 @@ NAME="construct"
 ><P
 >&#13;          Constructors within <SPAN
 CLASS="application"
->mysql-sphere</SPAN
-> are in no way different to defining mysql-sphere objects, just with other
+>mysql_sphere</SPAN
+> are in no way different to defining mysql_sphere objects, just with other
   options. They are in a way overloaded construction functions from the previous
   chapter. In pgSphere a distinction between type definition and construction was
-  made, mainly due to the capabilities of PostgreSQL. In mysql-sphere this is not
+  made, mainly due to the capabilities of PostgreSQL. In mysql_sphere this is not
   needed anymore and the following sections describe
           functions needed to create spherical data types from other data
           types. 
             <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > constructor
           functions are named by returned data type. Constructor functions
           expecting one parameter only are implemented as <A
@@ -161,7 +161,7 @@ CLASS="FUNCDEF"
 >&#13;            returning the i-th point in a path where <CODE
 CLASS="parameter"
 >path</CODE
-> is a mysql-sphere path binary BLOB, <CODE
+> is a mysql_sphere path binary BLOB, <CODE
 CLASS="parameter"
 >i</CODE
 > is the i-th point in the path
@@ -177,8 +177,8 @@ NAME="AEN449"
 >Example 14. A spherical point from longitude and latitude</B
 ></P
 ><P
->&#13;              Get a spherical position with 270° of longitude and
-              -30° of latitude.
+>&#13;              Get a spherical position with 270Â° of longitude and
+              -30Â° of latitude.
             </P
 ><TABLE
 BORDER="0"
@@ -254,7 +254,7 @@ HREF="types.html#dt.strans"
             of Euler the transformation axis. If that parameter is omitted,
             <SPAN
 CLASS="application"
->mysql-sphere</SPAN
+>mysql_sphere</SPAN
 > will assume <TT
 CLASS="literal"
 >ZXZ</TT
@@ -301,15 +301,15 @@ NAME="AEN485"
 ></P
 ><P
 >&#13;              Create a transformation object to rotate a spherical object
-              counterclockwise, first 20° around
+              counterclockwise, first 20Â° around
               the <TT
 CLASS="literal"
 >x</TT
->-axis, second -270° around
+>-axis, second -270Â° around
               the <TT
 CLASS="literal"
 >z</TT
->-axis, and last 70.5° around
+>-axis, and last 70.5Â° around
               the <TT
 CLASS="literal"
 >y</TT
@@ -374,7 +374,7 @@ CLASS="parameter"
 CLASS="parameter"
 >radius</CODE
 > in radians.  The circle radius has
-            to be larger than or equal to zero but less or equal to 90°. 
+            to be larger than or equal to zero but less or equal to 90Â°. 
             Otherwise, this function returns an error.
 Further casting constructors are:
 <DIV
@@ -415,10 +415,10 @@ NAME="AEN506"
 ></P
 ><P
 >&#13;             Get a spherical circle around the North Pole with a radius
-             of 30° ( <TT
+             of 30Â° ( <TT
 CLASS="literal"
 >sstr</TT
-> casts a given mysql-sphere data type to a readable string).
+> casts a given mysql_sphere data type to a readable string).
             </P
 ><TABLE
 BORDER="0"
@@ -495,7 +495,7 @@ CLASS="parameter"
             <CODE
 CLASS="parameter"
 >end</CODE
-> is 180° (&#960;), this function
+> is 180Â° (&#960;), this function
             returns an error because the location of the line is undefined. 
             However, if longitudes of <CODE
 CLASS="parameter"
@@ -531,7 +531,7 @@ CLASS="literal"
 > ( <TT
 CLASS="literal"
 >sstr</TT
-> casts a given mysql-sphere data type to a readable string):
+> casts a given mysql_sphere data type to a readable string):
             </P
 ><TABLE
 BORDER="0"
@@ -754,12 +754,12 @@ NAME="AEN574"
 >Example 19. Create an ellipse</B
 ></P
 ><P
->&#13;              An ellipse with a center at 20° of longitude and 0°
+>&#13;              An ellipse with a center at 20Â° of longitude and 0Â°
               of latitude. The minor radius is part of the equator. The major
-              radius has a size of 10°. The minor radius has 5° ( <TT
+              radius has a size of 10Â°. The minor radius has 5Â° ( <TT
 CLASS="literal"
 >sstr</TT
-> casts a given mysql-sphere data type to a readable string).
+> casts a given mysql_sphere data type to a readable string).
             </P
 ><TABLE
 BORDER="0"
@@ -851,7 +851,7 @@ NAME="AEN590"
               sequences ( <TT
 CLASS="literal"
 >sstr</TT
-> casts a given mysql-sphere data type to a readable string).
+> casts a given mysql_sphere data type to a readable string).
             </P
 ><TABLE
 BORDER="0"
@@ -954,7 +954,7 @@ NAME="AEN606"
               unique ID.  Then, create a spherical path from it ( <TT
 CLASS="literal"
 >sstr</TT
-> casts a given mysql-sphere data type to a readable string).
+> casts a given mysql_sphere data type to a readable string).
             </P
 ><TABLE
 BORDER="0"
@@ -1054,7 +1054,7 @@ NAME="AEN625"
 >Example 22. Create a spherical box using edges</B
 ></P
 ><P
->&#13;              A coordinate range between 0° and +10° in latitude and
+>&#13;              A coordinate range between 0Â° and +10Â° in latitude and
               longitude.
             </P
 ><TABLE

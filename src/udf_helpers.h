@@ -348,25 +348,34 @@ public:
 		len = nlen;
 		argTypes = (MYSQL_SPHERE_TYPES*)malloc(len * sizeof(MYSQL_SPHERE_TYPES));
 		memBufs = (void**)malloc(len * sizeof(void*));
+		memset(memBufs, 0, len * sizeof(void*));
 		isDynParams = (bool*)malloc(len * sizeof(bool));
 		resBuf = NULL;
 	}
 
 	~buffer() {
 		int i;
-		for(i = 0; i < len; i++) {
-			if(memBufs[i] != NULL) {
-				free(memBufs[i]);
+		if(memBufs != NULL) {
+			for(i = 0; i < len; i++) {
+				if(memBufs[i] != NULL) {
+					free(memBufs[i]);
+				}
 			}
+
+			free(memBufs);
 		}
 
 		if(resBuf != NULL) {
 			free(resBuf);
 		}
 
-		free(argTypes);
-		free(memBufs);
-		free(isDynParams);
+		if(argTypes != NULL) {
+			free(argTypes);
+		}
+
+		if(isDynParams != NULL) {
+			free(isDynParams);
+		}
 	}
 };
 
