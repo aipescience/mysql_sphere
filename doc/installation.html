@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;            Installation
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            mysql_sphere 0.1 based on pgSphere 1.1.1
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+            What is mysql_sphere?
+        "
+HREF="whatis.html"><LINK
+REL="NEXT"
+TITLE="
+            Data types
+        "
+HREF="types.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql_sphere 0.1<br/><span class="subtitle">Based on pgSphere 1.1.1</span></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="whatis.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="types.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="AEN44"
+>2. Installation</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN46"
+>2.1. Download</A
+></H2
+><P
+>  
+                <SPAN
+CLASS="application"
+>mysql_sphere</SPAN
+> is not part of the 
+MySQL or MariaDB software. 
+                You can download it from the <SPAN
+CLASS="application"
+>mysql_sphere</SPAN
+> repository at GitHub:
+                <A
+HREF="http://github.com/adrpar/mysql_sphere/"
+TARGET="_top"
+><I
+CLASS="citetitle"
+>http://github.com/adrpar/mysql_sphere/</I
+></A
+>
+            </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN54"
+>2.2. Installation</A
+></H2
+><P
+>&#13;                You will need MySQL
+                5.5 or above. We assume that you have
+                MySQL or MariaDB already compiled and
+                installed. Please note: Depending on your system configuration mostly you have to be logged in as the system
+                superuser.
+            </P
+><P
+>&#13;                To compile <span class="application">mysql_sphere</span>, you will need:
+<ul>
+    <li>
+    the sources of your MySQL or MariaDB installation and
+</li>
+<li>
+    cmake.
+</li></ul>
+</P>
+<p>                After you have downloaded <span class="application">mysql_sphere</span> from GitHub, you need to edit the 
+                (<TT
+CLASS="filename"
+>mysql_sphere/CMakeList.txt</TT
+>) configuration file. There you either let cmake try to find your MySQL installation itself or
+if required you need to adjust the path to your MySQL installation by uncommenting and setting 
+<PRE
+CLASS="programlisting"
+>set(MYSQL_PATH "/usr/local/mysql")
+</PRE>
+to the corresponding directory. Then you need to point cmake to the source files of your MySQL installation
+by setting
+<PRE
+CLASS="programlisting"
+>set(MYSQL_SOURCES_PATH "/usr/src/mysql/mysql-5.5")
+</PRE>
+to the corresponding directory.</p>
+<p>
+		Then, you need to create the directories for the build process with the following two commands:
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; mkdir build
+&#13;shell&#62; cd build
+</PRE>
+
+Then you need to run cmake to configure the build process by envoking
+
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; cmake ..
+</PRE>
+
+Afterwards you can build <span class="application">mysql_sphere</span> the usual way by envoking
+
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; make
+</PRE>
+
+and then
+
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; make install
+</PRE>.
+
+This should have copied the <span class="application">mysql_sphere</span> plugin into the according MySQL / MariaDB plugin directory. If not, then
+you need to do so manually. The next step will register the plugin with MySQL / MariaDB. For this, you invoke
+
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; mysql --user=root --password=YOUR_SECRET_PASSWORD_HERE < ../install_udfs.sql
+</PRE>
+
+accordingly. With this, you should be ready to go. You can check if <span class="application">mysql_sphere</span> has been successfully installed
+by invoking
+
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; mysql --user=root --password=YOUR_SECRET_PASSWORD_HERE -e "SELECT mysql_sphere_version();"
+</PRE>
+
+You should see the current <span class="application">mysql_sphere</span> version on your terminal. In order to uninstall <span class="application">mysql_sphere</span> you can
+run the following
+
+<PRE
+CLASS="programlisting"
+>&#13;shell&#62; mysql --user=root --password=YOUR_SECRET_PASSWORD_HERE -f < ../deinstall_udfs.sql
+</PRE>
+
+                </DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="whatis.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="types.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>What is pgSphere?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Data types</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

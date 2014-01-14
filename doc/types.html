@@ -9,14 +9,14 @@ NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
 REL="HOME"
 TITLE="
-            mysql_sphere 0.1 based on pgSphere 1.2
+            mysql_sphere 0.1 based on pgSphere 1.1.1
         "
 HREF="index.html"><LINK
 REL="PREVIOUS"
 TITLE="
             Installation
         "
-HREF="x44.html"><LINK
+HREF="installaion.html"><LINK
 REL="NEXT"
 TITLE="
             Constructors
@@ -24,7 +24,7 @@ TITLE="
 HREF="construct.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
-HREF="pg_sphere.css"><META
+HREF="sphere.css"><META
 NAME="creation"
 CONTENT="2009-07-06T05:33:03">
 </HEAD
@@ -47,7 +47,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->mysql_sphere 0.1 based on pgSphere 1.2</TH
+>mysql_sphere 0.1<br/><span class="subtitle">Based on pgSphere 1.1.1</span></TH
 ></TR
 ><TR
 ><TD
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="x44.html"
+HREF="installation.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -103,7 +103,7 @@ CLASS="productname"
                 <SPAN
 CLASS="application"
 >MySQL / MariaDB</SPAN
->. This is achieved by storing the according data types as base64 encoded binary BLOBs. This means, that
+>. This is achieved by storing the according data types as base64 encoded binary BLOBs. I.e. in order
 to store mysql_sphere objects, you need to store them in <TT
 CLASS="literal"
 >BLOB</TT
@@ -145,10 +145,10 @@ ALIGN="center"
 ><TBODY
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.spoint"><SPAN
 CLASS="type"
 >spoint</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                       point (position)
@@ -156,10 +156,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.strans"><SPAN
 CLASS="type"
 >strans</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      Euler transformation
@@ -167,10 +167,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.scircle"><SPAN
 CLASS="type"
 >scircle</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      circle
@@ -178,10 +178,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.sline"><SPAN
 CLASS="type"
 >sline</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      line
@@ -189,10 +189,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.sellipse"><SPAN
 CLASS="type"
 >sellipse</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      ellipse
@@ -200,10 +200,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.spoly"><SPAN
 CLASS="type"
 >spoly</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      polygon
@@ -211,10 +211,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.spath"><SPAN
 CLASS="type"
 >spath</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      path
@@ -222,10 +222,10 @@ CLASS="type"
 ></TR
 ><TR
 ><TD
->&#13;                      <SPAN
+>&#13;                      <a href="#dt.sbox"><SPAN
 CLASS="type"
 >sbox</SPAN
->
+></a>
                     </TD
 ><TD
 >&#13;                      coordinate range
@@ -236,11 +236,13 @@ CLASS="type"
 ></DIV
 ></DIV
 >
-If you feel that storing mysql_sphere data types as base64 encoded BLOBs is a unnecessary overhead, you can
+<p>
+If you feel that storing mysql_sphere data types as base64 encoded BLOBs is an unnecessary overhead, you can
 choose to store them in plain binary by adjusting the <TT
 CLASS="literal"
 >sphere_types_base64enc</TT
 > global server variable.
+</p>
 
 <DIV
 CLASS="sect2"
@@ -251,7 +253,9 @@ NAME="dt.spoint"
 >3.2. Point</A
 ></H2
 ><P
->&#13;              <DIV
+>&#13;              
+
+<DIV
 CLASS="mediaobject"
 ><P
 ><IMG
@@ -260,7 +264,8 @@ WIDTH="142px"></P
 ></DIV
 >
                A spherical point is an object without expanse
-               but with a position. Usage cases are:
+               but with a position. </P>
+               <P>Use cases are:
             </P
 ><P
 ></P
@@ -315,7 +320,7 @@ CLASS="literal"
                 (<TT
 CLASS="literal"
 >HMS</TT
->). But, you can not use it with
+>). But, you cannot use it with
                 latitude values.
             </P
 ><DIV
@@ -329,12 +334,6 @@ NAME="AEN177"
                 A position specified using longitude and latitude in radians
               </B
 ></P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT spoint( '(0.1,-0.2)' );
@@ -344,11 +343,31 @@ CLASS="programlisting"
 | PHB0PpqZmZmZmbk/oJmZmZmZyb88dHA+AA==  |
 +---------------------------------------+
 1 row in set (0.02 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE>
+<P>The mysql_sphere data type can be converted to a readable string using <TT>sstr</TT>: 
+</P>
+<PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sstr(spoint( '(0.1,-0.2)' ));
++------------------------------+
+| sstr(spoint( '(0.1,-0.2)' )) |
++------------------------------+
+| (0.1 , -0.2)                 |
++------------------------------+
+1 row in set (0.00 sec)
+</PRE>
+<p>or</p>
+<PRE
+CLASS="programlisting"
+>&#13;mysql&#62; SELECT sstr('PHB0PpqZmZmZmbk/oJmZmZmZyb88dHA+AA==')
++----------------------------------------------+
+| sstr('PHB0PpqZmZmZmbk/oJmZmZmZyb88dHA+AA==') |
++----------------------------------------------+
+| (0.1 , -0.2)                                 |
++----------------------------------------------+
+1 row in set (0.00 sec)
+</PRE>
+</DIV
 ><DIV
 CLASS="example"
 ><A
@@ -360,12 +379,6 @@ NAME="AEN180"
                 A position specified using longitude and latitude in degrees
               </B
 ></P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT spoint( '( 10.1d, -90d)' );
@@ -375,11 +388,7 @@ CLASS="programlisting"
 | PHB0Pkuz7ixJkMY/GC1EVPsh+b88dHA+AA==  |
 +---------------------------------------+
 1 row in set (0.01 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ><DIV
 CLASS="example"
 ><A
@@ -395,12 +404,6 @@ CLASS="literal"
 >)
               </B
 ></P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT spoint( '( 10d 12m 11.3s, -13d 14m)' );
@@ -410,11 +413,7 @@ CLASS="programlisting"
 | PHB0Pmvvlp5Fy8Y/oOws10SQzb88dHA+AA==   |
 +----------------------------------------+
 1 row in set (0.00 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ><DIV
 CLASS="example"
 ><A
@@ -434,12 +433,6 @@ CLASS="literal"
 >
               </B
 ></P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT spoint( '( 23h 44m 10s, -1.4321 )' );
@@ -449,11 +442,7 @@ CLASS="programlisting"
 | PHB0Pr9QrNw82xhAKKCJsOHp9r88dHA+AA==  |
 +---------------------------------------+
 1 row in set (0.00 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ><P
 >&#13;                As you can see you can combine the input format for
                 longitude and latitude. The value pairs are always enclosed
@@ -478,7 +467,7 @@ WIDTH="160px"></P
 ></DIV
 >
               A Euler transformation is done with three counterclockwise
-              object rotations around following the axes:
+              object rotations around the following axes:
               <TT
 CLASS="literal"
 >x</TT
@@ -489,7 +478,7 @@ CLASS="literal"
               <TT
 CLASS="literal"
 >z</TT
->-axis.  Usage cases are:
+>-axis.  </P><P>Use cases are:
             </P
 ><P
 ></P
@@ -508,19 +497,9 @@ CLASS="literal"
 ><P
 >&#13;              The input syntax of a Euler transformation is:
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->angle1, angle2, angle3 [, axes ]</PRE
-></TD
-></TR
-></TABLE
-><P
+>angle1, angle2, angle3 [, axes ]</PRE><P
 >&#13;              where <CODE
 CLASS="parameter"
 >axes</CODE
@@ -573,26 +552,20 @@ NAME="AEN221"
 ></P
 ><P
 >&#13;                Create a transformation object to rotate a spherical object
-                counterclockwise, first 20° around the
+                counterclockwise, first 20&deg; around the
                 <TT
 CLASS="literal"
 >x</TT
->-axis, second -270° around the
+>-axis, second -270&deg; around the
                 <TT
 CLASS="literal"
 >z</TT
->-axis and last 70.5° around the
+>-axis and last 70.5&deg; around the
                 <TT
 CLASS="literal"
 >y</TT
 >-axis.
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT strans( '20d, -270d, 70.5d, XZY' );
@@ -602,11 +575,7 @@ CLASS="programlisting"
 | PGV0Pi0AAAAAAAAAh0TnShhX1j8YLURU+yH5PzEBz87zr/M/PHRlPgA=  |
 +-----------------------------------------------------------+
 1 row in set (0.04 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ><DIV
 CLASS="example"
 ><A
@@ -621,25 +590,19 @@ NAME="AEN228"
 ><P
 >&#13;                Create a transformation object to rotate a spherical object
                 counterclockwise, first
-                2° 20' around the <TT
+                2&deg; 20' around the <TT
 CLASS="literal"
 >z</TT
->-axis, second 10°
+>-axis, second 10&deg;
                 around the <TT
 CLASS="literal"
 >x</TT
->-axis, and last 0° around
+>-axis, and last 0&deg; around
                 the <TT
 CLASS="literal"
 >z</TT
 >-axis.
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT strans( '2d 20m, 10d, 0' );
@@ -649,11 +612,7 @@ CLASS="programlisting"
 | PGV0PjcAAAAAAAAAwwwLaNLZpD+HROdKGFfGPwAAAAAAAAAAPHRlPgA=  |
 +-----------------------------------------------------------+
 1 row in set (0.00 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -674,7 +633,8 @@ WIDTH="142px"></P
 >
               A spherical circle is an area
               around a point, where all points inside the circle have a
-              distance less than or equal to the radius of the circle.  Usage
+              distance less than or equal to the radius of the circle.  </P>
+              <P>Use
               cases are:
             </P
 ><P
@@ -702,22 +662,12 @@ WIDTH="142px"></P
 CLASS="type"
 >spoint</SPAN
 >) and a
-                radius :
+                radius:
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->&#60; point , radius &#62;</PRE
-></TD
-></TR
-></TABLE
-><P
->&#13;                Valid radius units are <TT
+>&#60; point , radius &#62;</PRE><P
+>&#13;                The radius is given as the "opening angle" of the circle (when viewed from the center of the sphere). Valid radius units are <TT
 CLASS="literal"
 >RAD</TT
 >,
@@ -728,7 +678,7 @@ CLASS="literal"
 CLASS="literal"
 >DMS</TT
 >. The
-                circle radius must be less than or equal to 90° and cannot
+                circle radius must be less than or equal to 90&deg; and cannot
                 be less than zero.
             </P
 ><DIV
@@ -740,15 +690,9 @@ NAME="AEN255"
 ><B
 >Example 7. 
                 A circle around the North Pole with a
-                radius of 5°.
+                radius of 5&deg;.
               </B
 ></P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT scircle( '&#60; (0d, 90d), 5d &#62;' );
@@ -758,11 +702,7 @@ CLASS="programlisting"
 | PGNsPgAAAAAAAAAAGC1EVPsh+T+HROdKGFe2PzxsYz4A  |
 +-----------------------------------------------+
 1 row in set (0.00 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -782,14 +722,15 @@ WIDTH="142px"></P
 ></DIV
 >
               A spherical line is part of a great circle (meridian) that has
-              a beginning and an end and hence, a direction.  Usage cases are:
+              a beginning and an end and hence, a direction.  </P>
+               <P>Use cases are:
             </P
 ><P
 ></P
 ><UL
 ><LI
 ><P
->&#13;                        direct connection of two points 
+>&#13;                        direct connection of two points on a sphere
                     </P
 ></LI
 ><LI
@@ -799,8 +740,8 @@ WIDTH="142px"></P
 ></LI
 ></UL
 ><P
->&#13;              To allow lines with a length larger than 180°, the input
-i             syntax is a somewhat complex.
+>&#13;              To allow lines with a length larger than 180&deg;, the input
+i             syntax is somewhat complex.
             </P
 ><P
 >&#13;              A general located line with a length
@@ -822,19 +763,9 @@ CLASS="parameter"
 >.  The input syntax
               is :
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->( euler ), length</PRE
-></TD
-></TR
-></TABLE
-><P
+>( euler ), length</PRE><P
 ></P
 ><P
 ><B
@@ -856,8 +787,8 @@ HREF="construct.html"
 ></LI
 ><LI
 ><P
->&#13;                      If the length is larger than 360°, the line length
-                      is truncated to 360°.
+>&#13;                      If the length is larger than 360&deg;, the line length
+                      is truncated to 360&deg;.
                   </P
 ></LI
 ><LI
@@ -900,12 +831,6 @@ CLASS="literal"
 >(200d,-10d)</TT
 >.
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT sline( '( -90d, -20d, 200d, XYZ ), 30d ' );
@@ -915,11 +840,7 @@ CLASS="programlisting"
 | PGxpPodE50oYVwZAGC1EVPsh+T9gofLYbIcaQGVzLThSweA/PGlsPgA=  |
 +-----------------------------------------------------------+
 1 row in set (0.07 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -966,7 +887,7 @@ CLASS="literal"
                </P
 ></BLOCKQUOTE
 ><P
->&#13;                Usage cases are:
+>&#13;                Use cases are:
             </P
 ><P
 ></P
@@ -1025,19 +946,9 @@ CLASS="parameter"
 ><P
 >&#13;                Hence, the input syntax is:
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->&#60; { rad_1, rad_2 }, center, pos &#62;</PRE
-></TD
-></TR
-></TABLE
-><P
+>&#60; { rad_1, rad_2 }, center, pos &#62;</PRE><P
 ></P
 ><P
 ><B
@@ -1054,7 +965,7 @@ CLASS="parameter"
 CLASS="parameter"
 >rad_2</CODE
 > have to be less than
-                      90°.
+                      90&deg;.
                   </P
 ></LI
 ><LI
@@ -1096,16 +1007,9 @@ NAME="AEN344"
 >Example 9. Input of a spherical ellipse</B
 ></P
 ><P
->&#13;                An ellipse has a center at 20° longitude and 0°
-                latitude. The minor radius is part of the equator. The major
-                radius is 10°, the minor radius is 5°.
+>&#13;                An ellipse has a center at 20&deg; longitude and 0&deg;
+                latitude. The minor radius is part of the equator and 5&deg;, the major radius is 10&deg;.
                </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT sellipse( '&#60; { 10d, 5d } , ( 20d, 0d ), 90d &#62;' );
@@ -1115,11 +1019,7 @@ CLASS="programlisting"
 | PGVsPodE50oYV8Y/h0TnShhXtj8YLURU+yH5PwAAAAAAAAAAh0TnShhX1j88bGU+AA==  |
 +-----------------------------------------------------------------------+
 1 row in set (0.03 sec)
-               </PRE
-></TD
-></TR
-></TABLE
-></DIV
+ </PRE></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -1139,7 +1039,7 @@ WIDTH="142px"></P
 ></DIV
 >
               A spherical path is a
-              concatination of spherical lines.  Usage cases are:
+              concatination of spherical lines.  Use cases are:
             </P
 ><P
 ></P
@@ -1162,19 +1062,9 @@ CLASS="application"
 > are simplified
                 lists of positions. The input syntax is :
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->{pos1,pos2[,pos3[,pos4[,...]]]}</PRE
-></TD
-></TR
-></TABLE
-><P
+>{pos1,pos2[,pos3[,pos4[,...]]]}</PRE><P
 ></P
 ><P
 ><B
@@ -1184,7 +1074,7 @@ CLASS="synopsis"
 ><LI
 ><P
 >&#13;                      The distance between 2 sequent positions has to be
-                      less than 180° and greater than zero.
+                      less than 180&deg; and greater than zero.
                   </P
 ></LI
 ><LI
@@ -1216,12 +1106,6 @@ CLASS="literal"
 >(45d,15d)</TT
 >.
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT spath( '{ (10d,0d),(45d,15d),(80d,30d) } ' );
@@ -1232,11 +1116,7 @@ CLASS="programlisting"
 V/Y/ZXMtOFLB4D88YXA+AA==  |
 +--------------------------------------------------------------------------------------------------------+
 1 row in set (0.02 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -1257,26 +1137,16 @@ WIDTH="142px"></P
 >
               A spherical polygon is a
               closed spherical path where line segments cannot be crossed.
-              One main usage case are areas on the earth and sky sphere.
+              One main use case are areas on the earth and sky sphere.
               Polygons within <SPAN
 CLASS="application"
 >mysql_sphere</SPAN
 > 
               have the same input syntax as paths:
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->{pos1,pos2,pos3[,pos4[,... ]]}</PRE
-></TD
-></TR
-></TABLE
-><P
+>{pos1,pos2,pos3[,pos4[,... ]]}</PRE><P
 ></P
 ><P
 ><B
@@ -1301,7 +1171,7 @@ HREF="types.html#dt.spath"
 ><LI
 ><P
 >&#13;                      The maximum dimension of a polygon must be less than
-                      180°.
+                      180&deg;.
                   </P
 ></LI
 ></UL
@@ -1331,12 +1201,6 @@ CLASS="literal"
 >(270d,-10d)</TT
 >
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT spoly( '{ (270d,-10d), (270d,30d), (290d,10d) } ');
@@ -1346,11 +1210,7 @@ CLASS="programlisting"
 | PHBnPkAAAAAAAAAAAwAAAAAAAADSITN/fNkSQIBE50oYV8a/0iEzf3zZEkBlcy04UsHgPxqW4QPu
 PhRAh0TnShhXxj88Z3A+AA==  |
 +--------------------------------------------------------------------------------------------------------+
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ><DIV
 CLASS="sect2"
@@ -1383,33 +1243,13 @@ CLASS="parameter"
 >) edge of the box.  The input
               syntax is:
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->( pos_sw, pos_ne )</PRE
-></TD
-></TR
-></TABLE
-><P
+>( pos_sw, pos_ne )</PRE><P
 >or</P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
->pos_sw, pos_ne</PRE
-></TD
-></TR
-></TABLE
-><P
+>pos_sw, pos_ne</PRE><P
 ></P
 ><P
 ><B
@@ -1451,14 +1291,8 @@ NAME="AEN419"
 ></P
 ><P
 >&#13;                A full latitude range
-                between +20° and +23°.
+                between +20&deg; and +23&deg;.
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT sbox( '( (0d,20d), (0d,23d) )' );
@@ -1468,11 +1302,7 @@ CLASS="programlisting"
 | PGJ4PgAAAAAAAAAAh0TnShhX1j8YLURU+yEZQALCVon1sNk/PHhiPgA=  |
 +-----------------------------------------------------------+
 1 row in set (0.01 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ><DIV
 CLASS="example"
 ><A
@@ -1483,15 +1313,9 @@ NAME="AEN423"
 >Example 13. A simple coordinates range</B
 ></P
 ><P
->&#13;                A coordinate range between -10° and +10° in latitude
-                and 350° and 10° in longitude.
+>&#13;                A coordinate range between -10&deg; and +10&deg; in latitude
+                and 350&deg; and 10&deg; in longitude.
               </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SELECT sbox( '( (350d,-10d), (10d,+10d) )' );
@@ -1501,11 +1325,7 @@ CLASS="programlisting"
 | PGJ4PvTy7JFCbxhAgETnShhXxr+HROdKGFfGP4dE50oYV8Y/PHhiPgA=  |
 +-----------------------------------------------------------+
 1 row in set (0.00 sec)
-              </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ></DIV
 ><DIV
@@ -1524,7 +1344,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="x44.html"
+HREF="installation.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD

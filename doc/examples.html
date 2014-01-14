@@ -9,7 +9,7 @@ NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
 REL="HOME"
 TITLE="
-            mysql_sphere 0.1 based on pgSphere 1.2
+            mysql_sphere 0.1 based on pgSphere 1.1.1
         "
 HREF="index.html"><LINK
 REL="PREVIOUS"
@@ -21,10 +21,10 @@ REL="NEXT"
 TITLE="
             FAQ
         "
-HREF="x1240.html"><LINK
+HREF="faq.html"><LINK
 REL="STYLESHEET"
 TYPE="text/css"
-HREF="pg_sphere.css"><META
+HREF="sphere.css"><META
 NAME="creation"
 CONTENT="2009-07-06T05:33:03">
 </HEAD
@@ -47,7 +47,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->mysql_sphere 0.1 based on pgSphere 1.2</TH
+>mysql_sphere 0.1<br/><span class="subtitle">Based on pgSphere 1.1.1</span></TH
 ></TR
 ><TR
 ><TD
@@ -69,7 +69,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="x1240.html"
+HREF="faq.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -155,7 +155,7 @@ ALIGN="left"
 TITLE="col2"><TBODY
 ><TR
 ><TD
->&#13;                    &#937;
+>&#13;                    &Omega;
                   </TD
 ><TD
 >&#13;                    longitude of the ascending node
@@ -167,7 +167,7 @@ TITLE="col2"><TBODY
 ></TR
 ><TR
 ><TD
->&#13;                    &#969;
+>&#13;                    &omega;
                   </TD
 ><TD
 >&#13;                    argument of pericenter
@@ -200,70 +200,21 @@ CLASS="parameter"
 > from an old into a new coordinate
             system using:
           </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
-> sinverse( object, strans( '&#969;, i, &#937;' ) )</PRE
-></TD
-></TR
-></TABLE
-><P
->or</P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="synopsis"
-> sinverse( object, strans(&#969;, i, &#937;) )</PRE
-></TD
-></TR
-></TABLE
-><P
->&#13;            Otherwise, for a transformation of an object
+> sinverse( object, strans( '&#969;, i, &#937;' ) )</PRE>
+<p>
+Otherwise, for a transformation of an object
             <CODE
 CLASS="parameter"
 >object</CODE
 > from the new into the old
-            coordinate system, use the operator <TT
-CLASS="literal"
->+</TT
->:
+            coordinate system, use <tt>transform</tt>:
           </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="synopsis"
-> stransform( object, strans( '&#969;, i, &#937;' ) )</PRE
-></TD
-></TR
-></TABLE
-><P
->or</P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="synopsis"
-> stransform( object, strans(&#969;, i, &#937;) )</PRE
-></TD
-></TR
-></TABLE
-><DIV
+> stransform( object, strans( '&#969;, i, &#937;' ) )</PRE>
+<DIV
 CLASS="example"
 ><A
 NAME="AEN1236"
@@ -274,15 +225,9 @@ NAME="AEN1236"
 ></P
 ><P
 >&#13;             We are assuming the orbital elements of a comet are
-             &#937;=30°, i=60° and &#969;=90°. We get the
+             &#937;=30&deg;, i=60&deg; and &#969;=90&deg;. We get the
              spherical position of perihel and aphel with:
             </P
-><TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
 ><PRE
 CLASS="programlisting"
 >&#13;mysql&#62; SET sphere_outmode="DEG";
@@ -303,11 +248,7 @@ mysql&#62; SELECT sstr( stransform( spoint( '(180d,0)' ), strans( '90d,60d,30d' 
 | (300d , -60d) |
 +---------------+
 1 row in set (0.01 sec)
-            </PRE
-></TD
-></TR
-></TABLE
-></DIV
+</PRE></DIV
 ></DIV
 ></DIV
 ></DIV
@@ -345,7 +286,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="x1240.html"
+HREF="faq.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
