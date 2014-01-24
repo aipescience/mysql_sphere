@@ -410,10 +410,18 @@
 			}
 		},
 		{
-			"file": "src/udf_sphere_sstr.cc",
+			"file": "src/udf_helpers.h",
 			"settings":
 			{
-				"buffer_size": 3676,
+				"buffer_size": 12605,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/udf_sphere_polygon.cc",
+			"settings":
+			{
+				"buffer_size": 53815,
 				"line_ending": "Unix"
 			}
 		},
@@ -421,7 +429,7 @@
 			"file": "src/serialiser.cc",
 			"settings":
 			{
-				"buffer_size": 10427,
+				"buffer_size": 10483,
 				"line_ending": "Unix"
 			}
 		},
@@ -430,50 +438,6 @@
 			"settings":
 			{
 				"buffer_size": 22979,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML\n><HEAD\n><TITLE\n>&#13;            Functions\n        </TITLE\n><META\nNAME=\"GENERATOR\"\nCONTENT=\"Modular DocBook HTML Stylesheet Version 1.79\"><LINK\nREL=\"HOME\"\nTITLE=\"\n            mysql_sphere 0.1 based on pgSphere 1.2\n        \"\nHREF=\"index.html\"><LINK\nREL=\"PREVIOUS\"\nTITLE=\"\n            Operators\n        \"\nHREF=\"operators.html\"><LINK\nREL=\"NEXT\"\nTITLE=\"\n        Create an index\n      \"\nHREF=\"indices.html\"><LINK\nREL=\"STYLESHEET\"\nTYPE=\"text/css\"\nHREF=\"pg_sphere.css\"><META\nNAME=\"creation\"\nCONTENT=\"2009-07-06T05:33:03\">\n</HEAD\n><BODY\nCLASS=\"sect1\"\nBGCOLOR=\"#FFFFFF\"\nTEXT=\"#000000\"\nLINK=\"#0000FF\"\nVLINK=\"#840084\"\nALINK=\"#0000FF\"\n><DIV\nCLASS=\"NAVHEADER\"\n><TABLE\nSUMMARY=\"Header navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TH\nCOLSPAN=\"3\"\nALIGN=\"center\"\n>mysql_sphere 0.1 based on pgSphere 1.2</TH\n></TR\n><TR\n><TD\nWIDTH=\"10%\"\nALIGN=\"left\"\nVALIGN=\"bottom\"\n><A\nHREF=\"operators.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"80%\"\nALIGN=\"center\"\nVALIGN=\"bottom\"\n></TD\n><TD\nWIDTH=\"10%\"\nALIGN=\"right\"\nVALIGN=\"bottom\"\n><A\nHREF=\"indices.html\"\nACCESSKEY=\"N\"\n>Next</A\n></TD\n></TR\n></TABLE\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"></DIV\n><DIV\nCLASS=\"sect1\"\n><H1\nCLASS=\"sect1\"\n><A\nNAME=\"funcs\"\n>6. Functions</A\n></H1\n><P\n>&#13;          The functions described below are implemented in pgSphere without having an\n          operator. In mysql_sphere they are equally used, but their names just differ by a\n          prepending 's' to avoid conflict with already existing functions. If you are missing some functions, see\n          <A\nHREF=\"operators.html\"\n>Section 5</A\n> and use the according operator functions.\n        </P\n>\n<DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"func.area\"\n>6.1. Area function</A\n></H2\n><P\n>&#13;              The <CODE\nCLASS=\"function\"\n>area</CODE\n> function returns the area of a\n              spherical object in square radians. Supported data types are:\n              <SPAN\nCLASS=\"type\"\n>scircle</SPAN\n>, <SPAN\nCLASS=\"type\"\n>spolygon</SPAN\n>, and\n              <SPAN\nCLASS=\"type\"\n>sbox</SPAN\n>.\n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN866\"\n></A\n><P\n><B\n>Example 36. Area of a spherical circle as a multiple of &#960;</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT sarea( scircle( '&#60;(0d,90d),60d&#62;' ) ) / pi() AS area;\n+--------------------+\n| area               |\n+--------------------+\n| 0.9999999999999997 |\n+--------------------+\n1 row in set (0.07 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"func.area\"\n>6.1. Area function</A\n></H2\n><P\n>&#13;              The <CODE\nCLASS=\"function\"\n>area</CODE\n> function returns the area of a\n              spherical object in square radians. Supported data types are:\n              <SPAN\nCLASS=\"type\"\n>scircle</SPAN\n>, <SPAN\nCLASS=\"type\"\n>spolygon</SPAN\n>, and\n              <SPAN\nCLASS=\"type\"\n>sbox</SPAN\n>.\n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN866\"\n></A\n><P\n><B\n>Example 36. Area of a spherical circle as a multiple of &#960;</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT sarea( scircle( '&#60;(0d,90d),60d&#62;' ) ) / pi() AS area;\n+--------------------+\n| area               |\n+--------------------+\n| 0.9999999999999997 |\n+--------------------+\n1 row in set (0.07 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"func.spoint\"\n>6.2. <SPAN\nCLASS=\"type\"\n>spoint</SPAN\n> functions</A\n></H2\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"func.spoint.ll\"\n>6.2.1. Longitude and latitude</A\n></H3\n><P\n>&#13;              The functions\n            </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN875\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint_long</CODE\n>(spoint p);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint_lat</CODE\n>(spoint p);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;              returns the longitude or latitude value of a\n              spherical position <CODE\nCLASS=\"parameter\"\n>p</CODE\n> in radians.\n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN888\"\n></A\n><P\n><B\n>Example 37. Get the longitude and latitude of a spherical point in degrees</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT spoint_long( spoint( '(10d,20d)' ) ) * 180.0 / pi() AS longitude;\n+-----------+\n| longitude |\n+-----------+\n|        10 |\n+-----------+\n1 row in set (0.04 sec)\n\nmysql&#62; SELECT spoint_lat( spoint( '(10d,20d)' ) ) * 180.0 / pi() AS latitude;\n+----------+\n| latitude |\n+----------+\n|       20 |\n+----------+\n1 row in set (0.00 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"func.spoint.cart\"\n>6.2.2. Cartesian coordinates</A\n></H3\n><P\n>&#13;              The functions\n            </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN894\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint_x</CODE\n>(spoint p);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint_y</CODE\n>(spoint p);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint_z</CODE\n>(spoint p);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;              return the cartesian\n              <TT\nCLASS=\"literal\"\n>x</TT\n>, <TT\nCLASS=\"literal\"\n>y</TT\n> or\n              <TT\nCLASS=\"literal\"\n>z</TT\n> value of a spherical position\n              <CODE\nCLASS=\"parameter\"\n>p</CODE\n>. The returned values are always\n              between <TT\nCLASS=\"literal\"\n>-1.0</TT\n> and <TT\nCLASS=\"literal\"\n>+1.0</TT\n>.\n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN917\"\n></A\n><P\n><B\n>Example 38. \n                Get the cartesian <TT\nCLASS=\"literal\"\n>z</TT\n>-value\n                of a spherical point\n              </B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT spoint_z ( spoint( '(10d,-90d)' ) ) AS z;\n+------+\n| z    |\n+------+\n|   -1 |\n+------+\n1 row in set (0.01 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n><P\n>&#13;              The pgSphere function\n<P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>xyz</CODE\n>(spoint p);</CODE\n></P\n> cannot be ported to MySQL since a UDF function can only return one value and not as in PostgreSQL\na rowset. Therefore the equivalent mysql_sphere function does not exist.\n</DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"funcs.strans\"\n>6.3. <SPAN\nCLASS=\"type\"\n>strans</SPAN\n> functions</A\n></H2\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.strans.zxz\"\n>6.3.1. Converting to ZXZ</A\n></H3\n><P\n>&#13;                    Using the function\n                    <CODE\nCLASS=\"function\"\n>strans_zxz(strans),</CODE\n> you can convert\n                    a Euler transformation to <TT\nCLASS=\"literal\"\n>ZXZ</TT\n>-axes\n                    transformation.\n                </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN940\"\n></A\n><P\n><B\n>Example 40. Change the transformation axes to <TT\nCLASS=\"literal\"\n>ZXZ</TT\n></B\n></P\n><P\n>&#13;                    Convert the transformation <TT\nCLASS=\"literal\"\n>strans '20d, -270d, 70.5d,\n                    XZY'</TT\n> to a <TT\nCLASS=\"literal\"\n>ZXZ</TT\n>-transformation.\n                  </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sstr( strans_zxz( strans( '20d, -270d, 70.5d, XZY' ) ) );\n+----------------------------------------------------------+\n| sstr( strans_zxz( strans( '20d, -270d, 70.5d, XZY' ) ) ) |\n+----------------------------------------------------------+\n| 0d, 90.5d, 90d, ZXZ                                      |\n+----------------------------------------------------------+\n1 row in set (0.03 sec)\n                  </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.strans.axes\"\n>6.3.2. Angles and axes</A\n></H3\n><P\n>&#13;                    It is possible to get the components of an Euler\n                    transformation.\n                </P\n><DIV\nCLASS=\"table\"\n><A\nNAME=\"AEN950\"\n></A\n><P\n><B\n>Table 4. Getting Euler transformation attributes</B\n></P\n><TABLE\nBORDER=\"1\"\nFRAME=\"border\"\nRULES=\"all\"\nCLASS=\"CALSTABLE\"\n><COL\nWIDTH=\"1*\"\nALIGN=\"left\"\nTITLE=\"col0\"><COL\nWIDTH=\"2*\"\nALIGN=\"left\"\nTITLE=\"col1\"><THEAD\n><TR\n><TH\n>&#13;                              function\n                          </TH\n><TH\n>&#13;                              description\n                          </TH\n></TR\n></THEAD\n><TBODY\n><TR\n><TD\n>&#13;                          <CODE\nCLASS=\"function\"\n>strans_phi</CODE\n>\n                        </TD\n><TD\n>&#13;                          first angle of a transformation\n                        </TD\n></TR\n><TR\n><TD\n>&#13;                          <CODE\nCLASS=\"function\"\n>strans_theta</CODE\n>\n                        </TD\n><TD\n>&#13;                          second angle of a transformation\n                        </TD\n></TR\n><TR\n><TD\n>&#13;                          <CODE\nCLASS=\"function\"\n>strans_psi</CODE\n>\n                        </TD\n><TD\n>&#13;                          third angle of a transformation\n                        </TD\n></TR\n><TR\n><TD\n>&#13;                          <CODE\nCLASS=\"function\"\n>strans_axes</CODE\n>\n                        </TD\n><TD\n>&#13;                          transformation axes as a three letter code\n                        </TD\n></TR\n></TBODY\n></TABLE\n></DIV\n><P\n>&#13;                    The angles will always returned as a <SPAN\nCLASS=\"type\"\n>double</SPAN\n> value in radians.\n                    The axes are returned as a three letter code.\n                </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN978\"\n></A\n><P\n><B\n>Example 41. Get the second axis and its rotation angle</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT strans_theta( strans( '20d,30d,40d,XZY' ) ) * 180 / pi() AS theta;\n+--------------------+\n| theta              |\n+--------------------+\n| 29.999999999999996 |\n+--------------------+\n1 row in set (0.01 sec)\nmysql&#62; SELECT substring( strans_axes( strans( '20d,30d,40d,XZY' ) ) from 2 for 1 ) AS axis;\n+------+\n| axis |\n+------+\n| Z    |\n+------+\n1 row in set (0.19 sec)\n                  </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"func.circle\"\n>6.4. scircle functions</A\n></H2\n><P\n>&#13;              You can get the radius of a spherical circle in radians using\n              the <CODE\nCLASS=\"function\"\n>scircle_radius</CODE\n> function.  The center of the\n              circle is available with\n              the operator fuction <TT\nCLASS=\"literal\"\n>scenter</TT\n> (<A\nHREF=\"operators.html#op.center\"\n>Section 5.7</A\n>).\n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN987\"\n></A\n><P\n><B\n>Example 42. Radius of a spherical circle in degrees</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT 180.0 * scircle_radius( scircle( '&#60;(0d,90d),60d&#62;' ) ) / pi() AS radius;\n+-------------------+\n| radius            |\n+-------------------+\n| 59.99999999999999 |\n+-------------------+\n1 row in set (0.09 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"funcs.sellipse\"\n>6.5. <SPAN\nCLASS=\"type\"\n>sellipse</SPAN\n> functions</A\n></H2\n><P\n>&#13;              <SPAN\nCLASS=\"application\"\n>mysql_sphere</SPAN\n> provides 4 functions to get\n              the parameters of a spherical ellipse:\n            </P\n><DIV\nCLASS=\"table\"\n><A\nNAME=\"AEN995\"\n></A\n><P\n><B\n>Table 5. Getting spherical ellipse attributes</B\n></P\n><TABLE\nBORDER=\"1\"\nFRAME=\"border\"\nRULES=\"all\"\nCLASS=\"CALSTABLE\"\n><COL\nWIDTH=\"1*\"\nALIGN=\"left\"\nTITLE=\"col0\"><COL\nWIDTH=\"2*\"\nALIGN=\"left\"\nTITLE=\"col1\"><THEAD\n><TR\n><TH\n>&#13;                          function\n                      </TH\n><TH\n>&#13;                          description\n                      </TH\n></TR\n></THEAD\n><TBODY\n><TR\n><TD\n>&#13;                      <CODE\nCLASS=\"function\"\n>sellipse_lrad</CODE\n>\n                    </TD\n><TD\n>&#13;                      the major radius of the ellipse\n                    </TD\n></TR\n><TR\n><TD\n>&#13;                      <CODE\nCLASS=\"function\"\n>sellipse_srad</CODE\n>\n                    </TD\n><TD\n>&#13;                      the minor radius of the ellipse\n                    </TD\n></TR\n><TR\n><TD\n>&#13;                      <CODE\nCLASS=\"function\"\n>scenter</CODE\n>\n                    </TD\n><TD\n>&#13;                       the center of the ellipse\n                    </TD\n></TR\n><TR\n><TD\n>&#13;                      <CODE\nCLASS=\"function\"\n>sellipse_inc</CODE\n>\n                    </TD\n><TD\n>&#13;                       the inclination of the ellipse\n                    </TD\n></TR\n></TBODY\n></TABLE\n></DIV\n><P\n>&#13;                \n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1025\"\n></A\n><P\n><B\n>Example 43. Get the minor radius of an ellipse</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT sellipse_srad ( sellipse( '&#60; { 10d, 5d }, ( 20d, 0d ), 90d &#62;' ) ) * 180.0/ pi() AS srad ;\n+------+\n| srad |\n+------+\n|    5 |\n+------+\n1 row in set (0.03 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"funcs.sline\"\n>6.6. <SPAN\nCLASS=\"type\"\n>sline</SPAN\n> functions</A\n></H2\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.sline.be\"\n>6.6.1. Begin and end</A\n></H3\n><P\n>&#13;                To get the beginning and the end of a line,\n                <SPAN\nCLASS=\"application\"\n>mysql_sphere</SPAN\n> provides two functions:\n              </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN1035\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sline_beg</CODE\n>(sline line);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sline_end</CODE\n>(sline line);</CODE\n></P\n><P\n></P\n></DIV\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1046\"\n></A\n><P\n><B\n>Example 44. Get the beginning of a line</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sstr( sline_beg( sline( '(10d, 90d, 270d, ZXZ ), 20d' ) ) );\n+-------------------------------------------------------------+\n| sstr( sline_beg( sline( '(10d, 90d, 270d, ZXZ ), 20d' ) ) ) |\n+-------------------------------------------------------------+\n| (270d , 10d)                                                |\n+-------------------------------------------------------------+\n1 row in set (0.00 sec)\n               </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.sline.meridian\"\n>6.6.2. Create a meridian</A\n></H3\n><P\n>&#13;                  You can create a meridian as a line using the function\n                </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN1052\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>smeridian</CODE\n>(double lng);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;                  The function returns a line starting at a latitude of\n                  -90° and ending at a latitude of 90°. The line goes\n                  along the given longitude <CODE\nCLASS=\"parameter\"\n>lng</CODE\n> in\n                  radians.\n                </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1060\"\n></A\n><P\n><B\n>Example 45. A meridian for longitude 20°</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sstr( smeridian( 20.0 *pi() / 180.0 ) );\n+-----------------------------------------+\n| sstr( smeridian( 20.0 *pi() / 180.0 ) ) |\n+-----------------------------------------+\n| ( 270d, 90d, 20d, ZXZ ), 180d           |\n+-----------------------------------------+\n1 row in set (0.01 sec)\n                  </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"funcs.spath\"\n>6.7. <SPAN\nCLASS=\"type\"\n>spath</SPAN\n> functions</A\n></H2\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.spath.npts\"\n>6.7.1. Count of points</A\n></H3\n><P\n>&#13;              You can get the count of points of a spherical path (and as well for polygons) using the\n              function:\n            </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN1069\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>snpoints</CODE\n>(spath path);</CODE\n></P\n><P\n></P\n></DIV\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1075\"\n></A\n><P\n><B\n>Example 46. Count of spath's points</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT snpoints( spath( '{(0,0),(1,0)}' ) );\n+--------------------------------------+\n| snpoints( spath( '{(0,0),(1,0)}' ) ) |\n+--------------------------------------+\n|                                    2 |\n+--------------------------------------+\n1 row in set (0.03 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.spath.pos\"\n>6.7.2. Positions at a path</A\n></H3\n><P\n>&#13;              <SPAN\nCLASS=\"application\"\n>mysql_sphere</SPAN\n> provides two functions to\n              get points at a path.\n            </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN1082\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint</CODE\n>(spath path, int i);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint</CODE\n>(spath  path, double f);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;               The first function returns the <CODE\nCLASS=\"parameter\"\n>i</CODE\n>-th\n               point of a path.  If <CODE\nCLASS=\"parameter\"\n>i</CODE\n> is less than 1\n               or larger than the count of <SPAN\nCLASS=\"type\"\n>spath</SPAN\n> points, the\n               function returns <TT\nCLASS=\"literal\"\n>NULL</TT\n>.  The second\n               function does nearly the same, but does linear interpolation\n               between edge positions.\n            </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1102\"\n></A\n><P\n><B\n>Example 47. \n                Get the &#8220;center&#8221; of a one segment <SPAN\nCLASS=\"type\"\n>spath</SPAN\n>\n              </B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sstr( spoint( spath( '{(0d,0d),(30d,0d)}' ), 1.5 ) );\n+------------------------------------------------------+\n| sstr( spoint( spath( '{(0d,0d),(30d,0d)}' ), 1.5 ) ) |\n+------------------------------------------------------+\n| (15d , 0d)                                           |\n+------------------------------------------------------+\n1 row in set (0.01 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"funcs.spoly\"\n>6.8. <SPAN\nCLASS=\"type\"\n>spoly</SPAN\n> functions</A\n></H2\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"funcs.spoly.npts\"\n>6.8.1. Count of edges</A\n></H3\n><P\n>&#13;              Similar to an <SPAN\nCLASS=\"type\"\n>spath</SPAN\n> (<A\nHREF=\"funcs.html#funcs.spath.npts\"\n>Section 6.7.1</A\n>), \n              you can get the count of edges of a spherical polygon using the\n              function:\n            </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN1114\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>snpoints</CODE\n>(spoly polygon);</CODE\n></P\n><P\n></P\n></DIV\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1120\"\n></A\n><P\n><B\n>Example 48. Count of edges of a spherical polygon</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT snpoints( spoly( '{(0,0),(1,0),(1,1)}' ) );\n+--------------------------------------------+\n| snpoints( spoly( '{(0,0),(1,0),(1,1)}' ) ) |\n+--------------------------------------------+\n|                                          3 |\n+--------------------------------------------+\n1 row in set (0.00 sec)\n              </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"funcs.sbox\"\n>6.9. <SPAN\nCLASS=\"type\"\n>sbox</SPAN\n> functions</A\n></H2\n><P\n>&#13;            The functions\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN1127\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sbox_sw</CODE\n>(sbox box);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sbox_ne</CODE\n>(sbox box);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sbox_se</CODE\n>(sbox box);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sbox_nw</CODE\n>(sbox box);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            return the corresponding southwest, northeast, southeast, or\n            northwest edge.\n            The returned value will be a spherical point.\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1149\"\n></A\n><P\n><B\n>Example 49. The southwest edge of a box</B\n></P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sstr( sbox_sw( sbox( '( (0d,0d), (90d,0d) )' ) ) );\n+----------------------------------------------------+\n| sstr( sbox_sw( sbox( '( (0d,0d), (90d,0d) )' ) ) ) |\n+----------------------------------------------------+\n| (0d , 0d)                                          |\n+----------------------------------------------------+\n1 row in set (0.00 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"NAVFOOTER\"\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"><TABLE\nSUMMARY=\"Footer navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n><A\nHREF=\"operators.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n><A\nHREF=\"index.html\"\nACCESSKEY=\"H\"\n>Home</A\n></TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n><A\nHREF=\"indices.html\"\nACCESSKEY=\"N\"\n>Next</A\n></TD\n></TR\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n>Operators</TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n>&nbsp;</TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n>Create an index</TD\n></TR\n></TABLE\n></DIV\n></BODY\n></HTML\n>",
-			"file": "doc/funcs.html",
-			"file_size": 22270,
-			"file_write_time": 130337314055554322,
-			"settings":
-			{
-				"buffer_size": 22270,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML\n><HEAD\n><TITLE\n>&#13;        Usage examples\n      </TITLE\n><META\nNAME=\"GENERATOR\"\nCONTENT=\"Modular DocBook HTML Stylesheet Version 1.79\"><LINK\nREL=\"HOME\"\nTITLE=\"\n            mysql_sphere 0.1 based on pgSphere 1.2\n        \"\nHREF=\"index.html\"><LINK\nREL=\"PREVIOUS\"\nTITLE=\"\n        Create an index\n      \"\nHREF=\"indices.html\"><LINK\nREL=\"NEXT\"\nTITLE=\"\n            FAQ\n        \"\nHREF=\"x1240.html\"><LINK\nREL=\"STYLESHEET\"\nTYPE=\"text/css\"\nHREF=\"pg_sphere.css\"><META\nNAME=\"creation\"\nCONTENT=\"2009-07-06T05:33:03\">\n</HEAD\n><BODY\nCLASS=\"sect1\"\nBGCOLOR=\"#FFFFFF\"\nTEXT=\"#000000\"\nLINK=\"#0000FF\"\nVLINK=\"#840084\"\nALINK=\"#0000FF\"\n><DIV\nCLASS=\"NAVHEADER\"\n><TABLE\nSUMMARY=\"Header navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TH\nCOLSPAN=\"3\"\nALIGN=\"center\"\n>mysql_sphere 0.1 based on pgSphere 1.2</TH\n></TR\n><TR\n><TD\nWIDTH=\"10%\"\nALIGN=\"left\"\nVALIGN=\"bottom\"\n><A\nHREF=\"indices.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"80%\"\nALIGN=\"center\"\nVALIGN=\"bottom\"\n></TD\n><TD\nWIDTH=\"10%\"\nALIGN=\"right\"\nVALIGN=\"bottom\"\n><A\nHREF=\"x1240.html\"\nACCESSKEY=\"N\"\n>Next</A\n></TD\n></TR\n></TABLE\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"></DIV\n><DIV\nCLASS=\"sect1\"\n><H1\nCLASS=\"sect1\"\n><A\nNAME=\"examples\"\n>8. Usage examples</A\n></H1\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"examp.general\"\n>8.1. General</A\n></H2\n><P\n>&#13;            tbw\n        </P\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"examp.geo\"\n>8.2. Geographical</A\n></H2\n><P\n>&#13;            tbw\n        </P\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"examp.astro\"\n>8.3. Astronomical</A\n></H2\n><DIV\nCLASS=\"sect3\"\n><H3\nCLASS=\"sect3\"\n><A\nNAME=\"AEN1204\"\n>8.3.1. Coordinates transformation</A\n></H3\n><P\n>&#13;            A commonly used task is a coordinate transformation. With the\n            parameters of a new\n            coordinate system (plane) relative to an old one,\n          </P\n><DIV\nCLASS=\"informaltable\"\n><P\n></P\n><A\nNAME=\"AEN1207\"\n></A\n><TABLE\nBORDER=\"0\"\nFRAME=\"void\"\nRULES=\"all\"\nCLASS=\"CALSTABLE\"\n><COL\nWIDTH=\"1*\"\nALIGN=\"left\"\nTITLE=\"col0\"><COL\nWIDTH=\"4*\"\nALIGN=\"left\"\nTITLE=\"col1\"><COL\nWIDTH=\"6*\"\nALIGN=\"left\"\nTITLE=\"col2\"><TBODY\n><TR\n><TD\n>&#13;                    &#937;\n                  </TD\n><TD\n>&#13;                    longitude of the ascending node\n                  </TD\n><TD\n>&#13;                    angle between line of nodes and the zero point of\n                    longitude in the old plane.\n                  </TD\n></TR\n><TR\n><TD\n>&#13;                    &#969;\n                  </TD\n><TD\n>&#13;                    argument of pericenter\n                  </TD\n><TD\n>&#13;                    the angle from the ascending node to the position in the new plane.\n                  </TD\n></TR\n><TR\n><TD\n>&#13;                    i\n                  </TD\n><TD\n>&#13;                    inclination\n                  </TD\n><TD\n>&#13;                    angle between the new plane and the old plane.\n                  </TD\n></TR\n></TBODY\n></TABLE\n><P\n></P\n></DIV\n><P\n>&#13;            you can do a transformation of an object\n            <CODE\nCLASS=\"parameter\"\n>object</CODE\n> from an old into a new coordinate\n            system using:\n          </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"synopsis\"\n> sinverse( object, strans( '&#969;, i, &#937;' ) )</PRE\n></TD\n></TR\n></TABLE\n><P\n>or</P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"synopsis\"\n> sinverse( object, strans(&#969;, i, &#937;) )</PRE\n></TD\n></TR\n></TABLE\n><P\n>&#13;            Otherwise, for a transformation of an object\n            <CODE\nCLASS=\"parameter\"\n>object</CODE\n> from the new into the old\n            coordinate system, use the operator <TT\nCLASS=\"literal\"\n>+</TT\n>:\n          </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"synopsis\"\n> stransform( object, strans( '&#969;, i, &#937;' ) )</PRE\n></TD\n></TR\n></TABLE\n><P\n>or</P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"synopsis\"\n> stransform( object, strans(&#969;, i, &#937;) )</PRE\n></TD\n></TR\n></TABLE\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN1236\"\n></A\n><P\n><B\n>Example 51. Perihel and aphel coordinates of a comet orbit</B\n></P\n><P\n>&#13;             We are assuming the orbital elements of a comet are\n             &#937;=30°, i=60° and &#969;=90°. We get the\n             spherical position of perihel and aphel with:\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sstr( stransform( spoint( '(0,0)' ), strans( '90d,60d,30d' ) ) ) AS perihel;\n+--------------+\n| perihel      |\n+--------------+\n| (120d , 60d) |\n+--------------+\n1 row in set (0.01 sec)\n\nmysql&#62; SELECT sstr( stransform( spoint( '(180d,0)' ), strans( '90d,60d,30d' ) ) ) AS aphel;\n+---------------+\n| aphel         |\n+---------------+\n| (300d , -60d) |\n+---------------+\n1 row in set (0.01 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"NAVFOOTER\"\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"><TABLE\nSUMMARY=\"Footer navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n><A\nHREF=\"indices.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n><A\nHREF=\"index.html\"\nACCESSKEY=\"H\"\n>Home</A\n></TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n><A\nHREF=\"x1240.html\"\nACCESSKEY=\"N\"\n>Next</A\n></TD\n></TR\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n>Create an index</TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n>&nbsp;</TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n>FAQ</TD\n></TR\n></TABLE\n></DIV\n></BODY\n></HTML\n>",
-			"file": "doc/examples.html",
-			"file_size": 5817,
-			"file_write_time": 130337314156676126,
-			"settings":
-			{
-				"buffer_size": 5817,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML\n><HEAD\n><TITLE\n>&#13;            Constructors\n        </TITLE\n><META\nNAME=\"GENERATOR\"\nCONTENT=\"Modular DocBook HTML Stylesheet Version 1.79\"><LINK\nREL=\"HOME\"\nTITLE=\"\n            mysql_sphere 0.1 based on pgSphere 1.2\n        \"\nHREF=\"index.html\"><LINK\nREL=\"PREVIOUS\"\nTITLE=\"\n            Data types\n        \"\nHREF=\"types.html\"><LINK\nREL=\"NEXT\"\nTITLE=\"\n            Operators\n        \"\nHREF=\"operators.html\"><LINK\nREL=\"STYLESHEET\"\nTYPE=\"text/css\"\nHREF=\"pg_sphere.css\"><META\nNAME=\"creation\"\nCONTENT=\"2009-07-06T05:33:03\">\n</HEAD\n><BODY\nCLASS=\"sect1\"\nBGCOLOR=\"#FFFFFF\"\nTEXT=\"#000000\"\nLINK=\"#0000FF\"\nVLINK=\"#840084\"\nALINK=\"#0000FF\"\n><DIV\nCLASS=\"NAVHEADER\"\n><TABLE\nSUMMARY=\"Header navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TH\nCOLSPAN=\"3\"\nALIGN=\"center\"\n>mysql_sphere 0.1 based on pgSphere 1.2</TH\n></TR\n><TR\n><TD\nWIDTH=\"10%\"\nALIGN=\"left\"\nVALIGN=\"bottom\"\n><A\nHREF=\"types.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"80%\"\nALIGN=\"center\"\nVALIGN=\"bottom\"\n></TD\n><TD\nWIDTH=\"10%\"\nALIGN=\"right\"\nVALIGN=\"bottom\"\n><A\nHREF=\"operators.html\"\nACCESSKEY=\"N\"\n>Next</A\n></TD\n></TR\n></TABLE\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"></DIV\n><DIV\nCLASS=\"sect1\"\n><H1\nCLASS=\"sect1\"\n><A\nNAME=\"construct\"\n>4. Constructors</A\n></H1\n><P\n>&#13;          Constructors within <SPAN\nCLASS=\"application\"\n>mysql_sphere</SPAN\n> are in no way different to defining mysql_sphere objects, just with other\n  options. They are in a way overloaded construction functions from the previous\n  chapter. In pgSphere a distinction between type definition and construction was\n  made, mainly due to the capabilities of PostgreSQL. In mysql_sphere this is not\n  needed anymore and the following sections describe\n          functions needed to create spherical data types from other data\n          types. \n            <SPAN\nCLASS=\"application\"\n>mysql_sphere</SPAN\n> constructor\n          functions are named by returned data type. Constructor functions\n          expecting one parameter only are implemented as <A\nHREF=\"operators.html#op.casting\"\n>casting functions, a distinction necessary in PostgreSQL</A\n>. These casting functions will only be mentioned here and no example is given.\n        </P\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.spoint\"\n>4.1. Point</A\n></H2\n><P\n>&#13;            There are two constructor function for spherical points.\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN438\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint</CODE\n>(double lng, double lat);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            where <CODE\nCLASS=\"parameter\"\n>lng</CODE\n> is the longitude of the spherical\n            point in radians, <CODE\nCLASS=\"parameter\"\n>lng</CODE\n> is the latitude of\n            the spherical point in radians.\n          </P\n>\n<P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoint</CODE\n>(spath path, int i);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            returning the i-th point in a path where <CODE\nCLASS=\"parameter\"\n>path</CODE\n> is a mysql_sphere path binary BLOB, <CODE\nCLASS=\"parameter\"\n>i</CODE\n> is the i-th point in the path\n          </P\n>\n<DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN449\"\n></A\n><P\n><B\n>Example 14. A spherical point from longitude and latitude</B\n></P\n><P\n>&#13;              Get a spherical position with 270° of longitude and\n              -30° of latitude.\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT spoint( 270.0*pi()/180.0,-30.0*pi()/180.0 );\n+---------------------------------------------+\n| spoint( 270.0*pi()/180.0,-30.0*pi()/180.0 ) |\n+---------------------------------------------+\n| PHB0PtIhM3982RJAaHMtOFLB4L88dHA+AA==        |\n+---------------------------------------------+\n1 row in set (0.05 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.strans\"\n>4.2. Euler transformation</A\n></H2\n><P\n>&#13;            There are two constructor functions for a Euler transformation:\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN456\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>strans</CODE\n>(double phi, double theta, double psi);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>strans</CODE\n>(double phi, double theta, double psi, character axis);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            where <CODE\nCLASS=\"parameter\"\n>phi</CODE\n>, <CODE\nCLASS=\"parameter\"\n>theta</CODE\n> and\n            <CODE\nCLASS=\"parameter\"\n>psi</CODE\n> are the three angles of <A\nHREF=\"types.html#dt.strans\"\n>&#13;            Euler transformation</A\n>. The fourth parameter is the three letter code\n            of Euler the transformation axis. If that parameter is omitted,\n            <SPAN\nCLASS=\"application\"\n>mysql_sphere</SPAN\n> will assume <TT\nCLASS=\"literal\"\n>ZXZ</TT\n>.\n            For more information about that parameter, see <A\nHREF=\"types.html#dt.strans\"\n>Section 3.3</A\n>.\n          </P\n><P>\nFurther casting constructors are:\n<DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN456\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>strans</CODE\n>(sline line);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>strans</CODE\n>(sellipse ellipse);</CODE\n></P\n><P\n></P\n></DIV\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN485\"\n></A\n><P\n><B\n>Example 15. Create a Euler transformation object</B\n></P\n><P\n>&#13;              Create a transformation object to rotate a spherical object\n              counterclockwise, first 20° around\n              the <TT\nCLASS=\"literal\"\n>x</TT\n>-axis, second -270° around\n              the <TT\nCLASS=\"literal\"\n>z</TT\n>-axis, and last 70.5° around\n              the <TT\nCLASS=\"literal\"\n>y</TT\n>-axis.\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT strans ( 20.0*pi()/180.0, -270.0*pi()/180.0, 70.5*pi()/180.0, 'XZY');\n+----------------------------------------------------------------------+\n| strans ( 20.0*pi()/180.0, -270.0*pi()/180.0, 70.5*pi()/180.0, 'XZY') |\n+----------------------------------------------------------------------+\n| PGV0Pi0AAAAAAAAAh0TnShhX1j8YLURU+yH5PzABz87zr/M/PHRlPgA=             |\n+----------------------------------------------------------------------+\n1 row in set (0.01 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.scircle\"\n>4.3. Circle</A\n></H2\n><P\n>&#13;            The function\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN495\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>scircle</CODE\n>(spoint center, double radius);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            returns a spherical circle with center at\n            <CODE\nCLASS=\"parameter\"\n>center</CODE\n> and a radius\n            <CODE\nCLASS=\"parameter\"\n>radius</CODE\n> in radians.  The circle radius has\n            to be larger than or equal to zero but less or equal to 90°. \n            Otherwise, this function returns an error.\nFurther casting constructors are:\n<DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN456\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>scircle</CODE\n>(spoint point);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>scircle</CODE\n>(sellipse ellipse);</CODE\n></P\n><P\n></P\n></DIV\n>\n\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN506\"\n></A\n><P\n><B\n>Example 16. A circle around the Noth Pole</B\n></P\n><P\n>&#13;             Get a spherical circle around the North Pole with a radius\n             of 30° ( <TT\nCLASS=\"literal\"\n>sstr</TT\n> casts a given mysql_sphere data type to a readable string).\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 );\n+---------------------------------------------------+\n| scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 ) |\n+---------------------------------------------------+\n| PGNsPgAAAAAAAAAAGC1EVPsh+T9lcy04UsHgPzxsYz4A      |\n+---------------------------------------------------+\n1 row in set (0.01 sec)\n\nmysql&#62; SELECT sstr( scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 ) );\n+-----------------------------------------------------------+\n| sstr( scircle ( spoint( '(0d,90d)' ), 30.0*pi()/180.0 ) ) |\n+-----------------------------------------------------------+\n| <(0d , 90d) , 30d>                                        |\n+-----------------------------------------------------------+\n1 row in set (0.02 sec)\n\n           </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.sline\"\n>4.4. Line</A\n></H2\n><P\n>&#13;            The input of spherical lines using Euler transformation and\n            length is quite circumstantial (see <A\nHREF=\"types.html#dt.sline\"\n>Section 3.5</A\n>). \n            For short lines it is easier to input a line specifying the\n            begining and the end of the line.\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN514\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sline</CODE\n>(spoint begin, spoint end);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            If the distance between <CODE\nCLASS=\"parameter\"\n>begin</CODE\n> and\n            <CODE\nCLASS=\"parameter\"\n>end</CODE\n> is 180° (&#960;), this function\n            returns an error because the location of the line is undefined. \n            However, if longitudes of <CODE\nCLASS=\"parameter\"\n>begin</CODE\n> and\n            <CODE\nCLASS=\"parameter\"\n>end</CODE\n> are equal,\n            <SPAN\nCLASS=\"application\"\n>pgSphere</SPAN\n> assumes a meridian and\n            returns the corresponding spherical line.\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"const.line.1\"\n></A\n><P\n><B\n>Example 17. A line created using begin and end of line</B\n></P\n><P\n>&#13;              A line starting at <TT\nCLASS=\"literal\"\n>spoint '(270d,10d)'</TT\n> and\n              ending at <TT\nCLASS=\"literal\"\n>spoint '(270d,30d)'</TT\n> ( <TT\nCLASS=\"literal\"\n>sstr</TT\n> casts a given mysql_sphere data type to a readable string):\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') );\n+-----------------------------------------------------------+\n| sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') )    |\n+-----------------------------------------------------------+\n| PGxpPodE50oYV8Y/GC1EVPsh+T/SITN/fNkSQIVE50oYV9Y/PGlsPgA=  |\n+-----------------------------------------------------------+\n1 row in set (0.01 sec)\n\nmysql&#62; SELECT sstr( sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') ) );\n+----------------------------------------------------------------+\n| sstr( sline( spoint( '(270d,10d)' ), spoint( '(270d,30d)') ) ) |\n+----------------------------------------------------------------+\n| ( 10d, 90d, 270d, ZXZ ), 20d                                   |\n+----------------------------------------------------------------+\n1 row in set (0.01 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n><P\n>&#13;            Furthermore, there is a function for inputing a line\n            using Euler transformation <CODE\nCLASS=\"parameter\"\n>trans</CODE\n>\n            and line length <CODE\nCLASS=\"parameter\"\n>length</CODE\n>\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN537\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sline</CODE\n>(strans trans, double length);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            where the line length <CODE\nCLASS=\"parameter\"\n>length</CODE\n> must be\n            given in radians.\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN547\"\n></A\n><P\n><B\n>Example 18. A line created with its transformation and length</B\n></P\n><P\n>&#13;              The same line as in <A\nHREF=\"construct.html#const.line.1\"\n>Example 17</A\n>, but using\n              transformation and line length.\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT sstr( sline ( strans( '10d, 90d, 270d, ZXZ' ), 20.0*pi()/180.0 ) );\n+--------------------------------------------------------------------+\n| sstr( sline ( strans( '10d, 90d, 270d, ZXZ' ), 20.0*pi()/180.0 ) ) |\n+--------------------------------------------------------------------+\n| ( 10d, 90d, 270d, ZXZ ), 20d                                       |\n+--------------------------------------------------------------------+\n1 row in set (0.01 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n>\n\nFurther casting constructors are:\n<DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN456\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sline</CODE\n>(spoint point);</CODE\n></P\n><P\n></P\n></DIV\n>\n\n<DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.sellipse\"\n>4.5. Ellipse</A\n></H2\n><P\n>&#13;            You can use the function\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN555\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sellipse</CODE\n>(spoint center, double major_rad, double minor_rad, double incl);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            to create a spherical ellipse. The first parameter\n            <CODE\nCLASS=\"parameter\"\n>center</CODE\n> is the center of ellipse.  The\n            parameter <CODE\nCLASS=\"parameter\"\n>major_rad</CODE\n> and\n            <CODE\nCLASS=\"parameter\"\n>minor_rad</CODE\n> are the major and the minor\n            radii of the ellipse in radians. If the major radius is smaller\n            than minor radius, <SPAN\nCLASS=\"application\"\n>pgSphere</SPAN\n> swaps the\n            values automatically.  The last parameter\n            <CODE\nCLASS=\"parameter\"\n>incl</CODE\n> is the inclination angle in radians. \n            For more informations about ellipses, see <A\nHREF=\"types.html#dt.sellipse\"\n>Section 3.6</A\n>.\n          </P\n>\n\nFurther casting constructors are:\n<DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN456\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sellipse</CODE\n>(spoint point);</CODE\n></P\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sellipse</CODE\n>(scirlce circle);</CODE\n></P\n><P\n></P\n></DIV\n>\n\n<DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN574\"\n></A\n><P\n><B\n>Example 19. Create an ellipse</B\n></P\n><P\n>&#13;              An ellipse with a center at 20° of longitude and 0°\n              of latitude. The minor radius is part of the equator. The major\n              radius has a size of 10°. The minor radius has 5° ( <TT\nCLASS=\"literal\"\n>sstr</TT\n> casts a given mysql_sphere data type to a readable string).\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; SELECT sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 );\n+---------------------------------------------------------------------------------+\n| sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 ) |\n+---------------------------------------------------------------------------------+\n| PGVsPodE50oYV8Y/h0TnShhXtj8YLURU+yH5PwAAAAAAAAAAh0TnShhX1j88bGU+AA==            |\n+---------------------------------------------------------------------------------+\n1 row in set (0.01 sec)\n\nmysql&#62; SELECT sstr( sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 ) );\n+-----------------------------------------------------------------------------------------+\n| sstr( sellipse ( spoint( '( 20d, 0d )' ), 10.0*pi()/180.0, 5.0*pi()/180.0, pi()/2.0 ) ) |\n+-----------------------------------------------------------------------------------------+\n| <{ 10d , 5d }, (20d , -0d) , 90d>                                                       |\n+-----------------------------------------------------------------------------------------+\n1 row in set (0.00 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.spoly\"\n>4.6. Polygon</A\n></H2\n><P\n>&#13;            The aggregate function\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN581\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spoly_aggr</CODE\n>(spoint edge);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            can be used to create a polygon from a set of spherical points.\n            There are the same restrictions as for using the input function of\n            spherical polygon (see <A\nHREF=\"types.html#dt.spoly\"\n>Section 3.8</A\n>). The function\n            returns\n            <TT\nCLASS=\"literal\"\n>NULL</TT\n>, if the polygon couldn't be created.\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN590\"\n></A\n><P\n><B\n>Example 20. \n              Create a spherical polygon using a set of spherical points\n            </B\n></P\n><P\n>&#13;              Create a table and put in some spherical points with a\n              unique ID.  Then, create two polygons with different edge\n              sequences ( <TT\nCLASS=\"literal\"\n>sstr</TT\n> casts a given mysql_sphere data type to a readable string).\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; CREATE TABLE points ( i int PRIMARY KEY, p BLOB );\nmysql&#62; INSERT INTO points VALUES (1, spoint( '( 0d, 0d)' ) );\nmysql&#62; INSERT INTO points VALUES (2, spoint( '(10d, 0d)') );\nmysql&#62; INSERT INTO points VALUES (3, spoint( '( 0d,10d)') );\nmysql&#62; SELECT spoly_aggr(data.p) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;\n+--------------------------------------------------------------------------------------------------------+\n| spoly_aggr(data.p)                                                                                     |\n+--------------------------------------------------------------------------------------------------------+\n| PHBnPkAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh0TnShhXxj8AAAAAAAAAAAAAAAAA\nAAAAh0TnShhXxj88Z3A+AA==  |\n+--------------------------------------------------------------------------------------------------------+\n1 row in set (0.28 sec)\n\nmysql&#62; SELECT sstr( spoly_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;\n+-----------------------------------+\n| sstr( spoly_aggr(data.p) )        |\n+-----------------------------------+\n| {(0d , 0d),(10d , 0d),(0d , 10d)} |\n+-----------------------------------+\n1 row in set (0.03 sec)\n\nsql&#62; SELECT sstr( spoly_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i DESC ) AS data ;\n+-----------------------------------+\n| sstr( spoly_aggr(data.p) )        |\n+-----------------------------------+\n| {(0d , 10d),(10d , 0d),(0d , 0d)} |\n+-----------------------------------+\n1 row in set (0.02 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.spath\"\n>4.7. Path</A\n></H2\n><P\n>&#13;            Similar to spherical polygons, you can use the aggregate function\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN597\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>spath_aggr</CODE\n>(spoint edge);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            to create a spherical path using a set of spherical points.\n            There are the same restrictions as with the input function of\n            spherical path (see <A\nHREF=\"types.html#dt.spath\"\n>Section 3.7</A\n>). The function returns\n            <TT\nCLASS=\"literal\"\n>NULL</TT\n> if the path couldn't be created.\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN606\"\n></A\n><P\n><B\n>Example 21. \n              Create a spherical path using a set of spherical points\n            </B\n></P\n><P\n>&#13;              Create a table and put in some spherical points with a\n              unique ID.  Then, create a spherical path from it ( <TT\nCLASS=\"literal\"\n>sstr</TT\n> casts a given mysql_sphere data type to a readable string).\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SET sphere_outmode=\"DEG\";\nQuery OK, 0 rows affected (0.02 sec)\n\nmysql&#62; CREATE TABLE points ( i int PRIMARY KEY, p BLOB );\nmysql&#62; INSERT INTO points VALUES (1, spoint( '( 0d, 10d)') );\nmysql&#62; INSERT INTO points VALUES (2, spoint( '( 0d,  0d)') );\nmysql&#62; INSERT INTO points VALUES (3, spoint( '( 0d,-10d)') );\nmysql&#62; SELECT spath_aggr(data.p) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;\n+--------------------------------------------------------------------------------------------------------+\n| spath_aggr(data.p)                                                                                     |\n+--------------------------------------------------------------------------------------------------------+\n| PHBhPkAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAIdE50oYV8Y/AAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAgETnShhXxr88YXA+AA==  |\n+--------------------------------------------------------------------------------------------------------+\n1 row in set (0.02 sec)\n\nmysql&#62; SELECT sstr( spath_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i ASC ) AS data ;\n+------------------------------------+\n| sstr( spath_aggr(data.p) )         |\n+------------------------------------+\n| {(0d , 10d),(0d , 0d),(0d , -10d)} |\n+------------------------------------+\n1 row in set (0.00 sec)\n\nmysql&#62; SELECT sstr( spath_aggr(data.p) ) FROM ( SELECT p FROM points ORDER BY i DESC ) AS data ;\n+------------------------------------+\n| sstr( spath_aggr(data.p) )         |\n+------------------------------------+\n| {(0d , -10d),(0d , 0d),(0d , 10d)} |\n+------------------------------------+\n1 row in set (0.01 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"contr.sbox\"\n>4.8. Coordinates range</A\n></H2\n><P\n>&#13;            The function\n          </P\n><DIV\nCLASS=\"funcsynopsis\"\n><P\n></P\n><A\nNAME=\"AEN613\"\n></A\n><P\n><CODE\n><CODE\nCLASS=\"FUNCDEF\"\n>sbox</CODE\n>(spoint south_west, spoint north_east);</CODE\n></P\n><P\n></P\n></DIV\n><P\n>&#13;            creates an <SPAN\nCLASS=\"type\"\n>sbox</SPAN\n> object with its first parameter\n            <CODE\nCLASS=\"parameter\"\n>south_west</CODE\n> as the southwest edge and its\n            second parameter <CODE\nCLASS=\"parameter\"\n>northeast</CODE\n> as the\n            north-east edge of the coordinates range.\n          </P\n><DIV\nCLASS=\"example\"\n><A\nNAME=\"AEN625\"\n></A\n><P\n><B\n>Example 22. Create a spherical box using edges</B\n></P\n><P\n>&#13;              A coordinate range between 0° and +10° in latitude and\n              longitude.\n            </P\n><TABLE\nBORDER=\"0\"\nBGCOLOR=\"#E0E0E0\"\nWIDTH=\"100%\"\n><TR\n><TD\n><PRE\nCLASS=\"programlisting\"\n>&#13;mysql&#62; SELECT sbox( spoint( '(0d,0d)' ), spoint( '(10d,10d)' ) );\n+-----------------------------------------------------------+\n| sbox( spoint( '(0d,0d)' ), spoint( '(10d,10d)' ) )        |\n+-----------------------------------------------------------+\n| PGJ4PgAAAAAAAAAAAAAAAAAAAACHROdKGFfGP4dE50oYV8Y/PHhiPgA=  |\n+-----------------------------------------------------------+\n1 row in set (0.01 sec)\n            </PRE\n></TD\n></TR\n></TABLE\n></DIV\n></DIV\n></DIV\n><DIV\nCLASS=\"NAVFOOTER\"\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"><TABLE\nSUMMARY=\"Footer navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n><A\nHREF=\"types.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n><A\nHREF=\"index.html\"\nACCESSKEY=\"H\"\n>Home</A\n></TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n><A\nHREF=\"operators.html\"\nACCESSKEY=\"N\"\n>Next</A\n></TD\n></TR\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n>Data types</TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n>&nbsp;</TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n>Operators</TD\n></TR\n></TABLE\n></DIV\n></BODY\n></HTML\n>",
-			"file": "doc/construct.html",
-			"file_size": 23778,
-			"file_write_time": 130337314222917307,
-			"settings":
-			{
-				"buffer_size": 23778,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML\n><HEAD\n><TITLE\n>&#13;        Appendixes\n      </TITLE\n><META\nNAME=\"GENERATOR\"\nCONTENT=\"Modular DocBook HTML Stylesheet Version 1.79\"><LINK\nREL=\"HOME\"\nTITLE=\"\n            pgSphere 1.1\n        \"\nHREF=\"index.html\"><LINK\nREL=\"PREVIOUS\"\nTITLE=\"\n            FAQ\n        \"\nHREF=\"x1240.html\"><LINK\nREL=\"STYLESHEET\"\nTYPE=\"text/css\"\nHREF=\"pg_sphere.css\"><META\nNAME=\"creation\"\nCONTENT=\"2009-07-06T05:33:03\">\n</HEAD\n><BODY\nCLASS=\"sect1\"\nBGCOLOR=\"#FFFFFF\"\nTEXT=\"#000000\"\nLINK=\"#0000FF\"\nVLINK=\"#840084\"\nALINK=\"#0000FF\"\n><DIV\nCLASS=\"NAVHEADER\"\n><TABLE\nSUMMARY=\"Header navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TH\nCOLSPAN=\"3\"\nALIGN=\"center\"\n>pgSphere 1.1</TH\n></TR\n><TR\n><TD\nWIDTH=\"10%\"\nALIGN=\"left\"\nVALIGN=\"bottom\"\n><A\nHREF=\"x1240.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"80%\"\nALIGN=\"center\"\nVALIGN=\"bottom\"\n></TD\n><TD\nWIDTH=\"10%\"\nALIGN=\"right\"\nVALIGN=\"bottom\"\n>&nbsp;</TD\n></TR\n></TABLE\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"></DIV\n><DIV\nCLASS=\"sect1\"\n><H1\nCLASS=\"sect1\"\n><A\nNAME=\"appendixes\"\n>10. Appendixes</A\n></H1\n><DIV\nCLASS=\"sect2\"\n><H2\nCLASS=\"sect2\"\n><A\nNAME=\"appendixes.changelog\"\n>10.1. First release candidate of the pgSphere port mysql_sphere 0.1</A\n></H2\n><P\n></P\n><UL\n><LI\n><P\n>&#13;              Initial port without indexing facility. Required changed to function names and \n					mapping of PostgreSQL operator to functions. See the documentation for details.\n            </P\n></LI\n></UL\n></DIV\n></DIV\n><DIV\nCLASS=\"NAVFOOTER\"\n><HR\nALIGN=\"LEFT\"\nWIDTH=\"100%\"><TABLE\nSUMMARY=\"Footer navigation table\"\nWIDTH=\"100%\"\nBORDER=\"0\"\nCELLPADDING=\"0\"\nCELLSPACING=\"0\"\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n><A\nHREF=\"x1240.html\"\nACCESSKEY=\"P\"\n>Prev</A\n></TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n><A\nHREF=\"index.html\"\nACCESSKEY=\"H\"\n>Home</A\n></TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n>&nbsp;</TD\n></TR\n><TR\n><TD\nWIDTH=\"33%\"\nALIGN=\"left\"\nVALIGN=\"top\"\n>FAQ</TD\n><TD\nWIDTH=\"34%\"\nALIGN=\"center\"\nVALIGN=\"top\"\n>&nbsp;</TD\n><TD\nWIDTH=\"33%\"\nALIGN=\"right\"\nVALIGN=\"top\"\n>&nbsp;</TD\n></TR\n></TABLE\n></DIV\n></BODY\n></HTML\n>",
-			"file": "doc/appendixes.html",
-			"file_size": 2166,
-			"file_write_time": 130337314288158470,
-			"settings":
-			{
-				"buffer_size": 2166,
 				"line_ending": "Unix"
 			}
 		},
@@ -710,6 +674,10 @@
 	},
 	"file_history":
 	[
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/appendixes.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/construct.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/examples.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/funcs.html",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_euler.cc",
@@ -833,11 +801,7 @@
 		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/php-sql-creator2.php",
 		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/parOptimImplicitJoin.php",
 		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Column.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Table.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/Daiquiri/Form/Abstract.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/models/Resource/Description.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Form.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/client/js/daiquiri_query_buttons.js"
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Table.php"
 	],
 	"find":
 	{
@@ -879,6 +843,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"MYSQL_UDF_CHK_SPHERETYPE",
+			"strans_invert",
 			"mysql_priv",
 			"mysql-sphere",
 			"pgSpher",
@@ -1004,9 +970,7 @@
 			" ,",
 			"::spoint",
 			"'( ",
-			")'",
-			"spoint '(",
-			"0\n"
+			")'"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1068,7 +1032,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -1104,7 +1068,7 @@
 						"translation.y": 644.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -1132,7 +1096,7 @@
 						"translation.y": 8184.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -2930,24 +2894,24 @@
 						"translation.y": 39920.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "src/udf_sphere_sstr.cc",
-					"semi_transient": true,
+					"file": "src/udf_helpers.h",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3676,
+						"buffer_size": 12605,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								167,
-								167
+								12164,
+								12164
 							]
 						],
 						"settings":
@@ -2955,27 +2919,55 @@
 							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5171.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/udf_sphere_polygon.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 53815,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52796,
+								52796
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 19089.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "src/serialiser.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10427,
+						"buffer_size": 10483,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5889,
-								5889
+								5357,
+								5357
 							]
 						],
 						"settings":
@@ -2983,14 +2975,14 @@
 							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2716.0,
+						"translation.y": 2817.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "install_udfs.sql",
 					"semi_transient": false,
 					"settings":
@@ -3010,36 +3002,8 @@
 						{
 							"syntax": "Packages/SQL/SQL.tmLanguage"
 						},
-						"translation.x": -0.0,
-						"translation.y": 621.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "doc/funcs.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 22270,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								623,
-								623
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 621.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -3047,90 +3011,6 @@
 				},
 				{
 					"buffer": 7,
-					"file": "doc/examples.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5817,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								612,
-								612
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "doc/construct.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 23778,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								625,
-								625
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "doc/appendixes.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2166,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								505,
-								505
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
 					"file": "README",
 					"semi_transient": false,
 					"settings":
@@ -3154,11 +3034,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 8,
 					"file": "doc/x18.html",
 					"semi_transient": false,
 					"settings":
@@ -3182,11 +3062,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 9,
 					"file": "doc/x44.html",
 					"semi_transient": false,
 					"settings":
@@ -3210,11 +3090,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 10,
 					"file": "doc/x1240.html",
 					"semi_transient": false,
 					"settings":
@@ -3238,11 +3118,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 11,
 					"file": "doc/types.html",
 					"semi_transient": false,
 					"settings":
@@ -3266,11 +3146,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 12,
 					"file": "doc/operators.html",
 					"semi_transient": false,
 					"settings":
@@ -3294,11 +3174,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 13,
 					"file": "doc/indices.html",
 					"semi_transient": false,
 					"settings":
@@ -3322,11 +3202,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 14,
 					"file": "doc/index.html",
 					"semi_transient": false,
 					"settings":
@@ -3350,11 +3230,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 15,
 					"file": "src/udf_sphere_box.cc",
 					"semi_transient": false,
 					"settings":
@@ -3378,7 +3258,7 @@
 						"translation.y": 2997.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 13,
 					"type": "text"
 				}
 			]

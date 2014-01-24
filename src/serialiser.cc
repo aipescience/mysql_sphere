@@ -3,6 +3,7 @@
 #include <stddef.h>
 
 #include <mysql/plugin.h>
+#include <mysql_version.h>
 
 #include <base64.h>
 
@@ -193,7 +194,11 @@ MYSQL_SPHERE_TYPES decode(char * input, size_t inputLen, void ** output) {
 			return objType;
 		}
 
+#if MYSQL_VERSION_ID >= 50601
+		if(base64_decode(input, inputLen, decodedString, NULL, NULL) <= 0) {
+#else
 		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {
+#endif
 			fprintf(stderr, "Error MySQL Sphere: Could not decode the MySQL object provided!\n");
 			free(decodedString);
 			*output = NULL;
