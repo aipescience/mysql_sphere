@@ -1,0 +1,176 @@
+/* Original: pg_sphere.css from pgSphere documentation 1.1, PostgreSQL.org Documentation Style, 
+ * adjusted here and there by Kristin Riebe */
+
+
+body {
+margin: 1em;
+padding: 1em 2.5em;
+font-size: 100%;
+font-family: 'Ubuntu',verdana, sans-serif;
+color: #2f2f2f;
+background-color: #fff;
+}
+
+h1 {
+font-size: 1.4em;
+font-weight: bold;
+margin-top: 0em;
+margin-bottom: 0em;
+  color: #1454ad; 
+}
+
+h2 {
+font-size: 1.3em;
+margin: 1.2em 0em 1.2em 0em;
+font-weight: bold;
+  color: #666; 
+}
+
+h3 {
+font-size: 1.1em;
+margin: 1.2em 0em 1.2em 0em;
+font-weight: bold;
+  color: #666; 
+}
+
+h4 {
+font-size: 1em;
+margin: 1.2em 0em 1.2em 0em;
+font-weight: normal;
+  color: #666; 
+}
+
+h5 {
+font-size: 0.95em;
+margin: 1.2em 0em 1.2em 0em;
+font-weight: normal;
+  color: #666; 
+}
+
+h6 {
+font-size: 0.9em;
+margin: 1.2em 0em 1.2em 0em;
+font-weight: normal;
+  color: #666; 
+}
+
+img {
+border: 0;
+}
+
+ol, ul, li {
+line-height: 1.2em;
+margin-top: 0.2em;
+margin-bottom: 0.1em; 
+
+}
+
+p {
+line-height: 1.2em;
+margin: 1.2em 0em 1.2em 0em;
+}
+
+li > p {
+margin-top: 0.2em;
+}
+
+pre {
+  font-family: monospace;
+  font-size: 1.1em;
+  margin: 10px 0;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-width: 1px 0;
+  border-top: 2px solid #0488cc;
+  border-bottom: 2px solid #0488cc;
+}
+
+tt, .type, .parameter {
+  font-family: monospace;
+  font-size: 1.1em;
+}
+
+
+strong, b {
+font-weight: bold;
+}
+
+/* layout */
+/*.content {
+  margin-right: 15em;
+  top: 0px;
+  
+}
+.navigation-side {
+  float: right;
+  width: 14em;
+}
+*/
+
+/* Text Styles */
+
+.title {
+  font-size: 200%;
+}
+
+.subtitle {
+  font-size: smaller;
+  color: #666666;
+}
+
+.txtCurrentLocation {
+  font-weight: bold;
+}
+
+p, ol, ul, li {
+  line-height: 1.5em;
+}
+
+
+
+.function {
+  font-size: 100%;
+}
+
+table {
+  margin-top: 0.2em;
+  margin-bottom: 0.1em;
+}
+
+table.CALSTABLE {
+  width: 55%;
+}
+table.CALSTABLE td, th {
+  padding: 5px;
+}
+
+table.CALSTABLE td {
+  vertical-align : top;
+}
+
+/* Link Styles */
+
+a:link                          { color:#0066A2; text-decoration: none; }
+a:visited                       { color:#004E66; text-decoration: none; }
+a:active                        { color:#0066A2; text-decoration: none; }
+a:hover                         { color:#007BB7; text-decoration: underline; }
+
+
+/* FAQ style */
+.question {
+  font-weight: bold;
+}
+
+.answer {
+  
+  border-left: 2px solid silver;
+  /*border-bottom: 2px solid silver;*/
+  padding: 0.5em 1em;
+  margin-bottom: 2em;
+  
+}
+
+.application {
+  font-style: italic;
+  /*font-family: serif;*/
+}

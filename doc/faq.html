@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>&#13;            FAQ
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="
+            mysql_sphere based on pgSphere 1.1.1
+        "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="
+        Usage examples
+      "
+HREF="examples.html"><LINK
+REL="NEXT"
+TITLE="
+        Appendixes
+      "
+HREF="appendixes.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="sphere.css"><META
+NAME="creation"
+CONTENT="2009-07-06T05:33:03">
+</HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>mysql_sphere 0.1<br/><span class="subtitle">Based on pgSphere 1.1.1</span></TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="examples.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="appendixes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="AEN1240"
+>9. FAQ</A
+></H1
+>
+<P class="question">
+	How can I get a human-readable expression of an <tt>spoint</tt>-object instead of the blob-stuff? 
+</P>
+<div class="answer">
+	Use the <a href="./operators.html#AEN638"><tt>sstr</tt> function </a> to get a human-readable string-representation of a data object. Check the corresponding <a href="./types.html">type</a> definition to get to know what exactly the values mean. 
+
+<PRE
+CLASS="programlisting"
+
+>&#13;mysql&#62; SELECT spoint( '(10d,20d)' );
++---------------------------------------+
+| spoint( '(10d,20d)' )                 |
++---------------------------------------+
+| PHB0PodE50oYV8Y/h0TnShhX1j88dHA+AA==  |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+&#13;mysql&#62; SELECT sstr( spoint( '(10d,20d)' ));
++-------------------------------+
+| sstr( spoint( '(10d,20d)' ))  |
++-------------------------------+
+| (0.1745329252 , 0.3490658504) |
++-------------------------------+
+1 row in set (0.01 sec)
+
+&#13;mysql&#62; SELECT sstr( 'PHB0PodE50oYV8Y/h0TnShhX1j88dHA+AA==' );
++------------------------------------------------+
+| sstr( 'PHB0PodE50oYV8Y/h0TnShhX1j88dHA+AA==' ) |
++------------------------------------------------+
+| (0.1745329252 , 0.3490658504)                  |
++------------------------------------------------+
+1 row in set (0.00 sec)
+</PRE>
+</div>
+
+<p class="question">
+	How can I switch from radians to degree representation of <span class="application">mysql_sphere</span>-objects? 
+</P>
+<div class="answer">
+	Use the following expression 
+
+<PRE CLASS="programlisting">
+&#13;mysql&#62; SET sphere_outmode="DEG";
+</PRE>
+
+before anything else. If one then prints e.g. a <span class="application">mysql_sphere</span> point (with sstr), the values will be given in degree. Default unit is radians. You can switch back to radians using 
+
+<PRE CLASS="programlisting">
+&#13;mysql&#62; SET sphere_outmode="RAD";
+</PRE>
+
+One can also swith to degree, arc minute, arc second representation with 
+<PRE CLASS="programlisting">
+&#13;mysql&#62; SET sphere_outmode="DMS";
+</PRE>
+Please note that setting <tt>sphere_outmode</tt> does not affect the output of the 
+distance operator <a href="operators.html#op.dist"><tt>sdist</tt></a> and <a href="./operators.html#op.scircum">length/circumference operators</a> <tt>slength</tt> and <tt>scircum</tt>. Their results are always in radians (but you can convert this easily to degree using *180/pi() of course).
+
+</div>
+
+
+<p class="question">
+	Is it possible to print a point-point representation of a spherical line-object?
+</P>
+<div class="answer">
+Use the <a href="./funcs.html#funcs.sline.be"><tt>sline_beg</tt> and <tt>sline_end</tt> functions</a> to get the start and end point of a line. 
+</div>
+
+<!--
+<p class="question">
+	How could I round the values of a point? For length-operations, I can use MySQL's round() function, but what about spherical points in their different units?
+</P>
+<div class="answer">
+
+</div>
+-->
+
+</DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="examples.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="appendixes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Usage examples</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Appendixes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
