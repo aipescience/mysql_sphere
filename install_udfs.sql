@@ -229,10 +229,10 @@ CREATE FUNCTION sbox_contains_box_com RETURNS INTEGER SONAME 'mysql_sphere_UDF.s
 CREATE FUNCTION sbox_contains_box_com_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_overlap_box RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_overlap_box_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION sbox_cont_point RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION sbox_cont_point_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION sbox_cont_point_com RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
-CREATE FUNCTION sbox_cont_point_com_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sbox_contains_point RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sbox_contains_point_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sbox_contains_point_com RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
+CREATE FUNCTION sbox_contains_point_com_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_contains_circle RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_contains_circle_neg RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';
 CREATE FUNCTION sbox_contains_circle_com RETURNS INTEGER SONAME 'mysql_sphere_UDF.so';

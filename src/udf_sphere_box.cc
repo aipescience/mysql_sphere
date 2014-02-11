@@ -21,10 +21,10 @@ extern "C" {
 	MYSQL_UDF_INT_FUNC( sbox_contains_box_com_neg );
 	MYSQL_UDF_INT_FUNC( sbox_overlap_box );
 	MYSQL_UDF_INT_FUNC( sbox_overlap_box_neg );
-	MYSQL_UDF_INT_FUNC( sbox_cont_point );
-	MYSQL_UDF_INT_FUNC( sbox_cont_point_neg );
-	MYSQL_UDF_INT_FUNC( sbox_cont_point_com );
-	MYSQL_UDF_INT_FUNC( sbox_cont_point_com_neg );
+	MYSQL_UDF_INT_FUNC( sbox_contains_point );
+	MYSQL_UDF_INT_FUNC( sbox_contains_point_neg );
+	MYSQL_UDF_INT_FUNC( sbox_contains_point_com );
+	MYSQL_UDF_INT_FUNC( sbox_contains_point_com_neg );
 	MYSQL_UDF_INT_FUNC( sbox_contains_circle );
 	MYSQL_UDF_INT_FUNC( sbox_contains_circle_neg );
 	MYSQL_UDF_INT_FUNC( sbox_contains_circle_com );
@@ -441,16 +441,16 @@ long long sbox_overlap_box_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null,
 	return (long long)spherebox_overlap_box_neg((SBox*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
 }
 
-//sbox_cont_point(SBox, SPoint)...
-my_bool sbox_cont_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_cont_point", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
+//sbox_contains_point(SBox, SPoint)...
+my_bool sbox_contains_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_point", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
-void sbox_cont_point_deinit( UDF_INIT* initid ) {
+void sbox_contains_point_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-long long sbox_cont_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+long long sbox_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
@@ -463,16 +463,16 @@ long long sbox_cont_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char
 	}
 }
 
-//sbox_cont_point_neg(SBox, SPoint)...
-my_bool sbox_cont_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_cont_point_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
+//sbox_contains_point_neg(SBox, SPoint)...
+my_bool sbox_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sbox_contains_point_neg", PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
 
-void sbox_cont_point_neg_deinit( UDF_INIT* initid ) {
+void sbox_contains_point_neg_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-long long sbox_cont_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+long long sbox_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE_COM( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX}), PROTECT({MYSQL_SPHERE_POINT}) );
@@ -485,16 +485,16 @@ long long sbox_cont_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, 
 	}
 }
 
-//sbox_cont_point_com(SPoint, SBox)...
-my_bool sbox_cont_point_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_cont_point_com", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_BOX}) );
+//sbox_contains_point_com(SPoint, SBox)...
+my_bool sbox_contains_point_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_point_com", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
-void sbox_cont_point_com_deinit( UDF_INIT* initid ) {
+void sbox_contains_point_com_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-long long sbox_cont_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+long long sbox_contains_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );
@@ -503,16 +503,16 @@ long long sbox_cont_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_null, 
 	return (long long)spherebox_cont_point_com((SPoint*) memBuf->memBufs[0], (SBox*) memBuf->memBufs[1]);
 }
 
-//sbox_cont_point_com_neg(SPoint, SBox)...
-my_bool sbox_cont_point_com_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
-	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_cont_point_com_neg", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_BOX}) );
+//sbox_contains_point_com_neg(SPoint, SBox)...
+my_bool sbox_contains_point_com_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sbox_contains_point_com_neg", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_BOX}) );
 }
 
-void sbox_cont_point_com_neg_deinit( UDF_INIT* initid ) {
+void sbox_contains_point_com_neg_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-long long sbox_cont_point_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+long long sbox_contains_point_com_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_POINT}) );

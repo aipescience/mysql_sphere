@@ -297,7 +297,7 @@ long long spoly_overlap_polygon_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_
 	return (long long)spherepoly_overlap_poly_neg((SPoly*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
 }
 
-//spoly_contains_point(SPoly, SPoly)...
+//spoly_contains_point(SPoly, SPoint)...
 my_bool spoly_contains_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_point", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
@@ -341,7 +341,7 @@ long long spoly_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_n
 	}
 }
 
-//spoly_contains_point_com(SPoly, SPoly)...
+//spoly_contains_point_com(SPoint, SPoly)...
 my_bool spoly_contains_point_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_point_com", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }
@@ -1192,7 +1192,7 @@ char *spoly_add_point_aggr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsi
 
 	return memBuf->buf->resBuf;
 }
-//spoly_aggr(SPoly, SPoint)...
+//spoly_aggr(SPoint)...
 my_bool spoly_aggr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer * buf;
 	aggregateBuff * aggBuf = new aggregateBuff();

@@ -455,7 +455,7 @@ long long sline_overlap_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_null, ch
 }
 
 
-//sline_contains_point(SLine, SLine)...
+//sline_contains_point(SLine, SPoint)...
 my_bool sline_contains_point_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sline_contains_point", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
@@ -477,7 +477,7 @@ long long sline_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null,
 	}
 }
 
-//sline_contains_point_neg(SLine, SLine)...
+//sline_contains_point_neg(SLine, SPoint)...
 my_bool sline_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "sline_contains_point_neg", PROTECT({MYSQL_SPHERE_LINE}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
@@ -499,7 +499,7 @@ long long sline_contains_point_neg( UDF_INIT* initid, UDF_ARGS* args, char* is_n
 	}
 }
 
-//sline_contains_point_com(SLine, SLine)...
+//sline_contains_point_com(SPoint, SLine)...
 my_bool sline_contains_point_com_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sline_contains_point_com", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
@@ -517,7 +517,7 @@ long long sline_contains_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_n
 	return (long long)sphereline_cont_point_com((SPoint*) memBuf->memBufs[0], (SLine*) memBuf->memBufs[1]);
 }
 
-//sline_contains_point_com_neg(SLine, SLine)...
+//sline_contains_point_com_neg(SPoint, SLine)...
 my_bool sline_contains_point_com_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "sline_contains_point_com_neg", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_LINE}) );
 }
