@@ -73,7 +73,7 @@ my_bool strans_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 			outBuf->isDynParams[0] = false;
 		}
 	} else if (args->arg_count == 1) {
-		//decode object - if this is not a point, throw error, if corrupted, the parser will throw error
+		//decode object - if this is not a line or ellipse, throw error, if corrupted, the parser will throw error
     	buffer * buf;
     	buf = new buffer(1);
 

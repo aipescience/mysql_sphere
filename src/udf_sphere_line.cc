@@ -120,7 +120,7 @@ my_bool sline_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	}
 
 	if(outBuf->memBufs[0] == NULL && outBuf->isDynParams[0] == false) {
-		strcpy(message, "an error occurred while generating the circle");
+		strcpy(message, "an error occurred while generating the line");
 		return 1;
 	}
 
@@ -277,13 +277,13 @@ char *sline_beg( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_LINE}) );
 
-	SPoint * resultLine;
+	SPoint * resultPoint;
 
-	resultLine = sphereline_begin((SLine *)memBuf->memBufs[0]);
+	resultPoint = sphereline_begin((SLine *)memBuf->memBufs[0]);
 
-	memBuf->resBuf = serialise(resultLine);
-	*length = getSerialisedLen(resultLine);
-	free(resultLine);
+	memBuf->resBuf = serialise(resultPoint);
+	*length = getSerialisedLen(resultPoint);
+	free(resultPoint);
 
 	return memBuf->resBuf;
 }

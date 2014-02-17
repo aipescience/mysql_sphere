@@ -19,8 +19,6 @@ extern "C" {
 	MYSQL_UDF_INT_FUNC( scircle_contained_by_circle_neg );
 	MYSQL_UDF_INT_FUNC( scircle_contains_circle );
 	MYSQL_UDF_INT_FUNC( scircle_contains_circle_neg );
-	MYSQL_UDF_INT_FUNC( scircle_contained_by_circle );
-	MYSQL_UDF_INT_FUNC( scircle_contained_by_circle_neg );
 	MYSQL_UDF_INT_FUNC( spoint_contained_by_circle );
 	MYSQL_UDF_INT_FUNC( spoint_contained_by_circle_neg );
 	MYSQL_UDF_INT_FUNC( spoint_contained_by_circle_com );
