@@ -38,6 +38,7 @@ my_bool spoint_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		    	outBuf->isDynParams[0] = false;
 	            if(args->arg_type[1] == INT_RESULT) {
 	                outBuf->memBufs[0] = spherepath_get_point((SPath *) buf->memBufs[0], *(long long*)args->args[1]);
+                    outBuf->argTypes[0] = MYSQL_SPHERE_POINT;
 	            } else {
 	                MYSQL_UDF_CHKCONV_PARAM_TOREAL(1, "spoint(SPath, i) requires a numerical or integer parameter as i.");
 
@@ -121,6 +122,7 @@ char *spoint( UDF_INIT* initid, UDF_ARGS* args, char *result, unsigned long *len
 
 	            if(args->arg_type[1] == INT_RESULT) {
 	                memBuf->memBufs[0] = spherepath_get_point((SPath *) buf->memBufs[0], *(long long*)args->args[1]);
+                    outBuf->argTypes[0] = MYSQL_SPHERE_POINT;
 	            } else {
 	                MYSQL_UDF_DYNCHKCONV_PARAM_TOREAL(1);
 
