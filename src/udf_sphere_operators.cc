@@ -284,36 +284,35 @@ long long srcontainsl( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 	}
 }
 
+//supporting slcontainsr(SBox, SBox), slcontainsr(SBox, SPoint), slcontainsr(SBox, SCircle), 
+//				slcontainsr(SCircle, SBox), slcontainsr(SBox, SLine), slcontainsr(SBox, SEllipse), 
+//				slcontainsr(SEllipse, SBox), slcontainsr(SBox, SPoly), slcontainsr(SPoly, SBox), 
+//				slcontainsr(SBox, SPath), 
+//
+//				slcontainsr(SCircle, SCircle), slcontainsr(SCircle, SPoint), 
+//
+//				slcontainsr(SEllipse, SEllipse), slcontainsr(SEllipse, SPoint), slcontainsr(SEllipse, SCircle), 
+//				slcontainsr(SCircle, SEllipse), slcontainsr(SEllipse, SLine), 
+//
+//				slcontainsr(SLine, SPoint), slcontainsr(SCircle, SLine), 
+//
+//				slcontainsr(SPath, SPoint), slcontainsr(SCircle, SPath), slcontainsr(SEllipse, SPath), 
+//				slcontainsr(SPoly, SPath), 
+//
+//				slcontainsr(SPoly, SPoly), slcontainsr(SPoly, SPoint), slcontainsr(SPoly, SCircle), 
+//				slcontainsr(SCircle, SPoly), slcontainsr(SPoly, SLine), slcontainsr(SPoly, SEllipse), 
+//				slcontainsr(SEllipse, SPoly), 
 
-//supporting slnotcontainsr(SBox, SBox), slnotcontainsr(SBox, SPoint), slnotcontainsr(SBox, SCircle), 
-//				slnotcontainsr(SCircle, SBox), slnotcontainsr(SBox, SLine), slnotcontainsr(SBox, SEllipse), 
-//				slnotcontainsr(SEllipse, SBox), slnotcontainsr(SBox, SPoly), slnotcontainsr(SPoly, SBox), 
-//				slnotcontainsr(SBox, SPath), 
-//
-//				slnotcontainsr(SCircle, SCircle), slnotcontainsr(SCircle, SPoint), 
-//
-//				slnotcontainsr(SEllipse, SEllipse), slnotcontainsr(SEllipse, SPoint), slnotcontainsr(SEllipse, SCircle), 
-//				slnotcontainsr(SCircle, SEllipse), slnotcontainsr(SEllipse, SLine), 
-//
-//				slnotcontainsr(SLine, SPoint), slnotcontainsr(SCircle, SLine), 
-//
-//				slnotcontainsr(SPath, SPoint), slnotcontainsr(SCircle, SPath), slnotcontainsr(SEllipse, SPath), 
-//				slnotcontainsr(SPoly, SPath), 
-//
-//				slnotcontainsr(SPoly, SPoly), slnotcontainsr(SPoly, SPoint), slnotcontainsr(SPoly, SCircle), 
-//				slnotcontainsr(SCircle, SPoly), slnotcontainsr(SPoly, SLine), slnotcontainsr(SPoly, SEllipse), 
-//				slnotcontainsr(SEllipse, SPoly), 
-
-my_bool slnotcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+my_bool slcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	//could be various things: array of SPoints...
 	buffer *buf;
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking stuff to be correct
     if(args->arg_count == 2) {
-        MYSQL_UDF_CHK_PARAM_CHAR(0, "slnotcontainsr() requires the first parameter to be a MySQL sphere object.");
+        MYSQL_UDF_CHK_PARAM_CHAR(0, "slcontainsr() requires the first parameter to be a MySQL sphere object.");
 
-        MYSQL_UDF_CHK_PARAM_CHAR(1, "slnotcontainsr() requires the second parameter to be a MySQL sphere object.");
+        MYSQL_UDF_CHK_PARAM_CHAR(1, "slcontainsr() requires the second parameter to be a MySQL sphere object.");
 
 		//decode object - if corrupted and not the thing we are thinking this should be, throw error
     	buf = new buffer(2);
@@ -321,14 +320,14 @@ my_bool slnotcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
         											MYSQL_SPHERE_POLYGON}), 
-                                            "slnotcontainsr() error decoding first parameter. Corrupted or not the correct type." );
+                                            "slcontainsr() error decoding first parameter. Corrupted or not the correct type." );
 
         MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
         											MYSQL_SPHERE_POLYGON}), 
-                                            "slnotcontainsr() error decoding second parameter. Corrupted or not the correct type." );
+                                            "slcontainsr() error decoding second parameter. Corrupted or not the correct type." );
     } else {
-		strcpy(message, "wrong number of arguments: slnotcontainsr() requires two parameters");
+		strcpy(message, "wrong number of arguments: slcontainsr() requires two parameters");
 		return 1;
     }
    
@@ -341,11 +340,11 @@ my_bool slnotcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
     return 0;
 }
 
-void slnotcontainsr_deinit( UDF_INIT* initid ) {
+void slcontainsr_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
@@ -369,25 +368,25 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 		case MYSQL_SPHERE_BOX:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return spherebox_cont_box_neg(abox, (SBox *) memBuf->memBufs[1]);
+					return spherebox_cont_box(abox, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return spherebox_cont_point_neg(abox, (SPoint *) memBuf->memBufs[1]);
+					return spherebox_cont_point(abox, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return spherebox_cont_circle_neg(abox, (SCircle *) memBuf->memBufs[1]);
+					return spherebox_cont_circle(abox, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return spherebox_cont_line_neg(abox, (SLine *) memBuf->memBufs[1]);
+					return spherebox_cont_line(abox, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return spherebox_cont_ellipse_neg(abox, (SEllipse *) memBuf->memBufs[1]);
+					return spherebox_cont_ellipse(abox, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return spherebox_cont_path_neg(abox, (SPath *) memBuf->memBufs[1]);
+					return spherebox_cont_path(abox, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return spherebox_cont_poly_neg(abox, (SPoly *) memBuf->memBufs[1]);
+					return spherebox_cont_poly(abox, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -399,25 +398,25 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 		case MYSQL_SPHERE_CIRCLE:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return spherecircle_cont_box_neg(acir, (SBox *) memBuf->memBufs[1]);
+					return spherecircle_cont_box(acir, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return spherepoint_in_circle_com_neg(acir, (SPoint *) memBuf->memBufs[1]);
+					return spherepoint_in_circle_com(acir, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return spherecircle_in_circle_com_neg(acir, (SCircle *) memBuf->memBufs[1]);
+					return spherecircle_in_circle_com(acir, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return spherecircle_cont_line_neg(acir, (SLine *) memBuf->memBufs[1]);
+					return spherecircle_cont_line(acir, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return spherecircle_cont_ellipse_neg(acir, (SEllipse *) memBuf->memBufs[1]);
+					return spherecircle_cont_ellipse(acir, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return spherecircle_cont_path_neg(acir, (SPath *) memBuf->memBufs[1]);
+					return spherecircle_cont_path(acir, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return spherecircle_cont_poly_neg(acir, (SPoly *) memBuf->memBufs[1]);
+					return spherecircle_cont_poly(acir, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -429,25 +428,25 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 		case MYSQL_SPHERE_ELLIPSE:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return sphereellipse_cont_box_neg(aell, (SBox *) memBuf->memBufs[1]);
+					return sphereellipse_cont_box(aell, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return sphereellipse_cont_point_neg(aell, (SPoint *) memBuf->memBufs[1]);
+					return sphereellipse_cont_point(aell, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return sphereellipse_cont_circle_neg(aell, (SCircle *) memBuf->memBufs[1]);
+					return sphereellipse_cont_circle(aell, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return sphereellipse_cont_line_neg(aell, (SLine *) memBuf->memBufs[1]);
+					return sphereellipse_cont_line(aell, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return sphereellipse_cont_ellipse_neg(aell, (SEllipse *) memBuf->memBufs[1]);
+					return sphereellipse_cont_ellipse(aell, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return sphereellipse_cont_path_neg(aell, (SPath *) memBuf->memBufs[1]);
+					return sphereellipse_cont_path(aell, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return sphereellipse_cont_poly_neg(aell, (SPoly *) memBuf->memBufs[1]);
+					return sphereellipse_cont_poly(aell, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -459,7 +458,7 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 		case MYSQL_SPHERE_LINE:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_POINT:
-					return sphereline_cont_point_neg(alin, (SPoint *) memBuf->memBufs[1]);
+					return sphereline_cont_point(alin, (SPoint *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -471,7 +470,7 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 		case MYSQL_SPHERE_PATH:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_POINT:
-					return spherepath_cont_point_neg(apat, (SPoint *) memBuf->memBufs[1]);
+					return spherepath_cont_point(apat, (SPoint *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -483,25 +482,25 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 		case MYSQL_SPHERE_POLYGON:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return spherepoly_cont_box_neg(apol, (SBox *) memBuf->memBufs[1]);
+					return spherepoly_cont_box(apol, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return spherepoly_cont_point_neg(apol, (SPoint *) memBuf->memBufs[1]);
+					return spherepoly_cont_point(apol, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return spherepoly_cont_circle_neg(apol, (SCircle *) memBuf->memBufs[1]);
+					return spherepoly_cont_circle(apol, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return spherepoly_cont_line_neg(apol, (SLine *) memBuf->memBufs[1]);
+					return spherepoly_cont_line(apol, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return spherepoly_cont_ellipse_neg(apol, (SEllipse *) memBuf->memBufs[1]);
+					return spherepoly_cont_ellipse(apol, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return spherepoly_cont_path_neg(apol, (SPath *) memBuf->memBufs[1]);
+					return spherepoly_cont_path(apol, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return spherepoly_cont_poly_neg(apol, (SPoly *) memBuf->memBufs[1]);
+					return spherepoly_cont_poly(apol, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -515,7 +514,6 @@ long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 			return 0;
 	}
 }
-
 
 //supporting srnotcontainsl(SBox, SBox), srnotcontainsl(SPoint, SBox), srnotcontainsl(SCircle, SBox), 
 //		srnotcontainsl(SBox, SCircle), srnotcontainsl(SLine, SBox), srnotcontainsl(SEllipse, SBox), 
@@ -756,36 +754,35 @@ long long srnotcontainsl( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char*
 	}
 }
 
+//supporting slnotcontainsr(SBox, SBox), slnotcontainsr(SBox, SPoint), slnotcontainsr(SBox, SCircle), 
+//				slnotcontainsr(SCircle, SBox), slnotcontainsr(SBox, SLine), slnotcontainsr(SBox, SEllipse), 
+//				slnotcontainsr(SEllipse, SBox), slnotcontainsr(SBox, SPoly), slnotcontainsr(SPoly, SBox), 
+//				slnotcontainsr(SBox, SPath), 
+//
+//				slnotcontainsr(SCircle, SCircle), slnotcontainsr(SCircle, SPoint), 
+//
+//				slnotcontainsr(SEllipse, SEllipse), slnotcontainsr(SEllipse, SPoint), slnotcontainsr(SEllipse, SCircle), 
+//				slnotcontainsr(SCircle, SEllipse), slnotcontainsr(SEllipse, SLine), 
+//
+//				slnotcontainsr(SLine, SPoint), slnotcontainsr(SCircle, SLine), 
+//
+//				slnotcontainsr(SPath, SPoint), slnotcontainsr(SCircle, SPath), slnotcontainsr(SEllipse, SPath), 
+//				slnotcontainsr(SPoly, SPath), 
+//
+//				slnotcontainsr(SPoly, SPoly), slnotcontainsr(SPoly, SPoint), slnotcontainsr(SPoly, SCircle), 
+//				slnotcontainsr(SCircle, SPoly), slnotcontainsr(SPoly, SLine), slnotcontainsr(SPoly, SEllipse), 
+//				slnotcontainsr(SEllipse, SPoly), 
 
-//supporting slcontainsr(SBox, SBox), slcontainsr(SBox, SPoint), slcontainsr(SBox, SCircle), 
-//				slcontainsr(SCircle, SBox), slcontainsr(SBox, SLine), slcontainsr(SBox, SEllipse), 
-//				slcontainsr(SEllipse, SBox), slcontainsr(SBox, SPoly), slcontainsr(SPoly, SBox), 
-//				slcontainsr(SBox, SPath), 
-//
-//				slcontainsr(SCircle, SCircle), slcontainsr(SCircle, SPoint), 
-//
-//				slcontainsr(SEllipse, SEllipse), slcontainsr(SEllipse, SPoint), slcontainsr(SEllipse, SCircle), 
-//				slcontainsr(SCircle, SEllipse), slcontainsr(SEllipse, SLine), 
-//
-//				slcontainsr(SLine, SPoint), slcontainsr(SCircle, SLine), 
-//
-//				slcontainsr(SPath, SPoint), slcontainsr(SCircle, SPath), slcontainsr(SEllipse, SPath), 
-//				slcontainsr(SPoly, SPath), 
-//
-//				slcontainsr(SPoly, SPoly), slcontainsr(SPoly, SPoint), slcontainsr(SPoly, SCircle), 
-//				slcontainsr(SCircle, SPoly), slcontainsr(SPoly, SLine), slcontainsr(SPoly, SEllipse), 
-//				slcontainsr(SEllipse, SPoly), 
-
-my_bool slcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
+my_bool slnotcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	//could be various things: array of SPoints...
 	buffer *buf;
 	MYSQL_SPHERE_TYPES argType;
 
 	//checking stuff to be correct
     if(args->arg_count == 2) {
-        MYSQL_UDF_CHK_PARAM_CHAR(0, "slcontainsr() requires the first parameter to be a MySQL sphere object.");
+        MYSQL_UDF_CHK_PARAM_CHAR(0, "slnotcontainsr() requires the first parameter to be a MySQL sphere object.");
 
-        MYSQL_UDF_CHK_PARAM_CHAR(1, "slcontainsr() requires the second parameter to be a MySQL sphere object.");
+        MYSQL_UDF_CHK_PARAM_CHAR(1, "slnotcontainsr() requires the second parameter to be a MySQL sphere object.");
 
 		//decode object - if corrupted and not the thing we are thinking this should be, throw error
     	buf = new buffer(2);
@@ -793,14 +790,14 @@ my_bool slcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
         MYSQL_UDF_CHK_SPHERETYPE( 0, buf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
         											MYSQL_SPHERE_POLYGON}), 
-                                            "slcontainsr() error decoding first parameter. Corrupted or not the correct type." );
+                                            "slnotcontainsr() error decoding first parameter. Corrupted or not the correct type." );
 
         MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
         											MYSQL_SPHERE_POINT, MYSQL_SPHERE_LINE, MYSQL_SPHERE_PATH,
         											MYSQL_SPHERE_POLYGON}), 
-                                            "slcontainsr() error decoding second parameter. Corrupted or not the correct type." );
+                                            "slnotcontainsr() error decoding second parameter. Corrupted or not the correct type." );
     } else {
-		strcpy(message, "wrong number of arguments: slcontainsr() requires two parameters");
+		strcpy(message, "wrong number of arguments: slnotcontainsr() requires two parameters");
 		return 1;
     }
    
@@ -813,11 +810,11 @@ my_bool slcontainsr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
     return 0;
 }
 
-void slcontainsr_deinit( UDF_INIT* initid ) {
+void slnotcontainsr_deinit( UDF_INIT* initid ) {
 	MYSQL_UDF_DEINIT_BUFFER();
 }
 
-long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
+long long slnotcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* error ) {
 	buffer * memBuf = (buffer*)initid->ptr;
 
     MYSQL_UDF_DYNCHK_SPHERETYPE( 0, memBuf, PROTECT({MYSQL_SPHERE_BOX, MYSQL_SPHERE_CIRCLE, MYSQL_SPHERE_ELLIPSE,
@@ -841,25 +838,25 @@ long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 		case MYSQL_SPHERE_BOX:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return spherebox_cont_box(abox, (SBox *) memBuf->memBufs[1]);
+					return spherebox_cont_box_neg(abox, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return spherebox_cont_point(abox, (SPoint *) memBuf->memBufs[1]);
+					return spherebox_cont_point_neg(abox, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return spherebox_cont_circle(abox, (SCircle *) memBuf->memBufs[1]);
+					return spherebox_cont_circle_neg(abox, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return spherebox_cont_line(abox, (SLine *) memBuf->memBufs[1]);
+					return spherebox_cont_line_neg(abox, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return spherebox_cont_ellipse(abox, (SEllipse *) memBuf->memBufs[1]);
+					return spherebox_cont_ellipse_neg(abox, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return spherebox_cont_path(abox, (SPath *) memBuf->memBufs[1]);
+					return spherebox_cont_path_neg(abox, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return spherebox_cont_poly(abox, (SPoly *) memBuf->memBufs[1]);
+					return spherebox_cont_poly_neg(abox, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -871,25 +868,25 @@ long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 		case MYSQL_SPHERE_CIRCLE:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return spherecircle_cont_box(acir, (SBox *) memBuf->memBufs[1]);
+					return spherecircle_cont_box_neg(acir, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return spherepoint_in_circle_com(acir, (SPoint *) memBuf->memBufs[1]);
+					return spherepoint_in_circle_com_neg(acir, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return spherecircle_in_circle_com(acir, (SCircle *) memBuf->memBufs[1]);
+					return spherecircle_in_circle_com_neg(acir, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return spherecircle_cont_line(acir, (SLine *) memBuf->memBufs[1]);
+					return spherecircle_cont_line_neg(acir, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return spherecircle_cont_ellipse(acir, (SEllipse *) memBuf->memBufs[1]);
+					return spherecircle_cont_ellipse_neg(acir, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return spherecircle_cont_path(acir, (SPath *) memBuf->memBufs[1]);
+					return spherecircle_cont_path_neg(acir, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return spherecircle_cont_poly(acir, (SPoly *) memBuf->memBufs[1]);
+					return spherecircle_cont_poly_neg(acir, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -901,25 +898,25 @@ long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 		case MYSQL_SPHERE_ELLIPSE:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return sphereellipse_cont_box(aell, (SBox *) memBuf->memBufs[1]);
+					return sphereellipse_cont_box_neg(aell, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return sphereellipse_cont_point(aell, (SPoint *) memBuf->memBufs[1]);
+					return sphereellipse_cont_point_neg(aell, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return sphereellipse_cont_circle(aell, (SCircle *) memBuf->memBufs[1]);
+					return sphereellipse_cont_circle_neg(aell, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return sphereellipse_cont_line(aell, (SLine *) memBuf->memBufs[1]);
+					return sphereellipse_cont_line_neg(aell, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return sphereellipse_cont_ellipse(aell, (SEllipse *) memBuf->memBufs[1]);
+					return sphereellipse_cont_ellipse_neg(aell, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return sphereellipse_cont_path(aell, (SPath *) memBuf->memBufs[1]);
+					return sphereellipse_cont_path_neg(aell, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return sphereellipse_cont_poly(aell, (SPoly *) memBuf->memBufs[1]);
+					return sphereellipse_cont_poly_neg(aell, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -931,7 +928,7 @@ long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 		case MYSQL_SPHERE_LINE:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_POINT:
-					return sphereline_cont_point(alin, (SPoint *) memBuf->memBufs[1]);
+					return sphereline_cont_point_neg(alin, (SPoint *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -943,7 +940,7 @@ long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 		case MYSQL_SPHERE_PATH:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_POINT:
-					return spherepath_cont_point(apat, (SPoint *) memBuf->memBufs[1]);
+					return spherepath_cont_point_neg(apat, (SPoint *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;
@@ -955,25 +952,25 @@ long long slcontainsr( UDF_INIT* initid, UDF_ARGS* args, char* is_null, char* er
 		case MYSQL_SPHERE_POLYGON:
 			switch(memBuf->argTypes[1]) {
 				case MYSQL_SPHERE_BOX:
-					return spherepoly_cont_box(apol, (SBox *) memBuf->memBufs[1]);
+					return spherepoly_cont_box_neg(apol, (SBox *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POINT:
-					return spherepoly_cont_point(apol, (SPoint *) memBuf->memBufs[1]);
+					return spherepoly_cont_point_neg(apol, (SPoint *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_CIRCLE:
-					return spherepoly_cont_circle(apol, (SCircle *) memBuf->memBufs[1]);
+					return spherepoly_cont_circle_neg(apol, (SCircle *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_LINE:
-					return spherepoly_cont_line(apol, (SLine *) memBuf->memBufs[1]);
+					return spherepoly_cont_line_neg(apol, (SLine *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_ELLIPSE:
-					return spherepoly_cont_ellipse(apol, (SEllipse *) memBuf->memBufs[1]);
+					return spherepoly_cont_ellipse_neg(apol, (SEllipse *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_PATH:
-					return spherepoly_cont_path(apol, (SPath *) memBuf->memBufs[1]);
+					return spherepoly_cont_path_neg(apol, (SPath *) memBuf->memBufs[1]);
 					break;
 				case MYSQL_SPHERE_POLYGON:
-					return spherepoly_cont_poly(apol, (SPoly *) memBuf->memBufs[1]);
+					return spherepoly_cont_poly_neg(apol, (SPoly *) memBuf->memBufs[1]);
 					break;
 				default:
 					*error = 1;

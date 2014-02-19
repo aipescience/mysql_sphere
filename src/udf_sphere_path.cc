@@ -1033,7 +1033,7 @@ char *spath_add_point_aggr( UDF_INIT* initid, UDF_ARGS* args, char *result, unsi
 	return memBuf->buf->resBuf;
 }
 
-//spath_aggr(SPath, SPoint)...
+//spath_aggr(SPoint)...
 my_bool spath_aggr_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	buffer * buf;
 	aggregateBuff * aggBuf = new aggregateBuff();

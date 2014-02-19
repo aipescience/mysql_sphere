@@ -14,14 +14,6 @@ Changes:
 
 No documentation is available yet, but this will be available in the future.
 
-WARNING:
--------
-
-This library is not yet tested and should be used at your own risk. Testing will
-be added later, however since the code is (almost) a 1:1 copy of pgSphere 1.1.1
-it should actually work...
-
-
 To install
 ----------
 

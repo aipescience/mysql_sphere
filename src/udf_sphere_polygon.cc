@@ -319,7 +319,7 @@ long long spoly_contains_point( UDF_INIT* initid, UDF_ARGS* args, char* is_null,
 	}
 }
 
-//spoly_contains_point_neg(SPoly, SPoly)...
+//spoly_contains_point_neg(SPoly, SPoint)...
 my_bool spoly_contains_point_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_COM_INIT( "spoly_contains_point_neg", PROTECT({MYSQL_SPHERE_POLYGON}), PROTECT({MYSQL_SPHERE_POINT}) );
 }
@@ -359,7 +359,7 @@ long long spoly_contains_point_com( UDF_INIT* initid, UDF_ARGS* args, char* is_n
 	return (long long)spherepoly_cont_point_com((SPoint*) memBuf->memBufs[0], (SPoly*) memBuf->memBufs[1]);
 }
 
-//spoly_contains_point_com_neg(SPoly, SPoly)...
+//spoly_contains_point_com_neg(SPoint, SPoly)...
 my_bool spoly_contains_point_com_neg_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 	MYSQL_UDF_SPHERE_TWOPARAM_INIT( "spoly_contains_point_com_neg", PROTECT({MYSQL_SPHERE_POINT}), PROTECT({MYSQL_SPHERE_POLYGON}) );
 }

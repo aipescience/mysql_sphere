@@ -92,7 +92,7 @@ my_bool sbox_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 		//SPoint
 		MYSQL_UDF_CHK_PARAM_CHAR(0, "sbox(spoint, spoint) requires the first parameter to be a MySQL sphere object.");
 
-		MYSQL_UDF_CHK_PARAM_CHAR(1, "sbox(spoint, spoint) requires the second parameter to be a MySQL sphere object.");
+		MYSQL_UDF_CHK_PARAM_CHAR(1, "sbox(spoint, spoint) requires the first parameter to be a MySQL sphere object.");
 
 		//decode object - if corrupted and not the thing we are thinking this should be, throw error
     	buf = new buffer(2);
@@ -101,7 +101,7 @@ my_bool sbox_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
                                             "sbox(spoint, spoint) error decoding first parameter. Corrupted or not the correct type." );
 
         MYSQL_UDF_CHK_SPHERETYPE( 1, buf, PROTECT({MYSQL_SPHERE_POINT}), 
-                                            "sbox(spoint, spoint) error decoding second parameter. Corrupted or not the correct type." );
+                                            "sbox(spoint, spoint) error decoding first parameter. Corrupted or not the correct type." );
 
         if(buf->isDynParams[0] == true || buf->isDynParams[1] == true) {
         	outBuf->isDynParams[0] = true;

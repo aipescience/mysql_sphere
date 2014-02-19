@@ -114,7 +114,7 @@ my_bool sellipse_init( UDF_INIT* initid, UDF_ARGS* args, char* message ) {
 			}
 		}
 	} else {
-		strcpy(message, "wrong number of arguments: sellipse() requires one or two parameters");
+		strcpy(message, "wrong number of arguments: sellipse() requires one or four parameters");
 		return 1;
 	}
 
