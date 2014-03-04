@@ -194,7 +194,20 @@ MYSQL_SPHERE_TYPES decode(char * input, size_t inputLen, void ** output) {
 			return objType;
 		}
 
-#if MYSQL_VERSION_ID >= 50601
+#if defined(MARIADB_BASE_VERSION) && MYSQL_VERSION_ID >= 100000
+		//somehow the MARIADB 10.0 version of the base64 decoding routine does not like
+		//base64 encoded strings that have spaces at the end.
+		int i = 0;
+		for(i = inputLen - 1; i >= 0; i--) {
+			if(input[i] == ' ' || input[i] == '\0') {
+				inputLen--;
+			} else {
+				break;
+			}
+		}
+
+		if(base64_decode(input, inputLen, decodedString, NULL, NULL) == 0) {
+#elif MYSQL_VERSION_ID >= 50601
 		if(base64_decode(input, inputLen, decodedString, NULL, NULL) <= 0) {
 #else
 		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {

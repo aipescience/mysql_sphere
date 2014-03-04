@@ -392,28 +392,18 @@
 			}
 		},
 		{
-			"file": "test/expected/poly.sql.out",
+			"file": "src/serialiser.cc",
 			"settings":
 			{
-				"buffer_size": 26198,
+				"buffer_size": 11045,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 118 files for \"SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/circle.sql:\n   11  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   12  \n   13: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   14  \n   15  SET sphere_outmode=\"DEG\";\n   ..\n   21  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   22  \n   23: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   24  \n   25  SET sphere_outmode=\"DMS\";\n   ..\n   31  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   32  \n   33: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   34  \n   35  SET sphere_outmode=\"HMS\";\n   ..\n   41  SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 0.1 >'));\n   42  \n   43: SELECT sstr(scircle( '< (1h 2m 30s , +1d 2m 30s), 90d >'));\n   44  \n   45  SET sphere_outmode=\"DMS\";\n\n4 matches in 1 file\n\n\nSearching 118 files for \"radius must be not greater than 90 degrees\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  	  } else if ( FPeq(c->radius,PIH) ){\n   82  		// set \"exact\" 90 degrees\n   ..\n  239  	SCircle * c  ;\n  240  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  241: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  242  		return NULL;\n  243  	}\n\n2 matches in 1 file\n\n\nSearching 118 files for \"fprintf (stderr\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n13 matches across 3 files\n\n\nSearching 118 files for \"fprintf (stderr, \"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n10 matches across 2 files\n\n\nSearching 118 files for \"fprintf (stderr, \"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n10 matches across 2 files\n\n\nSearching 118 files for \"fprintf(stderr, \"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n13 matches across 3 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  			}\n  401  \n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  			}\n  401  \n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  				return 0;\n  401  			}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 118 files for \"fprintf\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc:\n  632  		reset_buffer();\n  633  		free( box );\n  634: 		fprintf ( stderr , \"spherebox_in: wrong data type\" );\n  635  		return NULL;\n  636  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc:\n   78  		free( c );\n   79  		c = NULL;\n   80: 		fprintf (stderr, \"spherecircle_in: radius must be not greater than 90 degrees\\n\" );\n   81  		return NULL;\n   82  	  } else if ( FPeq(c->radius,PIH) ){\n   ..\n   89  	  free( c );\n   90  	  c = NULL;\n   91: 	  fprintf (stderr, \"spherecircle_in: parse error\\n\" );\n   92  	}\n   93  	return ( c );\n   ..\n  240  	SCircle * c  ;\n  241  	if ( FPgt(rad,PIH) || FPlt(rad,0.0) ){\n  242: 		fprintf ( stderr , \"radius must be not greater than 90 degrees or less than 0\\n\" );\n  243  		return NULL;\n  244  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc:\n  110  		free( e );\n  111  		e = NULL;\n  112: 		fprintf ( stderr , \"sphereellipse_in: radius must be less than 90 degrees\" );\n  113  	} else {\n  114  		sellipse_check ( e );\n  ...\n  397  			} while ( cntr < maxcntr && ( ( sp[2].lng - sp[0].lng ) > FLT_EPSILON ) );\n  398  			if ( cntr >= maxcntr ){\n  399: 				fprintf ( stderr, \"Bug found in pg_sphere function 'sellipse_ellipse_pos' ! \\n Please report it to pg_sphere team.\");\n  400  				return 0;\n  401  			}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc:\n   77  		free( se );\n   78  		se = NULL;\n   79: 		fprintf ( stderr , \"spheretrans_in: parse error\" );\n   80  		return NULL;\n   81  	}\n   ..\n  114  		if ( t == 0 ) {\n  115  			free ( se );\n  116: 			fprintf ( stderr, \"invalid axis format\" );\n  117  			return NULL;\n  118  		}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc:\n  573  		free( sl );\n  574  		sl = NULL;\n  575: 		fprintf ( stderr , \"sphereline_in: parse error\" );\n  576  	}\n  577  	reset_buffer();\n  ...\n  600  		free( sl );\n  601  		sl = NULL;\n  602: 		fprintf ( stderr , \"sphereline_from_points: length of line must be not equal 180 degrees\" );\n  603  	}\n  604  \n  ...\n  610  	if ( FPlt( l, 0.0 ) ) {\n  611  		free ( sl );\n  612: 		fprintf ( stderr , \"sphereline_from_trans: length of line must be >= 0\" );\n  613  		return NULL;\n  614  	} else {\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc:\n   48  \n   49  	if ( nelem < 2 ) {\n   50: 		fprintf ( stderr , \"spherepath_from_array: more than one point needed\" );\n   51  		return NULL;\n   52  	} else {\n   ..\n   73  		}\n   74  		if ( nelem < 2 ){\n   75: 			fprintf (stderr , \"spherepath_from_array: more than one point needed\" );\n   76  			return NULL;\n   77  		}\n   ..\n   85  				scheck = spoint_dist ( &arr[i-1], &arr[i] );\n   86  				if (FPeq(scheck, PI)) {\n   87: 					fprintf (stderr , \"spherepath_from_array: a path segment length must be not equal 180 degrees.\" );\n   88  					return NULL;\n   89  				}\n   ..\n  420  	} else {\n  421  		reset_buffer();\n  422: 		fprintf (stderr , \"spherepath_in: more than one point needed\" );\n  423  		return NULL;\n  424  	}\n  ...\n  660  	// Skip if distance is equal 180deg\n  661  	if ( FPeq ( spoint_dist ( p, &path->p[ path->npts - 1 ]), PI ) ) {\n  662: 		fprintf ( stderr, \"NOTICE: spath(spoint): Skip point, distance of previous point is 180deg\" );\n  663  	}\n  664  \n  ...\n  679  \n  680  	if ( path->npts < 2 ) {\n  681: 		fprintf ( stderr, \"NOTICE: spath(spoint): At least 2 points required\" );\n  682  		free ( path );\n  683  		return NULL;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc:\n  132  \n  133  	if ( nelem < 3 ){\n  134: 		fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  135  		return NULL;\n  136  	} else {\n  ...\n  160  		}\n  161  		if ( nelem < 3 ){\n  162: 			fprintf ( stderr , \"spherepoly_from_array: more than two points needed\" );\n  163  			return NULL;\n  164  		}\n  ...\n  175  			}\n  176  			if ( FPeq( scheck, PI ) ) {\n  177: 				fprintf ( stderr , \"spherepoly_from_array: a polygon segment length must be not equal 180 degrees.\" );\n  178  				return NULL;\n  179  			}\n  ...\n  184  \n  185  	if ( ! spherepoly_check ( poly ) ){\n  186: 		fprintf ( stderr , \"spherepoly_from_array: a line segment overlaps or polygon too large\" );\n  187  		free ( poly ) ;\n  188  		return NULL;\n  ...\n  490  			}\n  491  			if ( cntr > 10000 ) {\n  492: 				fprintf(stderr, \"WARNING: Bug found in spoly_contains_point\");\n  493: 				fprintf(stderr, \"ERROR: Please report it to mysql_sphere team!\");\n  494  				return false;\n  495  			}\n  ...\n  616  	} else {\n  617  		reset_buffer();\n  618: 		fprintf ( stderr, \"spherepoly_in: more than two points needed\" );\n  619  		return NULL;\n  620  	}\n  ...\n  894  	// Skip if distance is equal 180deg\n  895  	if ( FPeq ( spoint_dist ( p, &poly->p[ poly->npts - 1 ]) , PI ) ) {\n  896: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Skip point, distance of previous point is 180deg\" );\n  897  	}\n  898  \n  ...\n  915  \n  916  	if ( poly->npts < 3 ) {\n  917: 		fprintf ( stderr, \"NOTICE: spoly(spoint): At least 3 points required\" );\n  918  		return NULL;\n  919  	}\n  920  	// Skip if distance is equal 180deg\n  921  	if ( FPeq ( spoint_dist ( &poly->p[0], &poly->p[ poly->npts - 1 ]), PI ) ) {\n  922: 		fprintf ( stderr, \"NOTICE: spoly(spoint): Cannot close polygon. Distance between first and last point is 180deg\" );\n  923  		return NULL;\n  924  	}\n  925  \n  926  	if ( !spherepoly_check ( poly ) ) {\n  927: 		fprintf ( stderr, \"NOTICE: spoly(spoint): a line segment overlaps or polygon too large\" );\n  928  		return NULL;\n  929  	}\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc:\n   77  	char * result = (char*) malloc(polytype_len);\n   78  	if(result == NULL) {\n   79: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   80  		return NULL;\n   81  	}\n   ..\n   90  \n   91  		if(base64Result == NULL) {\n   92: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n   93  			return NULL;\n   94  		}\n   95  \n   96  		if(base64_encode(result, polytype_len, base64Result) != 0) {\n   97: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n   98  			return NULL;\n   99  		}\n  ...\n  120  	char * result = (char*) malloc(pathtype_len);\n  121  	if(result == NULL) {\n  122: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  123  		return NULL;\n  124  	}\n  ...\n  133  \n  134  		if(base64Result == NULL) {\n  135: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  136  			return NULL;\n  137  		}\n  138  \n  139  		if(base64_encode(result, pathtype_len, base64Result) != 0) {\n  140: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\");\n  141  			return NULL;\n  142  		}\n  ...\n  189  \n  190  		if(decodedString == NULL) {\n  191: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\");\n  192  			return objType;\n  193  		}\n  194  \n  195  		if(base64_decode(input, inputLen, decodedString, NULL) <= 0) {\n  196: 			fprintf(stderr, \"Error MySQL Sphere: Could not decode the MySQL object provided!\\n\");\n  197  			free(decodedString);\n  198  			return objType;\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h:\n    7  	char * result = (char*) malloc(SPHERETYPE_LEN); \\\n    8  	if(result == NULL) { \\\n    9: 		fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   10  		return NULL; \\\n   11  	} \\\n   ..\n   20   \\\n   21  		if(base64Result == NULL) { \\\n   22: 			fprintf(stderr, \"Error MySQL Sphere: Out of memory\\n\"); \\\n   23  			return NULL; \\\n   24  		} \\\n   25   \\\n   26  		if(base64_encode(result, SPHERETYPE_LEN, base64Result) != 0) { \\\n   27: 			fprintf(stderr, \"Error MySQL Sphere: Could not convert to base64!\\n\"); \\\n   28  			return NULL; \\\n   29  		} \\\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sparse.cc:\n  721  # if YYLTYPE_IS_TRIVIAL\n  722  #  define YY_LOCATION_PRINT(File, Loc)			\\\n  723:      fprintf (File, \"%d.%d-%d.%d\",			\\\n  724  	      (Loc).first_line, (Loc).first_column,	\\\n  725  	      (Loc).last_line,  (Loc).last_column)\n  ...\n  741  #if YYDEBUG\n  742  \n  743: # ifndef YYFPRINTF\n  744  #  include <stdio.h> /* INFRINGES ON USER NAME SPACE */\n  745: #  define YYFPRINTF fprintf\n  746  # endif\n  747  \n  ...\n  749  do {						\\\n  750    if (yydebug)					\\\n  751:     YYFPRINTF Args;				\\\n  752  } while (YYID (0))\n  753  \n  ...\n  756    if (yydebug)								  \\\n  757      {									  \\\n  758:       YYFPRINTF (stderr, \"%s \", Title);					  \\\n  759        yy_symbol_print (stderr,						  \\\n  760  		  Type, Value); \\\n  761:       YYFPRINTF (stderr, \"\\n\");						  \\\n  762      }									  \\\n  763  } while (YYID (0))\n  ...\n  814  {\n  815    if (yytype < YYNTOKENS)\n  816:     YYFPRINTF (yyoutput, \"token %s (\", yytname[yytype]);\n  817    else\n  818:     YYFPRINTF (yyoutput, \"nterm %s (\", yytname[yytype]);\n  819  \n  820    yy_symbol_value_print (yyoutput, yytype, yyvaluep);\n  821:   YYFPRINTF (yyoutput, \")\");\n  822  }\n  823  \n  ...\n  838  #endif\n  839  {\n  840:   YYFPRINTF (stderr, \"Stack now\");\n  841    for (; bottom <= top; ++bottom)\n  842:     YYFPRINTF (stderr, \" %d\", *bottom);\n  843:   YYFPRINTF (stderr, \"\\n\");\n  844  }\n  845  \n  ...\n  869    int yyi;\n  870    unsigned long int yylno = yyrline[yyrule];\n  871:   YYFPRINTF (stderr, \"Reducing stack by rule %d (line %lu):\\n\",\n  872  	     yyrule - 1, yylno);\n  873    /* The symbols being reduced.  */\n  874    for (yyi = 0; yyi < yynrhs; yyi++)\n  875      {\n  876:       fprintf (stderr, \"   $%d = \", yyi + 1);\n  877        yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],\n  878  		       &(yyvsp[(yyi + 1) - (yynrhs)])\n  879  		       		       );\n  880:       fprintf (stderr, \"\\n\");\n  881      }\n  882  }\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc:\n 1663  static void yy_fatal_error (yyconst char* msg )\n 1664  {\n 1665:     	(void) fprintf( stderr, \"%s\\n\", msg );\n 1666  	exit( YY_EXIT_FAILURE );\n 1667  }\n\n56 matches across 11 files\n\n\nSearching 128 files for \"mysql-sphere\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/README:\n    1  +-----------------------------------------------------------------------------+\n    2: |                 mysql-sphere 0.1 for MySQL 5.5 and MariaDB                  |\n    3  +-----------------------------------------------------------------------------+\n    4  \n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/appendixes.html:\n   84  ><A\n   85  NAME=\"appendixes.changelog\"\n   86: >10.1. First release candidate of the pgSphere port mysql-sphere 0.1</A\n   87  ></H2\n   88  ><P\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/construct.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   90  >&#13;          Constructors within <SPAN\n   91  CLASS=\"application\"\n   92: >mysql-sphere</SPAN\n   93: > are in no way different to defining mysql-sphere objects, just with other\n   94    options. They are in a way overloaded construction functions from the previous\n   95    chapter. In pgSphere a distinction between type definition and construction was\n   96:   made, mainly due to the capabilities of PostgreSQL. In mysql-sphere this is not\n   97    needed anymore and the following sections describe\n   98            functions needed to create spherical data types from other data\n   ..\n  100              <SPAN\n  101  CLASS=\"application\"\n  102: >mysql-sphere</SPAN\n  103  > constructor\n  104            functions are named by returned data type. Constructor functions\n  ...\n  162  CLASS=\"parameter\"\n  163  >path</CODE\n  164: > is a mysql-sphere path binary BLOB, <CODE\n  165  CLASS=\"parameter\"\n  166  >i</CODE\n  ...\n  255              <SPAN\n  256  CLASS=\"application\"\n  257: >mysql-sphere</SPAN\n  258  > will assume <TT\n  259  CLASS=\"literal\"\n  ...\n  419  CLASS=\"literal\"\n  420  >sstr</TT\n  421: > casts a given mysql-sphere data type to a readable string).\n  422              </P\n  423  ><TABLE\n  ...\n  532  CLASS=\"literal\"\n  533  >sstr</TT\n  534: > casts a given mysql-sphere data type to a readable string):\n  535              </P\n  536  ><TABLE\n  ...\n  760  CLASS=\"literal\"\n  761  >sstr</TT\n  762: > casts a given mysql-sphere data type to a readable string).\n  763              </P\n  764  ><TABLE\n  ...\n  852  CLASS=\"literal\"\n  853  >sstr</TT\n  854: > casts a given mysql-sphere data type to a readable string).\n  855              </P\n  856  ><TABLE\n  ...\n  955  CLASS=\"literal\"\n  956  >sstr</TT\n  957: > casts a given mysql-sphere data type to a readable string).\n  958              </P\n  959  ><TABLE\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/examples.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/funcs.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   89  ><P\n   90  >&#13;          The functions described below are implemented in pgSphere without having an\n   91:           operator. In mysql-sphere they are equally used, but their names just differ by a\n   92            prepending 's' to avoid conflict with already existing functions. If you are missing some functions, see\n   93            <A\n   ..\n  412  ></P\n  413  > cannot be ported to MySQL since a UDF function can only return one value and not as in PostgreSQL\n  414: a rowset. Therefore the equivalent mysql-sphere function does not exist.\n  415  </DIV\n  416  ></DIV\n  ...\n  695  >&#13;              <SPAN\n  696  CLASS=\"application\"\n  697: >mysql-sphere</SPAN\n  698  > provides 4 functions to get\n  699                the parameters of a spherical ellipse:\n  ...\n  833                  <SPAN\n  834  CLASS=\"application\"\n  835: >mysql-sphere</SPAN\n  836  > provides two functions:\n  837                </P\n  ...\n 1045  >&#13;              <SPAN\n 1046  CLASS=\"application\"\n 1047: >mysql-sphere</SPAN\n 1048  > provides two functions to\n 1049                get points at a path.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html:\n    4              pgSphere 1.1\n    5          </title><meta name=\"GENERATOR\" content=\"Modular DocBook HTML Stylesheet Version 1.79\"><link rel=\"NEXT\" title=\"\n    6:             What is mysql-sphere?\n    7          \" href=\"./x18.html\"><link rel=\"STYLESHEET\" type=\"text/css\" href=\"./img/pg_sphere.css\"><meta name=\"creation\" content=\"2009-07-06T05:33:03\">\n    8  \n    9: </head><body class=\"article\" bgcolor=\"#FFFFFF\" text=\"#000000\" link=\"#0000FF\" vlink=\"#840084\" alink=\"#0000FF\"><div class=\"ARTICLE\"><div class=\"TITLEPAGE\"><h1 class=\"title\"><a name=\"AEN2\">mysql-sphere 0.1 based on pgSphere 1.2</a></h1><h3 class=\"author\"><a name=\"AEN4\">Port by: Adrian M. Partl<br>Original: The pgSphere team</a></h3><div><div class=\"abstract\"><p></p><a name=\"AEN6\"></a><p>\n   10                </p><div class=\"mediaobject\"><p><img src=\"./img/logo.jpg\" width=\"225px\"><font size=\"+3\">now available for dolphins!</font></p></div>\n   11              <p></p><p>\n   12:                 <span class=\"application\">mysql-sphere</span> provides spherical data\n   13                  types, functions, and operators for\n   14                  <span class=\"application\">MySQL and MariaDB</span>. It is based on pgSphere 1.2 (see <a href=\"http://pgsphere.projects.pgfoundry.org/\" target=\"_top\">http://pgsphere.projects.pgfoundry.org/</a>and constitutes a port of pgSphere\n   ..\n   19                  This document\n   20                  describes installation and usage of this module.\n   21:             </p><p></p></div></div><hr></div><div class=\"TOC\"><dl><dt><b>Table of Contents</b></dt><dt>1. <a href=\"./x18.html\">What is mysql-sphere?</a></dt><dt>2. <a href=\"./x44.html\">Installation</a></dt><dd><dl><dt>2.1. <a href=\"./x44.html#AEN46\">Download</a></dt><dt>2.2. <a href=\"./x44.html#AEN54\">Installation</a></dt><dt>2.3. <a href=\"./x44.html#AEN93\">Creating a database with <span class=\"application\">pgSphere</span></a></dt></dl></dd><dt>3. <a href=\"./types.html\">Data types</a></dt><dd><dl><dt>3.1. <a href=\"./types.html#dt.over\">Overview</a></dt><dt>3.2. <a href=\"./types.html#dt.spoint\">Point</a></dt><dt>3.3. <a href=\"./types.html#dt.strans\">Euler transformation</a></dt><dt>3.4. <a href=\"./types.html#dt.scircle\">Circle</a></dt><dt>3.5. <a href=\"./types.html#dt.sline\">Line</a></dt><dt>3.6. <a href=\"./types.html#dt.sellipse\">Ellipses</a></dt><dt>3.7. <a href=\"./types.html#dt.spath\">Path</a></dt><dt>3.8. <a href=\"./types.html#dt.spoly\">Polygon</a></dt><dt>3.9. <a href=\"./types.html#dt.sbox\">Coordinates range</a></dt></dl></dd><dt>4. <a href=\"./construct.html\">Constructors</a></dt><dd><dl><dt>4.1. <a href=\"./construct.html#contr.spoint\">Point</a></dt><dt>4.2. <a href=\"./construct.html#contr.strans\">Euler transformation</a></dt><dt>4.3. <a href=\"./construct.html#contr.scircle\">Circle</a></dt><dt>4.4. <a href=\"./construct.html#contr.sline\">Line</a></dt><dt>4.5. <a href=\"./construct.html#contr.sellipse\">Ellipse</a></dt><dt>4.6. <a href=\"./construct.html#contr.spoly\">Polygon</a></dt><dt>4.7. <a href=\"./construct.html#contr.spath\">Path</a></dt><dt>4.8. <a href=\"./construct.html#contr.sbox\">Coordinates range</a></dt></dl></dd><dt>5. <a href=\"./operators.html\">Operators</a></dt><dd><dl><dt>5.1. <a href=\"./operators.html#op.casting\">Casting</a></dt><dt>5.2. <a href=\"./operators.html#op.equal\">Equality</a></dt><dt>5.3. <a href=\"./operators.html#op.over\">Contain and overlap</a></dt><dt>5.4. <a href=\"./operators.html#op.cross\">Crossing of lines</a></dt><dt>5.5. <a href=\"./operators.html#op.dist\">Distance</a></dt><dt>5.6. <a href=\"./operators.html#op.circum\">Length and circumference</a></dt><dt>5.7. <a href=\"./operators.html#op.center\">Center</a></dt><dt>5.8. <a href=\"./operators.html#op.direction\">Change the direction</a></dt><dt>5.9. <a href=\"./operators.html#op.turnline\">Turn the path of a line</a></dt><dt>5.10. <a href=\"./operators.html#op.trans\">Transformation</a></dt></dl></dd><dt>6. <a href=\"./funcs.html\">Functions</a></dt><dd><dl><dt>6.1. <a href=\"./funcs.html#func.area\">Area function</a></dt><dt>6.2. <a href=\"./funcs.html#func.spoint\"><span class=\"type\">spoint</span> functions</a></dt><dt>6.3. <a href=\"./funcs.html#funcs.strans\"><span class=\"type\">strans</span> functions</a></dt><dt>6.4. <a href=\"./funcs.html#func.circle\">scircle functions</a></dt><dt>6.5. <a href=\"./funcs.html#funcs.sellipse\"><span class=\"type\">sellipse</span> functions</a></dt><dt>6.6. <a href=\"./funcs.html#funcs.sline\"><span class=\"type\">sline</span> functions</a></dt><dt>6.7. <a href=\"./funcs.html#funcs.spath\"><span class=\"type\">spath</span> functions</a></dt><dt>6.8. <a href=\"./funcs.html#funcs.spoly\"><span class=\"type\">spoly</span> functions</a></dt><dt>6.9. <a href=\"./funcs.html#funcs.sbox\"><span class=\"type\">sbox</span> functions</a></dt></dl></dd><dt>7. <a href=\"./indices.html\">Create an index</a></dt><dd><dl><dt>7.1. <a href=\"./indices.html#ind.sphere\">Spherical index</a></dt></dl></dd><dt>8. <a href=\"./examples.html\">Usage examples</a></dt><dd><dl><dt>8.1. <a href=\"./examples.html#examp.general\">General</a></dt><dt>8.2. <a href=\"./examples.html#examp.geo\">Geographical</a></dt><dt>8.3. <a href=\"./examples.html#examp.astro\">Astronomical</a></dt></dl></dd><dt>9. <a href=\"./x1240.html\">FAQ</a></dt><dt>10. <a href=\"./appendixes.html\">Appendixes</a></dt><dd><dl><dt>10.1. <a href=\"./appendixes.html#appendixes.changelog\">Changes from version 1.0 to 1.1</a></dt></dl></dd></dl></div></div><div class=\"NAVFOOTER\"><hr align=\"LEFT\" width=\"100%\"><table summary=\"Footer navigation table\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td width=\"33%\" align=\"left\" valign=\"top\">&nbsp;</td><td width=\"34%\" align=\"center\" valign=\"top\">&nbsp;</td><td width=\"33%\" align=\"right\" valign=\"top\"><a href=\"./x18.html\" accesskey=\"N\">Next</a></td></tr><tr><td width=\"33%\" align=\"left\" valign=\"top\">&nbsp;</td><td width=\"34%\" align=\"center\" valign=\"top\">&nbsp;</td><td width=\"33%\" align=\"right\" valign=\"top\">What is mysql-sphere?</td></tr></tbody></table></div></body></html>\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   90  CLASS=\"sect2\"\n   91  >\n   92: Indices are not yet supported by mysql-sphere, since MySQL does not allow easy extension of the\n   93: indexing facility. The developer of mysql-sphere still needs to fully understand how pgSphere does\n   94  the indexing (it is not really documented) and wheather this can be implemented easily by a smart\n   95  hashing algorithm that then uses the MySQL b-tree index provided with most storage engines.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n  107  >&#13;                <SPAN\n  108  CLASS=\"application\"\n  109: >mysql-sphere</SPAN\n  110  > provides different casting mechanisms than possible with pgSphere. These casting \n  111  	methods have been described in the section above, however will be summarised here\n  112  	again. So, you can transform an object to another data\n  113:                 type. A cast in mysql-sphere can only be done using a <TT\n  114  CLASS=\"literal\"\n  115  >typename(x)</TT\n  ...\n  313                      </TD\n  314  ><TD\n  315: >&#13;                     	a string representation of the according mysql-sphere type\n  316                      </TD\n  317  ></TR\n  ...\n  434                  <SPAN\n  435  CLASS=\"application\"\n  436: >mysql-sphere</SPAN\n  437  > supports such\n  438                  queries using special functions returning\n  ...\n  470  ><TH\n  471  ALIGN=\"center\"\n  472: >mysql-sphere operator</TH\n  473  ><TH\n  474  ALIGN=\"center\"\n  ...\n  632                  <SPAN\n  633  CLASS=\"application\"\n  634: >mysql-sphere</SPAN\n  635  > supports only crossing of\n  636                  lines.\n  ...\n  687                  <SPAN\n  688  CLASS=\"application\"\n  689: >mysql-sphere</SPAN\n  690  > supports only distances\n  691                  between points, circles, and between point and circle. If the\n  ...\n  743                  <SPAN\n  744  CLASS=\"application\"\n  745: >mysql-sphere</SPAN\n  746  > supports only\n  747                  circumferences of circles, polygons, and boxes.  It supports\n  ...\n  823                  current implementation of <SPAN\n  824  CLASS=\"application\"\n  825: >mysql-sphere</SPAN\n  826  >,\n  827                  only centers of circles and ellipses are supported. \n  ...\n 1034                  <SPAN\n 1035  CLASS=\"application\"\n 1036: >mysql-sphere</SPAN\n 1037  >, it is done using Euler\n 1038                  transformations (<SPAN\n ....\n 1070                  <SPAN\n 1071  CLASS=\"application\"\n 1072: >mysql-sphere</SPAN\n 1073  > data type, except the\n 1074                  data type <SPAN\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   98  >&#13;                <SPAN\n   99  CLASS=\"productname\"\n  100: >mysql-sphere</SPAN\n  101  > provides spherical data\n  102                  types for storing with\n  ...\n  105  >MySQL / MariaDB</SPAN\n  106  >. This is achieved by storing the according data types as base64 encoded binary BLOBs. This means, that\n  107: to store mysql-sphere objects, you need to store them in <TT\n  108  CLASS=\"literal\"\n  109  >BLOB</TT\n  ...\n  237  ></DIV\n  238  >\n  239: If you feel that storing mysql-sphere data types as base64 encoded BLOBs is a unnecessary overhead, you can\n  240  choose to store them in plain binary by adjusting the <TT\n  241  CLASS=\"literal\"\n  ...\n  941                Within <SPAN\n  942  CLASS=\"application\"\n  943: >mysql-sphere</SPAN\n  944  >, ellipses are\n  945                defined as :\n  ...\n 1080                        <SPAN\n 1081  CLASS=\"application\"\n 1082: >mysql-sphere</SPAN\n 1083  > as a counterclockwise\n 1084                        rotation around the ellipse center and is zero, if the\n ....\n 1159  >&#13;                Paths within <SPAN\n 1160  CLASS=\"application\"\n 1161: >mysql-sphere</SPAN\n 1162  > are simplified\n 1163                  lists of positions. The input syntax is :\n ....\n 1261                Polygons within <SPAN\n 1262  CLASS=\"application\"\n 1263: >mysql-sphere</SPAN\n 1264  > \n 1265                have the same input syntax as paths:\n ....\n 1423                    <SPAN\n 1424  CLASS=\"application\"\n 1425: >mysql-sphere</SPAN\n 1426  > swaps the edges.\n 1427                  </P\n ....\n 1433                    <SPAN\n 1434  CLASS=\"application\"\n 1435: >mysql-sphere</SPAN\n 1436  > assumes a full latitude\n 1437                    range, except that the latitudes are equal, too.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html:\n    3  ><HEAD\n    4  ><TITLE\n    5: >&#13;            What is mysql-sphere?\n    6          </TITLE\n    7  ><META\n    .\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   15  REL=\"PREVIOUS\"\n   16  TITLE=\"\n   17:             mysql-sphere 0.1 based on pgSphere 1.2\n   18          \"\n   19  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   85  ><A\n   86  NAME=\"AEN18\"\n   87: >1. What is mysql-sphere?</A\n   88  ></H1\n   89  ><P\n   90  >&#13;            <SPAN\n   91  CLASS=\"application\"\n   92: >mysql-sphere</SPAN\n   93  > is an extra module for\n   94              <SPAN\n   ..\n  157  	transformed to functions.</P><P>  The aim of <SPAN\n  158  CLASS=\"application\"\n  159: >mysql-sphere</SPAN\n  160  > is to provide \n  161              uniform access to spherical data. Because\n  162              <SPAN\n  163  CLASS=\"application\"\n  164: >mysql-sphere</SPAN\n  165  > itself supports a lot of\n  166              software interfaces, you can now use the same database\n  ...\n  212  ALIGN=\"left\"\n  213  VALIGN=\"top\"\n  214: >pmysql-sphere 0.1 based on pgSphere 1.2</TD\n  215  ><TD\n  216  WIDTH=\"34%\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   15  REL=\"PREVIOUS\"\n   16  TITLE=\"\n   17:             What is mysql-sphere?\n   18          \"\n   19  HREF=\"x18.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   99                  <SPAN\n  100  CLASS=\"application\"\n  101: >mysql-sphere</SPAN\n  102  > is not part of the <SPAN\n  103  CLASS=\"application\"\n  ...\n  106                  You can download it from the <SPAN\n  107  CLASS=\"application\"\n  108: >mysql-sphere</SPAN\n  109  > repository\n  110                  <A\n  111: HREF=\"http://github.com/adrpar/mysql-sphere/\"\n  112  TARGET=\"_top\"\n  113  ><I\n  114  CLASS=\"citetitle\"\n  115: >http://github.com/adrpar/mysql-sphere/</I\n  116  ></A\n  117  >\n  ...\n  140              </P\n  141  ><P\n  142: >&#13;                To compile mysql-sphere, you will need the sources of your MySQL or MariaDB installation.\n  143  </p> \n  144  <p>To compile <SPAN\n  145  CLASS=\"application\"\n  146: >mysql-sphere</SPAN\n  147  > you require cmake. </P>\n  148: <p>                After you have downloaded mysql-sphere from github, you need to edit the \n  149                  (<TT\n  150  CLASS=\"filename\"\n  151: >mysql-sphere/CMakeList.txt</TT\n  152  >) configuration file. There you either let cmake try to find your MySQL installation itself or\n  153  if required you need to ajust the path to your MySQL installation by uncommenting and setting \n  ...\n  218  >\n  219  \n  220: Afterwards you can build mysql-sphere the usual way by envoking\n  221  \n  222  <TABLE\n  ...\n  252  >.\n  253  \n  254: This should have copied the mysql-sphere pluging into the according MySQL / MariaDB plugin directory. If you\n  255  you need to do so manually. The next step will register the plugin with MySQL / MariaDB. For this, you invoke\n  256  \n  ...\n  270  >\n  271  \n  272: accordingly. With this, you should be ready to go. You can check if mysql-sphere has been successfully installed\n  273  by envoking\n  274  \n  ...\n  288  >\n  289  \n  290: You should see the current mysql-sphere version on your terminal. In order to uninstall mysql-sphere you can\n  291  run the following\n  292  \n\n82 matches across 11 files\n\n\nSearching 128 files for \"mysql-sphere\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/appendixes.html:\n   84  ><A\n   85  NAME=\"appendixes.changelog\"\n   86: >10.1. First release candidate of the pgSphere port mysql-sphere 0.1</A\n   87  ></H2\n   88  ><P\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/construct.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   90  >&#13;          Constructors within <SPAN\n   91  CLASS=\"application\"\n   92: >mysql-sphere</SPAN\n   93: > are in no way different to defining mysql-sphere objects, just with other\n   94    options. They are in a way overloaded construction functions from the previous\n   95    chapter. In pgSphere a distinction between type definition and construction was\n   96:   made, mainly due to the capabilities of PostgreSQL. In mysql-sphere this is not\n   97    needed anymore and the following sections describe\n   98            functions needed to create spherical data types from other data\n   ..\n  100              <SPAN\n  101  CLASS=\"application\"\n  102: >mysql-sphere</SPAN\n  103  > constructor\n  104            functions are named by returned data type. Constructor functions\n  ...\n  162  CLASS=\"parameter\"\n  163  >path</CODE\n  164: > is a mysql-sphere path binary BLOB, <CODE\n  165  CLASS=\"parameter\"\n  166  >i</CODE\n  ...\n  255              <SPAN\n  256  CLASS=\"application\"\n  257: >mysql-sphere</SPAN\n  258  > will assume <TT\n  259  CLASS=\"literal\"\n  ...\n  419  CLASS=\"literal\"\n  420  >sstr</TT\n  421: > casts a given mysql-sphere data type to a readable string).\n  422              </P\n  423  ><TABLE\n  ...\n  532  CLASS=\"literal\"\n  533  >sstr</TT\n  534: > casts a given mysql-sphere data type to a readable string):\n  535              </P\n  536  ><TABLE\n  ...\n  760  CLASS=\"literal\"\n  761  >sstr</TT\n  762: > casts a given mysql-sphere data type to a readable string).\n  763              </P\n  764  ><TABLE\n  ...\n  852  CLASS=\"literal\"\n  853  >sstr</TT\n  854: > casts a given mysql-sphere data type to a readable string).\n  855              </P\n  856  ><TABLE\n  ...\n  955  CLASS=\"literal\"\n  956  >sstr</TT\n  957: > casts a given mysql-sphere data type to a readable string).\n  958              </P\n  959  ><TABLE\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/examples.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/funcs.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   89  ><P\n   90  >&#13;          The functions described below are implemented in pgSphere without having an\n   91:           operator. In mysql-sphere they are equally used, but their names just differ by a\n   92            prepending 's' to avoid conflict with already existing functions. If you are missing some functions, see\n   93            <A\n   ..\n  412  ></P\n  413  > cannot be ported to MySQL since a UDF function can only return one value and not as in PostgreSQL\n  414: a rowset. Therefore the equivalent mysql-sphere function does not exist.\n  415  </DIV\n  416  ></DIV\n  ...\n  695  >&#13;              <SPAN\n  696  CLASS=\"application\"\n  697: >mysql-sphere</SPAN\n  698  > provides 4 functions to get\n  699                the parameters of a spherical ellipse:\n  ...\n  833                  <SPAN\n  834  CLASS=\"application\"\n  835: >mysql-sphere</SPAN\n  836  > provides two functions:\n  837                </P\n  ...\n 1045  >&#13;              <SPAN\n 1046  CLASS=\"application\"\n 1047: >mysql-sphere</SPAN\n 1048  > provides two functions to\n 1049                get points at a path.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html:\n    4              pgSphere 1.1\n    5          </title><meta name=\"GENERATOR\" content=\"Modular DocBook HTML Stylesheet Version 1.79\"><link rel=\"NEXT\" title=\"\n    6:             What is mysql-sphere?\n    7          \" href=\"./x18.html\"><link rel=\"STYLESHEET\" type=\"text/css\" href=\"./img/pg_sphere.css\"><meta name=\"creation\" content=\"2009-07-06T05:33:03\">\n    8  \n    9: </head><body class=\"article\" bgcolor=\"#FFFFFF\" text=\"#000000\" link=\"#0000FF\" vlink=\"#840084\" alink=\"#0000FF\"><div class=\"ARTICLE\"><div class=\"TITLEPAGE\"><h1 class=\"title\"><a name=\"AEN2\">mysql-sphere 0.1 based on pgSphere 1.2</a></h1><h3 class=\"author\"><a name=\"AEN4\">Port by: Adrian M. Partl<br>Original: The pgSphere team</a></h3><div><div class=\"abstract\"><p></p><a name=\"AEN6\"></a><p>\n   10                </p><div class=\"mediaobject\"><p><img src=\"./img/logo.jpg\" width=\"225px\"><font size=\"+3\">now available for dolphins!</font></p></div>\n   11              <p></p><p>\n   12:                 <span class=\"application\">mysql-sphere</span> provides spherical data\n   13                  types, functions, and operators for\n   14                  <span class=\"application\">MySQL and MariaDB</span>. It is based on pgSphere 1.2 (see <a href=\"http://pgsphere.projects.pgfoundry.org/\" target=\"_top\">http://pgsphere.projects.pgfoundry.org/</a>and constitutes a port of pgSphere\n   ..\n   19                  This document\n   20                  describes installation and usage of this module.\n   21:             </p><p></p></div></div><hr></div><div class=\"TOC\"><dl><dt><b>Table of Contents</b></dt><dt>1. <a href=\"./x18.html\">What is mysql-sphere?</a></dt><dt>2. <a href=\"./x44.html\">Installation</a></dt><dd><dl><dt>2.1. <a href=\"./x44.html#AEN46\">Download</a></dt><dt>2.2. <a href=\"./x44.html#AEN54\">Installation</a></dt><dt>2.3. <a href=\"./x44.html#AEN93\">Creating a database with <span class=\"application\">pgSphere</span></a></dt></dl></dd><dt>3. <a href=\"./types.html\">Data types</a></dt><dd><dl><dt>3.1. <a href=\"./types.html#dt.over\">Overview</a></dt><dt>3.2. <a href=\"./types.html#dt.spoint\">Point</a></dt><dt>3.3. <a href=\"./types.html#dt.strans\">Euler transformation</a></dt><dt>3.4. <a href=\"./types.html#dt.scircle\">Circle</a></dt><dt>3.5. <a href=\"./types.html#dt.sline\">Line</a></dt><dt>3.6. <a href=\"./types.html#dt.sellipse\">Ellipses</a></dt><dt>3.7. <a href=\"./types.html#dt.spath\">Path</a></dt><dt>3.8. <a href=\"./types.html#dt.spoly\">Polygon</a></dt><dt>3.9. <a href=\"./types.html#dt.sbox\">Coordinates range</a></dt></dl></dd><dt>4. <a href=\"./construct.html\">Constructors</a></dt><dd><dl><dt>4.1. <a href=\"./construct.html#contr.spoint\">Point</a></dt><dt>4.2. <a href=\"./construct.html#contr.strans\">Euler transformation</a></dt><dt>4.3. <a href=\"./construct.html#contr.scircle\">Circle</a></dt><dt>4.4. <a href=\"./construct.html#contr.sline\">Line</a></dt><dt>4.5. <a href=\"./construct.html#contr.sellipse\">Ellipse</a></dt><dt>4.6. <a href=\"./construct.html#contr.spoly\">Polygon</a></dt><dt>4.7. <a href=\"./construct.html#contr.spath\">Path</a></dt><dt>4.8. <a href=\"./construct.html#contr.sbox\">Coordinates range</a></dt></dl></dd><dt>5. <a href=\"./operators.html\">Operators</a></dt><dd><dl><dt>5.1. <a href=\"./operators.html#op.casting\">Casting</a></dt><dt>5.2. <a href=\"./operators.html#op.equal\">Equality</a></dt><dt>5.3. <a href=\"./operators.html#op.over\">Contain and overlap</a></dt><dt>5.4. <a href=\"./operators.html#op.cross\">Crossing of lines</a></dt><dt>5.5. <a href=\"./operators.html#op.dist\">Distance</a></dt><dt>5.6. <a href=\"./operators.html#op.circum\">Length and circumference</a></dt><dt>5.7. <a href=\"./operators.html#op.center\">Center</a></dt><dt>5.8. <a href=\"./operators.html#op.direction\">Change the direction</a></dt><dt>5.9. <a href=\"./operators.html#op.turnline\">Turn the path of a line</a></dt><dt>5.10. <a href=\"./operators.html#op.trans\">Transformation</a></dt></dl></dd><dt>6. <a href=\"./funcs.html\">Functions</a></dt><dd><dl><dt>6.1. <a href=\"./funcs.html#func.area\">Area function</a></dt><dt>6.2. <a href=\"./funcs.html#func.spoint\"><span class=\"type\">spoint</span> functions</a></dt><dt>6.3. <a href=\"./funcs.html#funcs.strans\"><span class=\"type\">strans</span> functions</a></dt><dt>6.4. <a href=\"./funcs.html#func.circle\">scircle functions</a></dt><dt>6.5. <a href=\"./funcs.html#funcs.sellipse\"><span class=\"type\">sellipse</span> functions</a></dt><dt>6.6. <a href=\"./funcs.html#funcs.sline\"><span class=\"type\">sline</span> functions</a></dt><dt>6.7. <a href=\"./funcs.html#funcs.spath\"><span class=\"type\">spath</span> functions</a></dt><dt>6.8. <a href=\"./funcs.html#funcs.spoly\"><span class=\"type\">spoly</span> functions</a></dt><dt>6.9. <a href=\"./funcs.html#funcs.sbox\"><span class=\"type\">sbox</span> functions</a></dt></dl></dd><dt>7. <a href=\"./indices.html\">Create an index</a></dt><dd><dl><dt>7.1. <a href=\"./indices.html#ind.sphere\">Spherical index</a></dt></dl></dd><dt>8. <a href=\"./examples.html\">Usage examples</a></dt><dd><dl><dt>8.1. <a href=\"./examples.html#examp.general\">General</a></dt><dt>8.2. <a href=\"./examples.html#examp.geo\">Geographical</a></dt><dt>8.3. <a href=\"./examples.html#examp.astro\">Astronomical</a></dt></dl></dd><dt>9. <a href=\"./x1240.html\">FAQ</a></dt><dt>10. <a href=\"./appendixes.html\">Appendixes</a></dt><dd><dl><dt>10.1. <a href=\"./appendixes.html#appendixes.changelog\">Changes from version 1.0 to 1.1</a></dt></dl></dd></dl></div></div><div class=\"NAVFOOTER\"><hr align=\"LEFT\" width=\"100%\"><table summary=\"Footer navigation table\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td width=\"33%\" align=\"left\" valign=\"top\">&nbsp;</td><td width=\"34%\" align=\"center\" valign=\"top\">&nbsp;</td><td width=\"33%\" align=\"right\" valign=\"top\"><a href=\"./x18.html\" accesskey=\"N\">Next</a></td></tr><tr><td width=\"33%\" align=\"left\" valign=\"top\">&nbsp;</td><td width=\"34%\" align=\"center\" valign=\"top\">&nbsp;</td><td width=\"33%\" align=\"right\" valign=\"top\">What is mysql-sphere?</td></tr></tbody></table></div></body></html>\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   90  CLASS=\"sect2\"\n   91  >\n   92: Indices are not yet supported by mysql-sphere, since MySQL does not allow easy extension of the\n   93: indexing facility. The developer of mysql-sphere still needs to fully understand how pgSphere does\n   94  the indexing (it is not really documented) and wheather this can be implemented easily by a smart\n   95  hashing algorithm that then uses the MySQL b-tree index provided with most storage engines.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n  107  >&#13;                <SPAN\n  108  CLASS=\"application\"\n  109: >mysql-sphere</SPAN\n  110  > provides different casting mechanisms than possible with pgSphere. These casting \n  111  	methods have been described in the section above, however will be summarised here\n  112  	again. So, you can transform an object to another data\n  113:                 type. A cast in mysql-sphere can only be done using a <TT\n  114  CLASS=\"literal\"\n  115  >typename(x)</TT\n  ...\n  313                      </TD\n  314  ><TD\n  315: >&#13;                     	a string representation of the according mysql-sphere type\n  316                      </TD\n  317  ></TR\n  ...\n  434                  <SPAN\n  435  CLASS=\"application\"\n  436: >mysql-sphere</SPAN\n  437  > supports such\n  438                  queries using special functions returning\n  ...\n  470  ><TH\n  471  ALIGN=\"center\"\n  472: >mysql-sphere operator</TH\n  473  ><TH\n  474  ALIGN=\"center\"\n  ...\n  632                  <SPAN\n  633  CLASS=\"application\"\n  634: >mysql-sphere</SPAN\n  635  > supports only crossing of\n  636                  lines.\n  ...\n  687                  <SPAN\n  688  CLASS=\"application\"\n  689: >mysql-sphere</SPAN\n  690  > supports only distances\n  691                  between points, circles, and between point and circle. If the\n  ...\n  743                  <SPAN\n  744  CLASS=\"application\"\n  745: >mysql-sphere</SPAN\n  746  > supports only\n  747                  circumferences of circles, polygons, and boxes.  It supports\n  ...\n  823                  current implementation of <SPAN\n  824  CLASS=\"application\"\n  825: >mysql-sphere</SPAN\n  826  >,\n  827                  only centers of circles and ellipses are supported. \n  ...\n 1034                  <SPAN\n 1035  CLASS=\"application\"\n 1036: >mysql-sphere</SPAN\n 1037  >, it is done using Euler\n 1038                  transformations (<SPAN\n ....\n 1070                  <SPAN\n 1071  CLASS=\"application\"\n 1072: >mysql-sphere</SPAN\n 1073  > data type, except the\n 1074                  data type <SPAN\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   98  >&#13;                <SPAN\n   99  CLASS=\"productname\"\n  100: >mysql-sphere</SPAN\n  101  > provides spherical data\n  102                  types for storing with\n  ...\n  105  >MySQL / MariaDB</SPAN\n  106  >. This is achieved by storing the according data types as base64 encoded binary BLOBs. This means, that\n  107: to store mysql-sphere objects, you need to store them in <TT\n  108  CLASS=\"literal\"\n  109  >BLOB</TT\n  ...\n  237  ></DIV\n  238  >\n  239: If you feel that storing mysql-sphere data types as base64 encoded BLOBs is a unnecessary overhead, you can\n  240  choose to store them in plain binary by adjusting the <TT\n  241  CLASS=\"literal\"\n  ...\n  941                Within <SPAN\n  942  CLASS=\"application\"\n  943: >mysql-sphere</SPAN\n  944  >, ellipses are\n  945                defined as :\n  ...\n 1080                        <SPAN\n 1081  CLASS=\"application\"\n 1082: >mysql-sphere</SPAN\n 1083  > as a counterclockwise\n 1084                        rotation around the ellipse center and is zero, if the\n ....\n 1159  >&#13;                Paths within <SPAN\n 1160  CLASS=\"application\"\n 1161: >mysql-sphere</SPAN\n 1162  > are simplified\n 1163                  lists of positions. The input syntax is :\n ....\n 1261                Polygons within <SPAN\n 1262  CLASS=\"application\"\n 1263: >mysql-sphere</SPAN\n 1264  > \n 1265                have the same input syntax as paths:\n ....\n 1423                    <SPAN\n 1424  CLASS=\"application\"\n 1425: >mysql-sphere</SPAN\n 1426  > swaps the edges.\n 1427                  </P\n ....\n 1433                    <SPAN\n 1434  CLASS=\"application\"\n 1435: >mysql-sphere</SPAN\n 1436  > assumes a full latitude\n 1437                    range, except that the latitudes are equal, too.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html:\n    3  ><HEAD\n    4  ><TITLE\n    5: >&#13;            What is mysql-sphere?\n    6          </TITLE\n    7  ><META\n    .\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   15  REL=\"PREVIOUS\"\n   16  TITLE=\"\n   17:             mysql-sphere 0.1 based on pgSphere 1.2\n   18          \"\n   19  HREF=\"index.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   85  ><A\n   86  NAME=\"AEN18\"\n   87: >1. What is mysql-sphere?</A\n   88  ></H1\n   89  ><P\n   90  >&#13;            <SPAN\n   91  CLASS=\"application\"\n   92: >mysql-sphere</SPAN\n   93  > is an extra module for\n   94              <SPAN\n   ..\n  157  	transformed to functions.</P><P>  The aim of <SPAN\n  158  CLASS=\"application\"\n  159: >mysql-sphere</SPAN\n  160  > is to provide \n  161              uniform access to spherical data. Because\n  162              <SPAN\n  163  CLASS=\"application\"\n  164: >mysql-sphere</SPAN\n  165  > itself supports a lot of\n  166              software interfaces, you can now use the same database\n  ...\n  212  ALIGN=\"left\"\n  213  VALIGN=\"top\"\n  214: >pmysql-sphere 0.1 based on pgSphere 1.2</TD\n  215  ><TD\n  216  WIDTH=\"34%\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html:\n   10  REL=\"HOME\"\n   11  TITLE=\"\n   12:             mysql-sphere 0.1 based on pgSphere 1.2\n   13          \"\n   14  HREF=\"index.html\"><LINK\n   15  REL=\"PREVIOUS\"\n   16  TITLE=\"\n   17:             What is mysql-sphere?\n   18          \"\n   19  HREF=\"x18.html\"><LINK\n   ..\n   48  COLSPAN=\"3\"\n   49  ALIGN=\"center\"\n   50: >mysql-sphere 0.1 based on pgSphere 1.2</TH\n   51  ></TR\n   52  ><TR\n   ..\n   99                  <SPAN\n  100  CLASS=\"application\"\n  101: >mysql-sphere</SPAN\n  102  > is not part of the <SPAN\n  103  CLASS=\"application\"\n  ...\n  106                  You can download it from the <SPAN\n  107  CLASS=\"application\"\n  108: >mysql-sphere</SPAN\n  109  > repository\n  110                  <A\n  111: HREF=\"http://github.com/adrpar/mysql-sphere/\"\n  112  TARGET=\"_top\"\n  113  ><I\n  114  CLASS=\"citetitle\"\n  115: >http://github.com/adrpar/mysql-sphere/</I\n  116  ></A\n  117  >\n  ...\n  140              </P\n  141  ><P\n  142: >&#13;                To compile mysql-sphere, you will need the sources of your MySQL or MariaDB installation.\n  143  </p> \n  144  <p>To compile <SPAN\n  145  CLASS=\"application\"\n  146: >mysql-sphere</SPAN\n  147  > you require cmake. </P>\n  148: <p>                After you have downloaded mysql-sphere from github, you need to edit the \n  149                  (<TT\n  150  CLASS=\"filename\"\n  151: >mysql-sphere/CMakeList.txt</TT\n  152  >) configuration file. There you either let cmake try to find your MySQL installation itself or\n  153  if required you need to ajust the path to your MySQL installation by uncommenting and setting \n  ...\n  218  >\n  219  \n  220: Afterwards you can build mysql-sphere the usual way by envoking\n  221  \n  222  <TABLE\n  ...\n  252  >.\n  253  \n  254: This should have copied the mysql-sphere pluging into the according MySQL / MariaDB plugin directory. If you\n  255  you need to do so manually. The next step will register the plugin with MySQL / MariaDB. For this, you invoke\n  256  \n  ...\n  270  >\n  271  \n  272: accordingly. With this, you should be ready to go. You can check if mysql-sphere has been successfully installed\n  273  by envoking\n  274  \n  ...\n  288  >\n  289  \n  290: You should see the current mysql-sphere version on your terminal. In order to uninstall mysql-sphere you can\n  291  run the following\n  292  \n\n81 matches across 10 files\n\n\nSearching 128 files for \"mysql_priv\"\n\n0 matches across 0 files\n",
+			"file": "src/udf_sphere_ellipse.cc",
 			"settings":
 			{
-				"buffer_size": 87626,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "src/udf_helpers.h",
-			"settings":
-			{
-				"buffer_size": 12605,
+				"buffer_size": 41215,
 				"line_ending": "Unix"
 			}
 		},
@@ -421,23 +411,49 @@
 			"file": "src/udf_sphere_polygon.cc",
 			"settings":
 			{
-				"buffer_size": 53815,
+				"buffer_size": 53812,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/serialiser.cc",
+			"file": "src/udf_sphere_path.cc",
 			"settings":
 			{
-				"buffer_size": 10483,
+				"buffer_size": 45805,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "install_udfs.sql",
+			"contents": "Searching 132 files for \"OUTPUT_DEG\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/globals.h:\n   12  /* *** GLOBAL DEFINITIONS *** */\n   13  #define OUTPUT_RAD  0    //!< output in radians\n   14: #define OUTPUT_DEG  1    //!< output in degrees\n   15  #define OUTPUT_DMS  2    //!< output in degrees, minutes, seconds\n   16  #define OUTPUT_HMS  3    //!< output in hour, minutes, seconds\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.cc:\n   61  \n   62  	switch ( sphere_output ) {\n   63: 		case OUTPUT_DEG : \n   64  			sprintf ( buffer , \"(%.*gd , %.*gd)\",\n   65  						sphere_output_precision, RADIANS * sp->lng, \n   ..\n  105  \n  106  	switch ( sphere_output ) {\n  107: 		case OUTPUT_DEG : \n  108  			sprintf ( buffer , \"<%s , %.*gd>\", \n  109  						pointstr, sphere_output_precision, RADIANS * c->radius );\n  ...\n  139  \n  140  	switch ( sphere_output ) {\n  141: 		case OUTPUT_DEG : \n  142  			sprintf ( buffer, \"<{ %.*gd , %.*gd }, %s , %.*gd>\",\n  143  						sphere_output_precision, RADIANS * (e->rad[0]), \n  ...\n  187  \n  188  	switch ( sphere_output ) {\n  189: 		case OUTPUT_DEG : \n  190  			sprintf ( out , \"( %s ), %.*gd\", \n  191  						tstr, sphere_output_precision, RADIANS * sl->length );\n  ...\n  233  		rsec = 0.0;\n  234  		switch ( sphere_output ) {\n  235: 			case OUTPUT_DEG : \n  236  				sprintf ( &buf[0] , \"%.*gd\", \n  237  							sphere_output_precision, RADIANS * val[i].lng );\n\n6 matches across 2 files\n\n\nSearching 132 files for \"MARIA\"\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/README:\n    1  +-----------------------------------------------------------------------------+\n    2: |                 mysql_sphere 0.1 for MySQL 5.5 and MariaDB                  |\n    3  +-----------------------------------------------------------------------------+\n    4  \n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html:\n   15                  <span class=\"application\">mysql_sphere</span> provides spherical data\n   16                  types, functions, and operators for\n   17:                 <span class=\"application\"><a href=\"http://www.mysql.com/\">MySQL</a> and <a href=\"https://mariadb.org/\">MariaDB</a></span>. It is based on pgSphere 1.1.1 pre2 (see <a href=\"http://pgsphere.projects.pgfoundry.org/\" target=\"_top\">http://pgsphere.projects.pgfoundry.org/</a>) and constitutes a port of pgSphere\n   18:                 from PostgreSQL to MySQL/MariaDB. Indexing is not yet supported, due to the unextensibility of indexing in MySQL.\n   19              </p><p>\n   20                The project is hosted at <a href=\"https://github.com/adrpar/mysql_sphere/\" target=\"_top\"><i class=\"citetitle\">github.com</i></a>.\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/installation.html:\n  101  >mysql_sphere</SPAN\n  102  > is not part of the \n  103: MySQL or MariaDB software. \n  104                  You can download it from the <SPAN\n  105  CLASS=\"application\"\n  ...\n  127  >&#13;                You will need MySQL\n  128                  5.5 or above. We assume that you have\n  129:                 MySQL or MariaDB already compiled and\n  130                  installed. Please note: Depending on your system configuration mostly you have to be logged in as the system\n  131                  superuser.\n  ...\n  135  <ul>\n  136      <li>\n  137:     the sources of your MySQL or MariaDB installation and\n  138  </li>\n  139  <li>\n  ...\n  187  </PRE>.\n  188  \n  189: This should have copied the <span class=\"application\">mysql_sphere</span> plugin into the according MySQL / MariaDB plugin directory. If not, then\n  190: you need to do so manually. The next step will register the plugin with MySQL / MariaDB. For this, you invoke\n  191  \n  192  <PRE\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html:\n  103                  <SPAN\n  104  CLASS=\"application\"\n  105: >MySQL / MariaDB</SPAN\n  106  >. This is achieved by storing the according data types as base64 encoded binary BLOBs. I.e. in order\n  107  to store mysql_sphere objects, you need to store them in <TT\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/whatis.html:\n   92  >mysql_sphere</SPAN\n   93  > is an extra module for\n   94:             MySQL/MariaDB\n   95   which adds spherical data\n   96              types. It provides:\n   ..\n  138  >&#13;            Hence, you can do (not yet very fast) search and analysis for objects with\n  139              spherical attributes as used in geographical, astronomical, or\n  140:             other applications using MySQL/MariaDB. \n  141              For instance, you can manage data of geographical objects around\n  142              the world and astronomical data like star and other catalogs\n  ...\n  148  ><P\n  149  >&#13;            This set of MySQL functions is based on the pgSphere module and provides\n  150: 	a port of pgSphere for MySQL/MariaDB. Due to differences/limitations of MySQL, there are differences\n  151  	to the syntax compared to pgSphere. MySQL does not provide operator overloading, thus all operators are\n  152  	transformed to functions.</P><P>  The aim of <SPAN\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html:\n   94              <SPAN\n   95  CLASS=\"application\"\n   96: >MySQL/MariaDB</SPAN\n   97  > which adds spherical data\n   98              types. It provides:\n   ..\n  153  ><P\n  154  >&#13;            This set of MySQL functions is based on the pgSphere module and provides\n  155: 	a port of pgSphere for MySQL/MariaDB. Due to differences/limitations of MySQL, there are differences\n  156  	to the syntax compared to pgSphere. MySQL does not provide operator overloading, thus all operators are\n  157  	transformed to functions.</P><P>  The aim of <SPAN\n\n/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html:\n  102  > is not part of the <SPAN\n  103  CLASS=\"application\"\n  104: >MySQL ir MariaDB</SPAN\n  105  > software. \n  106                  You can download it from the <SPAN\n  ...\n  134                  <SPAN\n  135  CLASS=\"application\"\n  136: >MySQL or MariaDB</SPAN\n  137  > already compiled and\n  138                  installed. Please note: Depending on your system configuration mostly you have to be logged in as the system\n  ...\n  140              </P\n  141  ><P\n  142: >&#13;                To compile mysql_sphere, you will need the sources of your MySQL or MariaDB installation.\n  143  </p> \n  144  <p>To compile <SPAN\n  ...\n  252  >.\n  253  \n  254: This should have copied the mysql_sphere pluging into the according MySQL / MariaDB plugin directory. If you\n  255: you need to do so manually. The next step will register the plugin with MySQL / MariaDB. For this, you invoke\n  256  \n  257  <TABLE\n\n20 matches across 7 files\n",
 			"settings":
 			{
-				"buffer_size": 22979,
+				"buffer_size": 6697,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "src/globals.h",
+			"settings":
+			{
+				"buffer_size": 694,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/udf_sphere_operators.cc",
+			"settings":
+			{
+				"buffer_size": 65679,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/udf_sphere_point.cc",
+			"settings":
+			{
+				"buffer_size": 8711,
 				"line_ending": "Unix"
 			}
 		},
@@ -445,63 +461,23 @@
 			"file": "README",
 			"settings":
 			{
-				"buffer_size": 1656,
+				"buffer_size": 1327,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "doc/x18.html",
+			"file": "test/setup/test_spherepath.sql",
 			"settings":
 			{
-				"buffer_size": 4200,
+				"buffer_size": 4165,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "doc/x44.html",
+			"file": "NOTICE",
 			"settings":
 			{
-				"buffer_size": 6153,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/x1240.html",
-			"settings":
-			{
-				"buffer_size": 1992,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/types.html",
-			"settings":
-			{
-				"buffer_size": 29091,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/operators.html",
-			"settings":
-			{
-				"buffer_size": 22357,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/indices.html",
-			"settings":
-			{
-				"buffer_size": 2420,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/index.html",
-			"settings":
-			{
-				"buffer_size": 6460,
+				"buffer_size": 2635,
 				"line_ending": "Unix"
 			}
 		},
@@ -509,7 +485,7 @@
 			"file": "src/udf_sphere_box.cc",
 			"settings":
 			{
-				"buffer_size": 67857,
+				"buffer_size": 67951,
 				"line_ending": "Unix"
 			}
 		}
@@ -674,85 +650,88 @@
 	},
 	"file_history":
 	[
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/poly.sql.out",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/vector3d.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/vector3d.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/point.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/point.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/globals.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_area.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_center.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_circum.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_length.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_swap.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_npoints.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_sstr.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_line.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_circle.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_euler.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_ellipse.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_helpers.h",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_polygon.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/CMakeLists.txt",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/install_udfs.sql",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/README",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x1240.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_box.cc",
+		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/deinstall_udfs.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/appendixes.html",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/construct.html",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/examples.html",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/funcs.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/indices.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/operators.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_euler.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/install_udfs.sql",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/deinstall_udfs.sql",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_operators.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_swap.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/index.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x44.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/types.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_circum.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/path.sql",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/doc/x18.html",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_polygon.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/points.sql.out",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/path.sql.out",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_point.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_circle.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_ellipse.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_line.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/line.sql.out",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/euler.sql.out",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_box.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_path.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/ellipse.h",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/circle_extended.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/ellipse.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/ellipse.sql.out",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherecircle.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherepoint.sql",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_npoints.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_helpers.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_length.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_dist.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_center.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_sstr.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_area.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherebox.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherepath.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/setup/test_spherepolygon.sql",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/test/circle.sql",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/circle.sql.out",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/test/expected/box.sql.out",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/types.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/globals.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/CMakeLists.txt",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/output.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/path.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/point.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/polygon.h",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/util.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/point.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sbuffer.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/serialiser_helper.h",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/box.ccpend",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/line.h",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/udf_sphere_line_tmp.cc",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/circle.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/euler.h",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/.gitignore",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/vector3d.h",
-		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/vector3d.cc",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sbuffer.h",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.l",
 		"/home/adrpar/Documents/eScience/Tools/mysql_sphere/src/sscan.cc",
@@ -798,14 +777,11 @@
 		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/MySQLProcessor.php",
 		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/DirectProcessor.php",
 		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/query/models/Resource/PaquQQueue.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/php-sql-creator2.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/parOptimImplicitJoin.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Column.php",
-		"/home/adrpar/Documents/eScience/multidark2/daiquiri/modules/data/forms/Table.php"
+		"/home/adrpar/Documents/eScience/multidark2/daiquiri/library/paqu/src/php-sql-creator2.php"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
@@ -843,6 +819,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"MARIA",
+			"0\n",
+			"1\n",
+			"0\n",
+			"1\n",
+			"0\n",
+			"1\n",
+			"srcontainsl",
+			"1\nsrcontainsl",
+			"1\n",
+			"sstr",
+			"1\n",
+			"0\n",
+			"0",
+			"( ",
+			"return",
+			"OUTPUT_DEG",
+			"spherepoly_npts",
+			"( ",
+			"resultLine",
+			"scircle_contained_by_circle",
+			"MYSQL_UDF_CHK_SPHERETYPE_COM",
+			"MYSQL_UDF_CHK_SPHERETYPE",
+			"sbox_contains_line",
+			"sbox_overlap_circle",
+			"sbox_contains_box",
+			"sbox_cont_point",
+			"cont_",
+			"strans_path",
+			"sellipse_overlap_path",
+			"strans_poly",
+			"strans_ellipse",
+			"sline_overlap_circle_neg",
+			"sline_contains_point",
+			"sline_contains_point_com",
+			"strans_invert_deinit",
+			"stransform",
+			"sequal",
+			"slnotcontainsr",
+			"slnotcontainsr#",
+			"srnotcontainsl",
+			"sline_contains_point_com",
+			"spoint_contained_by_circle",
+			"contained",
+			"contai",
+			"spoint_contained_by_circle",
+			"strans_trans",
+			"strans_invert",
+			"GPL",
+			"min(",
+			"current_thd",
 			"MYSQL_UDF_CHK_SPHERETYPE",
 			"strans_invert",
 			"mysql_priv",
@@ -919,58 +946,7 @@
 			")::spoint",
 			"::spoint",
 			" @ ",
-			"@poly;",
-			"@poly; ",
-			" @ ",
-			"::scircle",
-			" @ ",
-			">';",
-			"sellipse '<{",
-			">'  ",
-			"}'  ",
-			")}'   ",
-			")}' && spoly",
-			")}' ~ spoly",
-			"}' @ spoly",
-			"::scircle",
-			")}' && '<(",
-			")::scircle",
-			")}' @ '<(",
-			")}' ~ sp",
-			")}' ~ '<(",
-			"::scircle",
-			" ~ '(",
-			")}' <>",
-			")}' =",
-			")}' ",
-			")}'",
-			")}';",
-			"}';",
-			"spoly '{(",
-			")'",
-			"spoint()",
-			"spoint '(",
-			"scircle  '<",
-			"spoint   '(",
-			":poly",
-			"1\n",
-			"0\n",
-			"spoint(",
-			"<->spoint",
-			"<->",
-			"<>spoint",
-			"=spoint",
-			"lat",
-			"long",
-			"dist",
-			" ;",
-			" != ",
-			" = ",
-			",spo",
-			" ,",
-			"::spoint",
-			"'( ",
-			")'"
+			"@poly;"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1032,7 +1008,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1048,16 +1024,8 @@
 						"selection":
 						[
 							[
-								4333,
-								4333
-							],
-							[
-								4391,
-								4391
-							],
-							[
-								4448,
-								4448
+								31416,
+								31416
 							]
 						],
 						"settings":
@@ -1068,1995 +1036,265 @@
 						"translation.y": 644.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "test/expected/poly.sql.out",
+					"file": "src/serialiser.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 26198,
+						"buffer_size": 11045,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								25476,
-								25476
+								5768,
+								5768
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 8184.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 87626,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										242,
-										301
-									],
-									[
-										431,
-										490
-									],
-									[
-										620,
-										679
-									],
-									[
-										809,
-										868
-									],
-									[
-										1152,
-										1194
-									],
-									[
-										1386,
-										1428
-									],
-									[
-										1662,
-										1677
-									],
-									[
-										1870,
-										1885
-									],
-									[
-										2068,
-										2083
-									],
-									[
-										2284,
-										2299
-									],
-									[
-										2478,
-										2493
-									],
-									[
-										2715,
-										2730
-									],
-									[
-										2844,
-										2859
-									],
-									[
-										2968,
-										2983
-									],
-									[
-										3053,
-										3068
-									],
-									[
-										3098,
-										3113
-									],
-									[
-										3226,
-										3241
-									],
-									[
-										3432,
-										3447
-									],
-									[
-										3627,
-										3642
-									],
-									[
-										3861,
-										3878
-									],
-									[
-										4069,
-										4086
-									],
-									[
-										4294,
-										4311
-									],
-									[
-										4423,
-										4440
-									],
-									[
-										4547,
-										4564
-									],
-									[
-										4632,
-										4649
-									],
-									[
-										4677,
-										4694
-									],
-									[
-										4805,
-										4822
-									],
-									[
-										5011,
-										5028
-									],
-									[
-										5206,
-										5223
-									],
-									[
-										5440,
-										5457
-									],
-									[
-										5648,
-										5665
-									],
-									[
-										5873,
-										5890
-									],
-									[
-										6002,
-										6019
-									],
-									[
-										6126,
-										6143
-									],
-									[
-										6211,
-										6228
-									],
-									[
-										6256,
-										6273
-									],
-									[
-										6384,
-										6401
-									],
-									[
-										6590,
-										6607
-									],
-									[
-										6785,
-										6802
-									],
-									[
-										7026,
-										7042
-									],
-									[
-										7100,
-										7116
-									],
-									[
-										7366,
-										7382
-									],
-									[
-										7514,
-										7530
-									],
-									[
-										7692,
-										7708
-									],
-									[
-										7895,
-										7911
-									],
-									[
-										8043,
-										8059
-									],
-									[
-										8221,
-										8237
-									],
-									[
-										8387,
-										8403
-									],
-									[
-										8570,
-										8586
-									],
-									[
-										8888,
-										8904
-									],
-									[
-										9046,
-										9062
-									],
-									[
-										9236,
-										9252
-									],
-									[
-										9530,
-										9537
-									],
-									[
-										9731,
-										9738
-									],
-									[
-										9939,
-										9946
-									],
-									[
-										10109,
-										10116
-									],
-									[
-										10341,
-										10348
-									],
-									[
-										10603,
-										10610
-									],
-									[
-										10857,
-										10864
-									],
-									[
-										11005,
-										11012
-									],
-									[
-										11197,
-										11204
-									],
-									[
-										11338,
-										11345
-									],
-									[
-										11518,
-										11525
-									],
-									[
-										11741,
-										11748
-									],
-									[
-										11908,
-										11915
-									],
-									[
-										12124,
-										12131
-									],
-									[
-										12318,
-										12325
-									],
-									[
-										12549,
-										12556
-									],
-									[
-										12717,
-										12724
-									],
-									[
-										12947,
-										12954
-									],
-									[
-										13115,
-										13122
-									],
-									[
-										13291,
-										13298
-									],
-									[
-										13497,
-										13504
-									],
-									[
-										13697,
-										13704
-									],
-									[
-										13771,
-										13778
-									],
-									[
-										13931,
-										13938
-									],
-									[
-										14164,
-										14171
-									],
-									[
-										14332,
-										14339
-									],
-									[
-										14575,
-										14582
-									],
-									[
-										14784,
-										14791
-									],
-									[
-										15070,
-										15077
-									],
-									[
-										15218,
-										15225
-									],
-									[
-										15396,
-										15403
-									],
-									[
-										15599,
-										15606
-									],
-									[
-										15747,
-										15754
-									],
-									[
-										15925,
-										15932
-									],
-									[
-										16091,
-										16098
-									],
-									[
-										16274,
-										16281
-									],
-									[
-										16592,
-										16599
-									],
-									[
-										16750,
-										16757
-									],
-									[
-										16940,
-										16947
-									],
-									[
-										17211,
-										17218
-									],
-									[
-										17401,
-										17408
-									],
-									[
-										17491,
-										17498
-									],
-									[
-										17499,
-										17506
-									],
-									[
-										17596,
-										17603
-									],
-									[
-										17728,
-										17735
-									],
-									[
-										17857,
-										17864
-									],
-									[
-										18002,
-										18009
-									],
-									[
-										18080,
-										18087
-									],
-									[
-										18211,
-										18218
-									],
-									[
-										18293,
-										18300
-									],
-									[
-										18378,
-										18385
-									],
-									[
-										18423,
-										18430
-									],
-									[
-										18551,
-										18558
-									],
-									[
-										18757,
-										18764
-									],
-									[
-										18952,
-										18959
-									],
-									[
-										19147,
-										19154
-									],
-									[
-										19405,
-										19412
-									],
-									[
-										19606,
-										19613
-									],
-									[
-										19814,
-										19821
-									],
-									[
-										19984,
-										19991
-									],
-									[
-										20216,
-										20223
-									],
-									[
-										20478,
-										20485
-									],
-									[
-										20732,
-										20739
-									],
-									[
-										20880,
-										20887
-									],
-									[
-										21072,
-										21079
-									],
-									[
-										21213,
-										21220
-									],
-									[
-										21393,
-										21400
-									],
-									[
-										21616,
-										21623
-									],
-									[
-										21783,
-										21790
-									],
-									[
-										21999,
-										22006
-									],
-									[
-										22193,
-										22200
-									],
-									[
-										22424,
-										22431
-									],
-									[
-										22592,
-										22599
-									],
-									[
-										22822,
-										22829
-									],
-									[
-										22990,
-										22997
-									],
-									[
-										23166,
-										23173
-									],
-									[
-										23372,
-										23379
-									],
-									[
-										23572,
-										23579
-									],
-									[
-										23646,
-										23653
-									],
-									[
-										23806,
-										23813
-									],
-									[
-										24039,
-										24046
-									],
-									[
-										24207,
-										24214
-									],
-									[
-										24450,
-										24457
-									],
-									[
-										24659,
-										24666
-									],
-									[
-										24945,
-										24952
-									],
-									[
-										25093,
-										25100
-									],
-									[
-										25271,
-										25278
-									],
-									[
-										25474,
-										25481
-									],
-									[
-										25622,
-										25629
-									],
-									[
-										25800,
-										25807
-									],
-									[
-										25966,
-										25973
-									],
-									[
-										26149,
-										26156
-									],
-									[
-										26467,
-										26474
-									],
-									[
-										26625,
-										26632
-									],
-									[
-										26815,
-										26822
-									],
-									[
-										27086,
-										27093
-									],
-									[
-										27276,
-										27283
-									],
-									[
-										27366,
-										27373
-									],
-									[
-										27374,
-										27381
-									],
-									[
-										27471,
-										27478
-									],
-									[
-										27603,
-										27610
-									],
-									[
-										27732,
-										27739
-									],
-									[
-										27877,
-										27884
-									],
-									[
-										27955,
-										27962
-									],
-									[
-										28086,
-										28093
-									],
-									[
-										28168,
-										28175
-									],
-									[
-										28253,
-										28260
-									],
-									[
-										28298,
-										28305
-									],
-									[
-										28426,
-										28433
-									],
-									[
-										28632,
-										28639
-									],
-									[
-										28827,
-										28834
-									],
-									[
-										29022,
-										29029
-									],
-									[
-										29280,
-										29287
-									],
-									[
-										29481,
-										29488
-									],
-									[
-										29689,
-										29696
-									],
-									[
-										29859,
-										29866
-									],
-									[
-										30091,
-										30098
-									],
-									[
-										30353,
-										30360
-									],
-									[
-										30620,
-										30627
-									],
-									[
-										30768,
-										30775
-									],
-									[
-										30960,
-										30967
-									],
-									[
-										31101,
-										31108
-									],
-									[
-										31281,
-										31288
-									],
-									[
-										31504,
-										31511
-									],
-									[
-										31671,
-										31678
-									],
-									[
-										31887,
-										31894
-									],
-									[
-										32081,
-										32088
-									],
-									[
-										32312,
-										32319
-									],
-									[
-										32480,
-										32487
-									],
-									[
-										32710,
-										32717
-									],
-									[
-										32878,
-										32885
-									],
-									[
-										33054,
-										33061
-									],
-									[
-										33260,
-										33267
-									],
-									[
-										33460,
-										33467
-									],
-									[
-										33534,
-										33541
-									],
-									[
-										33694,
-										33701
-									],
-									[
-										33927,
-										33934
-									],
-									[
-										34095,
-										34102
-									],
-									[
-										34338,
-										34345
-									],
-									[
-										34547,
-										34554
-									],
-									[
-										34833,
-										34840
-									],
-									[
-										34981,
-										34988
-									],
-									[
-										35159,
-										35166
-									],
-									[
-										35362,
-										35369
-									],
-									[
-										35510,
-										35517
-									],
-									[
-										35688,
-										35695
-									],
-									[
-										35854,
-										35861
-									],
-									[
-										36037,
-										36044
-									],
-									[
-										36355,
-										36362
-									],
-									[
-										36513,
-										36520
-									],
-									[
-										36703,
-										36710
-									],
-									[
-										36974,
-										36981
-									],
-									[
-										37164,
-										37171
-									],
-									[
-										37254,
-										37261
-									],
-									[
-										37262,
-										37269
-									],
-									[
-										37359,
-										37366
-									],
-									[
-										37491,
-										37498
-									],
-									[
-										37620,
-										37627
-									],
-									[
-										37765,
-										37772
-									],
-									[
-										37843,
-										37850
-									],
-									[
-										37974,
-										37981
-									],
-									[
-										38056,
-										38063
-									],
-									[
-										38141,
-										38148
-									],
-									[
-										38186,
-										38193
-									],
-									[
-										38314,
-										38321
-									],
-									[
-										38520,
-										38527
-									],
-									[
-										38715,
-										38722
-									],
-									[
-										38910,
-										38917
-									],
-									[
-										39168,
-										39175
-									],
-									[
-										39369,
-										39376
-									],
-									[
-										39577,
-										39584
-									],
-									[
-										39747,
-										39754
-									],
-									[
-										39979,
-										39986
-									],
-									[
-										40241,
-										40248
-									],
-									[
-										40508,
-										40515
-									],
-									[
-										40656,
-										40663
-									],
-									[
-										40848,
-										40855
-									],
-									[
-										40989,
-										40996
-									],
-									[
-										41169,
-										41176
-									],
-									[
-										41392,
-										41399
-									],
-									[
-										41559,
-										41566
-									],
-									[
-										41775,
-										41782
-									],
-									[
-										41969,
-										41976
-									],
-									[
-										42200,
-										42207
-									],
-									[
-										42368,
-										42375
-									],
-									[
-										42598,
-										42605
-									],
-									[
-										42766,
-										42773
-									],
-									[
-										42942,
-										42949
-									],
-									[
-										43148,
-										43155
-									],
-									[
-										43348,
-										43355
-									],
-									[
-										43422,
-										43429
-									],
-									[
-										43582,
-										43589
-									],
-									[
-										43815,
-										43822
-									],
-									[
-										43983,
-										43990
-									],
-									[
-										44226,
-										44233
-									],
-									[
-										44435,
-										44442
-									],
-									[
-										44721,
-										44728
-									],
-									[
-										44869,
-										44876
-									],
-									[
-										45047,
-										45054
-									],
-									[
-										45250,
-										45257
-									],
-									[
-										45398,
-										45405
-									],
-									[
-										45576,
-										45583
-									],
-									[
-										45742,
-										45749
-									],
-									[
-										45925,
-										45932
-									],
-									[
-										46243,
-										46250
-									],
-									[
-										46401,
-										46408
-									],
-									[
-										46591,
-										46598
-									],
-									[
-										46862,
-										46869
-									],
-									[
-										47052,
-										47059
-									],
-									[
-										47142,
-										47149
-									],
-									[
-										47150,
-										47157
-									],
-									[
-										47247,
-										47254
-									],
-									[
-										47379,
-										47386
-									],
-									[
-										47508,
-										47515
-									],
-									[
-										47653,
-										47660
-									],
-									[
-										47731,
-										47738
-									],
-									[
-										47862,
-										47869
-									],
-									[
-										47944,
-										47951
-									],
-									[
-										48029,
-										48036
-									],
-									[
-										48074,
-										48081
-									],
-									[
-										48202,
-										48209
-									],
-									[
-										48408,
-										48415
-									],
-									[
-										48603,
-										48610
-									],
-									[
-										48798,
-										48805
-									],
-									[
-										49113,
-										49125
-									],
-									[
-										49448,
-										49460
-									],
-									[
-										49616,
-										49628
-									],
-									[
-										49758,
-										49770
-									],
-									[
-										49916,
-										49928
-									],
-									[
-										49980,
-										49992
-									],
-									[
-										50259,
-										50271
-									],
-									[
-										50491,
-										50503
-									],
-									[
-										50677,
-										50689
-									],
-									[
-										50821,
-										50833
-									],
-									[
-										50957,
-										50969
-									],
-									[
-										51110,
-										51122
-									],
-									[
-										51263,
-										51275
-									],
-									[
-										51416,
-										51428
-									],
-									[
-										51569,
-										51581
-									],
-									[
-										51776,
-										51788
-									],
-									[
-										51918,
-										51930
-									],
-									[
-										52106,
-										52118
-									],
-									[
-										52248,
-										52260
-									],
-									[
-										52462,
-										52474
-									],
-									[
-										52840,
-										52852
-									],
-									[
-										52979,
-										52991
-									],
-									[
-										53165,
-										53177
-									],
-									[
-										53316,
-										53328
-									],
-									[
-										53666,
-										53678
-									],
-									[
-										54035,
-										54047
-									],
-									[
-										54470,
-										54482
-									],
-									[
-										55080,
-										55092
-									],
-									[
-										59402,
-										59414
-									],
-									[
-										59584,
-										59596
-									],
-									[
-										59726,
-										59738
-									],
-									[
-										59870,
-										59882
-									],
-									[
-										59976,
-										59988
-									],
-									[
-										60367,
-										60379
-									],
-									[
-										60509,
-										60521
-									],
-									[
-										60653,
-										60665
-									],
-									[
-										60955,
-										60967
-									],
-									[
-										61170,
-										61182
-									],
-									[
-										61303,
-										61315
-									],
-									[
-										61458,
-										61470
-									],
-									[
-										61588,
-										61600
-									],
-									[
-										61742,
-										61754
-									],
-									[
-										61949,
-										61961
-									],
-									[
-										62171,
-										62183
-									],
-									[
-										62346,
-										62358
-									],
-									[
-										62514,
-										62526
-									],
-									[
-										62723,
-										62735
-									],
-									[
-										62865,
-										62877
-									],
-									[
-										63009,
-										63021
-									],
-									[
-										63271,
-										63283
-									],
-									[
-										63424,
-										63436
-									],
-									[
-										63670,
-										63682
-									],
-									[
-										63822,
-										63834
-									],
-									[
-										64045,
-										64057
-									],
-									[
-										64237,
-										64249
-									],
-									[
-										64396,
-										64408
-									],
-									[
-										64540,
-										64552
-									],
-									[
-										64794,
-										64806
-									],
-									[
-										64903,
-										64915
-									],
-									[
-										65046,
-										65058
-									],
-									[
-										65188,
-										65200
-									],
-									[
-										65312,
-										65324
-									],
-									[
-										65419,
-										65431
-									],
-									[
-										65595,
-										65607
-									],
-									[
-										65759,
-										65771
-									],
-									[
-										65941,
-										65953
-									],
-									[
-										66133,
-										66145
-									],
-									[
-										66284,
-										66296
-									],
-									[
-										66399,
-										66411
-									],
-									[
-										66537,
-										66549
-									],
-									[
-										66716,
-										66728
-									],
-									[
-										66819,
-										66831
-									],
-									[
-										66924,
-										66936
-									],
-									[
-										67042,
-										67054
-									],
-									[
-										67196,
-										67208
-									],
-									[
-										67300,
-										67312
-									],
-									[
-										67408,
-										67420
-									],
-									[
-										67699,
-										67711
-									],
-									[
-										67819,
-										67831
-									],
-									[
-										68123,
-										68135
-									],
-									[
-										68252,
-										68264
-									],
-									[
-										68313,
-										68325
-									],
-									[
-										68614,
-										68626
-									],
-									[
-										68782,
-										68794
-									],
-									[
-										68924,
-										68936
-									],
-									[
-										69082,
-										69094
-									],
-									[
-										69146,
-										69158
-									],
-									[
-										69425,
-										69437
-									],
-									[
-										69657,
-										69669
-									],
-									[
-										69843,
-										69855
-									],
-									[
-										69987,
-										69999
-									],
-									[
-										70123,
-										70135
-									],
-									[
-										70276,
-										70288
-									],
-									[
-										70429,
-										70441
-									],
-									[
-										70582,
-										70594
-									],
-									[
-										70735,
-										70747
-									],
-									[
-										70942,
-										70954
-									],
-									[
-										71084,
-										71096
-									],
-									[
-										71272,
-										71284
-									],
-									[
-										71414,
-										71426
-									],
-									[
-										71628,
-										71640
-									],
-									[
-										72006,
-										72018
-									],
-									[
-										72145,
-										72157
-									],
-									[
-										72331,
-										72343
-									],
-									[
-										72482,
-										72494
-									],
-									[
-										72832,
-										72844
-									],
-									[
-										73201,
-										73213
-									],
-									[
-										73636,
-										73648
-									],
-									[
-										74246,
-										74258
-									],
-									[
-										78568,
-										78580
-									],
-									[
-										78750,
-										78762
-									],
-									[
-										78892,
-										78904
-									],
-									[
-										79036,
-										79048
-									],
-									[
-										79142,
-										79154
-									],
-									[
-										79533,
-										79545
-									],
-									[
-										79675,
-										79687
-									],
-									[
-										79819,
-										79831
-									],
-									[
-										80121,
-										80133
-									],
-									[
-										80336,
-										80348
-									],
-									[
-										80469,
-										80481
-									],
-									[
-										80624,
-										80636
-									],
-									[
-										80754,
-										80766
-									],
-									[
-										80908,
-										80920
-									],
-									[
-										81115,
-										81127
-									],
-									[
-										81337,
-										81349
-									],
-									[
-										81512,
-										81524
-									],
-									[
-										81680,
-										81692
-									],
-									[
-										81889,
-										81901
-									],
-									[
-										82031,
-										82043
-									],
-									[
-										82175,
-										82187
-									],
-									[
-										82437,
-										82449
-									],
-									[
-										82590,
-										82602
-									],
-									[
-										82836,
-										82848
-									],
-									[
-										82988,
-										83000
-									],
-									[
-										83211,
-										83223
-									],
-									[
-										83403,
-										83415
-									],
-									[
-										83562,
-										83574
-									],
-									[
-										83706,
-										83718
-									],
-									[
-										83960,
-										83972
-									],
-									[
-										84069,
-										84081
-									],
-									[
-										84212,
-										84224
-									],
-									[
-										84354,
-										84366
-									],
-									[
-										84478,
-										84490
-									],
-									[
-										84585,
-										84597
-									],
-									[
-										84761,
-										84773
-									],
-									[
-										84925,
-										84937
-									],
-									[
-										85107,
-										85119
-									],
-									[
-										85299,
-										85311
-									],
-									[
-										85450,
-										85462
-									],
-									[
-										85565,
-										85577
-									],
-									[
-										85703,
-										85715
-									],
-									[
-										85882,
-										85894
-									],
-									[
-										85985,
-										85997
-									],
-									[
-										86090,
-										86102
-									],
-									[
-										86208,
-										86220
-									],
-									[
-										86362,
-										86374
-									],
-									[
-										86466,
-										86478
-									],
-									[
-										86574,
-										86586
-									],
-									[
-										86865,
-										86877
-									],
-									[
-										86985,
-										86997
-									],
-									[
-										87289,
-										87301
-									],
-									[
-										87418,
-										87430
-									],
-									[
-										87479,
-										87491
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								87563,
-								87563
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 13,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 39920.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/udf_helpers.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12605,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12164,
-								12164
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 5171.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/udf_sphere_polygon.cc",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 53815,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								52796,
-								52796
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 19089.0,
+						"translation.y": 2704.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "src/serialiser.cc",
+					"buffer": 2,
+					"file": "src/udf_sphere_ellipse.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10483,
+						"buffer_size": 41215,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5357,
-								5357
+								5007,
+								5007
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2817.0,
+						"translation.y": 1008.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "install_udfs.sql",
+					"buffer": 3,
+					"file": "src/udf_sphere_polygon.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22979,
+						"buffer_size": 53812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4249,
-								4249
+								2457,
+								2457
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/SQL/SQL.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 621.0,
+						"translation.x": -0.0,
+						"translation.y": 128.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "README",
+					"buffer": 4,
+					"file": "src/udf_sphere_path.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1656,
+						"buffer_size": 45805,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								104,
-								104
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "doc/x18.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4200,
-						"regions":
-						{
-						},
-						"selection":
-						[
+								224,
+								224
+							],
 							[
-								659,
-								659
+								264,
+								264
+							],
+							[
+								307,
+								307
+							],
+							[
+								354,
+								354
+							],
+							[
+								399,
+								399
+							],
+							[
+								448,
+								448
+							],
+							[
+								497,
+								497
+							],
+							[
+								550,
+								550
+							],
+							[
+								596,
+								596
+							],
+							[
+								646,
+								646
+							],
+							[
+								696,
+								696
+							],
+							[
+								750,
+								750
+							],
+							[
+								795,
+								795
+							],
+							[
+								844,
+								844
+							],
+							[
+								893,
+								893
+							],
+							[
+								946,
+								946
+							],
+							[
+								989,
+								989
+							],
+							[
+								1036,
+								1036
+							],
+							[
+								1083,
+								1083
+							],
+							[
+								1134,
+								1134
+							],
+							[
+								1181,
+								1181
+							],
+							[
+								1232,
+								1232
+							],
+							[
+								1283,
+								1283
+							],
+							[
+								1338,
+								1338
+							],
+							[
+								1384,
+								1384
+							],
+							[
+								1434,
+								1434
+							],
+							[
+								1484,
+								1484
+							],
+							[
+								1538,
+								1538
+							],
+							[
+								1582,
+								1582
+							],
+							[
+								1630,
+								1630
+							],
+							[
+								1678,
+								1678
+							],
+							[
+								1730,
+								1730
+							],
+							[
+								1773,
+								1773
+							],
+							[
+								1820,
+								1820
+							],
+							[
+								1867,
+								1867
+							],
+							[
+								1918,
+								1918
+							],
+							[
+								1955,
+								1955
+							],
+							[
+								2000,
+								2000
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -3066,81 +1304,171 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "doc/x44.html",
+					"buffer": 5,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6153,
+						"buffer_size": 6697,
 						"regions":
 						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										214,
+										224
+									],
+									[
+										521,
+										531
+									],
+									[
+										704,
+										714
+									],
+									[
+										898,
+										908
+									],
+									[
+										1100,
+										1110
+									],
+									[
+										1304,
+										1314
+									],
+									[
+										1689,
+										1694
+									],
+									[
+										2143,
+										2148
+									],
+									[
+										2157,
+										2162
+									],
+									[
+										2409,
+										2414
+									],
+									[
+										2823,
+										2828
+									],
+									[
+										3075,
+										3080
+									],
+									[
+										3344,
+										3349
+									],
+									[
+										3538,
+										3543
+									],
+									[
+										3664,
+										3669
+									],
+									[
+										3854,
+										3859
+									],
+									[
+										4198,
+										4203
+									],
+									[
+										4517,
+										4522
+									],
+									[
+										4843,
+										4848
+									],
+									[
+										5218,
+										5223
+									],
+									[
+										5458,
+										5463
+									],
+									[
+										5845,
+										5850
+									],
+									[
+										6016,
+										6021
+									],
+									[
+										6329,
+										6334
+									],
+									[
+										6498,
+										6503
+									],
+									[
+										6618,
+										6623
+									]
+								],
+								"scope": ""
+							}
 						},
 						"selection":
 						[
 							[
-								631,
-								631
+								1450,
+								1450
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2176.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "doc/x1240.html",
+					"buffer": 6,
+					"file": "src/globals.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1992,
+						"buffer_size": 694,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								587,
-								587
+								630,
+								630
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "doc/types.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 29091,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								626,
-								626
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -3150,53 +1478,86 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "doc/operators.html",
+					"buffer": 7,
+					"file": "src/udf_sphere_operators.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22357,
+						"buffer_size": 65679,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								624,
-								624
+								49918,
+								49918
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 23280.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
-					"file": "doc/indices.html",
+					"buffer": 8,
+					"file": "src/udf_sphere_point.cc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2420,
+						"buffer_size": 8711,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								619,
-								619
+								3805,
+								3805
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1328.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "README",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1327,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1039,
+								1039
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -3206,25 +1567,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 14,
-					"file": "doc/index.html",
+					"buffer": 10,
+					"file": "test/setup/test_spherepath.sql",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6460,
+						"buffer_size": 4165,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								4165,
+								4165
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"syntax": "Packages/SQL/SQL.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -3234,31 +1595,330 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
-					"file": "src/udf_sphere_box.cc",
+					"buffer": 11,
+					"file": "NOTICE",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 67857,
+						"buffer_size": 2635,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6896,
-								6896
+								2245,
+								2245
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2997.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "src/udf_sphere_box.cc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 67951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								219
+							],
+							[
+								252,
+								252
+							],
+							[
+								285,
+								285
+							],
+							[
+								318,
+								318
+							],
+							[
+								353,
+								353
+							],
+							[
+								392,
+								392
+							],
+							[
+								434,
+								434
+							],
+							[
+								480,
+								480
+							],
+							[
+								526,
+								526
+							],
+							[
+								576,
+								576
+							],
+							[
+								617,
+								617
+							],
+							[
+								662,
+								662
+							],
+							[
+								706,
+								706
+							],
+							[
+								754,
+								754
+							],
+							[
+								802,
+								802
+							],
+							[
+								854,
+								854
+							],
+							[
+								899,
+								899
+							],
+							[
+								948,
+								948
+							],
+							[
+								997,
+								997
+							],
+							[
+								1050,
+								1050
+							],
+							[
+								1095,
+								1095
+							],
+							[
+								1144,
+								1144
+							],
+							[
+								1193,
+								1193
+							],
+							[
+								1246,
+								1246
+							],
+							[
+								1290,
+								1290
+							],
+							[
+								1338,
+								1338
+							],
+							[
+								1386,
+								1386
+							],
+							[
+								1438,
+								1438
+							],
+							[
+								1481,
+								1481
+							],
+							[
+								1528,
+								1528
+							],
+							[
+								1575,
+								1575
+							],
+							[
+								1626,
+								1626
+							],
+							[
+								1668,
+								1668
+							],
+							[
+								1714,
+								1714
+							],
+							[
+								1760,
+								1760
+							],
+							[
+								1810,
+								1810
+							],
+							[
+								1856,
+								1856
+							],
+							[
+								1906,
+								1906
+							],
+							[
+								1956,
+								1956
+							],
+							[
+								2010,
+								2010
+							],
+							[
+								2056,
+								2056
+							],
+							[
+								2106,
+								2106
+							],
+							[
+								2156,
+								2156
+							],
+							[
+								2210,
+								2210
+							],
+							[
+								2255,
+								2255
+							],
+							[
+								2304,
+								2304
+							],
+							[
+								2353,
+								2353
+							],
+							[
+								2406,
+								2406
+							],
+							[
+								2449,
+								2449
+							],
+							[
+								2496,
+								2496
+							],
+							[
+								2543,
+								2543
+							],
+							[
+								2594,
+								2594
+							],
+							[
+								2637,
+								2637
+							],
+							[
+								2684,
+								2684
+							],
+							[
+								2731,
+								2731
+							],
+							[
+								2782,
+								2782
+							],
+							[
+								2824,
+								2824
+							],
+							[
+								2870,
+								2870
+							],
+							[
+								2916,
+								2916
+							],
+							[
+								2966,
+								2966
+							],
+							[
+								3009,
+								3009
+							],
+							[
+								3056,
+								3056
+							],
+							[
+								3103,
+								3103
+							],
+							[
+								3154,
+								3154
+							],
+							[
+								3196,
+								3196
+							],
+							[
+								3242,
+								3242
+							],
+							[
+								3288,
+								3288
+							],
+							[
+								3338,
+								3338
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 448.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
 					"type": "text"
 				}
 			]
