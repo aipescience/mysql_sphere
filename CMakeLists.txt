@@ -3,13 +3,16 @@ project (mysql_sphere_UDF)
 ###########################################################
 #### uncomment this, if you want to specify own mysql path
 ###########################################################
-set(MYSQL_PATH "/usr/")
-
+if(NOT MYSQL_PATH)
+    set(MYSQL_PATH "/usr/")
+endif()
 ###########################################################
 #### path to the mysql 5.5 sources - download them from
-#### www.mysql.com if you don't have them 
+#### www.mysql.com if you don't have them
 ###########################################################
-set(MYSQL_SOURCES_PATH "/usr/src/mysql/mysql-5.5")
+if(NOT MYSQL_SOURCES_PATH)
+    set(MYSQL_SOURCES_PATH "/usr/src/mysql/mysql-5.5")
+endif()
 
 if(MYSQL_PATH)
     set(MYSQL_CONFIG "${MYSQL_PATH}/bin/mysql_config")
